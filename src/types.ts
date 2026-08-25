@@ -108,8 +108,33 @@ export interface SiteSettings {
   // Homepage Media & Visual Assets
   homepageHeroImageUrl?: string;
   homepageHeroImageAlt?: string;
+  heroImageUrl?: string;
+  heroImageAlt?: string;
   homepageFeatureImageUrl?: string;
   homepageFeatureImageAlt?: string;
+  // Homepage Content & Headings CMS
+  heroBadgeText?: string;
+  heroHeading?: string;
+  heroSubheading?: string;
+  heroPrimaryCtaText?: string;
+  heroSecondaryCtaText?: string;
+  heroFloatingCardTitle?: string;
+  heroFloatingCardValue?: string;
+  heroTrustText?: string;
+  founderSectionHeading?: string;
+  founderSectionSubheading?: string;
+  calcHeading?: string;
+  calcSubheading?: string;
+  testimonialBadge?: string;
+  testimonialHeading?: string;
+  insightsBadge?: string;
+  insightsHeading?: string;
+  consultationBadge?: string;
+  consultationHeading?: string;
+  consultationSubheading?: string;
+  consultationCtaText?: string;
+  footerAboutText?: string;
+  footerCopyrightText?: string;
   // About Us, Founder & AMFI Certification
   founderName: string;
   founderTitle: string;
@@ -157,9 +182,7 @@ export interface ContactInquiry {
   repliedAt?: string;
 }
 
-export interface CalculatorType {
-  type: 'sip' | 'lumpsum' | 'step-up' | 'sip-lumpsum';
-}
+export type CalculatorType = 'sip' | 'target-sip' | 'lumpsum' | 'step-up' | 'sip-lumpsum';
 
 export interface Advisor {
   id: string;

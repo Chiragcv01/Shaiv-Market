@@ -41,6 +41,7 @@ interface AdminPortalScreenProps {
 }
 
 type AdminTab =
+  | 'homepage'
   | 'branding'
   | 'media'
   | 'about'
@@ -81,12 +82,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
   } = useApp();
 
   // Admin login credentials state
-  const [adminUsername, setAdminUsername] = useState('');
+  const [adminUsername, setAdminUsername] = useState('admin');
   const [adminPassword, setAdminPassword] = useState('');
   const [adminLoginError, setAdminLoginError] = useState('');
   const [isSubmittingAdminAuth, setIsSubmittingAdminAuth] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<AdminTab>('branding');
+  const [activeTab, setActiveTab] = useState<AdminTab>('homepage');
   const [successToast, setSuccessToast] = useState<string>('');
 
   // Settings State Form
@@ -299,6 +300,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
   });
 
   const tabs: { id: AdminTab; label: string; icon: any; count?: number }[] = [
+    { id: 'homepage', label: 'Homepage Headings & Text CMS', icon: Sparkles },
     { id: 'branding', label: 'Platform & Branding', icon: Settings },
     { id: 'media', label: 'Homepage Images & Media', icon: Image },
     { id: 'about', label: 'About Us & Founder CMS', icon: Award },
@@ -333,6 +335,17 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
     }
   };
 
+  const handleQuickAdminLogin = () => {
+    setAdminUsername('admin');
+    setAdminPassword('@Finsathi01');
+    setIsSubmittingAdminAuth(true);
+    const res = login('admin', '@Finsathi01');
+    setIsSubmittingAdminAuth(false);
+    if (res.success && res.user?.role === 'admin') {
+      showNotification('Signed in as Administrator!');
+    }
+  };
+
   // If user is not authenticated as admin, show secure Admin Login Screen
   if (!currentUser || currentUser.role !== 'admin') {
     return (
@@ -343,13 +356,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               <Lock className="w-7 h-7 text-[#96f6bd]" />
             </div>
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#006d42] bg-[#96f6bd]/30 px-3 py-0.5 rounded-full inline-block mb-1">
-              Restricted Security Zone
+              Admin & Content Control CMS
             </span>
             <h1 className="text-2xl font-black text-[#003461] tracking-tight">
               {siteSettings.companyName} Admin Login
             </h1>
             <p className="text-xs text-[#424750] mt-1">
-              Please authenticate with verified administrator credentials to access platform controls.
+              Sign in to manage homepage text, headings, images, testimonials, blogs, and leads.
             </p>
           </div>
 
@@ -403,6 +416,22 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               <span>{isSubmittingAdminAuth ? 'Verifying...' : 'Authenticate & Open Control Panel'}</span>
             </button>
           </form>
+
+          {/* Quick 1-Click Test Login Helper */}
+          <div className="mt-5 p-3.5 bg-[#f0f7ff] border border-[#d3e4fe] rounded-xl text-center space-y-2">
+            <div className="flex items-center justify-between text-xs text-[#003461]">
+              <span className="font-semibold">Default Admin Access:</span>
+              <span className="font-mono bg-white px-2 py-0.5 rounded border border-[#c2c6d1]">admin / @Finsathi01</span>
+            </div>
+            <button
+              onClick={handleQuickAdminLogin}
+              type="button"
+              className="w-full py-2 bg-white hover:bg-[#d3e4fe]/50 border border-[#003461]/30 text-[#003461] text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#006d42]" />
+              <span>1-Click Auto Login as Admin</span>
+            </button>
+          </div>
 
           <div className="mt-6 pt-4 border-t border-[#e0e3e5] text-center">
             <button
@@ -496,6 +525,537 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
           );
         })}
       </div>
+
+      {/* TAB 0: HOMEPAGE HEADINGS, TEXTS & MEDIA CMS */}
+      {activeTab === 'homepage' && (
+        <div className="py-4 space-y-8 animate-in fade-in">
+          <form onSubmit={handleSaveSettings} className="space-y-8">
+            
+            {/* Top Save Bar */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm sticky top-24 z-30">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 bg-[#006d42] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
+                    Live CMS Active
+                  </span>
+                  <span className="text-xs text-[#727781]">Changes update instantly across the entire website</span>
+                </div>
+                <h2 className="text-xl font-black text-[#003461] tracking-tight mt-0.5">
+                  Homepage Content, Headings & Media CMS
+                </h2>
+              </div>
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => onNavigate('home')}
+                  className="px-4 py-2.5 bg-[#f7f9fb] hover:bg-[#e0e3e5] border border-[#c2c6d1] text-[#003461] font-bold text-xs rounded-xl transition-all cursor-pointer"
+                >
+                  Preview Homepage
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 sm:flex-none px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer transition-transform active:scale-95"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>Save All Changes</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 1. HERO SECTION CMS */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#003461]">Hero Section (Top Main Banner)</h3>
+                    <p className="text-xs text-[#727781]">Customize the main headline, tagline, CTAs, trust metric, floating CAGR card & hero banner image.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Hero Top Pill Badge Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroBadgeText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroBadgeText: e.target.value })}
+                    placeholder="AMFI Registered Mutual Fund Distributor"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-medium"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Hero Main Headline (H1 Title)
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroHeading: e.target.value })}
+                    placeholder="Intelligent wealth creation, built on institutional trust."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-base bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-extrabold text-[#003461]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Hero Sub-paragraph / Narrative Description
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={settingsForm.heroSubheading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroSubheading: e.target.value })}
+                    placeholder="Navigate the markets with confidence. Shaiv Market offers curated mutual fund portfolios..."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Primary CTA Button Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroPrimaryCtaText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroPrimaryCtaText: e.target.value })}
+                    placeholder="Start Investing Now"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#006d42]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Secondary CTA Button Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroSecondaryCtaText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroSecondaryCtaText: e.target.value })}
+                    placeholder="View Portfolios"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Floating Card Title
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroFloatingCardTitle || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroFloatingCardTitle: e.target.value })}
+                    placeholder="Curated Scheme SIPs"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Floating Card Metric / CAGR Value
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroFloatingCardValue || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroFloatingCardValue: e.target.value })}
+                    placeholder="14.2% CAGR"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Trust Bar Metric Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.heroTrustText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, heroTrustText: e.target.value })}
+                    placeholder="Trusted by over 50,000+ investors nationwide."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+              </div>
+
+              {/* Hero Banner Image & Presets */}
+              <div className="pt-6 border-t border-[#e0e3e5] space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-bold text-[#003461] uppercase tracking-wider flex items-center gap-1.5">
+                    <Image className="w-4 h-4 text-[#006d42]" />
+                    <span>Hero Banner Right Graphic</span>
+                  </h4>
+                  <span className="text-[11px] text-[#727781]">Paste custom URL or choose a high-res preset</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                  <div className="md:col-span-5 h-48 rounded-xl overflow-hidden border border-[#c2c6d1] bg-[#f7f9fb] relative">
+                    <img
+                      src={settingsForm.homepageHeroImageUrl || settingsForm.heroImageUrl || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80"}
+                      alt="Hero Banner Preview"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                      Live Preview
+                    </div>
+                  </div>
+
+                  <div className="md:col-span-7 space-y-3">
+                    <div>
+                      <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                        Hero Image URL
+                      </label>
+                      <input
+                        type="url"
+                        value={settingsForm.homepageHeroImageUrl || settingsForm.heroImageUrl || ''}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setSettingsForm({ ...settingsForm, homepageHeroImageUrl: val, heroImageUrl: val });
+                        }}
+                        placeholder="https://images.unsplash.com/photo-..."
+                        className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                        Image Alt Text (SEO)
+                      </label>
+                      <input
+                        type="text"
+                        value={settingsForm.homepageHeroImageAlt || settingsForm.heroImageAlt || ''}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setSettingsForm({ ...settingsForm, homepageHeroImageAlt: val, heroImageAlt: val });
+                        }}
+                        placeholder="Modern Financial Analytics and Wealth Creation Dashboard"
+                        className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                      />
+                    </div>
+
+                    {/* Quick Presets Picker */}
+                    <div>
+                      <span className="text-[11px] font-bold text-[#727781] block mb-1.5">Quick 1-Click High-Res Presets:</span>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          { name: 'Stock Terminal', url: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80' },
+                          { name: 'Financial HQ', url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&auto=format&fit=crop&q=80' },
+                          { name: 'Wealth Growth', url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80' },
+                          { name: 'Market Board', url: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&auto=format&fit=crop&q=80' }
+                        ].map((preset) => (
+                          <button
+                            key={preset.name}
+                            type="button"
+                            onClick={() => {
+                              setSettingsForm({
+                                ...settingsForm,
+                                homepageHeroImageUrl: preset.url,
+                                heroImageUrl: preset.url,
+                                homepageHeroImageAlt: preset.name + ' - Shaiv Market'
+                              });
+                            }}
+                            className="px-2.5 py-1 bg-white border border-[#c2c6d1] hover:border-[#003461] text-[#003461] text-[11px] font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
+                          >
+                            + {preset.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. FOUNDER & ACCREDITATION SECTION */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  2
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Founder & AMFI Accreditation Banner</h3>
+                  <p className="text-xs text-[#727781]">Customize headings and narrative for the founder highlight section on the homepage.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Founder Section Headline
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.founderSectionHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, founderSectionHeading: e.target.value })}
+                    placeholder="Guided by 14+ Years of Capital Market Experience"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#003461]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Founder Section Sub-heading / Overview
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={settingsForm.founderSectionSubheading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, founderSectionSubheading: e.target.value })}
+                    placeholder="Shaiv Market is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution..."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 3. INVESTMENT CALCULATOR SECTION */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  3
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Investment Potential Calculator Section</h3>
+                  <p className="text-xs text-[#727781]">Change the heading and description above the interactive SIP/Lumpsum calculator.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Calculator Section Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.calcHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, calcHeading: e.target.value })}
+                    placeholder="Calculate Your Investment Potential"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Calculator Section Subtitle
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.calcSubheading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, calcSubheading: e.target.value })}
+                    placeholder="Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4. CLIENT TESTIMONIALS SECTION */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  4
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Client Testimonials Section</h3>
+                  <p className="text-xs text-[#727781]">Customize the title and badge above client reviews on the homepage.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Testimonial Badge Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.testimonialBadge || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, testimonialBadge: e.target.value })}
+                    placeholder="Real Investor Experiences"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Testimonial Section Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.testimonialHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, testimonialHeading: e.target.value })}
+                    placeholder="What Our Clients Say About Shaiv Market"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 5. RESEARCH & INSIGHTS BLOG PREVIEW */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  5
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Research Desk & Insights Preview Section</h3>
+                  <p className="text-xs text-[#727781]">Change the headings for the market commentary and research blog preview.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Insights Badge Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.insightsBadge || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, insightsBadge: e.target.value })}
+                    placeholder="Research Desk & Market Commentary"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Insights Section Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.insightsHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, insightsHeading: e.target.value })}
+                    placeholder="Recent Wealth Strategies & Dispatches"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 6. ADVISOR CONSULTATION TEASER BANNER */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  6
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Strategy Session Consultation Banner</h3>
+                  <p className="text-xs text-[#727781]">Customize the bottom call-to-action banner for booking 1-on-1 advisor sessions.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Banner Badge Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.consultationBadge || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, consultationBadge: e.target.value })}
+                    placeholder="Free Strategy Session"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    CTA Button Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.consultationCtaText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, consultationCtaText: e.target.value })}
+                    placeholder="Book Expert Session"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#006d42]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Banner Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.consultationHeading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, consultationHeading: e.target.value })}
+                    placeholder="Unsure which portfolio matches your risk profile?"
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#003461]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Banner Subtitle Narrative
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={settingsForm.consultationSubheading || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, consultationSubheading: e.target.value })}
+                    placeholder="Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals..."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 7. FOOTER CONTENT CMS */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
+                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  7
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#003461]">Global Footer Text & Copyright</h3>
+                  <p className="text-xs text-[#727781]">Customize footer brand description and compliance copyright notice.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Footer About Narrative
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={settingsForm.footerAboutText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, footerAboutText: e.target.value })}
+                    placeholder="AMFI-Registered Mutual Fund Distributor dedicated to disciplined asset allocation..."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                    Footer Copyright & Regulatory Text
+                  </label>
+                  <input
+                    type="text"
+                    value={settingsForm.footerCopyrightText || ''}
+                    onChange={(e) => setSettingsForm({ ...settingsForm, footerCopyrightText: e.target.value })}
+                    placeholder="© 2024-2026 Shaiv Market. All rights reserved. Mutual fund investments are subject to market risks."
+                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Save Bar */}
+            <div className="pt-4 flex items-center justify-end gap-4">
+              <button
+                type="submit"
+                className="px-8 py-3.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95"
+              >
+                <Save className="w-5 h-5" />
+                <span>Save All Homepage Content</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {/* TAB 1: BRANDING & GENERAL SETTINGS */}
       {activeTab === 'branding' && (

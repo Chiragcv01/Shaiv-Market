@@ -46,15 +46,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             
             <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1.5 rounded-full text-xs font-bold">
               <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-              <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
+              <span>{siteSettings.heroBadgeText || 'AMFI Registered Mutual Fund Distributor'} ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#191c1e] tracking-tight leading-[1.15] text-balance">
-              Intelligent wealth creation, built on institutional trust.
+              {siteSettings.heroHeading || 'Intelligent wealth creation, built on institutional trust.'}
             </h1>
 
             <p className="text-base sm:text-lg text-[#424750] leading-relaxed max-w-lg">
-              Navigate the markets with confidence. {siteSettings.companyName} offers curated mutual fund portfolios designed for long-term stability and consistent compounding, backed by certified research.
+              {siteSettings.heroSubheading || `Navigate the markets with confidence. ${siteSettings.companyName} offers curated mutual fund portfolios designed for long-term stability and consistent compounding, backed by certified research.`}
             </p>
 
             {/* CTA Buttons */}
@@ -64,7 +64,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 onClick={() => onNavigate('open-account')}
                 className="bg-[#006d42] hover:bg-[#005231] active:bg-[#002111] text-white font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-150 active:scale-98 cursor-pointer"
               >
-                Start Investing Now
+                {siteSettings.heroPrimaryCtaText || 'Start Investing Now'}
               </button>
 
               {/* External Direct Account Referral Link (if configured in Admin) */}
@@ -86,7 +86,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 onClick={() => onNavigate('invest')}
                 className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg border border-[#c2c6d1] transition-colors cursor-pointer"
               >
-                View Portfolios
+                {siteSettings.heroSecondaryCtaText || 'View Portfolios'}
               </button>
             </div>
 
@@ -104,7 +104,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
               </div>
               <p className="text-xs sm:text-sm text-[#424750]">
-                Trusted by over <strong className="text-[#191c1e] font-bold">50,000+</strong> investors nationwide.
+                {siteSettings.heroTrustText || 'Trusted by over 50,000+ investors nationwide.'}
               </p>
             </div>
 
@@ -115,8 +115,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             
             {/* Background Image managed via CMS */}
             <img
-              src={siteSettings.heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"}
-              alt={siteSettings.heroImageAlt || `${siteSettings.companyName} Institutional Wealth Management`}
+              src={siteSettings.homepageHeroImageUrl || siteSettings.heroImageUrl || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80"}
+              alt={siteSettings.homepageHeroImageAlt || siteSettings.heroImageAlt || `${siteSettings.companyName} Institutional Wealth Management`}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
             />
@@ -131,10 +131,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
               <div>
                 <p className="text-[11px] font-bold text-[#727781] uppercase tracking-wider">
-                  Curated Scheme SIPs
+                  {siteSettings.heroFloatingCardTitle || 'Curated Scheme SIPs'}
                 </p>
                 <p className="text-2xl sm:text-3xl font-extrabold text-[#191c1e] tracking-tight">
-                  14.2% CAGR
+                  {siteSettings.heroFloatingCardValue || '14.2% CAGR'}
                 </p>
               </div>
             </div>
@@ -172,11 +172,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] leading-tight">
-                  Guided by {siteSettings.founderExperience || '14+ Years of Capital Market Experience'}
+                  {siteSettings.founderSectionHeading || `Guided by ${siteSettings.founderExperience || '14+ Years of Capital Market Experience'}`}
                 </h2>
 
                 <p className="text-sm text-[#424750] leading-relaxed">
-                  {siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.`}
+                  {siteSettings.founderSectionSubheading || siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.`}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -207,10 +207,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           
           <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#191c1e] tracking-tight mb-3">
-              Calculate Your Investment Potential
+              {siteSettings.calcHeading || 'Calculate Your Investment Potential'}
             </h2>
             <p className="text-sm sm:text-base text-[#424750]">
-              Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy.
+              {siteSettings.calcSubheading || 'Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy.'}
             </p>
           </div>
 
@@ -227,10 +227,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div>
             <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-              <span>Real Investor Experiences</span>
+              <span>{siteSettings.testimonialBadge || 'Real Investor Experiences'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461]">
-              What Our Clients Say About {siteSettings.companyName}
+              {siteSettings.testimonialHeading || `What Our Clients Say About ${siteSettings.companyName}`}
             </h2>
           </div>
           <button
@@ -305,10 +305,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div>
               <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5" />
-                <span>Research Desk & Market Commentary</span>
+                <span>{siteSettings.insightsBadge || 'Research Desk & Market Commentary'}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#003461]">
-                Recent Wealth Strategies & Dispatches
+                {siteSettings.insightsHeading || 'Recent Wealth Strategies & Dispatches'}
               </h2>
             </div>
             <button
@@ -376,13 +376,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
           <div className="max-w-xl space-y-3 z-10">
             <span className="bg-[#d3e4fe] text-[#001c38] text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
-              Free Strategy Session
+              {siteSettings.consultationBadge || 'Free Strategy Session'}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
-              Unsure which portfolio matches your risk profile?
+              {siteSettings.consultationHeading || 'Unsure which portfolio matches your risk profile?'}
             </h2>
             <p className="text-sm sm:text-base text-[#d3e4fe] leading-relaxed">
-              Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals and portfolio allocation.
+              {siteSettings.consultationSubheading || 'Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals and portfolio allocation.'}
             </p>
           </div>
 
@@ -392,7 +392,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
-              <span>Book Expert Session</span>
+              <span>{siteSettings.consultationCtaText || 'Book Expert Session'}</span>
             </button>
             {siteSettings.enableCalendlyBooking && siteSettings.calendlyUrl && (
               <a

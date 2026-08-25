@@ -1,29 +1,90 @@
 import React, { useState } from 'react';
 import { ActiveScreen, InsightArticle } from '../types';
 import { useApp } from '../context/AppContext';
-import { LiveMfApiExplorer } from './LiveMfApiExplorer';
-import { MfHoldingsAndOverlapVisualizer } from './MfHoldingsAndOverlapVisualizer';
+import { GoalPlanner } from './GoalPlanner';
+import { SwpCalculator } from './SwpCalculator';
+import { LoanVsSipArbitrage } from './LoanVsSipArbitrage';
+import { FireCalculator } from './FireCalculator';
+import { MfTaxEstimator } from './MfTaxEstimator';
+import { EmergencyFundShield } from './EmergencyFundShield';
 import {
-  BookOpen,
-  Calendar,
-  Clock,
-  User,
-  ArrowRight,
-  TrendingUp,
+  Target,
+  Wallet,
+  Scale,
+  Flame,
+  FileSpreadsheet,
   ShieldCheck,
-  Share2,
-  Bookmark,
+  BookOpen,
+  Clock,
+  ArrowRight,
   SlidersHorizontal,
-  Plus,
-  X
+  X,
+  Sparkles,
+  Layers
 } from 'lucide-react';
 
 interface InsightsScreenProps {
   onNavigate: (screen: ActiveScreen) => void;
 }
 
+type ToolTabId = 'goal' | 'swp' | 'loan-vs-sip' | 'fire' | 'tax' | 'emergency';
+
+interface ToolMeta {
+  id: ToolTabId;
+  label: string;
+  shortLabel: string;
+  icon: any;
+  tagline: string;
+}
+
+const WEALTH_TOOLS: ToolMeta[] = [
+  {
+    id: 'goal',
+    label: 'Goal Planner',
+    shortLabel: 'Goals',
+    icon: Target,
+    tagline: 'Education, Home & Retirement Roadmaps'
+  },
+  {
+    id: 'swp',
+    label: 'SWP & Pension',
+    shortLabel: 'SWP Payouts',
+    icon: Wallet,
+    tagline: 'Monthly Income & Capital Longevity'
+  },
+  {
+    id: 'loan-vs-sip',
+    label: 'Loan vs SIP Arbitrage',
+    shortLabel: 'Loan vs SIP',
+    icon: Scale,
+    tagline: 'Prepay Loan or Invest in Mutual Funds'
+  },
+  {
+    id: 'fire',
+    label: 'FIRE Calculator',
+    shortLabel: 'FIRE Number',
+    icon: Flame,
+    tagline: 'Financial Independence & Early Retirement'
+  },
+  {
+    id: 'tax',
+    label: 'Capital Gains Tax',
+    shortLabel: 'Tax Estimator',
+    icon: FileSpreadsheet,
+    tagline: 'Budget 2024-26 LTCG & STCG Rules'
+  },
+  {
+    id: 'emergency',
+    label: 'Emergency Shield',
+    shortLabel: 'Safety Buffer',
+    icon: ShieldCheck,
+    tagline: 'Liquid & Overnight Reserve Strategy'
+  }
+];
+
 export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) => {
   const { articles, currentUser } = useApp();
+  const [activeTool, setActiveTool] = useState<ToolTabId>('goal');
   const [selectedArticle, setSelectedArticle] = useState<InsightArticle | null>(null);
 
   const featuredArticle = articles.find((a) => a.featured) || articles[0];
@@ -36,14 +97,14 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2">
-            <BookOpen className="w-3.5 h-3.5" />
-            Research, Holdings & Portfolio Overlap Desk
+            <Sparkles className="w-3.5 h-3.5 text-[#003461]" />
+            Free Institutional Advisory & Wealth Suite
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#003461] mb-2">
-            Market Intelligence & Portfolio Overlap Engine
+            Financial Planning Tools & Research Desk
           </h1>
           <p className="text-sm sm:text-base text-[#424750] max-w-3xl leading-relaxed">
-            Live NAV tracking, underlying stock holdings breakdown, sectoral distributions, and multi-scheme portfolio overlap calculation for disciplined wealth creation.
+            Professional calculators for milestone goal mapping, systematic retirement withdrawals (SWP), home loan vs. SIP decisions, FIRE milestones, and capital gains tax planning.
           </p>
         </div>
 
@@ -58,14 +119,67 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
         )}
       </div>
 
-      {/* 1. Interactive Holdings & Portfolio Overlap Visualizer */}
-      <div>
-        <MfHoldingsAndOverlapVisualizer onNavigate={onNavigate} />
+      {/* 1. Interactive Tool Navigator Tabs */}
+      <div className="space-y-6">
+        <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-2 sm:p-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+            {WEALTH_TOOLS.map((tool) => {
+              const Icon = tool.icon;
+              const isActive = activeTool === tool.id;
+              return (
+                <button
+                  key={tool.id}
+                  type="button"
+                  onClick={() => setActiveTool(tool.id)}
+                  className={`p-3 rounded-xl text-left transition-all cursor-pointer flex flex-col justify-between gap-2 border ${
+                    isActive
+                      ? 'bg-[#003461] text-white border-[#003461] shadow-md scale-[1.02]'
+                      : 'bg-white text-[#191c1e] border-[#e0e3e5] hover:bg-[#eceef0]'
+                  }`}
+                >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    isActive ? 'bg-white/20 text-[#96f6bd]' : 'bg-[#d3e4fe] text-[#003461]'
+                  }`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold block leading-tight">
+                      {tool.label}
+                    </span>
+                    <span className={`text-[10px] line-clamp-1 mt-0.5 ${
+                      isActive ? 'text-white/80' : 'text-[#727781]'
+                    }`}>
+                      {tool.tagline}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Render Selected Tool */}
+        <div className="transition-all duration-300">
+          {activeTool === 'goal' && <GoalPlanner onNavigate={onNavigate} />}
+          {activeTool === 'swp' && <SwpCalculator onNavigate={onNavigate} />}
+          {activeTool === 'loan-vs-sip' && <LoanVsSipArbitrage onNavigate={onNavigate} />}
+          {activeTool === 'fire' && <FireCalculator onNavigate={onNavigate} />}
+          {activeTool === 'tax' && <MfTaxEstimator onNavigate={onNavigate} />}
+          {activeTool === 'emergency' && <EmergencyFundShield onNavigate={onNavigate} />}
+        </div>
       </div>
 
-      {/* 2. Live AMFI & mfapi.in Quantitative Explorer */}
-      <div>
-        <LiveMfApiExplorer onNavigate={onNavigate} />
+      {/* 2. Research Desk Header */}
+      <div className="pt-4 border-t border-[#c2c6d1]">
+        <div className="flex items-center gap-2 mb-2">
+          <BookOpen className="w-5 h-5 text-[#003461]" />
+          <h2 className="text-2xl font-extrabold text-[#003461]">
+            Research Publications & Wealth Advisory Dispatches
+          </h2>
+        </div>
+        <p className="text-xs sm:text-sm text-[#424750]">
+          Institutional investment insights, market commentary, and asset allocation papers authored by certified mutual fund specialists.
+        </p>
       </div>
 
       {/* 3. Featured Lead Article */}
@@ -101,15 +215,15 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
               <ul className="text-xs text-[#424750] space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#006d42] mt-1.5 shrink-0" />
-                  <span>Rupee-cost averaging minimizes timing risk during market volatility.</span>
+                  <span>Rupee-cost averaging minimizes timing risk during cyclical volatility.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#006d42] mt-1.5 shrink-0" />
-                  <span>Disciplined SIP guidance and regular rebalancing protect long-term compounding.</span>
+                  <span>Disciplined SIP step-ups compound wealth significantly faster than static SIPs.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#006d42] mt-1.5 shrink-0" />
-                  <span>Disciplined rebalancing into liquid debt mitigates retirement drawdowns.</span>
+                  <span>Strategic rebalancing into liquid debt mitigates retirement drawdowns.</span>
                 </li>
               </ul>
             </div>
@@ -135,14 +249,6 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
 
       {/* Grid of Articles */}
       <div>
-        <div className="space-y-1 mb-6">
-          <h3 className="text-xl font-bold text-[#003461]">
-            Featured Research Publications & Advisory Notes
-          </h3>
-          <p className="text-xs text-[#424750]">
-            Authored by certified mutual fund specialists and wealth strategists.
-          </p>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {gridArticles.map((article) => (
             <article
@@ -275,7 +381,7 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
                   setSelectedArticle(null);
                   onNavigate('booking');
                 }}
-                className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0"
+                className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0 cursor-pointer"
               >
                 Book 1-on-1 Discussion
               </button>
@@ -288,4 +394,3 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
     </div>
   );
 };
-

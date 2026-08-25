@@ -19,12 +19,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-md bg-[#006d42] flex items-center justify-center text-white text-sm font-bold">
-                S
+                {siteSettings.logoInitial || 'S'}
               </div>
               <span className="text-xl font-bold text-white tracking-tight">{siteSettings.companyName}</span>
             </div>
             <p className="text-[#c2c6d1] text-xs leading-relaxed max-w-sm">
-              Empowering investors with institutional-grade mutual fund portfolio construction, goal-based wealth planning, and dedicated AMFI distributor support.
+              {siteSettings.footerAboutText || 'Empowering investors with institutional-grade mutual fund portfolio construction, goal-based wealth planning, and dedicated AMFI distributor support.'}
             </p>
             <div className="flex items-center gap-2 text-xs text-[#96f6bd]">
               <ShieldCheck className="w-4 h-4 shrink-0 text-[#96f6bd]" />
@@ -119,17 +119,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   Client Reviews & Stories
                 </button>
               </li>
-              {currentUser?.role === 'admin' && (
-                <li>
-                  <button
-                    onClick={() => onNavigate?.('admin')}
-                    className="text-[#96f6bd] hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5 font-bold"
-                  >
-                    <SlidersHorizontal className="w-3.5 h-3.5" />
-                    <span>Admin CMS & Controls</span>
-                  </button>
-                </li>
-              )}
+              <li>
+                <button
+                  onClick={() => onNavigate?.('admin')}
+                  className="text-[#96f6bd] hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5 font-bold"
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5" />
+                  <span>{currentUser?.role === 'admin' ? 'Admin CMS & Controls (Active)' : 'Admin Portal Access'}</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -159,7 +157,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-[#424750]/50 text-[#8c9199] text-xs flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© 2024 {siteSettings.companyName} Pvt. Ltd. All rights reserved. AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+          <p>{siteSettings.footerCopyrightText || `© 2024-2026 ${siteSettings.companyName} Pvt. Ltd. All rights reserved. AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks, read all scheme related documents carefully.`}</p>
           <div className="flex items-center gap-4 shrink-0 text-[#96f6bd]">
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
@@ -167,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4" />
-              <span>AMFI ARN: {siteSettings.amfiArnNumber || '284910'}</span>
+              <span>AMFI ARN: {siteSettings.sebiRegNumber || 'ARN-284912'}</span>
             </div>
           </div>
         </div>

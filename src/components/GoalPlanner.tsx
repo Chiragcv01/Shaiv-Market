@@ -1,0 +1,511 @@
+import React, { useState, useMemo } from 'react';
+import {
+  calculateGoalPlan,
+  formatIndianCurrency,
+  formatRawIndianNumber
+} from '../utils/calculator';
+import { ActiveScreen } from '../types';
+import {
+  GraduationCap,
+  Palmtree,
+  Home,
+  HeartHandshake,
+  Rocket,
+  ArrowRight,
+  TrendingUp,
+  Target,
+  ShieldCheck,
+  CheckCircle2,
+  PieChart as PieIcon,
+  BarChart3,
+  LineChart as LineIcon,
+  Sparkles,
+  Info
+} from 'lucide-react';
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ReferenceLine
+} from 'recharts';
+
+interface GoalPlannerProps {
+  onNavigate?: (screen: ActiveScreen) => void;
+  onPlanGoal?: (goalDetails: any) => void;
+}
+
+interface GoalPreset {
+  id: string;
+  name: string;
+  icon: any;
+  defaultCost: number;
+  defaultYears: number;
+  defaultInflation: number;
+  defaultExpectedReturn: number;
+  description: string;
+}
+
+const GOAL_PRESETS: GoalPreset[] = [
+  {
+    id: 'education',
+    name: 'Child Higher Education',
+    icon: GraduationCap,
+    defaultCost: 2500000,
+    defaultYears: 12,
+    defaultInflation: 10,
+    defaultExpectedReturn: 13,
+    description: 'Finance premier engineering, medical, MBA, or ivy league overseas degree without education loan debt.'
+  },
+  {
+    id: 'retirement',
+    name: 'Retirement & Freedom',
+    icon: Palmtree,
+    defaultCost: 15000000,
+    defaultYears: 20,
+    defaultInflation: 6,
+    defaultExpectedReturn: 12.5,
+    description: 'Build an inflation-beating capital corpus to enjoy continuous pension dividends post-retirement.'
+  },
+  {
+    id: 'home',
+    name: 'Dream Home Downpayment',
+    icon: Home,
+    defaultCost: 3500000,
+    defaultYears: 6,
+    defaultInflation: 7,
+    defaultExpectedReturn: 12,
+    description: 'Accumulate substantial down-payment and registry charges to minimize your home loan EMI.'
+  },
+  {
+    id: 'marriage',
+    name: 'Child Marriage / Milestone',
+    icon: HeartHandshake,
+    defaultCost: 2000000,
+    defaultYears: 10,
+    defaultInflation: 8,
+    defaultExpectedReturn: 12.5,
+    description: 'Celebrate grand wedding milestones with planned compounding rather than distress asset sales.'
+  },
+  {
+    id: 'crorepati',
+    name: 'Target ₹1 Crore Milestone',
+    icon: Rocket,
+    defaultCost: 10000000,
+    defaultYears: 15,
+    defaultInflation: 0,
+    defaultExpectedReturn: 13,
+    description: 'Systematic discipline to reach your first 8-figure net worth milestone through equity compounding.'
+  }
+];
+
+export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal }) => {
+  const [selectedGoalId, setSelectedGoalId] = useState<string>('education');
+  const [chartVisualMode, setChartVisualMode] = useState<'area' | 'bar'>('area');
+  
+  const currentPreset = useMemo(() => {
+    return GOAL_PRESETS.find((g) => g.id === selectedGoalId) || GOAL_PRESETS[0];
+  }, [selectedGoalId]);
+
+  // Input states
+  const [targetCostToday, setTargetCostToday] = useState<number>(2500000);
+  const [yearsToGoal, setYearsToGoal] = useState<number>(12);
+  const [inflationRate, setInflationRate] = useState<number>(10);
+  const [expectedReturn, setExpectedReturn] = useState<number>(13);
+  const [existingSavings, setExistingSavings] = useState<number>(200000);
+
+  // When preset changes, update defaults
+  const handleSelectPreset = (preset: GoalPreset) => {
+    setSelectedGoalId(preset.id);
+    setTargetCostToday(preset.defaultCost);
+    setYearsToGoal(preset.defaultYears);
+    setInflationRate(preset.defaultInflation);
+    setExpectedReturn(preset.defaultExpectedReturn);
+  };
+
+  // Perform calculation
+  const plan = useMemo(() => {
+    return calculateGoalPlan(
+      targetCostToday,
+      yearsToGoal,
+      inflationRate,
+      expectedReturn,
+      existingSavings
+    );
+  }, [targetCostToday, yearsToGoal, inflationRate, expectedReturn, existingSavings]);
+
+  const handleStartGoalSIP = () => {
+    if (onPlanGoal) {
+      onPlanGoal({
+        goalName: currentPreset.name,
+        targetCost: plan.targetFutureValue,
+        monthlySIP: plan.requiredMonthlySIP,
+        years: yearsToGoal
+      });
+    } else if (onNavigate) {
+      onNavigate('open-account');
+    }
+  };
+
+  const formatTooltipValue = (val: any) => {
+    return `₹ ${Number(val).toLocaleString('en-IN')}`;
+  };
+
+  return (
+    <div id="goal-planner-card" className="w-full bg-white border border-[#c2c6d1] rounded-2xl shadow-sm overflow-hidden">
+      
+      {/* Header Bar */}
+      <div className="p-6 bg-[#f7f9fb] border-b border-[#c2c6d1]">
+        <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
+          <Target className="w-3.5 h-3.5" />
+          Goal-Based Financial Architecture
+        </div>
+        <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+          Inflation-Adjusted Life Goal Planner
+        </h3>
+        <p className="text-xs text-[#424750] mt-0.5 max-w-3xl">
+          Account for education, healthcare, and lifestyle inflation. Calculate the exact monthly SIP required to achieve your future dreams with complete certainty.
+        </p>
+      </div>
+
+      {/* Goal Preset Pills Selector */}
+      <div className="p-4 sm:px-8 bg-[#ffffff] border-b border-[#e0e3e5] overflow-x-auto scrollbar-none flex gap-2">
+        {GOAL_PRESETS.map((preset) => {
+          const Icon = preset.icon;
+          const isSelected = preset.id === selectedGoalId;
+          return (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => handleSelectPreset(preset)}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer border ${
+                isSelected
+                  ? 'bg-[#003461] text-white border-[#003461] shadow-xs'
+                  : 'bg-[#f7f9fb] text-[#424750] border-[#c2c6d1] hover:bg-[#eceef0]'
+              }`}
+            >
+              <Icon className={`w-4 h-4 ${isSelected ? 'text-[#96f6bd]' : 'text-[#003461]'}`} />
+              <span>{preset.name}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Main Grid: Inputs (7 cols) & Outputs/Charts (5 cols) */}
+      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#c2c6d1]">
+        
+        {/* Left Inputs (7 cols) */}
+        <div className="lg:col-span-7 p-6 sm:p-8 space-y-6">
+          
+          {/* Preset Context Callout */}
+          <div className="p-3.5 bg-[#f7f9fb] rounded-xl border border-[#e0e3e5] text-xs text-[#424750] leading-relaxed">
+            <span className="font-bold text-[#003461]">{currentPreset.name}:</span> {currentPreset.description}
+          </div>
+
+          {/* Slider 1: Goal Cost in Today's Value */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center text-xs">
+              <span className="font-bold text-[#424750]">Goal Cost in Today&apos;s Money (₹)</span>
+              <span className="font-extrabold text-sm text-[#003461] bg-[#eceef0] px-2.5 py-1 rounded-md">
+                {formatIndianCurrency(targetCostToday)}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={100000}
+              max={50000000}
+              step={100000}
+              value={targetCostToday}
+              onChange={(e) => setTargetCostToday(Number(e.target.value))}
+              className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+            />
+            <div className="flex justify-between text-[10px] text-[#727781]">
+              <span>₹1 Lakh</span>
+              <span>₹2.5 Crore</span>
+              <span>₹5 Crore</span>
+            </div>
+          </div>
+
+          {/* Grid: Years to Goal & Inflation */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            {/* Years to Goal */}
+            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-bold text-[#424750]">Time Horizon (Years)</span>
+                <span className="font-bold text-[#003461]">{yearsToGoal} Years</span>
+              </div>
+              <input
+                type="range"
+                min={1}
+                max={30}
+                step={1}
+                value={yearsToGoal}
+                onChange={(e) => setYearsToGoal(Number(e.target.value))}
+                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+              />
+              <div className="flex justify-between text-[10px] text-[#727781]">
+                <span>1 Yr</span>
+                <span>15 Yrs</span>
+                <span>30 Yrs</span>
+              </div>
+            </div>
+
+            {/* Expected Inflation Rate */}
+            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-bold text-[#424750]">Annual Inflation Rate</span>
+                <span className="font-bold text-[#ba1a1a]">{inflationRate}% p.a.</span>
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={15}
+                step={0.5}
+                value={inflationRate}
+                onChange={(e) => setInflationRate(Number(e.target.value))}
+                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#ba1a1a]"
+              />
+              <div className="flex justify-between text-[10px] text-[#727781]">
+                <span>0% (Direct)</span>
+                <span>6% (General)</span>
+                <span>10% (Education)</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Grid: Expected Returns & Existing Savings */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            {/* Expected MF Return */}
+            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-bold text-[#424750]">Expected CAGR Return</span>
+                <span className="font-bold text-[#006d42]">+{expectedReturn}% p.a.</span>
+              </div>
+              <input
+                type="range"
+                min={8}
+                max={18}
+                step={0.5}
+                value={expectedReturn}
+                onChange={(e) => setExpectedReturn(Number(e.target.value))}
+                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
+              />
+            </div>
+
+            {/* Existing Savings Dedicated to Goal */}
+            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-bold text-[#424750]">Existing Savings Earmarked</span>
+                <span className="font-bold text-[#006d42]">{formatIndianCurrency(existingSavings)}</span>
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={5000000}
+                step={50000}
+                value={existingSavings}
+                onChange={(e) => setExistingSavings(Number(e.target.value))}
+                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
+              />
+            </div>
+
+          </div>
+
+          {/* Enhanced Growth Area Chart */}
+          <div className="pt-2">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-[#003461] uppercase tracking-wider flex items-center gap-1.5">
+                <TrendingUp className="w-3.5 h-3.5 text-[#006d42]" />
+                Corpus Accumulation Roadmap:
+              </span>
+              
+              <div className="flex bg-[#e0e3e5] p-0.5 rounded-md border border-[#c2c6d1]">
+                <button
+                  type="button"
+                  onClick={() => setChartVisualMode('area')}
+                  className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all ${
+                    chartVisualMode === 'area' ? 'bg-[#003461] text-white' : 'text-[#424750]'
+                  }`}
+                >
+                  Area Curve
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setChartVisualMode('bar')}
+                  className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all ${
+                    chartVisualMode === 'bar' ? 'bg-[#003461] text-white' : 'text-[#424750]'
+                  }`}
+                >
+                  Yearly Bars
+                </button>
+              </div>
+            </div>
+
+            <div className="h-52 w-full bg-[#f7f9fb] rounded-xl p-2.5 border border-[#e0e3e5]">
+              <ResponsiveContainer width="100%" height="100%">
+                {chartVisualMode === 'area' ? (
+                  <AreaChart data={plan.yearlyRoadmap} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="goalCorpusGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#006d42" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="goalInvestedGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#003461" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#003461" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#727781' }} />
+                    <YAxis
+                      tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
+                      tick={{ fontSize: 10, fill: '#727781' }}
+                    />
+                    <Tooltip formatter={formatTooltipValue} labelFormatter={(l) => `Year ${l}`} />
+                    <Legend iconSize={8} wrapperStyle={{ fontSize: '10px', paddingTop: '2px' }} />
+                    <Area
+                      type="monotone"
+                      dataKey="expectedCorpus"
+                      name="Projected Corpus"
+                      stroke="#006d42"
+                      strokeWidth={2.5}
+                      fillOpacity={1}
+                      fill="url(#goalCorpusGrad)"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="invested"
+                      name="Cumulative Invested"
+                      stroke="#003461"
+                      strokeWidth={2}
+                      fillOpacity={1}
+                      fill="url(#goalInvestedGrad)"
+                    />
+                  </AreaChart>
+                ) : (
+                  <BarChart data={plan.yearlyRoadmap} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#727781' }} />
+                    <YAxis
+                      tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
+                      tick={{ fontSize: 10, fill: '#727781' }}
+                    />
+                    <Tooltip formatter={formatTooltipValue} labelFormatter={(l) => `Year ${l}`} />
+                    <Legend iconSize={8} wrapperStyle={{ fontSize: '10px', paddingTop: '2px' }} />
+                    <Bar dataKey="invested" name="Invested Capital" fill="#003461" />
+                    <Bar dataKey="expectedCorpus" name="Compounded Wealth" fill="#006d42" />
+                  </BarChart>
+                )}
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Right Output & Allocation Recommendation (5 cols) */}
+        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#f7f9fb] flex flex-col justify-between space-y-6">
+          
+          <div className="space-y-5">
+            
+            {/* Target Future Value Banner */}
+            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-5 shadow-xs">
+              <span className="text-[11px] font-bold text-[#727781] uppercase tracking-wider block mb-1">
+                Inflated Future Cost in {yearsToGoal} Years:
+              </span>
+              <div className="text-2xl sm:text-3xl font-black text-[#003461] tracking-tight">
+                {formatIndianCurrency(plan.targetFutureValue)}
+              </div>
+              <p className="text-[11px] text-[#424750] mt-1">
+                Due to {inflationRate}% inflation, ₹{formatRawIndianNumber(targetCostToday)} today will equal this amount in year {new Date().getFullYear() + yearsToGoal}.
+              </p>
+            </div>
+
+            {/* Required Monthly SIP Box */}
+            <div className="bg-[#003461] text-white rounded-2xl p-5 shadow-md space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold text-[#96f6bd] uppercase tracking-wider">
+                  Required Monthly SIP
+                </span>
+                <span className="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
+                  Recommended Plan
+                </span>
+              </div>
+              <div className="text-3xl font-black tracking-tight text-white">
+                ₹ {formatRawIndianNumber(plan.requiredMonthlySIP)}<span className="text-sm font-normal text-white/80">/month</span>
+              </div>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Investing this amount monthly into a well-diversified mutual fund portfolio will comfortably achieve your target.
+              </p>
+            </div>
+
+            {/* Alternate: One-Time Lumpsum Option */}
+            <div className="bg-white border border-[#c2c6d1] rounded-xl p-3.5 flex items-center justify-between text-xs">
+              <div>
+                <span className="text-[11px] text-[#727781] block">Or One-time Lumpsum Today:</span>
+                <span className="font-extrabold text-[#191c1e] text-sm">{formatIndianCurrency(plan.requiredLumpsumToday)}</span>
+              </div>
+              <div className="text-right">
+                <span className="text-[11px] text-[#727781] block">Time Remaining:</span>
+                <span className="font-bold text-[#006d42]">{yearsToGoal} Years ({yearsToGoal * 12} SIPs)</span>
+              </div>
+            </div>
+
+            {/* Asset Allocation Strategy */}
+            <div className="bg-white border border-[#c2c6d1] rounded-xl p-4 space-y-2.5">
+              <span className="text-xs font-bold text-[#003461] block">
+                Recommended Asset Allocation:
+              </span>
+              <div className="w-full h-3 bg-[#e0e3e5] rounded-full overflow-hidden flex">
+                <div
+                  style={{ width: `${plan.equityAllocationPercent}%` }}
+                  className="bg-[#006d42] h-full"
+                  title={`Equity: ${plan.equityAllocationPercent}%`}
+                />
+                <div
+                  style={{ width: `${plan.debtAllocationPercent}%` }}
+                  className="bg-[#003461] h-full"
+                  title={`Debt/Hybrid: ${plan.debtAllocationPercent}%`}
+                />
+              </div>
+              <div className="flex justify-between text-xs pt-0.5">
+                <span className="flex items-center gap-1.5 text-[#006d42] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#006d42]" />
+                  Equity Funds ({plan.equityAllocationPercent}%)
+                </span>
+                <span className="flex items-center gap-1.5 text-[#003461] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#003461]" />
+                  Debt / Liquid ({plan.debtAllocationPercent}%)
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Action CTA */}
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={handleStartGoalSIP}
+              className="w-full bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+            >
+              <span>Start Goal SIP with Shaiv Market</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <p className="text-[10px] text-center text-[#727781] mt-2">
+              AMFI Certified Distribution (ARN-284912) • 100% Paperless Onboarding
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+};
