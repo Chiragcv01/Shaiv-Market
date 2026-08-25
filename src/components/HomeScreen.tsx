@@ -1,0 +1,416 @@
+import React from 'react';
+import { ActiveScreen } from '../types';
+import { InvestmentCalculator } from './InvestmentCalculator';
+import { useApp } from '../context/AppContext';
+import {
+  TrendingUp,
+  User,
+  ShieldCheck,
+  Award,
+  Calendar,
+  ArrowRight,
+  Sparkles,
+  ChevronRight,
+  ExternalLink,
+  BookOpen,
+  Clock,
+  Star,
+  Quote,
+  CheckCircle2,
+  Video,
+  FileCheck
+} from 'lucide-react';
+
+interface HomeScreenProps {
+  onNavigate: (screen: ActiveScreen) => void;
+  onSelectFundForSIP?: (fundId: string) => void;
+}
+
+export const HomeScreen: React.FC<HomeScreenProps> = ({
+  onNavigate,
+  onSelectFundForSIP
+}) => {
+  const { siteSettings, articles, testimonials } = useApp();
+  const recentArticles = articles.slice(0, 2);
+  const topTestimonials = testimonials.slice(0, 3);
+
+  return (
+    <div id="home-screen" className="w-full">
+      
+      {/* 1. HERO SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-20">
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column Text & CTAs */}
+          <div className="flex flex-col gap-6 items-start">
+            
+            <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1.5 rounded-full text-xs font-bold">
+              <ShieldCheck className="w-4 h-4 text-[#006d42]" />
+              <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#191c1e] tracking-tight leading-[1.15] text-balance">
+              Intelligent wealth creation, built on institutional trust.
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#424750] leading-relaxed max-w-lg">
+              Navigate the markets with confidence. {siteSettings.companyName} offers curated mutual fund portfolios designed for long-term stability and consistent compounding, backed by certified research.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2 w-full sm:w-auto">
+              <button
+                id="hero-start-investing-btn"
+                onClick={() => onNavigate('open-account')}
+                className="bg-[#006d42] hover:bg-[#005231] active:bg-[#002111] text-white font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-150 active:scale-98 cursor-pointer"
+              >
+                Start Investing Now
+              </button>
+
+              {/* External Direct Account Referral Link (if configured in Admin) */}
+              {siteSettings.enableMfReferralDirect && siteSettings.mfReferralLink && (
+                <a
+                  id="hero-mf-referral-btn"
+                  href={siteSettings.mfReferralLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-white hover:bg-[#f7f9fb] text-[#003461] font-bold text-sm sm:text-base px-5 py-3.5 rounded-lg border-2 border-[#003461] transition-colors flex items-center gap-2 cursor-pointer shadow-2xs"
+                >
+                  <span>{siteSettings.mfReferralLinkTitle}</span>
+                  <ExternalLink className="w-4 h-4 text-[#006d42]" />
+                </a>
+              )}
+
+              <button
+                id="hero-view-portfolios-btn"
+                onClick={() => onNavigate('invest')}
+                className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg border border-[#c2c6d1] transition-colors cursor-pointer"
+              >
+                View Portfolios
+              </button>
+            </div>
+
+            {/* Social Proof Trust Bar */}
+            <div className="flex items-center gap-4 pt-4 border-t border-[#c2c6d1] w-full max-w-md mt-2">
+              <div className="flex -space-x-2">
+                <div className="w-8 h-8 rounded-full bg-[#e0e3e5] border-2 border-white flex items-center justify-center text-[#424750]">
+                  <User className="w-4 h-4" />
+                </div>
+                <div className="w-8 h-8 rounded-full bg-[#d3e4fe] border-2 border-white flex items-center justify-center text-[#003461]">
+                  <User className="w-4 h-4" />
+                </div>
+                <div className="w-8 h-8 rounded-full bg-[#93f3bb] border-2 border-white flex items-center justify-center text-[#006d42]">
+                  <User className="w-4 h-4" />
+                </div>
+              </div>
+              <p className="text-xs sm:text-sm text-[#424750]">
+                Trusted by over <strong className="text-[#191c1e] font-bold">50,000+</strong> investors nationwide.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Right Column Hero Visual & Floating Card */}
+          <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-[#c2c6d1] bg-[#f7f9fb]">
+            
+            {/* Background Image managed via CMS */}
+            <img
+              src={siteSettings.heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"}
+              alt={siteSettings.heroImageAlt || `${siteSettings.companyName} Institutional Wealth Management`}
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#003461]/30 via-transparent to-black/10" />
+
+            {/* Floating Info Card */}
+            <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 bg-white/95 backdrop-blur-md border border-[#c2c6d1] rounded-xl p-4 sm:p-5 shadow-lg flex items-center gap-4 animate-in fade-in slide-in-from-bottom-2">
+              <div className="w-11 h-11 rounded-full bg-[#93f3bb] text-[#007146] flex items-center justify-center shrink-0 shadow-2xs">
+                <TrendingUp className="w-6 h-6 text-[#006d42]" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-[#727781] uppercase tracking-wider">
+                  Curated Scheme SIPs
+                </p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-[#191c1e] tracking-tight">
+                  14.2% CAGR
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 2. FOUNDER & AMFI ACCREDITATION SHOWCASE BANNER */}
+      <section className="bg-white border-y border-[#e0e3e5] py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xs">
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              
+              <div className="md:col-span-4 flex justify-center">
+                <div className="relative w-48 sm:w-56 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#003461]/20 shadow-md bg-white">
+                  <img
+                    src={siteSettings.founderPhotoUrl || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80'}
+                    alt={siteSettings.founderPhotoAlt || `${siteSettings.founderName} - Founder`}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-[#003461]/90 text-white p-2.5 text-center">
+                    <p className="text-xs font-bold">{siteSettings.founderName || 'Mr. Arvind Sharma'}</p>
+                    <p className="text-[10px] text-[#96f6bd]">{siteSettings.sebiRegNumber || 'ARN-284912'}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-md text-xs font-bold">
+                  <Award className="w-4 h-4 text-[#006d42]" />
+                  <span>Founder's Desk & AMFI Accreditation</span>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] leading-tight">
+                  Guided by {siteSettings.founderExperience || '14+ Years of Capital Market Experience'}
+                </h2>
+
+                <p className="text-sm text-[#424750] leading-relaxed">
+                  {siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.`}
+                </p>
+
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <button
+                    onClick={() => onNavigate('about')}
+                    className="bg-[#003461] hover:bg-[#004b87] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <span>Read Founder Story & View Certificate</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => onNavigate('contact')}
+                    className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-colors cursor-pointer"
+                  >
+                    Contact Founder Desk
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. COMPREHENSIVE INVESTMENT CALCULATOR SECTION */}
+      <section className="bg-[#f7f9fb] py-14 md:py-20 border-b border-[#e0e3e5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          
+          <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#191c1e] tracking-tight mb-3">
+              Calculate Your Investment Potential
+            </h2>
+            <p className="text-sm sm:text-base text-[#424750]">
+              Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy.
+            </p>
+          </div>
+
+          <InvestmentCalculator
+            onNavigate={onNavigate}
+            onSelectFundForSIP={onSelectFundForSIP}
+          />
+        </div>
+      </section>
+
+      {/* 4. CLIENT TESTIMONIALS PREVIEW SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+          <div>
+            <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <span>Real Investor Experiences</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461]">
+              What Our Clients Say About {siteSettings.companyName}
+            </h2>
+          </div>
+          <button
+            onClick={() => onNavigate('testimonials')}
+            className="text-xs sm:text-sm font-bold text-[#003461] hover:text-[#004b87] flex items-center gap-1 cursor-pointer"
+          >
+            <span>View All Stories ({testimonials.length})</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {topTestimonials.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: item.rating || 5 }).map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  {item.investmentType && (
+                    <span className="bg-[#f0f4f8] text-[#003461] text-[10px] font-bold px-2 py-0.5 rounded">
+                      {item.investmentType}
+                    </span>
+                  )}
+                </div>
+
+                <div className="relative mb-4">
+                  <Quote className="w-6 h-6 text-[#003461]/15 absolute -top-2 -left-1 pointer-events-none" />
+                  <p className="text-xs sm:text-sm text-[#424750] leading-relaxed italic pl-3">
+                    "{item.text || item.reviewText || ''}"
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#eceef0] flex items-center gap-3">
+                {item.avatarUrl || item.clientPhotoUrl ? (
+                  <img
+                    src={item.avatarUrl || item.clientPhotoUrl}
+                    alt={item.avatarAlt || item.clientPhotoAlt || item.clientName}
+                    referrerPolicy="no-referrer"
+                    className="w-10 h-10 rounded-full object-cover border border-[#c2c6d1]"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-[#d3e4fe] text-[#003461] flex items-center justify-center font-bold text-xs">
+                    {item.clientName.charAt(0)}
+                  </div>
+                )}
+                <div>
+                  <p className="text-xs font-bold text-[#191c1e] flex items-center gap-1">
+                    <span>{item.clientName}</span>
+                    {(item.verified ?? item.isVerified ?? true) && <CheckCircle2 className="w-3 h-3 text-[#006d42]" />}
+                  </p>
+                  <p className="text-[11px] text-[#727781]">
+                    {item.locationOrRole || [item.clientRole, item.clientLocation].filter(Boolean).join(' • ') || 'Verified Investor'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. LATEST RESEARCH & INSIGHTS BLOG PREVIEW */}
+      <section className="bg-[#f7f9fb] border-t border-[#e0e3e5] py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div>
+              <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Research Desk & Market Commentary</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#003461]">
+                Recent Wealth Strategies & Dispatches
+              </h2>
+            </div>
+            <button
+              onClick={() => onNavigate('insights')}
+              className="text-xs font-bold text-[#003461] hover:text-[#004b87] flex items-center gap-1 cursor-pointer"
+            >
+              <span>View All Insights ({articles.length})</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {recentArticles.map((art) => (
+              <div
+                key={art.id}
+                onClick={() => onNavigate('insights')}
+                className="bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-2xl overflow-hidden transition-all hover:shadow-md cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  {art.imageUrl && (
+                    <div className="w-full h-40 overflow-hidden bg-[#f7f9fb] border-b border-[#e0e3e5]">
+                      <img
+                        src={art.imageUrl}
+                        alt={art.imageAlt || art.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="bg-[#d3e4fe] text-[#003461] text-[11px] font-bold px-2.5 py-0.5 rounded-md">
+                        {art.category}
+                      </span>
+                      <span className="text-[11px] text-[#727781] flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {art.readTime}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-[#191c1e] mb-2 leading-snug hover:text-[#003461]">
+                      {art.title}
+                    </h3>
+                    <p className="text-xs text-[#424750] line-clamp-2 leading-relaxed">
+                      {art.summary}
+                    </p>
+                  </div>
+                </div>
+                <div className="px-6 pb-5 pt-3 border-t border-[#eceef0] flex items-center justify-between text-xs text-[#727781]">
+                  <span>{art.author}</span>
+                  <span className="text-[#006d42] font-semibold flex items-center gap-1">
+                    Read Article <ChevronRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. ADVISOR CONSULTATION TEASER BANNER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+        <div className="bg-[#003461] rounded-3xl p-8 sm:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden">
+          
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#004b87] rounded-full blur-3xl opacity-40 -mr-20 -mt-20 pointer-events-none" />
+
+          <div className="max-w-xl space-y-3 z-10">
+            <span className="bg-[#d3e4fe] text-[#001c38] text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
+              Free Strategy Session
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+              Unsure which portfolio matches your risk profile?
+            </h2>
+            <p className="text-sm sm:text-base text-[#d3e4fe] leading-relaxed">
+              Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals and portfolio allocation.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 z-10 w-full lg:w-auto shrink-0">
+            <button
+              onClick={() => onNavigate('booking')}
+              className="bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book Expert Session</span>
+            </button>
+            {siteSettings.enableCalendlyBooking && siteSettings.calendlyUrl && (
+              <a
+                href={siteSettings.calendlyUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>Calendly Link</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  );
+};
+

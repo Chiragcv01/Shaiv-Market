@@ -1,0 +1,6 @@
+{
+  "name": "Shaiv Market",
+  "description": "Shaiv Market - AMFI Registered Mutual Fund Distributor (MFD), live scheme insights via mfapi/mfdata, visual compound return calculators, expert advisory booking with Calendly, and client portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
