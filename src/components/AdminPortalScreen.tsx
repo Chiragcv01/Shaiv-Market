@@ -41,16 +41,17 @@ interface AdminPortalScreenProps {
 }
 
 type AdminTab =
+  | 'bookings'
+  | 'quotes'
+  | 'inquiries'
   | 'homepage'
   | 'branding'
   | 'media'
   | 'about'
   | 'testimonials'
-  | 'inquiries'
   | 'navbar'
   | 'banners'
   | 'links'
-  | 'quotes'
   | 'blogs'
   | 'policies';
 
@@ -69,6 +70,8 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
     updateSiteSettings,
     quotes,
     updateQuoteStatus,
+    bookings,
+    updateBookingStatus,
     navItems,
     addNavItem,
     deleteNavItem,
@@ -300,16 +303,17 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
   });
 
   const tabs: { id: AdminTab; label: string; icon: any; count?: number }[] = [
+    { id: 'bookings', label: 'Scheduled Meetings & Bookings', icon: Calendar, count: bookings.length },
+    { id: 'quotes', label: 'Client Registrations & Leads', icon: FileSpreadsheet, count: quotes.length },
+    { id: 'inquiries', label: 'Contact Inquiries Desk', icon: MessageSquare, count: contactInquiries.length },
     { id: 'homepage', label: 'Homepage Headings & Text CMS', icon: Sparkles },
     { id: 'branding', label: 'Platform & Branding', icon: Settings },
     { id: 'media', label: 'Homepage Images & Media', icon: Image },
     { id: 'about', label: 'About Us & Founder CMS', icon: Award },
     { id: 'testimonials', label: 'Testimonials CMS', icon: Star, count: testimonials.length },
-    { id: 'inquiries', label: 'Contact Inquiries Desk', icon: MessageSquare, count: contactInquiries.length },
     { id: 'navbar', label: 'Navbar Manager', icon: Compass, count: navItems.length },
     { id: 'banners', label: 'Top Banners', icon: Megaphone },
     { id: 'links', label: 'Referrals & Calendly', icon: LinkIcon },
-    { id: 'quotes', label: 'Client Leads & Quotes', icon: FileSpreadsheet, count: quotes.length },
     { id: 'blogs', label: 'Blogs & Insights', icon: FileText, count: articles.length },
     { id: 'policies', label: 'Policies & Compliance', icon: ShieldCheck }
   ];
@@ -1765,9 +1769,8 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                         onChange={(e) => setNewNavScreen(e.target.value as any)}
                         className="w-full px-3 py-1.5 border border-[#c2c6d1] rounded-lg text-xs bg-white"
                       >
-                        <option value="invest">Mutual Funds Explorer</option>
                         <option value="calculators">Calculators</option>
-                        <option value="insights">Holdings & Insights</option>
+                        <option value="insights">Goal Planner & Insights</option>
                         <option value="about">About Us</option>
                         <option value="testimonials">Client Reviews</option>
                         <option value="booking">Book Advisory</option>
@@ -2059,14 +2062,171 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
         </div>
       )}
 
+      {/* TAB: SCHEDULED MEETINGS & BOOKINGS */}
+      {activeTab === 'bookings' && (
+        <div className="py-4 space-y-6">
+          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+              <div>
+                <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">
+                  <Calendar className="w-3.5 h-3.5 text-[#006d42]" />
+                  <span>Real-Time Meeting Schedule</span>
+                </div>
+                <h2 className="text-lg font-bold text-[#003461]">Client Consultation Bookings ({bookings.length})</h2>
+                <p className="text-xs text-[#727781]">Clients who scheduled 1-on-1 sessions. Use 1-click WhatsApp, Call, or Email to connect with them instantly.</p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#006d42] bg-[#f0fdf4] border border-[#bbf7d0] px-3 py-1.5 rounded-xl">
+                  {bookings.filter(b => b.status === 'Confirmed' || !b.status).length} Active Sessions
+                </span>
+              </div>
+            </div>
+
+            {bookings.length === 0 ? (
+              <div className="text-center py-12 text-[#727781] text-xs">
+                No meeting bookings received yet.
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {bookings.map((b, idx) => {
+                  const cleanPhone = b.clientPhone.replace(/\D/g, '');
+                  const waMsg = encodeURIComponent(
+                    `Hello ${b.clientName}, I am reaching out from ${siteSettings.companyName} regarding your scheduled consultation on ${b.date} at ${b.timeSlot} for "${b.topic}". Let me know if you would like to connect now!`
+                  );
+
+                  return (
+                    <div key={b.id || idx} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-4 hover:border-[#003461] transition-all">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e0e3e5]">
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
+                            {b.id || `BK-${idx + 101}`}
+                          </span>
+                          <span className="font-bold text-base text-[#191c1e]">{b.clientName}</span>
+                          <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#006d42]/10 text-[#006d42]">
+                            {b.topic || 'General Portfolio Advisory'}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-[#727781]">Status:</span>
+                          <select
+                            value={b.status || 'Confirmed'}
+                            onChange={(e) => {
+                              updateBookingStatus(idx, e.target.value as any);
+                              showNotification(`Meeting status updated to ${e.target.value}`);
+                            }}
+                            className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#003461]"
+                          >
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Details Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Date & Time</span>
+                          <div className="font-extrabold text-[#003461] flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5 text-[#006d42]" />
+                            <span>{b.date} • {b.timeSlot}</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Contact Phone</span>
+                          <div className="font-bold text-[#191c1e] flex items-center gap-1">
+                            <Phone className="w-3.5 h-3.5 text-[#003461]" />
+                            <span>{b.clientPhone}</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Email Address</span>
+                          <div className="font-semibold text-[#424750] truncate flex items-center gap-1">
+                            <Mail className="w-3.5 h-3.5 text-[#727781]" />
+                            <span>{b.clientEmail || 'Not provided'}</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Assigned Advisor</span>
+                          <div className="font-semibold text-[#003461] truncate">
+                            {b.advisorName || 'Mr. Arvind Sharma (Founder Desk)'}
+                          </div>
+                        </div>
+                      </div>
+
+                      {b.notes && (
+                        <div className="bg-white p-3 rounded-xl border border-[#e0e3e5] text-xs text-[#424750]">
+                          <span className="font-bold text-[#191c1e]">Client Note / Query: </span>
+                          <span>{b.notes}</span>
+                        </div>
+                      )}
+
+                      {/* Direct Connect Action Buttons */}
+                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#e0e3e5]">
+                        <a
+                          href={`https://wa.me/${cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone}?text=${waMsg}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
+                        >
+                          <MessageSquare className="w-3.5 h-3.5" />
+                          <span>WhatsApp Client</span>
+                        </a>
+
+                        <a
+                          href={`tel:${cleanPhone}`}
+                          className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                          <span>Call Client</span>
+                        </a>
+
+                        {b.clientEmail && (
+                          <a
+                            href={`mailto:${b.clientEmail}?subject=Regarding Your Consultation Session with ${siteSettings.companyName}`}
+                            className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>Send Email</span>
+                          </a>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard?.writeText(
+                              `Client: ${b.clientName}\nPhone: ${b.clientPhone}\nEmail: ${b.clientEmail || 'N/A'}\nDate: ${b.date} at ${b.timeSlot}\nTopic: ${b.topic}`
+                            );
+                            showNotification('Client details copied to clipboard!');
+                          }}
+                          className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#424750] text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer"
+                        >
+                          Copy Details
+                        </button>
+                      </div>
+
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* TAB 9: CLIENT QUOTES & LEADS */}
       {activeTab === 'quotes' && (
         <div className="py-4 space-y-6">
           <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Client Scheme Quotes & Inbound Leads</h2>
-                <p className="text-xs text-[#727781]">Clients who requested expert contact after browsing mutual funds (Issued Quote # instead of instant folio).</p>
+                <h2 className="text-lg font-bold text-[#003461]">Client Registrations & Scheme Quotes ({quotes.length})</h2>
+                <p className="text-xs text-[#727781]">Clients who registered for mutual fund onboarding and personalized SIP quotes.</p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -2092,50 +2252,104 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredQuotes.map((q) => (
-                  <div key={q.id} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#e0e3e5]">
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
-                          {q.id}
-                        </span>
-                        <span className="font-bold text-sm text-[#191c1e]">{q.fullName}</span>
-                        <span className="text-xs text-[#727781]">• {q.submittedAt}</span>
+                {filteredQuotes.map((q) => {
+                  const cleanPhone = q.phone.replace(/\D/g, '');
+                  const waMsg = encodeURIComponent(
+                    `Hello ${q.fullName}, thank you for registering with ${siteSettings.companyName} for your ${q.investmentGoal || 'wealth creation'} goal. Your reference ID is ${q.id}. How can we assist with your mutual fund investment today?`
+                  );
+
+                  return (
+                    <div key={q.id} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3 hover:border-[#003461] transition-all">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#e0e3e5]">
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
+                            {q.id}
+                          </span>
+                          <span className="font-bold text-sm text-[#191c1e]">{q.fullName}</span>
+                          {q.city && (
+                            <span className="text-xs text-[#727781]">({q.city})</span>
+                          )}
+                          <span className="text-xs text-[#727781]">• {q.submittedAt}</span>
+                        </div>
+
+                        <select
+                          value={q.status}
+                          onChange={(e) => updateQuoteStatus(q.id, e.target.value as any)}
+                          className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#003461]"
+                        >
+                          <option value="New Lead">New Lead</option>
+                          <option value="Contacted">Contacted</option>
+                          <option value="Meeting Scheduled">Meeting Scheduled</option>
+                          <option value="Folio Opened">Folio Opened</option>
+                          <option value="Archived">Archived</option>
+                        </select>
                       </div>
 
-                      <select
-                        value={q.status}
-                        onChange={(e) => updateQuoteStatus(q.id, e.target.value as any)}
-                        className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#003461]"
-                      >
-                        <option value="New Lead">New Lead</option>
-                        <option value="Contacted">Contacted</option>
-                        <option value="Meeting Scheduled">Meeting Scheduled</option>
-                        <option value="Folio Opened">Folio Opened</option>
-                        <option value="Archived">Archived</option>
-                      </select>
-                    </div>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Phone</span>
+                          <div className="font-bold text-[#191c1e]">{q.phone}</div>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Target Goal / Fund</span>
+                          <div className="font-bold text-[#003461] truncate">{q.investmentGoal || q.selectedFund || 'Mutual Fund SIP'}</div>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Investment Amount</span>
+                          <div className="font-bold text-[#006d42]">₹{q.investmentAmount?.toLocaleString('en-IN') || 0} ({q.investmentType || 'SIP'})</div>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Email</span>
+                          <div className="font-semibold text-[#424750] truncate">{q.email || 'N/A'}</div>
+                        </div>
+                      </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                      <div>
-                        <span className="text-[10px] text-[#727781] uppercase font-bold block">Phone</span>
-                        <div className="font-bold text-[#191c1e]">{q.phone}</div>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-[#727781] uppercase font-bold block">Selected Scheme</span>
-                        <div className="font-bold text-[#003461] truncate">{q.selectedFund}</div>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-[#727781] uppercase font-bold block">Investment Amount</span>
-                        <div className="font-bold text-[#006d42]">₹{q.investmentAmount?.toLocaleString('en-IN') || 0} ({q.investmentType})</div>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-[#727781] uppercase font-bold block">Webhook Status</span>
-                        <div className="font-semibold text-[#424750]">{q.webhookStatus || 'Dispatched'}</div>
+                      {/* Action buttons */}
+                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#e0e3e5]">
+                        <a
+                          href={`https://wa.me/${cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone}?text=${waMsg}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-2xs"
+                        >
+                          <MessageSquare className="w-3.5 h-3.5" />
+                          <span>WhatsApp</span>
+                        </a>
+
+                        <a
+                          href={`tel:${cleanPhone}`}
+                          className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-2xs"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                          <span>Call</span>
+                        </a>
+
+                        {q.email && (
+                          <a
+                            href={`mailto:${q.email}?subject=Your Mutual Fund Investment Request - ${siteSettings.companyName}`}
+                            className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>Email</span>
+                          </a>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard?.writeText(
+                              `Lead: ${q.fullName}\nPhone: ${q.phone}\nEmail: ${q.email || 'N/A'}\nCity: ${q.city || 'N/A'}\nAmount: ₹${q.investmentAmount} (${q.investmentType})\nGoal: ${q.investmentGoal}`
+                            );
+                            showNotification('Lead details copied to clipboard!');
+                          }}
+                          className="text-[11px] bg-[#eceef0] hover:bg-[#e0e3e5] text-[#424750] px-2.5 py-1.5 rounded-lg cursor-pointer ml-auto"
+                        >
+                          Copy Lead
+                        </button>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ActiveScreen } from '../types';
+import { RequiredSipCalculator } from './RequiredSipCalculator';
 import { InvestmentCalculator } from './InvestmentCalculator';
 import { GoalPlanner } from './GoalPlanner';
 import { SwpCalculator } from './SwpCalculator';
 import { LoanVsSipArbitrage } from './LoanVsSipArbitrage';
 import { FireCalculator } from './FireCalculator';
-import { MfTaxEstimator } from './MfTaxEstimator';
 import { EmergencyFundShield } from './EmergencyFundShield';
 import {
   Calculator,
@@ -14,31 +14,31 @@ import {
   Wallet,
   Scale,
   Flame,
-  FileSpreadsheet,
   ShieldCheck,
   Zap,
   ArrowRight,
   HelpCircle,
-  Sparkles
+  Sparkles,
+  Calendar
 } from 'lucide-react';
 
 interface CalculatorsScreenProps {
   onNavigate: (screen: ActiveScreen) => void;
 }
 
-type CalculatorTab = 'sip' | 'goal' | 'swp' | 'loan-sip' | 'fire' | 'tax' | 'emergency';
+type CalculatorTab = 'required-sip' | 'sip-compounder' | 'goal' | 'swp' | 'loan-sip' | 'fire' | 'emergency';
 
 export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate }) => {
-  const [activeTab, setActiveTab] = useState<CalculatorTab>('sip');
+  const [activeTab, setActiveTab] = useState<CalculatorTab>('required-sip');
 
   const tabs: { id: CalculatorTab; label: string; icon: any; tag?: string }[] = [
-    { id: 'sip', label: 'SIP & Target Amount', icon: Calculator, tag: 'Popular' },
-    { id: 'goal', label: 'Life Goal Planner', icon: Target },
+    { id: 'required-sip', label: 'Know Required SIP Amount', icon: Target, tag: 'Goal Target' },
+    { id: 'sip-compounder', label: 'SIP Wealth Compounder', icon: Calculator, tag: 'Popular' },
+    { id: 'goal', label: 'Life Goal Planner', icon: TrendingUp },
     { id: 'swp', label: 'SWP Monthly Pension', icon: Wallet },
-    { id: 'loan-sip', label: 'Loan Prepay vs SIP', icon: Scale, tag: 'High ROI' },
-    { id: 'fire', label: 'FIRE Freedom Number', icon: Flame },
-    { id: 'tax', label: 'MF Capital Gains Tax', icon: FileSpreadsheet, tag: 'New Budget' },
-    { id: 'emergency', label: 'Emergency Cushion', icon: ShieldCheck }
+    { id: 'loan-sip', label: 'Home Loan vs SIP', icon: Scale, tag: 'High ROI' },
+    { id: 'fire', label: 'FIRE Freedom Calculator', icon: Flame },
+    { id: 'emergency', label: 'Emergency Safety Buffer', icon: ShieldCheck }
   ];
 
   return (
@@ -46,15 +46,15 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
       
       {/* Header */}
       <div className="text-center md:text-left mb-8">
-        <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2">
-          <Calculator className="w-4 h-4" />
+        <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+          <Calculator className="w-4 h-4 text-[#006d42]" />
           Smart Financial Planning Suite
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#003461] mb-2">
           Interactive Wealth & SIP Calculators
         </h1>
         <p className="text-sm sm:text-base text-[#424750] max-w-3xl leading-relaxed">
-          Simulate monthly SIP compounding, reverse target SIP amounts, inflation-adjusted life goals, SWP pensions, and loan arbitrage with institutional precision and visual charts.
+          Easily calculate required monthly SIP amounts for your target goals, simulate compound wealth accumulation, plan SWP pensions, and evaluate loan prepayment vs. equity SIP returns.
         </p>
       </div>
 
@@ -90,7 +90,14 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
 
       {/* Active Calculator Component */}
       <div className="mb-14">
-        {activeTab === 'sip' && (
+        {activeTab === 'required-sip' && (
+          <RequiredSipCalculator
+            onNavigate={onNavigate}
+            onStartSip={() => onNavigate('open-account')}
+          />
+        )}
+
+        {activeTab === 'sip-compounder' && (
           <InvestmentCalculator
             onNavigate={onNavigate}
             onInvestNow={() => onNavigate('open-account')}
@@ -122,12 +129,6 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
           />
         )}
 
-        {activeTab === 'tax' && (
-          <MfTaxEstimator
-            onNavigate={onNavigate}
-          />
-        )}
-
         {activeTab === 'emergency' && (
           <EmergencyFundShield
             onNavigate={onNavigate}
@@ -140,16 +141,16 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
         
         <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs">
           <div className="w-10 h-10 rounded-xl bg-[#d3e4fe] text-[#003461] flex items-center justify-center mb-4">
-            <TrendingUp className="w-5 h-5" />
+            <Target className="w-5 h-5 text-[#003461]" />
           </div>
           <h3 className="text-base font-bold text-[#191c1e] mb-2">
-            The Magic of Step-Up SIP
+            Target Goal Precision
           </h3>
           <p className="text-xs text-[#424750] leading-relaxed mb-4">
-            Increasing your monthly investment by just 10% each year as your income grows can nearly double your final retirement corpus over 15 years.
+            Instead of arbitrary investing, calculate the exact monthly SIP needed to fund life milestones like a ₹1 Crore home downpayment or child higher education.
           </p>
           <div className="text-xs font-bold text-[#006d42]">
-            Recommended: +10% annual step-up
+            Reverse SIP Compounder
           </div>
         </div>
 
@@ -161,25 +162,25 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
             Rupee-Cost Averaging
           </h3>
           <p className="text-xs text-[#424750] leading-relaxed mb-4">
-            SIP removes the psychological stress of timing market peaks and troughs by automatically purchasing more mutual fund units when valuations are low.
+            SIP removes the stress of timing market peaks by automatically purchasing more mutual fund units when valuations are lower.
           </p>
           <div className="text-xs font-bold text-[#003461]">
-            Protects against market volatility
+            Protects against volatility
           </div>
         </div>
 
         <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs">
           <div className="w-10 h-10 rounded-xl bg-[#d3e4fe] text-[#003461] flex items-center justify-center mb-4">
-            <ShieldCheck className="w-5 h-5" />
+            <TrendingUp className="w-5 h-5 text-[#006d42]" />
           </div>
           <h3 className="text-base font-bold text-[#191c1e] mb-2">
-            Tax Efficiency (LTCG)
+            The Power of Step-Up SIP
           </h3>
           <p className="text-xs text-[#424750] leading-relaxed mb-4">
-            Equity mutual fund gains held over 12 months qualify for long-term capital gains tax benefits, with the first ₹1.25 Lakh per financial year exempted.
+            Increasing your monthly investment by just 10% annually with salary hikes can boost your final accumulated corpus by up to 80%.
           </p>
           <div className="text-xs font-bold text-[#006d42]">
-            Section 112A compliant
+            Accelerated Compounding
           </div>
         </div>
 

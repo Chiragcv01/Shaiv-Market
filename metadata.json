@@ -1,6 +1,6 @@
 {
   "name": "Shaiv Market",
-  "description": "Shaiv Market - AMFI Registered Mutual Fund Distributor (MFD) platform with comprehensive goal-based planning, SWP simulation, loan prepayment vs SIP arbitrage, FIRE calculators, capital gains tax estimation, and advisory booking.",
+  "description": "Shaiv Market - AMFI Registered Mutual Fund Distributor (MFD) platform with Goal Planner, Required SIP Amount calculators, life goal roadmaps, SWP pensions, and client meeting scheduling.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

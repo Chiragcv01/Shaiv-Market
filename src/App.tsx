@@ -6,7 +6,6 @@ import { Footer } from './components/Footer';
 import { HomeScreen } from './components/HomeScreen';
 import { BookingScreen } from './components/BookingScreen';
 import { OpenAccountScreen } from './components/OpenAccountScreen';
-import { InvestScreen } from './components/InvestScreen';
 import { CalculatorsScreen } from './components/CalculatorsScreen';
 import { InsightsScreen } from './components/InsightsScreen';
 import { ContactUsScreen } from './components/ContactUsScreen';
@@ -56,10 +55,6 @@ export default function App() {
 
         {activeScreen === 'open-account' && (
           <OpenAccountScreen onNavigate={handleNavigate} />
-        )}
-
-        {activeScreen === 'invest' && (
-          <InvestScreen onNavigate={handleNavigate} />
         )}
 
         {activeScreen === 'calculators' && (

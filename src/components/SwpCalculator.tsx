@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { SmartNumberInput } from './SmartNumberInput';
 import {
   calculateSWP,
   formatIndianCurrency,
@@ -97,120 +98,122 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
       <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#c2c6d1]">
         
         {/* Controls Column (7 cols) */}
-        <div className="lg:col-span-7 p-6 sm:p-8 space-y-6">
+        <div className="lg:col-span-7 p-6 sm:p-8 space-y-4">
           
-          {/* Slider 1: Total Initial Corpus */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-[#424750]">Total Investment Corpus to Park</span>
-              <span className="font-extrabold text-sm text-[#003461] bg-[#eceef0] px-2.5 py-1 rounded-md">
-                {formatIndianCurrency(initialCorpus)}
-              </span>
-            </div>
-            <input
-              type="range"
-              min={500000}
-              max={50000000}
-              step={100000}
-              value={initialCorpus}
-              onChange={(e) => setInitialCorpus(Number(e.target.value))}
-              className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-            />
-            <div className="flex justify-between text-[10px] text-[#727781]">
-              <span>₹5 Lakh</span>
-              <span>₹2.5 Crore</span>
-              <span>₹5 Crore</span>
-            </div>
-          </div>
+          {/* Input 1: Total Initial Corpus */}
+          <SmartNumberInput
+            id="swp-initial-corpus"
+            label="Total Investment Corpus to Park"
+            value={initialCorpus}
+            onChange={(val) => setInitialCorpus(val)}
+            min={100000}
+            max={100000000}
+            step={100000}
+            isCurrency={true}
+            icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+            minLabel="₹1 Lakh"
+            midLabel="₹2.5 Crore"
+            maxLabel="₹10 Crore"
+            themeColor="blue"
+            presets={[
+              { label: '₹25 Lakh', value: 2500000 },
+              { label: '₹50 Lakh', value: 5000000 },
+              { label: '₹1 Crore', value: 10000000 },
+              { label: '₹2.5 Crore', value: 25000000 }
+            ]}
+            helperText="Type any exact amount like 3000000 or 50 Lakh"
+          />
 
-          {/* Slider 2: Monthly SWP Withdrawal Amount */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-[#424750]">Desired Monthly SWP Payout (Pension)</span>
-              <span className="font-extrabold text-sm text-[#006d42] bg-[#f0fdf4] border border-[#bbf7d0] px-2.5 py-1 rounded-md">
-                ₹ {formatRawIndianNumber(monthlyWithdrawal)} / month
-              </span>
-            </div>
-            <input
-              type="range"
-              min={5000}
-              max={300000}
-              step={2000}
-              value={monthlyWithdrawal}
-              onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))}
-              className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
-            />
-            <div className="flex justify-between text-[10px] text-[#727781]">
-              <span>₹5,000/mo</span>
-              <span>₹1,50,000/mo</span>
-              <span>₹3,00,000/mo</span>
-            </div>
-          </div>
+          {/* Input 2: Monthly SWP Withdrawal Amount */}
+          <SmartNumberInput
+            id="swp-monthly-payout"
+            label="Desired Monthly SWP Payout (Pension)"
+            value={monthlyWithdrawal}
+            onChange={(val) => setMonthlyWithdrawal(val)}
+            min={1000}
+            max={1000000}
+            step={1000}
+            isCurrency={true}
+            icon={<Calendar className="w-4 h-4 text-[#006d42]" />}
+            minLabel="₹1,000/mo"
+            midLabel="₹1,00,000/mo"
+            maxLabel="₹10 Lakh/mo"
+            themeColor="green"
+            presets={[
+              { label: '₹25,000/mo', value: 25000 },
+              { label: '₹50,000/mo', value: 50000 },
+              { label: '₹75,000/mo', value: 75000 },
+              { label: '₹1 Lakh/mo', value: 100000 }
+            ]}
+          />
 
           {/* Grid: Expected Return & Tenure */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            {/* Return Rate */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Expected Annual Return</span>
-                <span className="font-bold text-[#003461]">{expectedReturn}% p.a.</span>
-              </div>
-              <input
-                type="range"
-                min={5}
-                max={15}
-                step={0.5}
-                value={expectedReturn}
-                onChange={(e) => setExpectedReturn(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-              />
-              <span className="text-[10px] text-[#727781] block">
-                Conservative Hybrid / Equity Savings: 8-10%
-              </span>
-            </div>
-
-            {/* Tenure Years */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Withdrawal Period</span>
-                <span className="font-bold text-[#003461]">{tenureYears} Years</span>
-              </div>
-              <input
-                type="range"
-                min={5}
-                max={35}
-                step={1}
-                value={tenureYears}
-                onChange={(e) => setTenureYears(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-              />
-              <span className="text-[10px] text-[#727781] block">
-                Total {tenureYears * 12} monthly payouts
-              </span>
-            </div>
-
-          </div>
-
-          {/* Slider: Annual Inflation Step-Up in Pension */}
-          <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-            <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-[#424750]">Annual Increase in Monthly Payout (Inflation Step-Up)</span>
-              <span className="font-bold text-[#ba1a1a]">+{inflationStepUp}% / year</span>
-            </div>
-            <input
-              type="range"
-              min={0}
-              max={10}
-              step={1}
-              value={inflationStepUp}
-              onChange={(e) => setInflationStepUp(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#ba1a1a]"
+            <SmartNumberInput
+              id="swp-return-rate"
+              label="Expected Return (p.a.)"
+              value={expectedReturn}
+              onChange={(val) => setExpectedReturn(val)}
+              min={5}
+              max={16}
+              step={0.5}
+              suffix="%"
+              icon={<TrendingUp className="w-4 h-4 text-[#003461]" />}
+              minLabel="5% (Conservative)"
+              maxLabel="16% (Aggressive)"
+              themeColor="blue"
+              presets={[
+                { label: '7% Debt', value: 7 },
+                { label: '8.5% Hybrid', value: 8.5 },
+                { label: '11% Equity', value: 11 }
+              ]}
             />
-            <span className="text-[10px] text-[#727781] block">
-              Set 5-6% if you want your monthly pension to grow with inflation every year.
-            </span>
+
+            <SmartNumberInput
+              id="swp-tenure-years"
+              label="Withdrawal Period"
+              value={tenureYears}
+              onChange={(val) => setTenureYears(Math.max(1, val))}
+              min={1}
+              max={40}
+              step={1}
+              suffix=" Yrs"
+              icon={<Layers className="w-4 h-4 text-[#003461]" />}
+              minLabel="1 Yr"
+              maxLabel="40 Yrs"
+              themeColor="blue"
+              presets={[
+                { label: '10 Yrs', value: 10 },
+                { label: '15 Yrs', value: 15 },
+                { label: '20 Yrs', value: 20 },
+                { label: '25 Yrs', value: 25 }
+              ]}
+            />
+
           </div>
+
+          {/* Input: Annual Inflation Step-Up in Pension */}
+          <SmartNumberInput
+            id="swp-inflation-stepup"
+            label="Annual Increase in Monthly Payout (Inflation Step-Up)"
+            value={inflationStepUp}
+            onChange={(val) => setInflationStepUp(val)}
+            min={0}
+            max={12}
+            step={1}
+            suffix="%"
+            icon={<TrendingUp className="w-4 h-4 text-amber-600" />}
+            minLabel="0% (Flat Pension)"
+            maxLabel="+12% / Yr"
+            themeColor="amber"
+            presets={[
+              { label: '0% Flat', value: 0 },
+              { label: '+5% Inflation', value: 5 },
+              { label: '+7% High', value: 7 }
+            ]}
+            helperText="Set 5-6% if you want your monthly pension to grow with inflation every year."
+          />
 
           {/* Visual Canvas (Chart or Table) */}
           {viewMode === 'chart' ? (

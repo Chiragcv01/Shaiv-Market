@@ -82,11 +82,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               )}
 
               <button
-                id="hero-view-portfolios-btn"
-                onClick={() => onNavigate('invest')}
+                id="hero-view-calculators-btn"
+                onClick={() => onNavigate('calculators')}
                 className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg border border-[#c2c6d1] transition-colors cursor-pointer"
               >
-                {siteSettings.heroSecondaryCtaText || 'View Portfolios'}
+                {siteSettings.heroSecondaryCtaText || 'Explore Calculators'}
               </button>
             </div>
 

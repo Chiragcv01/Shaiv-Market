@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CalculatorType, ActiveScreen } from '../types';
+import { SmartNumberInput } from './SmartNumberInput';
 import {
   calculateSIP,
   calculateLumpsum,
@@ -255,7 +256,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
 
           {/* TAB 1: KNOW YOUR SIP AMOUNT (TARGET CORPUS CALCULATOR) */}
           {activeTab === 'target-sip' && (
-            <div className="space-y-6">
+            <div className="space-y-4">
               
               <div className="p-3.5 bg-[#d3e4fe]/60 border border-[#b8d5fc] rounded-xl flex items-start gap-2.5">
                 <Target className="w-5 h-5 text-[#003461] shrink-0 mt-0.5" />
@@ -264,280 +265,216 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 </div>
               </div>
 
-              {/* Target Corpus Slider & Presets */}
-              <div className="space-y-2.5">
-                <div className="flex justify-between items-center">
-                  <label htmlFor="slider-target-corpus" className="text-sm sm:text-base font-bold text-[#191c1e] flex items-center gap-1.5">
-                    <span>Target Dream Wealth Corpus</span>
-                  </label>
-                  <div className="bg-[#003461] px-3.5 py-1 rounded-md text-sm sm:text-base font-extrabold text-white shadow-2xs">
-                    {formatIndianCurrency(targetCorpus)}
-                  </div>
-                </div>
-
-                <input
-                  id="slider-target-corpus"
-                  type="range"
-                  min="500000"
-                  max="100000000"
-                  step="500000"
-                  value={targetCorpus}
-                  onChange={(e) => setTargetCorpus(Number(e.target.value))}
-                  aria-label="Target Corpus Amount"
-                  className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                />
-
-                {/* Quick Presets */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  <span className="text-[11px] text-[#727781] mr-1 self-center">Presets:</span>
-                  {TARGET_PRESETS.map((preset) => (
-                    <button
-                      key={preset.value}
-                      type="button"
-                      onClick={() => setTargetCorpus(preset.value)}
-                      className={`text-xs font-bold px-2.5 py-1 rounded-md transition-colors cursor-pointer border ${
-                        targetCorpus === preset.value
-                          ? 'bg-[#003461] text-white border-[#003461]'
-                          : 'bg-white text-[#424750] border-[#c2c6d1] hover:bg-[#eceef0]'
-                      }`}
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* Target Corpus Smart Input */}
+              <SmartNumberInput
+                id="inv-target-corpus"
+                label="Target Dream Wealth Corpus"
+                value={targetCorpus}
+                onChange={(val) => setTargetCorpus(val)}
+                min={500000}
+                max={100000000}
+                step={500000}
+                isCurrency={true}
+                icon={<Target className="w-4 h-4 text-[#003461]" />}
+                minLabel="₹5 Lakh"
+                midLabel="₹50 Lakh"
+                maxLabel="₹10 Crore"
+                themeColor="blue"
+                presets={TARGET_PRESETS}
+                helperText="Tip: You can type values like 3 Lakh, 2,50,890 or 1.5 Cr above."
+              />
 
               {/* Grid: Target Years & Expected Return Rate */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* Target Years */}
-                <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#424750]">Time Horizon (Years)</span>
-                    <span className="font-extrabold text-[#003461] bg-white px-2 py-0.5 rounded border border-[#c2c6d1]">
-                      {targetYears} Years
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="1"
-                    max="30"
-                    step="1"
-                    value={targetYears}
-                    onChange={(e) => setTargetYears(Number(e.target.value))}
-                    className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                  />
-                  <div className="flex justify-between text-[10px] text-[#727781]">
-                    <span>1 Yr</span>
-                    <span>10 Yrs</span>
-                    <span>30 Yrs</span>
-                  </div>
-                </div>
-
-                {/* Expected Return Rate */}
-                <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#424750]">Expected CAGR (p.a.)</span>
-                    <span className="font-extrabold text-[#006d42] bg-white px-2 py-0.5 rounded border border-[#c2c6d1]">
-                      {targetReturnRate}%
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="8"
-                    max="20"
-                    step="0.5"
-                    value={targetReturnRate}
-                    onChange={(e) => setTargetReturnRate(Number(e.target.value))}
-                    className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
-                  />
-                  <div className="flex justify-between text-[10px] text-[#727781]">
-                    <span>8% (Debt)</span>
-                    <span>13% (Equity Avg)</span>
-                    <span>20% (Aggressive)</span>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Step-up Option Toggle / Slider */}
-              <div className="space-y-2 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-[#424750]">
-                    Annual Step-up Increment ({targetStepUp > 0 ? `+${targetStepUp}% every year` : 'No Step-up (Flat SIP)'})
-                  </span>
-                  <span className="font-bold text-[#003461] bg-white px-2 py-0.5 rounded border border-[#c2c6d1]">
-                    {targetStepUp}%
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="20"
-                  step="5"
-                  value={targetStepUp}
-                  onChange={(e) => setTargetStepUp(Number(e.target.value))}
-                  className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+                <SmartNumberInput
+                  id="inv-target-years"
+                  label="Time Horizon"
+                  value={targetYears}
+                  onChange={(val) => setTargetYears(Math.max(1, val))}
+                  min={1}
+                  max={35}
+                  step={1}
+                  suffix=" Yrs"
+                  icon={<Clock className="w-4 h-4 text-[#003461]" />}
+                  minLabel="1 Yr"
+                  maxLabel="35 Yrs"
+                  themeColor="blue"
+                  presets={[
+                    { label: '5 Yrs', value: 5 },
+                    { label: '10 Yrs', value: 10 },
+                    { label: '15 Yrs', value: 15 },
+                    { label: '20 Yrs', value: 20 }
+                  ]}
                 />
-                <div className="flex justify-between text-[10px] text-[#727781]">
-                  <span>0% (Flat SIP)</span>
-                  <span>+10% (Salary Linked)</span>
-                  <span>+20%</span>
-                </div>
+
+                <SmartNumberInput
+                  id="inv-target-return"
+                  label="Expected CAGR"
+                  value={targetReturnRate}
+                  onChange={(val) => setTargetReturnRate(val)}
+                  min={8}
+                  max={22}
+                  step={0.5}
+                  suffix="%"
+                  icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+                  minLabel="8% (Debt)"
+                  maxLabel="22% (High Alpha)"
+                  themeColor="green"
+                  presets={[
+                    { label: '12%', value: 12 },
+                    { label: '14%', value: 14 },
+                    { label: '16%', value: 16 }
+                  ]}
+                />
               </div>
+
+              {/* Step-up Option */}
+              <SmartNumberInput
+                id="inv-target-stepup"
+                label="Annual Step-up Increment"
+                value={targetStepUp}
+                onChange={(val) => setTargetStepUp(val)}
+                min={0}
+                max={25}
+                step={5}
+                suffix="%"
+                icon={<Sparkles className="w-4 h-4 text-[#003461]" />}
+                minLabel="0% (Flat SIP)"
+                maxLabel="+25% / Yr"
+                themeColor="blue"
+                presets={[
+                  { label: 'No Step-Up', value: 0 },
+                  { label: '+5% / Yr', value: 5 },
+                  { label: '+10% / Yr', value: 10 }
+                ]}
+              />
 
             </div>
           )}
 
           {/* TAB 2, 3, 4, 5: REGULAR SIP, STEP-UP, LUMPSUM, SIP+LUMPSUM */}
           {activeTab !== 'target-sip' && (
-            <div className="space-y-6">
+            <div className="space-y-4">
               
-              {/* Monthly Investment Slider */}
+              {/* Monthly Investment Input */}
               {(activeTab === 'sip' || activeTab === 'step-up' || activeTab === 'sip-lumpsum') && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="slider-monthly" className="text-sm sm:text-base font-bold text-[#191c1e]">
-                      Monthly SIP Investment
-                    </label>
-                    <div className="bg-[#003461] px-3.5 py-1 rounded-md text-sm sm:text-base font-extrabold text-white shadow-2xs">
-                      ₹ {formatRawIndianNumber(monthlyInvestment)} / mo
-                    </div>
-                  </div>
-                  <input
-                    id="slider-monthly"
-                    type="range"
-                    min="1000"
-                    max="200000"
-                    step="1000"
-                    value={monthlyInvestment}
-                    onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
-                    aria-label="Monthly Investment Amount"
-                    className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                  />
-                  <div className="flex justify-between text-[11px] font-semibold text-[#727781]">
-                    <span>₹1,000</span>
-                    <span>₹50,000</span>
-                    <span>₹2 Lakh+</span>
-                  </div>
-                </div>
+                <SmartNumberInput
+                  id="inv-monthly-sip"
+                  label="Monthly SIP Investment"
+                  value={monthlyInvestment}
+                  onChange={(val) => setMonthlyInvestment(val)}
+                  min={500}
+                  max={1000000}
+                  step={500}
+                  isCurrency={true}
+                  icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+                  minLabel="₹500/mo"
+                  midLabel="₹25,000/mo"
+                  maxLabel="₹10 Lakh/mo"
+                  themeColor="blue"
+                  presets={[
+                    { label: '₹5,000', value: 5000 },
+                    { label: '₹10,000', value: 10000 },
+                    { label: '₹25,000', value: 25000 },
+                    { label: '₹50,000', value: 50000 }
+                  ]}
+                  helperText="Type any exact amount like 15000, 250890, or 3 lakh"
+                />
               )}
 
-              {/* Lumpsum Amount Slider */}
+              {/* Lumpsum Amount Input */}
               {(activeTab === 'lumpsum' || activeTab === 'sip-lumpsum') && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="slider-lumpsum" className="text-sm sm:text-base font-bold text-[#191c1e]">
-                      {activeTab === 'sip-lumpsum' ? 'Initial One-time Lumpsum Base' : 'One-time Investment Capital'}
-                    </label>
-                    <div className="bg-[#003461] px-3.5 py-1 rounded-md text-sm sm:text-base font-extrabold text-white shadow-2xs">
-                      ₹ {formatRawIndianNumber(lumpsumAmount)}
-                    </div>
-                  </div>
-                  <input
-                    id="slider-lumpsum"
-                    type="range"
-                    min="10000"
-                    max="5000000"
-                    step="10000"
-                    value={lumpsumAmount}
-                    onChange={(e) => setLumpsumAmount(Number(e.target.value))}
-                    aria-label="Lumpsum Investment Amount"
-                    className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                  />
-                  <div className="flex justify-between text-[11px] font-semibold text-[#727781]">
-                    <span>₹10,000</span>
-                    <span>₹25 Lakhs</span>
-                    <span>₹50 Lakhs+</span>
-                  </div>
-                </div>
+                <SmartNumberInput
+                  id="inv-lumpsum"
+                  label={activeTab === 'sip-lumpsum' ? 'Initial One-time Lumpsum Base' : 'One-time Investment Capital'}
+                  value={lumpsumAmount}
+                  onChange={(val) => setLumpsumAmount(val)}
+                  min={5000}
+                  max={50000000}
+                  step={5000}
+                  isCurrency={true}
+                  icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+                  minLabel="₹5,000"
+                  midLabel="₹10 Lakh"
+                  maxLabel="₹5 Crore"
+                  themeColor="blue"
+                  presets={[
+                    { label: '₹1 Lakh', value: 100000 },
+                    { label: '₹5 Lakhs', value: 500000 },
+                    { label: '₹10 Lakhs', value: 1000000 },
+                    { label: '₹25 Lakhs', value: 2500000 }
+                  ]}
+                />
               )}
 
-              {/* Step-up Rate Slider */}
+              {/* Step-up Rate Input */}
               {activeTab === 'step-up' && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="slider-stepup" className="text-sm sm:text-base font-bold text-[#191c1e]">
-                      Annual Step-up Rate (% increase every year)
-                    </label>
-                    <div className="bg-[#e6e8ea] px-3 py-1 rounded-md border border-[#c2c6d1] text-sm sm:text-base font-bold text-[#003461]">
-                      +{stepUpPercent}% yearly
-                    </div>
-                  </div>
-                  <input
-                    id="slider-stepup"
-                    type="range"
-                    min="5"
-                    max="30"
-                    step="5"
-                    value={stepUpPercent}
-                    onChange={(e) => setStepUpPercent(Number(e.target.value))}
-                    aria-label="Annual Step-up Rate"
-                    className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                  />
-                  <div className="flex justify-between text-[11px] font-semibold text-[#727781]">
-                    <span>5%</span>
-                    <span>10% (Standard Salary Growth)</span>
-                    <span>30%</span>
-                  </div>
-                </div>
+                <SmartNumberInput
+                  id="inv-stepup-percent"
+                  label="Annual Step-up Rate (% increase each year)"
+                  value={stepUpPercent}
+                  onChange={(val) => setStepUpPercent(val)}
+                  min={1}
+                  max={30}
+                  step={1}
+                  suffix="%"
+                  icon={<Sparkles className="w-4 h-4 text-[#003461]" />}
+                  minLabel="1%"
+                  maxLabel="30%"
+                  themeColor="blue"
+                  presets={[
+                    { label: '5%', value: 5 },
+                    { label: '10% (Salary Linked)', value: 10 },
+                    { label: '15%', value: 15 }
+                  ]}
+                />
               )}
 
-              {/* Expected Return Rate Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label htmlFor="slider-return" className="text-sm sm:text-base font-bold text-[#191c1e]">
-                    Expected Return Rate (CAGR p.a.)
-                  </label>
-                  <div className="bg-[#e6e8ea] px-3 py-1 rounded-md border border-[#c2c6d1] text-sm sm:text-base font-bold text-[#006d42]">
-                    {expectedReturnRate}% p.a.
-                  </div>
-                </div>
-                <input
-                  id="slider-return"
-                  type="range"
-                  min="6"
-                  max="24"
-                  step="0.5"
-                  value={expectedReturnRate}
-                  onChange={(e) => setExpectedReturnRate(Number(e.target.value))}
-                  aria-label="Expected Annual Return Rate"
-                  className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
-                />
-                <div className="flex justify-between text-[11px] font-semibold text-[#727781]">
-                  <span>6% (FD/Debt)</span>
-                  <span>12% - 15% (Equity MF Average)</span>
-                  <span>24% (High Alpha)</span>
-                </div>
-              </div>
+              {/* Expected Return Rate */}
+              <SmartNumberInput
+                id="inv-return-rate"
+                label="Expected Return Rate (CAGR p.a.)"
+                value={expectedReturnRate}
+                onChange={(val) => setExpectedReturnRate(val)}
+                min={6}
+                max={24}
+                step={0.5}
+                suffix="%"
+                icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+                minLabel="6% (FD/Debt)"
+                midLabel="14% (Equity MF)"
+                maxLabel="24% (Alpha)"
+                themeColor="green"
+                presets={[
+                  { label: '10% Conservative', value: 10 },
+                  { label: '13% Moderate', value: 13 },
+                  { label: '15% Aggressive', value: 15 }
+                ]}
+              />
 
-              {/* Time Period Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label htmlFor="slider-period" className="text-sm sm:text-base font-bold text-[#191c1e]">
-                    Investment Time Horizon
-                  </label>
-                  <div className="bg-[#e6e8ea] px-3 py-1 rounded-md border border-[#c2c6d1] text-sm sm:text-base font-bold text-[#003461]">
-                    {timePeriodYears} {timePeriodYears === 1 ? 'Year' : 'Years'}
-                  </div>
-                </div>
-                <input
-                  id="slider-period"
-                  type="range"
-                  min="1"
-                  max="35"
-                  step="1"
-                  value={timePeriodYears}
-                  onChange={(e) => setTimePeriodYears(Number(e.target.value))}
-                  aria-label="Investment Time Period in Years"
-                  className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-                />
-                <div className="flex justify-between text-[11px] font-semibold text-[#727781]">
-                  <span>1 Year</span>
-                  <span>15 Years (Optimal Compounding)</span>
-                  <span>35 Years</span>
-                </div>
-              </div>
+              {/* Time Period */}
+              <SmartNumberInput
+                id="inv-time-period"
+                label="Investment Time Horizon"
+                value={timePeriodYears}
+                onChange={(val) => setTimePeriodYears(Math.max(1, val))}
+                min={1}
+                max={35}
+                step={1}
+                suffix=" Yrs"
+                icon={<Clock className="w-4 h-4 text-[#003461]" />}
+                minLabel="1 Year"
+                midLabel="15 Years"
+                maxLabel="35 Years"
+                themeColor="blue"
+                presets={[
+                  { label: '3 Yrs', value: 3 },
+                  { label: '5 Yrs', value: 5 },
+                  { label: '10 Yrs', value: 10 },
+                  { label: '15 Yrs', value: 15 },
+                  { label: '20 Yrs', value: 20 }
+                ]}
+              />
 
             </div>
           )}

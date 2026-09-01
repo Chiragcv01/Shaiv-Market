@@ -115,9 +115,9 @@ const DEFAULT_SETTINGS: SiteSettings = {
   // Homepage Content & Headings CMS Defaults
   heroBadgeText: 'AMFI Registered Mutual Fund Distributor',
   heroHeading: 'Intelligent wealth creation, built on institutional trust.',
-  heroSubheading: 'Navigate the markets with confidence. Shaiv Market offers curated mutual fund portfolios designed for long-term stability and consistent compounding, backed by certified research.',
+  heroSubheading: 'Navigate the markets with confidence. Shaiv Market offers curated mutual fund guidance designed for long-term stability and consistent compounding, backed by certified research.',
   heroPrimaryCtaText: 'Start Investing Now',
-  heroSecondaryCtaText: 'View Portfolios',
+  heroSecondaryCtaText: 'Explore Calculators',
   heroFloatingCardTitle: 'Curated Scheme SIPs',
   heroFloatingCardValue: '14.2% CAGR',
   heroTrustText: 'Trusted by over 50,000+ investors nationwide.',
@@ -189,13 +189,12 @@ Submitting an investment interest form connects you directly with our mutual fun
 };
 
 const DEFAULT_NAV_ITEMS: CustomNavItem[] = [
-  { id: 'nav-invest', label: 'Mutual Funds', screenId: 'invest', isVisible: true, order: 1 },
-  { id: 'nav-calc', label: 'SIP Calculators', screenId: 'calculators', isVisible: true, order: 2 },
-  { id: 'nav-insights', label: 'Wealth Tools & Insights', screenId: 'insights', isVisible: true, order: 3 },
-  { id: 'nav-about', label: 'About Us', screenId: 'about', isVisible: true, order: 4 },
-  { id: 'nav-testimonials', label: 'Client Reviews', screenId: 'testimonials', isVisible: true, order: 5 },
-  { id: 'nav-booking', label: 'Book Advisory', screenId: 'booking', isVisible: true, order: 6 },
-  { id: 'nav-contact', label: 'Contact Us', screenId: 'contact', isVisible: true, order: 7 }
+  { id: 'nav-calc', label: 'SIP Calculators', screenId: 'calculators', isVisible: true, order: 1 },
+  { id: 'nav-insights', label: 'Goal Planner', screenId: 'insights', isVisible: true, order: 2 },
+  { id: 'nav-about', label: 'About Us', screenId: 'about', isVisible: true, order: 3 },
+  { id: 'nav-testimonials', label: 'Client Reviews', screenId: 'testimonials', isVisible: true, order: 4 },
+  { id: 'nav-booking', label: 'Book Advisory', screenId: 'booking', isVisible: true, order: 5 },
+  { id: 'nav-contact', label: 'Contact Us', screenId: 'contact', isVisible: true, order: 6 }
 ];
 
 const INITIAL_ARTICLES: InsightArticle[] = [
@@ -430,7 +429,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [navItems, setNavItems] = useState<CustomNavItem[]>(() => {
     try {
       const saved = localStorage.getItem('shaivmarket_nav_items');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed: CustomNavItem[] = JSON.parse(saved);
+        const filtered = parsed.filter(item => (item.screenId as string) !== 'invest' && item.id !== 'nav-invest');
+        if (filtered.length > 0) return filtered;
+      }
     } catch {}
     return DEFAULT_NAV_ITEMS;
   });

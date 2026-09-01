@@ -1,6 +1,5 @@
 export type ActiveScreen =
   | 'home'
-  | 'invest'
   | 'calculators'
   | 'insights'
   | 'booking'

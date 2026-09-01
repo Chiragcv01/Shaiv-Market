@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { SmartNumberInput } from './SmartNumberInput';
 import {
   calculateGoalPlan,
   formatIndianCurrency,
@@ -207,76 +208,75 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
             <span className="font-bold text-[#003461]">{currentPreset.name}:</span> {currentPreset.description}
           </div>
 
-          {/* Slider 1: Goal Cost in Today's Value */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-[#424750]">Goal Cost in Today&apos;s Money (₹)</span>
-              <span className="font-extrabold text-sm text-[#003461] bg-[#eceef0] px-2.5 py-1 rounded-md">
-                {formatIndianCurrency(targetCostToday)}
-              </span>
-            </div>
-            <input
-              type="range"
-              min={100000}
-              max={50000000}
-              step={100000}
-              value={targetCostToday}
-              onChange={(e) => setTargetCostToday(Number(e.target.value))}
-              className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-            />
-            <div className="flex justify-between text-[10px] text-[#727781]">
-              <span>₹1 Lakh</span>
-              <span>₹2.5 Crore</span>
-              <span>₹5 Crore</span>
-            </div>
-          </div>
+          {/* Input 1: Goal Cost in Today's Value */}
+          <SmartNumberInput
+            id="goal-cost-today"
+            label="Goal Cost in Today's Money"
+            value={targetCostToday}
+            onChange={(val) => setTargetCostToday(val)}
+            min={100000}
+            max={100000000}
+            step={50000}
+            isCurrency={true}
+            icon={<Target className="w-4 h-4 text-[#003461]" />}
+            minLabel="₹1 Lakh"
+            midLabel="₹2.5 Crore"
+            maxLabel="₹10 Crore"
+            themeColor="blue"
+            presets={[
+              { label: '₹15 Lakh', value: 1500000 },
+              { label: '₹30 Lakh', value: 3000000 },
+              { label: '₹50 Lakh', value: 5000000 },
+              { label: '₹1 Crore', value: 10000000 }
+            ]}
+            helperText="Type any exact amount like 3 Lakh, 2,50,890 or 1.5 Cr"
+          />
 
           {/* Grid: Years to Goal & Inflation */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
             {/* Years to Goal */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Time Horizon (Years)</span>
-                <span className="font-bold text-[#003461]">{yearsToGoal} Years</span>
-              </div>
-              <input
-                type="range"
-                min={1}
-                max={30}
-                step={1}
-                value={yearsToGoal}
-                onChange={(e) => setYearsToGoal(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
-              />
-              <div className="flex justify-between text-[10px] text-[#727781]">
-                <span>1 Yr</span>
-                <span>15 Yrs</span>
-                <span>30 Yrs</span>
-              </div>
-            </div>
+            <SmartNumberInput
+              id="goal-years"
+              label="Time Horizon"
+              value={yearsToGoal}
+              onChange={(val) => setYearsToGoal(Math.max(1, val))}
+              min={1}
+              max={35}
+              step={1}
+              suffix=" Yrs"
+              icon={<TrendingUp className="w-4 h-4 text-[#003461]" />}
+              minLabel="1 Yr"
+              maxLabel="35 Yrs"
+              themeColor="blue"
+              presets={[
+                { label: '5 Yrs', value: 5 },
+                { label: '10 Yrs', value: 10 },
+                { label: '15 Yrs', value: 15 },
+                { label: '20 Yrs', value: 20 }
+              ]}
+            />
 
             {/* Expected Inflation Rate */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Annual Inflation Rate</span>
-                <span className="font-bold text-[#ba1a1a]">{inflationRate}% p.a.</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={15}
-                step={0.5}
-                value={inflationRate}
-                onChange={(e) => setInflationRate(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#ba1a1a]"
-              />
-              <div className="flex justify-between text-[10px] text-[#727781]">
-                <span>0% (Direct)</span>
-                <span>6% (General)</span>
-                <span>10% (Education)</span>
-              </div>
-            </div>
+            <SmartNumberInput
+              id="goal-inflation"
+              label="Annual Inflation"
+              value={inflationRate}
+              onChange={(val) => setInflationRate(val)}
+              min={0}
+              max={15}
+              step={0.5}
+              suffix="%"
+              icon={<TrendingUp className="w-4 h-4 text-amber-600" />}
+              minLabel="0% (No Inflation)"
+              maxLabel="15% (High)"
+              themeColor="amber"
+              presets={[
+                { label: '6% (General)', value: 6 },
+                { label: '8% (Lifestyle)', value: 8 },
+                { label: '10% (Education)', value: 10 }
+              ]}
+            />
 
           </div>
 
@@ -284,38 +284,47 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
             {/* Expected MF Return */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Expected CAGR Return</span>
-                <span className="font-bold text-[#006d42]">+{expectedReturn}% p.a.</span>
-              </div>
-              <input
-                type="range"
-                min={8}
-                max={18}
-                step={0.5}
-                value={expectedReturn}
-                onChange={(e) => setExpectedReturn(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
-              />
-            </div>
+            <SmartNumberInput
+              id="goal-return"
+              label="Expected CAGR"
+              value={expectedReturn}
+              onChange={(val) => setExpectedReturn(val)}
+              min={6}
+              max={22}
+              step={0.5}
+              suffix="%"
+              icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+              minLabel="6% (Debt)"
+              maxLabel="22% (Equity)"
+              themeColor="green"
+              presets={[
+                { label: '10% (Hybrid)', value: 10 },
+                { label: '13% (Equity)', value: 13 },
+                { label: '15% (Midcap)', value: 15 }
+              ]}
+            />
 
             {/* Existing Savings Dedicated to Goal */}
-            <div className="space-y-1.5 bg-[#f7f9fb] p-3.5 rounded-xl border border-[#e0e3e5]">
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-[#424750]">Existing Savings Earmarked</span>
-                <span className="font-bold text-[#006d42]">{formatIndianCurrency(existingSavings)}</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={5000000}
-                step={50000}
-                value={existingSavings}
-                onChange={(e) => setExistingSavings(Number(e.target.value))}
-                className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
-              />
-            </div>
+            <SmartNumberInput
+              id="goal-existing-savings"
+              label="Existing Savings Earmarked"
+              value={existingSavings}
+              onChange={(val) => setExistingSavings(val)}
+              min={0}
+              max={20000000}
+              step={50000}
+              isCurrency={true}
+              icon={<ShieldCheck className="w-4 h-4 text-[#006d42]" />}
+              minLabel="₹0"
+              maxLabel="₹2 Crore"
+              themeColor="green"
+              presets={[
+                { label: '₹0', value: 0 },
+                { label: '₹2 Lakh', value: 200000 },
+                { label: '₹5 Lakh', value: 500000 },
+                { label: '₹10 Lakh', value: 1000000 }
+              ]}
+            />
 
           </div>
 

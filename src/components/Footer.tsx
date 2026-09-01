@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span className="text-xl font-bold text-white tracking-tight">{siteSettings.companyName}</span>
             </div>
             <p className="text-[#c2c6d1] text-xs leading-relaxed max-w-sm">
-              {siteSettings.footerAboutText || 'Empowering investors with institutional-grade mutual fund portfolio construction, goal-based wealth planning, and dedicated AMFI distributor support.'}
+              {siteSettings.footerAboutText || 'Empowering investors with goal-based wealth planning, required SIP target calculators, and dedicated AMFI certified mutual fund distributor advisory.'}
             </p>
             <div className="flex items-center gap-2 text-xs text-[#96f6bd]">
               <ShieldCheck className="w-4 h-4 shrink-0 text-[#96f6bd]" />
@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Company Links */}
           <div>
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
-              Explore
+              Financial Planning
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
               <li>
@@ -43,15 +43,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate?.('about')}
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
                 >
-                  About Our Founder & Firm
+                  About Founder & Accreditation
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate?.('invest')}
+                  onClick={() => onNavigate?.('insights')}
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
                 >
-                  Curated Portfolios & Schemes
+                  Goal Planner & Strategy Desk
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate?.('calculators')}
+                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Know Your Required SIP Amount
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate?.('calculators')}
+                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  SIP Wealth & SWP Calculators
                 </button>
               </li>
               <li>
@@ -62,45 +78,37 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   Client Reviews & Stories
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('insights')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Holdings & Overlap Intelligence
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('calculators')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  SIP & Lumpsum Calculator
-                </button>
-              </li>
             </ul>
           </div>
 
           {/* Support & Admin Links */}
           <div>
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
-              Support & Portal
+              Connect & Advisory
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
               <li>
                 <button
-                  onClick={() => onNavigate?.('contact')}
+                  onClick={() => onNavigate?.('booking')}
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer font-medium text-[#96f6bd]"
                 >
-                  Contact Advisory Desk
+                  Schedule 1-on-1 Meeting
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate?.('booking')}
+                  onClick={() => onNavigate?.('open-account')}
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
                 >
-                  Book 1-on-1 Advisor Session
+                  Register & Onboard Investor
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate?.('contact')}
+                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Contact Advisory Desk
                 </button>
               </li>
               <li>
@@ -113,19 +121,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate?.('testimonials')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Client Reviews & Stories
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate?.('admin')}
                   className="text-[#96f6bd] hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5 font-bold"
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span>{currentUser?.role === 'admin' ? 'Admin CMS & Controls (Active)' : 'Admin Portal Access'}</span>
+                  <span>{currentUser?.role === 'admin' ? 'Admin Dashboard (Active)' : 'Admin Portal Login'}</span>
                 </button>
               </li>
             </ul>
@@ -173,4 +173,3 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     </footer>
   );
 };
-
