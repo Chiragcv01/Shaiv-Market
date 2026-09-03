@@ -618,21 +618,45 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
             {/* HERO METRIC: TARGET SIP VS REGULAR MATURITY */}
             {activeTab === 'target-sip' ? (
               <>
-                <div className="p-4 bg-[#003461] text-white rounded-xl shadow-xs flex items-center justify-between">
-                  <div>
+                <div className="p-4 bg-[#003461] text-white rounded-xl shadow-xs space-y-3">
+                  <div className="flex items-center justify-between">
                     <span className="text-[11px] font-semibold text-[#96f6bd] uppercase tracking-wider block">
-                      Required Monthly SIP Amount
+                      {targetStepUp > 0 ? `Required Step-Up SIP (+${targetStepUp}%/Yr)` : 'Required Monthly SIP'}
                     </span>
-                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                      ₹ {formatRawIndianNumber(targetCalc.requiredMonthlySip)}
-                      <span className="text-xs font-normal text-white/80 ml-1">/ month</span>
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="px-2.5 py-1 rounded text-[11px] font-extrabold bg-[#93f3bb] text-[#005231]">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#93f3bb] text-[#005231]">
                       Target {formatIndianCurrency(targetCorpus)}
                     </span>
                   </div>
+
+                  {targetStepUp > 0 ? (
+                    <div className="grid grid-cols-2 gap-2 bg-white/10 p-2.5 rounded-lg border border-white/15">
+                      <div>
+                        <span className="text-[10px] text-[#d3e4fe] block">Starting Monthly SIP (Yr 1)</span>
+                        <span className="text-xl sm:text-2xl font-black text-white">
+                          ₹{formatRawIndianNumber(targetCalc.requiredMonthlySip)}
+                        </span>
+                      </div>
+                      <div className="border-l border-white/15 pl-2.5">
+                        <span className="text-[10px] text-[#d3e4fe] block">Final Monthly SIP (Yr {targetYears})</span>
+                        <span className="text-xl sm:text-2xl font-black text-amber-300">
+                          ₹{formatRawIndianNumber(targetCalc.finalMonthlySip)}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                        ₹ {formatRawIndianNumber(targetCalc.requiredMonthlySip)}
+                        <span className="text-xs font-normal text-white/80 ml-1">/ month</span>
+                      </span>
+                    </div>
+                  )}
+
+                  {targetStepUp > 0 && targetCalc.monthlySavingsAtStart > 0 && (
+                    <div className="text-[10px] text-[#96f6bd] font-semibold bg-white/10 px-2.5 py-1 rounded-md">
+                      ✨ Starts ₹{targetCalc.monthlySavingsAtStart.toLocaleString('en-IN')}/mo lower than Flat SIP!
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">

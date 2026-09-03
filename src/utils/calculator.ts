@@ -127,6 +127,9 @@ export interface TargetSipResult {
   expectedReturnRate: number;
   annualStepUpPercent: number;
   requiredMonthlySip: number;
+  finalMonthlySip: number;
+  flatRequiredMonthlySip: number;
+  monthlySavingsAtStart: number;
   totalInvested: number;
   totalGains: number;
   investedPercentage: number;
@@ -136,6 +139,7 @@ export interface TargetSipResult {
     year: string;
     yearNum: number;
     monthlySip: number;
+    yearlyInvested: number;
     invested: number;
     corpus: number;
     gains: number;
@@ -152,15 +156,17 @@ export function calculateTargetSip(
   const r = expectedReturnRate / (12 * 100);
   const totalMonths = timePeriodYears * 12;
   
-  let requiredMonthlySip = 0;
-
-  if (annualStepUpPercent === 0) {
-    if (r === 0) {
-      requiredMonthlySip = targetCorpus / totalMonths;
-    } else {
-      requiredMonthlySip = (targetCorpus * r) / ((Math.pow(1 + r, totalMonths) - 1) * (1 + r));
-    }
+  // Calculate Flat SIP base for comparison
+  let flatRequiredMonthlySip = 0;
+  if (r === 0) {
+    flatRequiredMonthlySip = targetCorpus / totalMonths;
   } else {
+    flatRequiredMonthlySip = (targetCorpus * r) / ((Math.pow(1 + r, totalMonths) - 1) * (1 + r));
+  }
+
+  let requiredMonthlySip = flatRequiredMonthlySip;
+
+  if (annualStepUpPercent > 0) {
     // With annual step-up: Calculate compounding multiplier K where Target = Initial_SIP * K
     let compoundMultiplier = 0;
     let currentStepMultiplier = 1;
@@ -178,10 +184,14 @@ export function calculateTargetSip(
   let currentMonthly = requiredMonthlySip;
   let cumulativeInvested = 0;
   let runningCorpus = 0;
+  let finalYearMonthly = requiredMonthlySip;
   const yearlyMilestones: TargetSipResult['yearlyMilestones'] = [];
 
   for (let yr = 1; yr <= timePeriodYears; yr++) {
+    let yearInvested = 0;
+    finalYearMonthly = currentMonthly;
     for (let m = 1; m <= 12; m++) {
+      yearInvested += currentMonthly;
       cumulativeInvested += currentMonthly;
       runningCorpus = (runningCorpus + currentMonthly) * (1 + r);
     }
@@ -191,6 +201,7 @@ export function calculateTargetSip(
       year: `Yr ${yr}`,
       yearNum: yr,
       monthlySip: Math.round(currentMonthly),
+      yearlyInvested: Math.round(yearInvested),
       invested: Math.round(cumulativeInvested),
       corpus: Math.round(runningCorpus),
       gains: Math.round(Math.max(0, runningCorpus - cumulativeInvested)),
@@ -206,13 +217,18 @@ export function calculateTargetSip(
   const finalCorpus = Math.round(runningCorpus);
   const totalGains = Math.max(0, finalCorpus - finalInvested);
   const lumpsumAlternative = Math.round(targetCorpus / Math.pow(1 + expectedReturnRate / 100, timePeriodYears));
+  const roundedRequiredMonthly = Math.round(requiredMonthlySip);
+  const roundedFlatRequired = Math.round(flatRequiredMonthlySip);
 
   return {
     targetCorpus,
     timePeriodYears,
     expectedReturnRate,
     annualStepUpPercent,
-    requiredMonthlySip: Math.round(requiredMonthlySip),
+    requiredMonthlySip: roundedRequiredMonthly,
+    finalMonthlySip: Math.round(finalYearMonthly),
+    flatRequiredMonthlySip: roundedFlatRequired,
+    monthlySavingsAtStart: Math.max(0, roundedFlatRequired - roundedRequiredMonthly),
     totalInvested: finalInvested,
     totalGains,
     investedPercentage: finalCorpus > 0 ? Math.round((finalInvested / finalCorpus) * 100) : 50,

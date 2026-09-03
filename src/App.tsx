@@ -29,7 +29,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#003461] selection:text-white">
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#f7f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#003461] selection:text-white">
       
       {/* Top Fixed Navigation Bar */}
       <Navbar

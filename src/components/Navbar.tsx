@@ -8,7 +8,8 @@ import {
   ExternalLink,
   ChevronRight,
   LogIn,
-  SlidersHorizontal
+  SlidersHorizontal,
+  FileText
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -83,42 +84,42 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
 
       {/* 2. MAIN NAVIGATION BAR */}
-      <div className="bg-[#f7f9fb]/95 backdrop-blur-md border-b border-[#c2c6d1]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
+      <div className="bg-[#f7f9fb]/95 backdrop-blur-md border-b border-[#c2c6d1]/60 w-full">
+        <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-2 sm:gap-4 w-full">
           
           {/* Brand Logo & Desktop Nav Links */}
-          <div className="flex items-center gap-6 lg:gap-10">
+          <div className="flex items-center gap-3 sm:gap-5 lg:gap-8 min-w-0">
             <button
               id="nav-logo"
               onClick={() => handleNavClick('home')}
-              className="flex items-center gap-2.5 text-left group focus:outline-hidden cursor-pointer"
+              className="flex items-center gap-2 sm:gap-2.5 text-left group focus:outline-hidden cursor-pointer shrink-0"
             >
               {siteSettings.logoImageUrl ? (
                 <img
                   src={siteSettings.logoImageUrl}
                   alt={siteSettings.companyName}
-                  className="w-9 h-9 object-contain rounded-lg"
+                  className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shrink-0"
                   referrerPolicy="no-referrer"
                 />
               ) : (
-                <div className="w-9 h-9 rounded-lg bg-[#003461] flex items-center justify-center text-white shadow-xs">
-                  <span className="font-extrabold text-base leading-none tracking-tight">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#003461] flex items-center justify-center text-white shadow-xs shrink-0">
+                  <span className="font-extrabold text-sm sm:text-base leading-none tracking-tight">
                     {siteSettings.logoInitial || 'SM'}
                   </span>
                 </div>
               )}
-              <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-[#003461] group-hover:text-[#004b87] transition-colors leading-none">
+              <div className="flex flex-col min-w-0">
+                <span className="text-base sm:text-xl lg:text-2xl font-black tracking-tight text-[#003461] group-hover:text-[#004b87] transition-colors leading-none truncate max-w-[130px] sm:max-w-[180px] md:max-w-none">
                   {siteSettings.companyName}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-semibold text-[#006d42] tracking-wider uppercase mt-0.5 max-w-[220px] truncate">
+                <span className="hidden sm:block text-[9px] sm:text-[10px] font-semibold text-[#006d42] tracking-wider uppercase mt-0.5 max-w-[140px] md:max-w-[200px] lg:max-w-[240px] truncate">
                   {siteSettings.tagline || 'AMFI Registered Mutual Fund Distributor'}
                 </span>
               </div>
             </button>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[14px] lg:text-[15px] font-medium text-[#424750]">
+            {/* Desktop Navigation Links - Shown on xl screens (1280px+) where horizontal space easily accommodates all links */}
+            <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-5 text-[13px] 2xl:text-[14px] font-medium text-[#424750] shrink-0">
               {visibleNavItems.map((item) => {
                 if (item.externalUrl) {
                   return (
@@ -127,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       href={item.externalUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="py-2 transition-colors duration-150 hover:text-[#006d42] text-[#424750] flex items-center gap-1"
+                      className="py-2 transition-colors duration-150 hover:text-[#006d42] text-[#424750] flex items-center gap-1 shrink-0 whitespace-nowrap"
                     >
                       <span>{item.label}</span>
                       <ExternalLink className="w-3 h-3 text-[#727781]" />
@@ -142,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     key={item.id}
                     id={`nav-link-${item.id}`}
                     onClick={() => handleNavClick(screenTarget)}
-                    className={`relative py-2 transition-colors duration-150 hover:text-[#006d42] cursor-pointer flex items-center gap-1.5 ${
+                    className={`relative py-2 transition-colors duration-150 hover:text-[#006d42] cursor-pointer flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                       isActive ? 'text-[#003461] font-bold' : 'text-[#424750]'
                     }`}
                   >
@@ -159,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   id="nav-link-admin"
                   onClick={() => handleNavClick('admin')}
-                  className={`relative py-1.5 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`relative py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                     activeScreen === 'admin'
                       ? 'bg-[#003461] text-white shadow-xs'
                       : 'bg-[#d3e4fe] text-[#003461] hover:bg-[#b8d5fc]'
@@ -173,20 +174,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
           </div>
 
-          {/* Right Action Icons & CTA */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5">
+          {/* Right Action Icons & CTA - Fully adaptable on mobile, tablet, and desktop */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 lg:gap-3.5 shrink-0">
             
             {/* Notification Button */}
             <button
               id="nav-notifications-btn"
               onClick={onOpenNotifications}
-              className="relative p-2 text-[#424750] hover:text-[#003461] hover:bg-[#eceef0] rounded-full transition-colors focus:outline-hidden cursor-pointer"
+              className="relative p-1.5 sm:p-2 text-[#424750] hover:text-[#003461] hover:bg-[#eceef0] rounded-full transition-colors focus:outline-hidden cursor-pointer shrink-0"
               title="Notifications"
               aria-label="Notifications"
             >
-              <Bell className="w-5 h-5" />
+              <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
               {notificationCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#006d42] rounded-full ring-2 ring-white" />
+                <span className="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 w-2 h-2 bg-[#006d42] rounded-full ring-2 ring-white" />
               )}
             </button>
 
@@ -195,14 +196,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="nav-profile-btn"
                 onClick={onOpenProfile}
-                className="flex items-center gap-2 p-1.5 pl-2.5 sm:pr-3 bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-full transition-colors focus:outline-hidden cursor-pointer shadow-2xs"
+                className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 pl-1.5 sm:pl-2.5 sm:pr-3 bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-full transition-colors focus:outline-hidden cursor-pointer shadow-2xs shrink-0"
                 title={`${currentUser.name} (${currentUser.role.toUpperCase()})`}
               >
-                <div className="w-6 h-6 rounded-full bg-[#003461] text-white flex items-center justify-center text-xs font-bold">
+                <div className="w-6 h-6 rounded-full bg-[#003461] text-white flex items-center justify-center text-xs font-bold shrink-0">
                   {currentUser.name.charAt(0)}
                 </div>
                 <div className="hidden lg:flex flex-col text-left">
-                  <span className="text-xs font-bold text-[#191c1e] truncate max-w-[100px] leading-tight">
+                  <span className="text-xs font-bold text-[#191c1e] truncate max-w-[90px] xl:max-w-[110px] leading-tight">
                     {currentUser.name.split(' ')[0]}
                   </span>
                   <span className="text-[9px] font-bold text-[#006d42] uppercase tracking-wider leading-none">
@@ -214,38 +215,44 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="nav-login-btn"
                 onClick={() => handleNavClick('auth')}
-                className="flex items-center gap-1.5 text-xs font-bold text-[#003461] hover:text-[#004b87] bg-[#d3e4fe] hover:bg-[#c2d7f8] px-3.5 py-2 rounded-lg transition-colors cursor-pointer"
+                className="flex items-center gap-1 sm:gap-1.5 text-xs font-bold text-[#003461] hover:text-[#004b87] bg-[#d3e4fe] hover:bg-[#c2d7f8] p-1.5 sm:px-3 sm:py-2 rounded-lg transition-colors cursor-pointer shrink-0"
+                title="Sign In / Register"
               >
-                <LogIn className="w-3.5 h-3.5" />
-                <span>Sign In</span>
+                <LogIn className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Sign In</span>
               </button>
             )}
 
-            {/* Open Account CTA Button */}
+            {/* Open Account CTA Button - Adaptable on ALL screens: never cuts off */}
             <button
               id="nav-open-account-btn"
               onClick={() => handleNavClick('open-account')}
-              className="hidden sm:inline-flex items-center justify-center bg-[#003461] text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-lg hover:bg-[#004b87] active:bg-[#002647] shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer"
+              className="inline-flex items-center justify-center gap-1 sm:gap-1.5 bg-[#003461] text-white font-bold text-xs md:text-sm px-2.5 sm:px-3.5 lg:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg hover:bg-[#004b87] active:bg-[#002647] shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer shrink-0 whitespace-nowrap"
+              title="Request Personalized Investment Quote"
             >
-              Get Investment Quote
+              <FileText className="w-3.5 h-3.5 shrink-0 text-[#96f6bd] hidden sm:inline" />
+              {/* Mobile (<640px) & Tablet / Compact Desktop (<1024px) */}
+              <span className="inline lg:hidden">Get Quote</span>
+              {/* Large Desktop (>=1024px) */}
+              <span className="hidden lg:inline">Get Investment Quote</span>
             </button>
 
-            {/* Mobile Menu Hamburger */}
+            {/* Mobile / Tablet Menu Hamburger (active <1280px so header never crowds) */}
             <button
               id="nav-mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#424750] hover:text-[#003461] rounded-lg focus:outline-hidden cursor-pointer"
+              className="xl:hidden p-1.5 sm:p-2 text-[#424750] hover:text-[#003461] hover:bg-[#eceef0] rounded-lg focus:outline-hidden cursor-pointer shrink-0"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer Dropdown */}
+      {/* Mobile & Tablet Drawer Dropdown (<1280px) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-[#c2c6d1] px-4 pt-3 pb-5 space-y-2 shadow-lg animate-in slide-in-from-top-2">
+        <div className="xl:hidden bg-white border-b border-[#c2c6d1] px-4 pt-3 pb-5 space-y-2 shadow-lg animate-in slide-in-from-top-2 max-h-[calc(100vh-80px)] overflow-y-auto">
           {visibleNavItems.map((item) => {
             if (item.externalUrl) {
               return (
@@ -304,9 +311,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-2 border-t border-[#e0e3e5] space-y-2">
             <button
               onClick={() => handleNavClick('open-account')}
-              className="w-full bg-[#003461] text-white font-bold text-sm py-3 rounded-lg hover:bg-[#004b87] text-center cursor-pointer"
+              className="w-full bg-[#003461] text-white font-bold text-sm py-3 rounded-lg hover:bg-[#004b87] text-center cursor-pointer flex items-center justify-center gap-2"
             >
-              Get Investment Quote
+              <FileText className="w-4 h-4 text-[#96f6bd]" />
+              <span>Get Investment Quote</span>
             </button>
             {siteSettings.enableMfReferralDirect && siteSettings.mfReferralLink && (
               <a
