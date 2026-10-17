@@ -22,6 +22,17 @@ export default function App() {
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [notificationCount, setNotificationCount] = useState<number>(0);
 
+  // Private admin entry: only reachable at /sm-admin (not linked anywhere on the site)
+  React.useEffect(() => {
+    if (window.location.pathname.replace(/\/+$/, '') === '/sm-admin') {
+      setActiveScreen('admin');
+      const meta = document.createElement('meta');
+      meta.name = 'robots';
+      meta.content = 'noindex, nofollow';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   // Scroll to top when changing screens
   const handleNavigate = (screen: ActiveScreen) => {
     setActiveScreen(screen);

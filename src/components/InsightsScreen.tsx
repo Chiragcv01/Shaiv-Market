@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveScreen, InsightArticle } from '../types';
+import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import { GoalPlanner } from './GoalPlanner';
 import { RequiredSipCalculator } from './RequiredSipCalculator';
@@ -217,14 +218,14 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
                 onClick={() => setSelectedArticle(art)}
                 className="bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
               >
-                {art.imageUrl && (
+                {(
                   <div className="w-full h-36 overflow-hidden bg-[#f7f9fb] border-b border-[#e0e3e5]">
-                    <img
+                    {art.imageUrl ? (<img
                       src={art.imageUrl}
                       alt={art.imageAlt || art.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+                    />) : (<ArticleCover seed={art.id} />)}
                   </div>
                 )}
                 <div className="p-5 space-y-2">
@@ -267,14 +268,14 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
               <X className="w-5 h-5" />
             </button>
 
-            {selectedArticle.imageUrl && (
+            {(
               <div className="w-full h-56 rounded-2xl overflow-hidden bg-[#f7f9fb] border border-[#e0e3e5]">
-                <img
+                {selectedArticle.imageUrl ? (<img
                   src={selectedArticle.imageUrl}
                   alt={selectedArticle.imageAlt || selectedArticle.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
-                />
+                />) : (<ArticleCover seed={selectedArticle.id} />)}
               </div>
             )}
 

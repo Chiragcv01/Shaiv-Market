@@ -143,6 +143,7 @@ export interface SiteSettings {
   founderPhotoUrl: string;
   founderPhotoAlt: string;
   arnCertificateUrl: string;
+  nismCertificateUrl?: string;
   arnCertificateAlt: string;
   aboutStory: string;
   aboutMission: string;

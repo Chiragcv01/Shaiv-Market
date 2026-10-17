@@ -339,16 +339,6 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
     }
   };
 
-  const handleQuickAdminLogin = () => {
-    setAdminUsername('admin');
-    setAdminPassword('@Finsathi01');
-    setIsSubmittingAdminAuth(true);
-    const res = login('admin', '@Finsathi01');
-    setIsSubmittingAdminAuth(false);
-    if (res.success && res.user?.role === 'admin') {
-      showNotification('Signed in as Administrator!');
-    }
-  };
 
   // If user is not authenticated as admin, show secure Admin Login Screen
   if (!currentUser || currentUser.role !== 'admin') {
@@ -420,22 +410,6 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               <span>{isSubmittingAdminAuth ? 'Verifying...' : 'Authenticate & Open Control Panel'}</span>
             </button>
           </form>
-
-          {/* Quick 1-Click Test Login Helper */}
-          <div className="mt-5 p-3.5 bg-[#f0f7ff] border border-[#d3e4fe] rounded-xl text-center space-y-2">
-            <div className="flex items-center justify-between text-xs text-[#003461]">
-              <span className="font-semibold">Default Admin Access:</span>
-              <span className="font-mono bg-white px-2 py-0.5 rounded border border-[#c2c6d1]">admin / @Finsathi01</span>
-            </div>
-            <button
-              onClick={handleQuickAdminLogin}
-              type="button"
-              className="w-full py-2 bg-white hover:bg-[#d3e4fe]/50 border border-[#003461]/30 text-[#003461] text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#006d42]" />
-              <span>1-Click Auto Login as Admin</span>
-            </button>
-          </div>
 
           <div className="mt-6 pt-4 border-t border-[#e0e3e5] text-center">
             <button

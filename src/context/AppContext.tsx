@@ -1,3 +1,4 @@
+import { sha256Hex } from '../utils/sha256';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   User,
@@ -84,11 +85,13 @@ const DEFAULT_BANNER: SiteBanner = {
   themeColor: 'blue'
 };
 
+const ADMIN_PASSWORD_SHA256 = 'e1075f2c0856486d740c5b4573946631efaafc5891ed3c67af47d789eb6b3952';
+
 const DEFAULT_SETTINGS: SiteSettings = {
   companyName: 'Shaiv Market',
   tagline: 'AMFI Registered Mutual Fund Distributor (MFD), Jaipur',
   logoInitial: 'SM',
-  logoImageUrl: '',
+  logoImageUrl: '/images/logo-mark.png',
   supportPhone: '+91 99506 53247',
   supportEmail: 'marketlive45@gmail.com',
   advisoryEmail: 'marketlive45@gmail.com',
@@ -106,11 +109,11 @@ const DEFAULT_SETTINGS: SiteSettings = {
   googleSheetsSyncUrl: '', // Google Sheets Web App Endpoint
   adminNotificationEmail: 'marketlive45@gmail.com', // Admin Email for alert logs
   // Homepage Media Assets
-  homepageHeroImageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80',
+  homepageHeroImageUrl: '',
   homepageHeroImageAlt: 'Modern Financial Analytics and Mutual Fund Wealth Creation Dashboard',
-  heroImageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80',
+  heroImageUrl: '',
   heroImageAlt: 'Modern Financial Analytics and Mutual Fund Wealth Creation Dashboard',
-  homepageFeatureImageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80',
+  homepageFeatureImageUrl: '',
   homepageFeatureImageAlt: 'Systematic Investment Planning and Asset Allocation Visualizer',
   // Homepage Content & Headings CMS Defaults
   heroBadgeText: 'AMFI Registered Mutual Fund Distributor',
@@ -141,10 +144,11 @@ const DEFAULT_SETTINGS: SiteSettings = {
   founderBio: 'Chirag Sharma is an AMFI Registered Mutual Fund Distributor (ARN-337289) based in Jaipur. He helps individuals and families plan goals such as retirement, children\'s education and wealth creation through disciplined SIPs, suitable scheme selection and regular portfolio reviews.',
   founderExperience: 'Based in Jaipur',
   founderQualification: 'NISM Series V-A Certified Mutual Fund Distributor',
-  founderPhotoUrl: '',
+  founderPhotoUrl: '/images/chirag-sharma.jpg',
   founderPhotoAlt: 'Chirag Sharma - AMFI Registered Mutual Fund Distributor',
-  arnCertificateUrl: '',
-  arnCertificateAlt: 'Official Association of Mutual Funds in India (AMFI) Registration Certificate ARN-337289',
+  arnCertificateUrl: '/images/amfi-arn-card.jpg',
+  arnCertificateAlt: 'AMFI ARN Card of Chirag Sharma - ARN-337289',
+  nismCertificateUrl: '/images/nism-certificate.jpg',
   aboutStory: 'Shaiv Market was founded with a clear commitment: to provide transparent, disciplined, and personalized mutual fund guidance to every Indian investor. We simplify the investing journey by identifying well-managed regular schemes across top AMCs, designing tailored SIP roadmaps, and providing ongoing folio reviews.',
   aboutMission: 'To help every investor navigate market cycles with confidence, patience, and rigorous risk management.',
   // Legal Policies
@@ -206,7 +210,7 @@ const INITIAL_ARTICLES: InsightArticle[] = [
     date: 'Oct 20, 2024',
     summary: 'A mathematical dissection of exponential compounding growth and why early market volatility is your greatest ally across Indian equity assets.',
     author: 'Shaiv Market',
-    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '',
     imageAlt: 'Compounding graph and financial analytics visualization',
     content: `Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it.
 
@@ -229,7 +233,7 @@ The true driver of compounding is behavior. Investors who stay invested through 
     date: 'Oct 15, 2024',
     summary: 'Why emerging market dynamics and Indian market dispersion make fund manager research critical for mid and small-cap alpha generation.',
     author: 'Shaiv Market',
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '',
     imageAlt: 'Stock market chart and financial growth trend',
     content: `Unlike developed markets where large-cap indices dominate, India's expanding economy offers substantial inefficiencies in the mid and small-cap segments.
 
@@ -246,7 +250,7 @@ The true driver of compounding is behavior. Investors who stay invested through 
     date: 'Oct 10, 2024',
     summary: 'A complete practical guide to managing the ₹1.25 Lakh LTCG annual exemption limit for Indian equity mutual funds.',
     author: 'Shaiv Market',
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '',
     imageAlt: 'Tax planning documents and calculation notes',
     content: `Under Section 112A of the Income Tax Act, Long Term Capital Gains (LTCG) on equity-oriented mutual funds are taxed at 12.5% on gains exceeding ₹1.25 Lakh in a financial year.
 
@@ -271,7 +275,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Stored Users in Local Storage
   const [users, setUsers] = useState<User[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_users');
+      const saved = localStorage.getItem('shaivmarket_v3_users');
       if (saved) return JSON.parse(saved);
     } catch {}
     return [
@@ -290,7 +294,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Current Logged in User (Default guest/unauthenticated for proper access control)
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_current_user');
+      const saved = localStorage.getItem('shaivmarket_v3_current_user');
       if (saved) return JSON.parse(saved);
     } catch {}
     return null;
@@ -299,7 +303,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Nav items state
   const [navItems, setNavItems] = useState<CustomNavItem[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_nav_items');
+      const saved = localStorage.getItem('shaivmarket_v3_nav_items');
       if (saved) {
         const parsed: CustomNavItem[] = JSON.parse(saved);
         const filtered = parsed.filter(item => (item.screenId as string) !== 'invest' && item.id !== 'nav-invest');
@@ -312,7 +316,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Articles state
   const [articles, setArticles] = useState<InsightArticle[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_articles');
+      const saved = localStorage.getItem('shaivmarket_v3_articles');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_ARTICLES;
@@ -321,7 +325,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Banner state
   const [banner, setBanner] = useState<SiteBanner>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_banner');
+      const saved = localStorage.getItem('shaivmarket_v3_banner');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_BANNER;
@@ -330,7 +334,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Site Settings
   const [siteSettings, setSiteSettings] = useState<SiteSettings>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_settings');
+      const saved = localStorage.getItem('shaivmarket_v3_settings');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_SETTINGS;
@@ -339,7 +343,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Client Onboarding Quotes
   const [quotes, setQuotes] = useState<ClientQuote[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_quotes');
+      const saved = localStorage.getItem('shaivmarket_v3_quotes');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_QUOTES;
@@ -348,7 +352,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Bookings
   const [bookings, setBookings] = useState<BookingDetails[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_bookings');
+      const saved = localStorage.getItem('shaivmarket_v3_bookings');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_BOOKINGS;
@@ -357,7 +361,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Contact Inquiries
   const [contactInquiries, setContactInquiries] = useState<ContactInquiry[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_inquiries');
+      const saved = localStorage.getItem('shaivmarket_v3_inquiries');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_INQUIRIES;
@@ -366,7 +370,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Testimonials
   const [testimonials, setTestimonials] = useState<Testimonial[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v2_testimonials');
+      const saved = localStorage.getItem('shaivmarket_v3_testimonials');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_TESTIMONIALS;
@@ -375,119 +379,119 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Persist states
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_users', JSON.stringify(users));
+      localStorage.setItem('shaivmarket_v3_users', JSON.stringify(users));
     } catch {}
   }, [users]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_testimonials', JSON.stringify(testimonials));
+      localStorage.setItem('shaivmarket_v3_testimonials', JSON.stringify(testimonials));
     } catch {}
   }, [testimonials]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_inquiries', JSON.stringify(contactInquiries));
+      localStorage.setItem('shaivmarket_v3_inquiries', JSON.stringify(contactInquiries));
     } catch {}
   }, [contactInquiries]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_articles', JSON.stringify(articles));
+      localStorage.setItem('shaivmarket_v3_articles', JSON.stringify(articles));
     } catch {}
   }, [articles]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v3_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v3_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v3_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_quotes', JSON.stringify(quotes));
+      localStorage.setItem('shaivmarket_v3_quotes', JSON.stringify(quotes));
     } catch {}
   }, [quotes]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_bookings', JSON.stringify(bookings));
+      localStorage.setItem('shaivmarket_v3_bookings', JSON.stringify(bookings));
     } catch {}
   }, [bookings]);
 
   useEffect(() => {
     try {
       if (currentUser) {
-        localStorage.setItem('shaivmarket_v2_current_user', JSON.stringify(currentUser));
+        localStorage.setItem('shaivmarket_v3_current_user', JSON.stringify(currentUser));
       } else {
-        localStorage.removeItem('shaivmarket_v2_current_user');
+        localStorage.removeItem('shaivmarket_v3_current_user');
       }
     } catch {}
   }, [currentUser]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v3_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_articles', JSON.stringify(articles));
+      localStorage.setItem('shaivmarket_v3_articles', JSON.stringify(articles));
     } catch {}
   }, [articles]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v3_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v3_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_quotes', JSON.stringify(quotes));
+      localStorage.setItem('shaivmarket_v3_quotes', JSON.stringify(quotes));
     } catch {}
   }, [quotes]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_bookings', JSON.stringify(bookings));
+      localStorage.setItem('shaivmarket_v3_bookings', JSON.stringify(bookings));
     } catch {}
   }, [bookings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v2_inquiries', JSON.stringify(contactInquiries));
+      localStorage.setItem('shaivmarket_v3_inquiries', JSON.stringify(contactInquiries));
     } catch {}
   }, [contactInquiries]);
 
   // STRICT AUTHENTICATION
-  // Admin credentials: username = "admin" (or admin@shaivmarket.com), password = "@Finsathi01"
+  // Admin password is verified against its SHA-256 hash (no plain text in the bundle)
   const login = (emailOrUsername: string, password: string) => {
     const trimmedInput = emailOrUsername.trim().toLowerCase();
 
     // 1. ADMIN CHECK
     const isAdminIdentifier = trimmedInput === 'admin' || trimmedInput === 'admin@shaivmarket.com';
     if (isAdminIdentifier) {
-      if (password === '@Finsathi01') {
+      if (sha256Hex(password) === ADMIN_PASSWORD_SHA256) {
         const adminUser: User = {
           id: 'usr_admin',
           name: 'Shaiv Market Admin',
@@ -507,7 +511,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     // 2. REGULAR USER LOGIN
     const existing = users.find((u) => u.email.toLowerCase() === trimmedInput);
     if (existing) {
-      if (existing.role === 'admin' && password !== '@Finsathi01') {
+      if (existing.role === 'admin' && sha256Hex(password) !== ADMIN_PASSWORD_SHA256) {
         return { success: false, error: 'Invalid admin credentials.' };
       }
       setCurrentUser(existing);

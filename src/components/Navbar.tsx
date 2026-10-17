@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <img
                   src={siteSettings.logoImageUrl}
                   alt={siteSettings.companyName}
-                  className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shrink-0"
+                  className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full bg-white shrink-0"
                   referrerPolicy="no-referrer"
                 />
               ) : (
@@ -211,17 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </span>
                 </div>
               </button>
-            ) : (
-              <button
-                id="nav-login-btn"
-                onClick={() => handleNavClick('auth')}
-                className="flex items-center gap-1 sm:gap-1.5 text-xs font-bold text-[#003461] hover:text-[#004b87] bg-[#d3e4fe] hover:bg-[#c2d7f8] p-1.5 sm:px-3 sm:py-2 rounded-lg transition-colors cursor-pointer shrink-0"
-                title="Sign In / Register"
-              >
-                <LogIn className="w-3.5 h-3.5 shrink-0" />
-                <span className="hidden sm:inline">Sign In</span>
-              </button>
-            )}
+            ) : null}
 
             {/* Open Account CTA Button - Adaptable on ALL screens: never cuts off */}
             <button
@@ -295,16 +285,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>Admin CMS & Settings</span>
               <SlidersHorizontal className="w-4 h-4" />
-            </button>
-          )}
-
-          {!currentUser && (
-            <button
-              onClick={() => handleNavClick('auth')}
-              className="w-full text-left px-3 py-2.5 rounded-md text-base font-semibold text-[#003461] hover:bg-[#f7f9fb] flex items-center justify-between"
-            >
-              <span>Sign In / Register</span>
-              <LogIn className="w-4 h-4" />
             </button>
           )}
 

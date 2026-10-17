@@ -18,9 +18,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Brand Col */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-md bg-[#006d42] flex items-center justify-center text-white text-sm font-bold">
-                {siteSettings.logoInitial || 'S'}
-              </div>
+              {siteSettings.logoImageUrl ? (
+                <img src={siteSettings.logoImageUrl} alt={siteSettings.companyName} className="w-11 h-11 rounded-full bg-white object-contain p-0.5" />
+              ) : (
+                <div className="w-7 h-7 rounded-md bg-[#006d42] flex items-center justify-center text-white text-sm font-bold">
+                  {siteSettings.logoInitial || 'S'}
+                </div>
+              )}
               <span className="text-xl font-bold text-white tracking-tight">{siteSettings.companyName}</span>
             </div>
             <p className="text-[#c2c6d1] text-xs leading-relaxed max-w-sm">
@@ -109,23 +113,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Contact Us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('auth')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Client Portal & Login
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('admin')}
-                  className="text-[#96f6bd] hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5 font-bold"
-                >
-                  <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span>{currentUser?.role === 'admin' ? 'Admin Dashboard (Active)' : 'Admin Portal Login'}</span>
                 </button>
               </li>
             </ul>

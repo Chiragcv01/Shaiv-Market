@@ -144,7 +144,7 @@ export const TestimonialsScreen: React.FC<TestimonialsScreenProps> = ({ onNaviga
                   className="mb-4 relative w-full h-36 rounded-xl overflow-hidden bg-[#001c38] cursor-pointer group/video border border-[#c2c6d1]"
                 >
                   <img
-                    src={item.avatarUrl || item.clientPhotoUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80'}
+                    src={item.avatarUrl || item.clientPhotoUrl || '/images/logo-mark.png'}
                     alt={item.avatarAlt || item.clientPhotoAlt || `${item.clientName} Video Testimonial`}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover opacity-60 group-hover/video:scale-105 transition-transform duration-300"

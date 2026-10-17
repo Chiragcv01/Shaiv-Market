@@ -25,7 +25,7 @@ interface AboutUsScreenProps {
 
 export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
   const { siteSettings } = useApp();
-  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [certView, setCertView] = useState<{ src: string; title: string } | null>(null);
 
   return (
     <div id="about-us-screen" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 md:py-16 space-y-16">
@@ -122,11 +122,11 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
                 <span>Schedule a 1-on-1 Discussion</span>
               </button>
               <button
-                onClick={() => siteSettings.arnCertificateUrl ? setIsCertModalOpen(true) : window.open('https://www.amfiindia.com/locate-distributor', '_blank', 'noopener')}
+                onClick={() => siteSettings.arnCertificateUrl ? setCertView({ src: siteSettings.arnCertificateUrl, title: 'AMFI ARN Card' }) : window.open('https://www.amfiindia.com/locate-distributor', '_blank', 'noopener')}
                 className="bg-white border border-[#c2c6d1] hover:bg-[#f7f9fb] text-[#003461] text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-2xs"
               >
                 <FileCheck className="w-4 h-4 text-[#006d42]" />
-                <span>View AMFI Certificate</span>
+                <span>View Certificates</span>
               </button>
             </div>
 
@@ -137,9 +137,9 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
 
       {/* 3. AMFI REGISTRATION & REGULATORY ACCREDITATION */}
       <section className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-3xl p-6 sm:p-10">
-        <div className="grid md:grid-cols-12 gap-8 items-center">
-          
-          <div className="md:col-span-7 space-y-4">
+        <div className="grid md:grid-cols-12 gap-8 items-start">
+
+          <div className="md:col-span-7 space-y-4 md:sticky md:top-28">
             <div className="inline-flex items-center gap-1.5 bg-[#96f6bd]/30 text-[#006d42] px-3 py-1 rounded-md text-xs font-bold">
               <ShieldCheck className="w-4 h-4" />
               <span>Official AMFI Verification</span>
@@ -166,29 +166,34 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Certificate Preview Card */}
-          <div className="md:col-span-5 flex justify-center">
-            <div
-              onClick={() => siteSettings.arnCertificateUrl ? setIsCertModalOpen(true) : window.open('https://www.amfiindia.com/locate-distributor', '_blank', 'noopener')}
-              className="relative w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#003461]/30 shadow-md cursor-pointer group bg-white p-2 hover:border-[#003461] transition-all"
-            >
-              <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-[#e0e3e5]">
-                {siteSettings.arnCertificateUrl ? (<img
-                  src={siteSettings.arnCertificateUrl}
-                  alt={siteSettings.arnCertificateAlt || 'AMFI Registration Certificate ARN-337289'}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />) : (<div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#f0f4f8] to-[#d3e4fe] text-[#003461] p-6 text-center"><ShieldCheck className="w-12 h-12 text-[#006d42]" /><p className="text-2xl font-extrabold font-mono">{siteSettings.sebiRegNumber || 'ARN-337289'}</p><p className="text-xs font-semibold text-[#424750]">Verify this ARN on the official AMFI website</p></div>)}
-                <div className="absolute inset-0 bg-[#003461]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs">
-                  <ZoomIn className="w-5 h-5" />
-                  <span>{siteSettings.arnCertificateUrl ? 'Click to Enlarge Certificate' : 'Verify on AMFI'}</span>
+          {/* Certificates */}
+          <div className="md:col-span-5 grid grid-cols-1 gap-4">
+            {[
+              { src: siteSettings.arnCertificateUrl, title: 'AMFI ARN Card', sub: `${siteSettings.sebiRegNumber || 'ARN-337289'} · Valid till 13-Aug-2028` },
+              { src: siteSettings.nismCertificateUrl, title: 'NISM Series V-A Certificate', sub: 'Mutual Fund Distributors Certification Examination' }
+            ].filter((c) => c.src).map((c) => (
+              <button
+                key={c.title}
+                type="button"
+                onClick={() => setCertView({ src: c.src as string, title: c.title })}
+                className="group text-left w-full rounded-2xl overflow-hidden border-2 border-[#003461]/20 hover:border-[#003461] bg-white p-2 shadow-sm transition-all cursor-pointer"
+              >
+                <div className="relative aspect-[3/2] rounded-xl overflow-hidden bg-[#f7f9fb]">
+                  <img src={c.src} alt={`${c.title} - ${siteSettings.founderName}`} loading="lazy" className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-[#003461]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs">
+                    <ZoomIn className="w-5 h-5" />
+                    <span>View Certificate</span>
+                  </div>
                 </div>
-              </div>
-              <div className="p-3 text-center">
-                <p className="text-xs font-bold text-[#003461]">AMFI Certificate of Registration</p>
-                <p className="text-[11px] text-[#727781]">ARN-{siteSettings.sebiRegNumber?.replace('ARN-', '') || '337289'} • {siteSettings.arnCertificateUrl ? 'Click to view high-resolution' : 'Click to verify on amfiindia.com'}</p>
-              </div>
-            </div>
+                <div className="px-2 py-2">
+                  <p className="text-xs font-bold text-[#003461]">{c.title}</p>
+                  <p className="text-[11px] text-[#727781]">{c.sub}</p>
+                </div>
+              </button>
+            ))}
+            <a href="https://www.amfiindia.com/locate-distributor" target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#006d42] hover:underline text-center">
+              Verify ARN on amfiindia.com ↗
+            </a>
           </div>
 
         </div>
@@ -277,19 +282,19 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
       </div>
 
       {/* CERTIFICATE LIGHTBOX MODAL */}
-      {isCertModalOpen && (
+      {certView && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-in fade-in">
           <div className="bg-white rounded-2xl max-w-4xl w-full p-6 shadow-2xl border border-[#c2c6d1] relative space-y-4 max-h-[95vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-[#e0e3e5] pb-3">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-[#006d42]" />
-                <span className="font-bold text-base text-[#003461]">AMFI Certificate of Registration</span>
+                <span className="font-bold text-base text-[#003461]">{certView.title}</span>
                 <span className="text-xs bg-[#d3e4fe] text-[#003461] font-mono px-2 py-0.5 rounded font-bold">
                   {siteSettings.sebiRegNumber || 'ARN-337289'}
                 </span>
               </div>
               <button
-                onClick={() => setIsCertModalOpen(false)}
+                onClick={() => setCertView(null)}
                 className="p-1 text-[#727781] hover:text-[#191c1e] text-lg font-bold cursor-pointer"
               >
                 <X className="w-6 h-6" />
@@ -298,7 +303,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
 
             <div className="rounded-xl overflow-hidden border border-[#c2c6d1] bg-[#f7f9fb] flex justify-center">
               <img
-                src={siteSettings.arnCertificateUrl}
+                src={certView.src}
                 alt={siteSettings.arnCertificateAlt || 'Official AMFI Registration Certificate'}
                 referrerPolicy="no-referrer"
                 className="max-h-[70vh] object-contain w-full"
@@ -308,7 +313,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
             <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-[#727781] pt-2 gap-2">
               <p>Registered Entity: {siteSettings.companyName} • AMFI Registered Mutual Fund Distributor</p>
               <button
-                onClick={() => setIsCertModalOpen(false)}
+                onClick={() => setCertView(null)}
                 className="bg-[#003461] text-white px-4 py-2 rounded-lg font-bold cursor-pointer"
               >
                 Close Viewer

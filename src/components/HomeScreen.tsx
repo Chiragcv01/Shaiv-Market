@@ -1,6 +1,8 @@
 import React from 'react';
 import { ActiveScreen } from '../types';
 import { InvestmentCalculator } from './InvestmentCalculator';
+import { HeroGrowthChart } from './visuals/HeroGrowthChart';
+import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import {
   TrendingUp,
@@ -113,31 +115,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {/* Right Column Hero Visual & Floating Card */}
           <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-[#c2c6d1] bg-[#f7f9fb]">
             
-            {/* Background Image managed via CMS */}
-            <img
-              src={siteSettings.homepageHeroImageUrl || siteSettings.heroImageUrl || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80"}
-              alt={siteSettings.homepageHeroImageAlt || siteSettings.heroImageAlt || `${siteSettings.companyName} Institutional Wealth Management`}
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover"
-            />
-            
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#003461]/30 via-transparent to-black/10" />
-
-            {/* Floating Info Card */}
-            <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 bg-white/95 backdrop-blur-md border border-[#c2c6d1] rounded-xl p-4 sm:p-5 shadow-lg flex items-center gap-4 animate-in fade-in slide-in-from-bottom-2">
-              <div className="w-11 h-11 rounded-full bg-[#93f3bb] text-[#007146] flex items-center justify-center shrink-0 shadow-2xs">
-                <TrendingUp className="w-6 h-6 text-[#006d42]" />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold text-[#727781] uppercase tracking-wider">
-                  {siteSettings.heroFloatingCardTitle || 'AMFI Registered MFD'}
-                </p>
-                <p className="text-2xl sm:text-3xl font-extrabold text-[#191c1e] tracking-tight">
-                  {siteSettings.heroFloatingCardValue || 'ARN-337289'}
-                </p>
-              </div>
-            </div>
+            <HeroGrowthChart arn={siteSettings.sebiRegNumber} />
 
           </div>
 
@@ -328,14 +306,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 className="bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-2xl overflow-hidden transition-all hover:shadow-md cursor-pointer flex flex-col justify-between"
               >
                 <div>
-                  {art.imageUrl && (
+                  {(
                     <div className="w-full h-40 overflow-hidden bg-[#f7f9fb] border-b border-[#e0e3e5]">
-                      <img
+                      {art.imageUrl ? (<img
                         src={art.imageUrl}
                         alt={art.imageAlt || art.title}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
+                      />) : (<ArticleCover seed={art.id} />)}
                     </div>
                   )}
                   <div className="p-6">
