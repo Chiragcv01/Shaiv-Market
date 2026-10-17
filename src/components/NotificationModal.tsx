@@ -18,25 +18,25 @@ export const NotificationModal: React.FC<NotificationModalProps> = ({
   const notifications = [
     {
       id: '1',
-      title: 'Quarterly Portfolio Rebalancing Alert',
-      desc: 'SafeWealth Bluechip Alpha has rebalanced banking sector allocations by +2.4% following RBI policy announcement.',
-      time: '2 hours ago',
-      icon: TrendingUp,
-      action: 'invest' as ActiveScreen
-    },
-    {
-      id: '2',
-      title: 'Advisor Availability: David Chen',
-      desc: 'New consultation slots opened for this week for 1-on-1 portfolio review and tax planning.',
-      time: 'Yesterday',
+      title: 'Free Portfolio Review',
+      desc: 'Book a free 1-on-1 call to review your goals and existing mutual fund portfolio.',
+      time: 'Now open',
       icon: Calendar,
       action: 'booking' as ActiveScreen
     },
     {
+      id: '2',
+      title: 'Plan Your Goals',
+      desc: 'Use the SIP, SWP, FIRE and goal planner calculators to see what you need to invest.',
+      time: 'Tools',
+      icon: TrendingUp,
+      action: 'calculators' as ActiveScreen
+    },
+    {
       id: '3',
-      title: 'SEBI Compliance & KYC Status: Active',
-      desc: 'Your central KYC registry records are in good standing with zero regulatory deficiencies.',
-      time: '3 days ago',
+      title: 'Check Your KYC',
+      desc: 'A valid KYC is required before investing in mutual funds. We can help you complete it.',
+      time: 'Reminder',
       icon: ShieldCheck,
       action: 'open-account' as ActiveScreen
     }

@@ -91,7 +91,7 @@ export interface SiteSettings {
   advisoryEmail: string;
   complianceEmail: string;
   headquartersAddress: string;
-  sebiRegNumber: string; // AMFI ARN Registration (e.g. ARN-284912)
+  sebiRegNumber: string; // AMFI ARN Registration (e.g. ARN-337289)
   avgAnnualReturn: string;
   // External Referral & Booking Links
   mfReferralLink: string;

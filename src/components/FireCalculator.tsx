@@ -356,7 +356,7 @@ export const FireCalculator: React.FC<FireCalculatorProps> = ({ onNavigate }) =>
               <ArrowRight className="w-4 h-4" />
             </button>
             <p className="text-[10px] text-center text-[#727781] mt-2">
-              AMFI Certified Distribution (ARN-284912) • Personalized Goal Architecture
+              AMFI Certified Distribution (ARN-337289) • Personalized Goal Architecture
             </p>
           </div>
 

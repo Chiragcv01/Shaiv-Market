@@ -287,7 +287,7 @@ export const OpenAccountScreen: React.FC<OpenAccountScreenProps> = ({
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Mumbai / Delhi / Bengaluru"
+                    placeholder="e.g. Jaipur"
                     value={formData.city || ''}
                     onChange={(e) => handleInputChange('city', e.target.value)}
                     className="w-full px-3.5 py-2.5 text-xs bg-[#f7f9fb] border border-[#c2c6d1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#003461]"
@@ -371,7 +371,7 @@ export const OpenAccountScreen: React.FC<OpenAccountScreenProps> = ({
                   type="submit"
                   className="w-full bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm active:scale-98"
                 >
-                  <span>Submit & Request Free Investment Advisory Quote</span>
+                  <span>Submit & Request a Call Back</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

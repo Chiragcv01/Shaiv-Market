@@ -440,7 +440,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   }}
                   className="flex-1 min-w-[180px] bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
-                  <span>Start This SIP with Advisor</span>
+                  <span>Start This SIP With Us</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button

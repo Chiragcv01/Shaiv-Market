@@ -77,22 +77,10 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
 
   const offices = [
     {
-      city: 'Mumbai (Headquarters)',
-      area: 'Bandra Kurla Complex (BKC)',
+      city: 'Jaipur (Office)',
+      area: 'Jhalana Doongari',
       address: siteSettings.headquartersAddress,
-      desk: 'Institutional Advisory & Asset Management Desk'
-    },
-    {
-      city: 'Bengaluru',
-      area: 'Indiranagar 100ft Road',
-      address: 'Level 5, SafeWealth Tech Hub, 100 Feet Rd, HAL 2nd Stage, Bengaluru - 560038',
-      desk: 'Quantitative Portfolio Algorithms & Tech Team'
-    },
-    {
-      city: 'New Delhi',
-      area: 'Barakhamba Road, Connaught Place',
-      address: 'Suite 902, Statesman House, Barakhamba Rd, New Delhi - 110001',
-      desk: 'Corporate Treasury & Family Office Solutions'
+      desk: 'Mutual Fund Distribution & Client Service'
     }
   ];
 
@@ -103,7 +91,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
       <div className="text-center max-w-3xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
           <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-          AMFI Registered Mutual Fund Distributor • {siteSettings.sebiRegNumber || 'ARN-284912'}
+          AMFI Registered Mutual Fund Distributor • {siteSettings.sebiRegNumber || 'ARN-337289'}
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-[#003461] tracking-tight">
           Get in Touch with {siteSettings.companyName}
@@ -130,7 +118,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                 <div className="text-xs text-[#727781] mb-1">Reference Ticket Number:</div>
                 <div className="text-lg font-mono font-bold text-[#003461]">{submittedTicketId}</div>
                 <div className="text-xs text-[#424750] mt-2">
-                  Our certified wealth advisory desk has received your details and will get back to you via <strong>{email}</strong> within 2 business hours.
+                  We have received your details and will get back to you via <strong>{email}</strong> within 2 business hours.
                 </div>
               </div>
 
@@ -153,7 +141,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
             <form onSubmit={handleSubmit} className="space-y-4">
               
               <div className="border-b border-[#e0e3e5] pb-4 mb-4">
-                <h2 className="text-xl font-bold text-[#191c1e]">Send an Advisory Inquiry</h2>
+                <h2 className="text-xl font-bold text-[#191c1e]">Send an Inquiry</h2>
                 <p className="text-xs text-[#424750] mt-0.5">
                   Direct message to our client success and quantitative portfolio analysts.
                 </p>
@@ -244,7 +232,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                   id="contact-msg"
                   rows={4}
                   required
-                  placeholder="Please describe your current portfolio size, investment timeline, and any specific advisory questions..."
+                  placeholder="Please describe your current portfolio size, investment timeline, and any specific questions..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden text-[#191c1e]"
@@ -266,7 +254,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                     <span>Submitting Message...</span>
                   ) : (
                     <>
-                      <span>Send Advisory Message</span>
+                      <span>Send Message</span>
                       <Send className="w-4 h-4" />
                     </>
                   )}
@@ -285,7 +273,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
           <div className="bg-[#003461] text-white rounded-2xl p-6 sm:p-7 shadow-md space-y-5">
             <h3 className="text-base font-bold tracking-tight text-white flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#96f6bd]" />
-              Direct Advisory Channels
+              Direct Contact Channels
             </h3>
 
             <div className="space-y-4 text-xs sm:text-sm">
@@ -389,7 +377,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
 
             <div className="p-3 bg-[#eceef0] rounded-xl text-[11px] text-[#424750] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#006d42] shrink-0" />
-              <span>AMFI Registration: <strong>{siteSettings.sebiRegNumber || 'ARN-284912'}</strong></span>
+              <span>AMFI Registration: <strong>{siteSettings.sebiRegNumber || 'ARN-337289'}</strong></span>
             </div>
 
           </div>

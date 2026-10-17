@@ -92,7 +92,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
     // Save to AppContext
     addBooking({
       advisorId: 'shaiv-advisory-desk',
-      advisorName: 'Shaiv Market Advisory Desk',
+      advisorName: 'Chirag Sharma (ARN-337289)',
       date: `${currentMonth.name.split(' ')[0]} ${selectedDate}, 2024`,
       timeSlot: selectedTime,
       clientName,
@@ -122,10 +122,10 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
       <div className="text-center mb-8 md:mb-12">
         <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1.5 rounded-full text-xs font-bold mb-3">
           <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-          <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
+          <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#003461] mb-3">
-          Book an Expert Advisory Session
+          Book a Free Consultation Call
         </h1>
         <p className="text-base sm:text-lg text-[#424750] max-w-2xl mx-auto leading-relaxed">
           Schedule a direct 1-on-1 consultation with our institutional research desk to review your portfolio, SIP goals, and asset allocation strategy.
@@ -161,11 +161,11 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-[#191c1e]">
-                  Shaiv Market Advisory Desk
+                  Chirag Sharma (ARN-337289)
                 </h3>
                 <span className="text-xs text-[#006d42] font-semibold flex items-center gap-1 mt-0.5">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  AMFI Registered (ARN-284912)
+                  AMFI Registered (ARN-337289)
                 </span>
               </div>
             </div>
@@ -212,7 +212,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                   </span>
                   <div>
                     <strong className="text-[#191c1e] block">100% Free & Confidential</strong>
-                    <span>Zero advisory fees or consultation charges. Pure client-first guidance.</span>
+                    <span>No consultation charges. Pure client-first guidance.</span>
                   </div>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                 </span>
                 <h3 className="text-2xl font-black text-[#003461] mt-3">Consultation Scheduled Successfully!</h3>
                 <p className="text-sm text-[#191c1e] mt-1.5 max-w-lg mx-auto">
-                  Your 1-on-1 session with <strong>Shaiv Market Advisory Desk</strong> is confirmed for:
+                  Your 1-on-1 session with <strong>Chirag Sharma (ARN-337289)</strong> is confirmed for:
                 </p>
                 <div className="inline-flex items-center gap-3 bg-white px-5 py-2.5 rounded-xl border border-[#c2c6d1] mt-3 font-bold text-sm text-[#003461] shadow-2xs">
                   <CalendarIcon className="w-4 h-4 text-[#006d42]" />
@@ -541,7 +541,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <span>Confirm 1-on-1 Consultation for {currentMonth.name.split(' ')[0]} {selectedDate} at {selectedTime}</span>
                   </button>
                   <p className="text-center text-[11px] text-[#727781] mt-2">
-                    Zero advisory fees. You will receive an instant confirmation on WhatsApp and Email.
+                    No consultation charges. You will receive an instant confirmation on WhatsApp and Email.
                   </p>
                 </div>
 

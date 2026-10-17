@@ -468,7 +468,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <span className="px-2.5 py-0.5 bg-[#006d42] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
               Super Admin Active
             </span>
-            <span className="text-xs text-[#727781] font-mono">ARN: {siteSettings.sebiRegNumber || '284912'}</span>
+            <span className="text-xs text-[#727781] font-mono">ARN: {siteSettings.sebiRegNumber || '337289'}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#003461] tracking-tight mt-1">
             {siteSettings.companyName} Administration Portal
@@ -1129,7 +1129,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   type="text"
                   value={settingsForm.sebiRegNumber}
                   onChange={(e) => setSettingsForm({ ...settingsForm, sebiRegNumber: e.target.value })}
-                  placeholder="ARN-284912"
+                  placeholder="ARN-337289"
                   className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
                 />
               </div>
@@ -1440,7 +1440,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   type="text"
                   value={settingsForm.arnCertificateAlt || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, arnCertificateAlt: e.target.value })}
-                  placeholder="Official AMFI Registration Certificate ARN-284912"
+                  placeholder="Official AMFI Registration Certificate ARN-337289"
                   className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
                 />
               </div>
@@ -2020,7 +2020,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                       type="url"
                       value={settingsForm.mfReferralLink}
                       onChange={(e) => setSettingsForm({ ...settingsForm, mfReferralLink: e.target.value })}
-                      placeholder="https://bsestarmf.in/referral?arn=284912"
+                      placeholder="https://bsestarmf.in/referral?arn=337289"
                       className="w-full px-3 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white font-mono"
                     />
                   </div>

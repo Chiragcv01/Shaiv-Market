@@ -302,7 +302,7 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               <ArrowRight className="w-4 h-4" />
             </button>
             <p className="text-[10px] text-center text-[#727781] mt-2">
-              AMFI Certified Distribution (ARN-284912) • Zero Exit-Load Liquid Funds
+              AMFI Certified Distribution (ARN-337289) • Zero Exit-Load Liquid Funds
             </p>
           </div>
 

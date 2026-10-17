@@ -20,7 +20,7 @@ export default function App() {
   const { activeScreen, setActiveScreen } = useApp();
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
-  const [notificationCount, setNotificationCount] = useState<number>(2);
+  const [notificationCount, setNotificationCount] = useState<number>(0);
 
   // Scroll to top when changing screens
   const handleNavigate = (screen: ActiveScreen) => {
@@ -99,7 +99,7 @@ export default function App() {
         onNavigate={handleNavigate}
       />
 
-      {/* Institutional SEBI-registered Footer */}
+      {/* Footer */}
       <Footer onNavigate={handleNavigate} />
 
     </div>

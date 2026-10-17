@@ -105,7 +105,7 @@ export const AccountProfileModal: React.FC<AccountProfileModalProps> = ({
           >
             <div className="flex items-center gap-2">
               <User className="w-4 h-4 text-[#003461]" />
-              <span>My Wealth Advisor Session</span>
+              <span>My Consultation Call</span>
             </div>
             <ChevronRight className="w-4 h-4 text-[#727781]" />
           </button>

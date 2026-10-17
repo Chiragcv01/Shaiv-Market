@@ -507,7 +507,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               <ArrowRight className="w-4 h-4" />
             </button>
             <p className="text-[10px] text-center text-[#727781] mt-2">
-              AMFI Certified Distribution (ARN-284912) • 100% Paperless Onboarding
+              AMFI Certified Distribution (ARN-337289) • 100% Paperless Onboarding
             </p>
           </div>
 

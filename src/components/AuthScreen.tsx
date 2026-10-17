@@ -214,7 +214,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({
             {authMode === 'forgot-password' && 'Reset Account Password'}
           </h1>
           <p className="text-xs sm:text-sm text-[#424750] mt-1.5">
-            {authMode === 'login' && 'Access curated mutual funds, research desks, and expert advisor support.'}
+            {authMode === 'login' && 'Access curated mutual funds, research desks, and distributor support.'}
             {authMode === 'signup' && 'Seamless 100% paperless onboarding and disciplined folio management.'}
             {authMode === 'forgot-password' && 'Enter your registered credentials to recover account access.'}
           </p>
@@ -486,7 +486,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({
                     className="mt-0.5 rounded text-[#003461] focus:ring-[#003461]"
                   />
                   <span>
-                    I accept {siteSettings.companyName}'s Terms of Service, Privacy Policy & SEBI Advisory Disclosures.
+                    I accept {siteSettings.companyName}'s Terms of Service, Privacy Policy & Risk Disclosures.
                   </span>
                 </label>
               </div>

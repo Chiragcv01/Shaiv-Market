@@ -46,7 +46,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             
             <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1.5 rounded-full text-xs font-bold">
               <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-              <span>{siteSettings.heroBadgeText || 'AMFI Registered Mutual Fund Distributor'} ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
+              <span>{siteSettings.heroBadgeText || 'AMFI Registered Mutual Fund Distributor'} ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#191c1e] tracking-tight leading-[1.15] text-balance">
@@ -104,7 +104,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
               </div>
               <p className="text-xs sm:text-sm text-[#424750]">
-                {siteSettings.heroTrustText || 'Trusted by over 50,000+ investors nationwide.'}
+                {siteSettings.heroTrustText || 'Personal guidance from Jaipur for investors across India.'}
               </p>
             </div>
 
@@ -131,10 +131,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
               <div>
                 <p className="text-[11px] font-bold text-[#727781] uppercase tracking-wider">
-                  {siteSettings.heroFloatingCardTitle || 'Curated Scheme SIPs'}
+                  {siteSettings.heroFloatingCardTitle || 'AMFI Registered MFD'}
                 </p>
                 <p className="text-2xl sm:text-3xl font-extrabold text-[#191c1e] tracking-tight">
-                  {siteSettings.heroFloatingCardValue || '14.2% CAGR'}
+                  {siteSettings.heroFloatingCardValue || 'ARN-337289'}
                 </p>
               </div>
             </div>
@@ -152,15 +152,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               
               <div className="md:col-span-4 flex justify-center">
                 <div className="relative w-48 sm:w-56 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#003461]/20 shadow-md bg-white">
-                  <img
-                    src={siteSettings.founderPhotoUrl || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80'}
+                  {siteSettings.founderPhotoUrl ? (<img
+                    src={siteSettings.founderPhotoUrl}
                     alt={siteSettings.founderPhotoAlt || `${siteSettings.founderName} - Founder`}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
-                  />
+                  />) : (<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#003461] to-[#004b87] text-white text-6xl font-extrabold tracking-tight">{(siteSettings.founderName || 'Chirag Sharma').split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</div>)}
                   <div className="absolute bottom-0 inset-x-0 bg-[#003461]/90 text-white p-2.5 text-center">
-                    <p className="text-xs font-bold">{siteSettings.founderName || 'Mr. Arvind Sharma'}</p>
-                    <p className="text-[10px] text-[#96f6bd]">{siteSettings.sebiRegNumber || 'ARN-284912'}</p>
+                    <p className="text-xs font-bold">{siteSettings.founderName || 'Chirag Sharma'}</p>
+                    <p className="text-[10px] text-[#96f6bd]">{siteSettings.sebiRegNumber || 'ARN-337289'}</p>
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] leading-tight">
-                  {siteSettings.founderSectionHeading || `Guided by ${siteSettings.founderExperience || '14+ Years of Capital Market Experience'}`}
+                  {siteSettings.founderSectionHeading || 'Personal, Goal-Based Mutual Fund Guidance'}
                 </h2>
 
                 <p className="text-sm text-[#424750] leading-relaxed">
@@ -222,7 +222,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 4. CLIENT TESTIMONIALS PREVIEW SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      {testimonials.length > 0 && (<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
           <div>
             <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
@@ -296,7 +296,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
           ))}
         </div>
-      </section>
+      </section>)}
 
       {/* 5. LATEST RESEARCH & INSIGHTS BLOG PREVIEW */}
       <section className="bg-[#f7f9fb] border-t border-[#e0e3e5] py-16 md:py-20">
@@ -382,7 +382,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               {siteSettings.consultationHeading || 'Unsure which portfolio matches your risk profile?'}
             </h2>
             <p className="text-sm sm:text-base text-[#d3e4fe] leading-relaxed">
-              {siteSettings.consultationSubheading || 'Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals and portfolio allocation.'}
+              {siteSettings.consultationSubheading || 'Book a free 1-on-1 call with our AMFI registered distributor. We will review your retirement goals and portfolio allocation.'}
             </p>
           </div>
 

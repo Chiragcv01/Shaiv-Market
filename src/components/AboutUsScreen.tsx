@@ -34,7 +34,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
           <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-          <span>AMFI Registered Mutual Fund Distributor • {siteSettings.sebiRegNumber || 'ARN-284912'}</span>
+          <span>AMFI Registered Mutual Fund Distributor • {siteSettings.sebiRegNumber || 'ARN-337289'}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#003461] tracking-tight">
           Empowering Financial Freedom Through Disciplined Investing
@@ -51,24 +51,24 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
           {/* Founder Photo */}
           <div className="md:col-span-5 flex flex-col items-center">
             <div className="relative w-full max-w-sm aspect-4/5 rounded-2xl overflow-hidden shadow-lg border border-[#e0e3e5] bg-[#f7f9fb] group">
-              <img
-                src={siteSettings.founderPhotoUrl || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80'}
+              {siteSettings.founderPhotoUrl ? (<img
+                src={siteSettings.founderPhotoUrl}
                 alt={siteSettings.founderPhotoAlt || `${siteSettings.founderName} - AMFI Registered Distributor`}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
-              />
+              />) : (<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#003461] to-[#004b87] text-white text-6xl font-extrabold tracking-tight">{(siteSettings.founderName || 'Chirag Sharma').split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</div>)}
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#003461]/90 via-[#003461]/60 to-transparent p-5 text-white">
-                <p className="text-lg font-extrabold leading-tight">{siteSettings.founderName || 'Mr. Arvind Sharma'}</p>
+                <p className="text-lg font-extrabold leading-tight">{siteSettings.founderName || 'Chirag Sharma'}</p>
                 <p className="text-xs text-[#96f6bd] font-semibold">{siteSettings.founderTitle || 'Principal Mutual Fund Distributor'}</p>
               </div>
             </div>
             
             <div className="mt-4 flex flex-wrap gap-2 justify-center">
               <span className="bg-[#f0f4f8] text-[#003461] text-xs font-bold px-3 py-1 rounded-md border border-[#c2c6d1]/60">
-                {siteSettings.founderExperience || '14+ Years Experience'}
+                {siteSettings.founderExperience || 'Based in Jaipur'}
               </span>
               <span className="bg-[#96f6bd]/20 text-[#006d42] text-xs font-bold px-3 py-1 rounded-md border border-[#96f6bd]/40">
-                {siteSettings.sebiRegNumber || 'ARN-284912'}
+                {siteSettings.sebiRegNumber || 'ARN-337289'}
               </span>
             </div>
           </div>
@@ -78,19 +78,19 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
             <div>
               <span className="text-xs font-bold text-[#006d42] uppercase tracking-wider">Meet the Founder</span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] mt-1">
-                {siteSettings.founderName || 'Mr. Arvind Sharma'}
+                {siteSettings.founderName || 'Chirag Sharma'}
               </h2>
               <p className="text-sm font-semibold text-[#727781] mt-0.5">
-                {siteSettings.founderQualification || 'NISM Series V-A Certified Mutual Fund Distributor, MBA (Finance)'}
+                {siteSettings.founderQualification || 'NISM Series V-A Certified Mutual Fund Distributor'}
               </p>
             </div>
 
             <div className="text-[#424750] text-sm sm:text-base leading-relaxed space-y-4">
               <p>
-                {siteSettings.founderBio || 'With over 14+ years in Indian capital markets, Arvind has personally mentored hundreds of families in constructing goal-aligned mutual fund portfolios and achieving peace of mind across market cycles.'}
+                {siteSettings.founderBio || 'Chirag Sharma helps individuals and families in constructing goal-aligned mutual fund portfolios and achieving peace of mind across market cycles.'}
               </p>
               <p>
-                "At {siteSettings.companyName}, we believe that investing is not about chasing the hottest stock tip or predicting next week's headlines. True wealth creation is the mathematical outcome of staying invested in quality mutual fund schemes, letting compounding do the heavy lifting, and having an advisor by your side to manage risk during drawdowns."
+                "At {siteSettings.companyName}, we believe that investing is not about chasing the hottest stock tip or predicting next week's headlines. True wealth creation is the mathematical outcome of staying invested in quality mutual fund schemes, letting compounding do the heavy lifting, and having a trusted distributor by your side to manage risk during drawdowns."
               </p>
             </div>
 
@@ -106,8 +106,8 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
               <div className="bg-[#f7f9fb] border border-[#e0e3e5] rounded-xl p-4 flex items-start gap-3">
                 <Users className="w-5 h-5 text-[#003461] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-[#003461]">1,200+ Portfolios Handled</h4>
-                  <p className="text-xs text-[#727781] mt-0.5">Serving retail, HNI, and corporate clients across India.</p>
+                  <h4 className="text-xs font-bold text-[#003461]">Personal Service</h4>
+                  <p className="text-xs text-[#727781] mt-0.5">Direct access to your distributor for every query, review and transaction.</p>
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
                 <span>Schedule a 1-on-1 Discussion</span>
               </button>
               <button
-                onClick={() => setIsCertModalOpen(true)}
+                onClick={() => siteSettings.arnCertificateUrl ? setIsCertModalOpen(true) : window.open('https://www.amfiindia.com/locate-distributor', '_blank', 'noopener')}
                 className="bg-white border border-[#c2c6d1] hover:bg-[#f7f9fb] text-[#003461] text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-2xs"
               >
                 <FileCheck className="w-4 h-4 text-[#006d42]" />
@@ -148,12 +148,12 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
               Regulatory Registration & Compliance
             </h2>
             <p className="text-sm text-[#424750] leading-relaxed">
-              {siteSettings.companyName} is officially registered with the Association of Mutual Funds in India (AMFI) as an authorized Mutual Fund Distributor under ARN-{siteSettings.sebiRegNumber?.replace('ARN-', '') || '284912'}. All transactions are routed securely through accredited platforms like BSE StAR MF and AMC direct infrastructure.
+              {siteSettings.companyName} is officially registered with the Association of Mutual Funds in India (AMFI) as an authorized Mutual Fund Distributor under ARN-{siteSettings.sebiRegNumber?.replace('ARN-', '') || '337289'}. All transactions are routed securely through accredited platforms like BSE StAR MF and AMC direct infrastructure.
             </p>
             <ul className="text-xs sm:text-sm text-[#424750] space-y-2.5 pt-2">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#006d42] shrink-0" />
-                <span><strong>ARN Code:</strong> {siteSettings.sebiRegNumber || 'ARN-284912'}</span>
+                <span><strong>ARN Code:</strong> {siteSettings.sebiRegNumber || 'ARN-337289'}</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#006d42] shrink-0" />
@@ -169,24 +169,24 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
           {/* Certificate Preview Card */}
           <div className="md:col-span-5 flex justify-center">
             <div
-              onClick={() => setIsCertModalOpen(true)}
+              onClick={() => siteSettings.arnCertificateUrl ? setIsCertModalOpen(true) : window.open('https://www.amfiindia.com/locate-distributor', '_blank', 'noopener')}
               className="relative w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#003461]/30 shadow-md cursor-pointer group bg-white p-2 hover:border-[#003461] transition-all"
             >
               <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-[#e0e3e5]">
-                <img
-                  src={siteSettings.arnCertificateUrl || 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop&q=80'}
-                  alt={siteSettings.arnCertificateAlt || 'AMFI Registration Certificate ARN-284912'}
+                {siteSettings.arnCertificateUrl ? (<img
+                  src={siteSettings.arnCertificateUrl}
+                  alt={siteSettings.arnCertificateAlt || 'AMFI Registration Certificate ARN-337289'}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                />) : (<div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#f0f4f8] to-[#d3e4fe] text-[#003461] p-6 text-center"><ShieldCheck className="w-12 h-12 text-[#006d42]" /><p className="text-2xl font-extrabold font-mono">{siteSettings.sebiRegNumber || 'ARN-337289'}</p><p className="text-xs font-semibold text-[#424750]">Verify this ARN on the official AMFI website</p></div>)}
                 <div className="absolute inset-0 bg-[#003461]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs">
                   <ZoomIn className="w-5 h-5" />
-                  <span>Click to Enlarge Certificate</span>
+                  <span>{siteSettings.arnCertificateUrl ? 'Click to Enlarge Certificate' : 'Verify on AMFI'}</span>
                 </div>
               </div>
               <div className="p-3 text-center">
                 <p className="text-xs font-bold text-[#003461]">AMFI Certificate of Registration</p>
-                <p className="text-[11px] text-[#727781]">ARN-{siteSettings.sebiRegNumber?.replace('ARN-', '') || '284912'} • Click to view high-resolution</p>
+                <p className="text-[11px] text-[#727781]">ARN-{siteSettings.sebiRegNumber?.replace('ARN-', '') || '337289'} • {siteSettings.arnCertificateUrl ? 'Click to view high-resolution' : 'Click to verify on amfiindia.com'}</p>
               </div>
             </div>
           </div>
@@ -285,7 +285,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
                 <ShieldCheck className="w-5 h-5 text-[#006d42]" />
                 <span className="font-bold text-base text-[#003461]">AMFI Certificate of Registration</span>
                 <span className="text-xs bg-[#d3e4fe] text-[#003461] font-mono px-2 py-0.5 rounded font-bold">
-                  {siteSettings.sebiRegNumber || 'ARN-284912'}
+                  {siteSettings.sebiRegNumber || 'ARN-337289'}
                 </span>
               </div>
               <button
@@ -298,7 +298,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
 
             <div className="rounded-xl overflow-hidden border border-[#c2c6d1] bg-[#f7f9fb] flex justify-center">
               <img
-                src={siteSettings.arnCertificateUrl || 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1200&auto=format&fit=crop&q=80'}
+                src={siteSettings.arnCertificateUrl}
                 alt={siteSettings.arnCertificateAlt || 'Official AMFI Registration Certificate'}
                 referrerPolicy="no-referrer"
                 className="max-h-[70vh] object-contain w-full"
@@ -306,7 +306,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-[#727781] pt-2 gap-2">
-              <p>Registered Entity: {siteSettings.companyName} Pvt. Ltd. • AMFI Code of Conduct Certified</p>
+              <p>Registered Entity: {siteSettings.companyName} • AMFI Registered Mutual Fund Distributor</p>
               <button
                 onClick={() => setIsCertModalOpen(false)}
                 className="bg-[#003461] text-white px-4 py-2 rounded-lg font-bold cursor-pointer"

@@ -77,7 +77,7 @@ interface AppContextType {
 const DEFAULT_BANNER: SiteBanner = {
   enabled: true,
   badgeText: 'AMFI Certified MFD',
-  text: 'Goal-Based Mutual Fund Portfolio Construction & Paperless Execution by Certified Wealth Specialists.',
+  text: 'Goal-Based Mutual Fund Portfolio Construction & Paperless Onboarding — Free Portfolio Review Available.',
   linkText: 'Explore Schemes',
   linkTarget: 'invest',
   isExternalLink: false,
@@ -86,22 +86,22 @@ const DEFAULT_BANNER: SiteBanner = {
 
 const DEFAULT_SETTINGS: SiteSettings = {
   companyName: 'Shaiv Market',
-  tagline: 'AMFI Registered Mutual Fund Distributor (MFD) & Wealth Advisory',
+  tagline: 'AMFI Registered Mutual Fund Distributor (MFD), Jaipur',
   logoInitial: 'SM',
   logoImageUrl: '',
-  supportPhone: '+91 22 6890 4500',
-  supportEmail: 'support@shaivmarket.com',
-  advisoryEmail: 'advisory@shaivmarket.com',
-  complianceEmail: 'compliance@shaivmarket.com',
-  headquartersAddress: 'Level 14, Tower B, Financial Center, BKC, Bandra East, Mumbai - 400051',
-  sebiRegNumber: 'ARN-284912', // AMFI Registration Number (MFD)
-  avgAnnualReturn: '15.4%',
-  mfReferralLink: 'https://bsestarmf.in/registration?partner=SHAIVMARKET',
+  supportPhone: '+91 99506 53247',
+  supportEmail: 'marketlive45@gmail.com',
+  advisoryEmail: 'marketlive45@gmail.com',
+  complianceEmail: 'marketlive45@gmail.com',
+  headquartersAddress: '6th Floor, Bhamashah Techno Hub, Jhalana Doongari, Jaipur, Rajasthan',
+  sebiRegNumber: 'ARN-337289', // AMFI Registration Number (MFD)
+  avgAnnualReturn: '',
+  mfReferralLink: '',
   mfReferralLinkTitle: 'Open Mutual Fund Account (BSE Star MF)',
-  enableMfReferralDirect: true,
-  calendlyUrl: 'https://calendly.com/shaivmarket/expert-advisory-30min',
-  enableCalendlyBooking: true,
-  whatsappSupportNumber: '+91 98200 44550',
+  enableMfReferralDirect: false,
+  calendlyUrl: '',
+  enableCalendlyBooking: false,
+  whatsappSupportNumber: '+91 99506 53247',
   leadWebhookUrl: '', // Webhook endpoint (Zapier, Make, Pabbly, Custom Webhook)
   googleSheetsSyncUrl: '', // Google Sheets Web App Endpoint
   adminNotificationEmail: 'marketlive45@gmail.com', // Admin Email for alert logs
@@ -114,43 +114,43 @@ const DEFAULT_SETTINGS: SiteSettings = {
   homepageFeatureImageAlt: 'Systematic Investment Planning and Asset Allocation Visualizer',
   // Homepage Content & Headings CMS Defaults
   heroBadgeText: 'AMFI Registered Mutual Fund Distributor',
-  heroHeading: 'Intelligent wealth creation, built on institutional trust.',
-  heroSubheading: 'Navigate the markets with confidence. Shaiv Market offers curated mutual fund guidance designed for long-term stability and consistent compounding, backed by certified research.',
+  heroHeading: 'Goal-based mutual fund investing, made simple.',
+  heroSubheading: 'Plan every goal with clear numbers. Shaiv Market helps you choose the right mutual fund schemes, start disciplined SIPs, and stay on track with regular portfolio reviews.',
   heroPrimaryCtaText: 'Start Investing Now',
   heroSecondaryCtaText: 'Explore Calculators',
-  heroFloatingCardTitle: 'Curated Scheme SIPs',
-  heroFloatingCardValue: '14.2% CAGR',
-  heroTrustText: 'Trusted by over 50,000+ investors nationwide.',
-  founderSectionHeading: 'Guided by 14+ Years of Capital Market Experience',
-  founderSectionSubheading: 'Shaiv Market is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.',
+  heroFloatingCardTitle: 'AMFI Registered MFD',
+  heroFloatingCardValue: 'ARN-337289',
+  heroTrustText: 'Personal guidance from Jaipur for investors across India.',
+  founderSectionHeading: 'Personal, Goal-Based Mutual Fund Guidance',
+  founderSectionSubheading: 'Shaiv Market is led by Chirag Sharma, an AMFI Registered Mutual Fund Distributor (ARN-337289). We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.',
   calcHeading: 'Calculate Your Investment Potential',
-  calcSubheading: 'Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy.',
-  testimonialBadge: 'Real Investor Experiences',
+  calcSubheading: 'Estimate how your SIP or lumpsum investment could grow over time. Illustrative only, not a guarantee of returns.',
+  testimonialBadge: 'Client Reviews',
   testimonialHeading: 'What Our Clients Say About Shaiv Market',
-  insightsBadge: 'Research Desk & Market Commentary',
+  insightsBadge: 'Investor Education',
   insightsHeading: 'Recent Wealth Strategies & Dispatches',
-  consultationBadge: 'Free Strategy Session',
+  consultationBadge: 'Free Portfolio Review',
   consultationHeading: 'Unsure which portfolio matches your risk profile?',
-  consultationSubheading: 'Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals and portfolio allocation.',
-  consultationCtaText: 'Book Expert Session',
-  footerAboutText: 'AMFI-Registered Mutual Fund Distributor (ARN-284912) dedicated to disciplined asset allocation, goal-based financial planning, and curated fund portfolios.',
+  consultationSubheading: 'Book a free 1-on-1 call with Chirag Sharma, AMFI Registered Mutual Fund Distributor. We will review your goals and current mutual fund portfolio.',
+  consultationCtaText: 'Book Free Call',
+  footerAboutText: 'AMFI Registered Mutual Fund Distributor (ARN-337289) dedicated to disciplined asset allocation, goal-based financial planning, and curated fund portfolios.',
   footerCopyrightText: '© 2024-2026 Shaiv Market. All rights reserved. Mutual fund investments are subject to market risks.',
   // About Us, Founder & AMFI Certification Profile
-  founderName: 'Mr. Arvind Sharma',
-  founderTitle: 'Founder & Principal Mutual Fund Distributor (MFD)',
-  founderBio: 'With over 14+ years in Indian capital markets and mutual fund distribution, Arvind has guided over 1,200+ retail and HNI families in disciplined wealth creation, retirement corpus planning, and goal-oriented asset allocation.',
-  founderExperience: '14+ Years Dedicated Capital Markets Experience',
-  founderQualification: 'NISM Series V-A Certified Mutual Fund Distributor, MBA (Finance)',
-  founderPhotoUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80',
-  founderPhotoAlt: 'Arvind Sharma - AMFI Registered Mutual Fund Distributor',
-  arnCertificateUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop&q=80',
-  arnCertificateAlt: 'Official Association of Mutual Funds in India (AMFI) Registration Certificate ARN-284912',
+  founderName: 'Chirag Sharma',
+  founderTitle: 'Founder & AMFI Registered Mutual Fund Distributor',
+  founderBio: 'Chirag Sharma is an AMFI Registered Mutual Fund Distributor (ARN-337289) based in Jaipur. He helps individuals and families plan goals such as retirement, children\'s education and wealth creation through disciplined SIPs, suitable scheme selection and regular portfolio reviews.',
+  founderExperience: 'Based in Jaipur',
+  founderQualification: 'NISM Series V-A Certified Mutual Fund Distributor',
+  founderPhotoUrl: '',
+  founderPhotoAlt: 'Chirag Sharma - AMFI Registered Mutual Fund Distributor',
+  arnCertificateUrl: '',
+  arnCertificateAlt: 'Official Association of Mutual Funds in India (AMFI) Registration Certificate ARN-337289',
   aboutStory: 'Shaiv Market was founded with a clear commitment: to provide transparent, disciplined, and personalized mutual fund guidance to every Indian investor. We simplify the investing journey by identifying well-managed regular schemes across top AMCs, designing tailored SIP roadmaps, and providing ongoing folio reviews.',
-  aboutMission: 'To be India\'s most trusted mutual fund distribution desk by helping investors navigate market cycles with confidence, patience, and rigorous risk management.',
+  aboutMission: 'To help every investor navigate market cycles with confidence, patience, and rigorous risk management.',
   // Legal Policies
   privacyPolicy: `### Shaiv Market - Privacy Policy
 
-**Effective Date:** January 1, 2024 (Last Updated: 2024)
+**Effective Date:** October 17, 2026
 
 Shaiv Market ("we", "us", or "our") is an AMFI-Registered Mutual Fund Distributor (MFD). We prioritize the security, privacy, and confidentiality of our clients' personal and investment preferences.
 
@@ -159,18 +159,18 @@ Shaiv Market ("we", "us", or "our") is an AMFI-Registered Mutual Fund Distributo
 - **Investment Intent:** Preferred schemes, intended SIP/Lumpsum amount, and investment timeline.
 
 #### 2. How We Protect Your Data
-All transmissions use 256-bit SSL encryption. We never sell, rent, or trade your personal contact details to third-party marketing companies.
+This website is served over HTTPS. We never sell, rent, or trade your personal contact details to third-party marketing companies.
 
 #### 3. Regulatory Compliance
 Data is maintained in accordance with AMFI and regulatory guidelines for mutual fund distribution records.
 
 #### 4. Contact Us
-For queries or privacy matters, email compliance@shaivmarket.com.`,
+For queries or privacy matters, email marketlive45@gmail.com or call +91 99506 53247.`,
 
   termsOfService: `### Shaiv Market - Terms of Service & Regulatory Status
 
 **1. AMFI Registered Mutual Fund Distributor (MFD)**
-Shaiv Market operates strictly as an **AMFI-Registered Mutual Fund Distributor (MFD - ARN-284912)**. We facilitate mutual fund distribution, portfolio analysis, and scheme allocation via accredited clearing platforms (BSE StAR MF / NSE NMF II / AMCs).
+Shaiv Market operates strictly as an **AMFI-Registered Mutual Fund Distributor (MFD - ARN-337289)**. We facilitate mutual fund distribution, portfolio analysis, and scheme allocation via accredited clearing platforms (BSE StAR MF / NSE NMF II / AMCs).
 
 **2. Client Representation**
 You affirm that the contact information supplied is authentic and belongs to you for mutual fund consultation purposes.
@@ -185,15 +185,15 @@ Submitting an investment interest form connects you directly with our mutual fun
 
 - **Mutual Fund investments are subject to market risks, read all scheme related documents carefully.**
 - Net Asset Value (NAV) of mutual fund schemes may fluctuate based on macroeconomic factors, interest rates, and equity market conditions.
-- Shaiv Market is an AMFI-Registered Mutual Fund Distributor (ARN-284912) and does not promise or guarantee fixed returns.`
+- Shaiv Market is an AMFI-Registered Mutual Fund Distributor (ARN-337289) and does not promise or guarantee fixed returns.`
 };
 
 const DEFAULT_NAV_ITEMS: CustomNavItem[] = [
   { id: 'nav-calc', label: 'SIP Calculators', screenId: 'calculators', isVisible: true, order: 1 },
   { id: 'nav-insights', label: 'Goal Planner', screenId: 'insights', isVisible: true, order: 2 },
   { id: 'nav-about', label: 'About Us', screenId: 'about', isVisible: true, order: 3 },
-  { id: 'nav-testimonials', label: 'Client Reviews', screenId: 'testimonials', isVisible: true, order: 4 },
-  { id: 'nav-booking', label: 'Book Advisory', screenId: 'booking', isVisible: true, order: 5 },
+  { id: 'nav-testimonials', label: 'Client Reviews', screenId: 'testimonials', isVisible: false, order: 4 },
+  { id: 'nav-booking', label: 'Book a Call', screenId: 'booking', isVisible: true, order: 5 },
   { id: 'nav-contact', label: 'Contact Us', screenId: 'contact', isVisible: true, order: 6 }
 ];
 
@@ -205,7 +205,7 @@ const INITIAL_ARTICLES: InsightArticle[] = [
     readTime: '5 min read',
     date: 'Oct 20, 2024',
     summary: 'A mathematical dissection of exponential compounding growth and why early market volatility is your greatest ally across Indian equity assets.',
-    author: 'Shaiv Market Quantitative Desk',
+    author: 'Shaiv Market',
     imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&auto=format&fit=crop&q=80',
     imageAlt: 'Compounding graph and financial analytics visualization',
     content: `Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it.
@@ -228,7 +228,7 @@ The true driver of compounding is behavior. Investors who stay invested through 
     readTime: '7 min read',
     date: 'Oct 15, 2024',
     summary: 'Why emerging market dynamics and Indian market dispersion make fund manager research critical for mid and small-cap alpha generation.',
-    author: 'Chief Investment Strategist',
+    author: 'Shaiv Market',
     imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=80',
     imageAlt: 'Stock market chart and financial growth trend',
     content: `Unlike developed markets where large-cap indices dominate, India's expanding economy offers substantial inefficiencies in the mid and small-cap segments.
@@ -245,7 +245,7 @@ The true driver of compounding is behavior. Investors who stay invested through 
     readTime: '4 min read',
     date: 'Oct 10, 2024',
     summary: 'A complete practical guide to managing the ₹1.25 Lakh LTCG annual exemption limit for Indian equity mutual funds.',
-    author: 'Tax & Compliance Specialist',
+    author: 'Shaiv Market',
     imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=80',
     imageAlt: 'Tax planning documents and calculation notes',
     content: `Under Section 112A of the Income Tax Act, Long Term Capital Gains (LTCG) on equity-oriented mutual funds are taxed at 12.5% on gains exceeding ₹1.25 Lakh in a financial year.
@@ -254,132 +254,13 @@ By systematically planning annual profit booking and re-investing, investors can
   }
 ];
 
-const INITIAL_TESTIMONIALS: Testimonial[] = [
-  {
-    id: 'test-1',
-    clientName: 'Rajesh Malhotra',
-    locationOrRole: 'Senior IT Director, Pune',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
-    avatarAlt: 'Portrait of Rajesh Malhotra, Senior IT Director',
-    rating: 5,
-    text: 'Shaiv Market helped me restructure my scattered portfolio of 12 random funds into 4 well-diversified regular schemes aligned with my children\'s higher education. The quarterly review and disciplined guidance keep me completely on track.',
-    investmentType: 'Goal-Based SIP (₹65,000/mo)',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    verified: true,
-    date: 'Oct 2024'
-  },
-  {
-    id: 'test-2',
-    clientName: 'Sunita & Arvind Varma',
-    locationOrRole: 'Business Owners, Mumbai',
-    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80',
-    avatarAlt: 'Sunita and Arvind Varma, Business Owners',
-    rating: 5,
-    text: 'We needed professional mutual fund management for our business liquidity and long-term retirement corpus. Shaiv Market made the 100% paperless onboarding so smooth and their fund analysis gave us utmost clarity.',
-    investmentType: 'Lumpsum & Growth Folios',
-    verified: true,
-    date: 'Sep 2024'
-  },
-  {
-    id: 'test-3',
-    clientName: 'Dr. Vikram Singhania',
-    locationOrRole: 'Consultant Surgeon, Delhi NCR',
-    avatarUrl: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=200&auto=format&fit=crop&q=80',
-    avatarAlt: 'Dr. Vikram Singhania, Consultant Surgeon',
-    rating: 5,
-    text: 'Between surgery schedules and hospital rounds, I have no time to track daily markets. Having an AMFI registered distributor who answers my calls, handles paperwork, and rebalances when required is invaluable.',
-    investmentType: 'Retirement Wealth Creation',
-    verified: true,
-    date: 'Aug 2024'
-  }
-];
+const INITIAL_TESTIMONIALS: Testimonial[] = [];
 
-const INITIAL_QUOTES: ClientQuote[] = [
-  {
-    id: 'SM-LEAD-8491',
-    fullName: 'Rahul Sharma',
-    email: 'rahul.sharma@techcorp.in',
-    phone: '+91 98200 11223',
-    city: 'Mumbai',
-    investmentAmount: 50000,
-    investmentType: 'sip',
-    selectedFund: 'Parag Parikh Flexi Cap Fund Regular-Growth',
-    investmentGoal: 'Wealth Creation (10+ Yrs)',
-    status: 'New Lead',
-    submittedAt: '2024-10-25 11:20 AM',
-    notes: 'Client requested guidance on allocating ₹50,000/month across Flexi Cap and Small Cap schemes.',
-    webhookStatus: 'Delivered'
-  },
-  {
-    id: 'SM-LEAD-8492',
-    fullName: 'Ananya Deshmukh',
-    email: 'ananya.d@finmail.com',
-    phone: '+91 97654 88990',
-    city: 'Pune',
-    investmentAmount: 200000,
-    investmentType: 'lumpsum',
-    selectedFund: 'Mirae Asset Large Cap Fund Regular-Growth',
-    investmentGoal: 'Retirement Corpus',
-    status: 'Contacted',
-    submittedAt: '2024-10-24 04:45 PM',
-    notes: 'Advisor assigned: Senior Wealth Specialist. Regular mutual fund onboarding link shared via WhatsApp.',
-    webhookStatus: 'Delivered'
-  }
-];
+const INITIAL_QUOTES: ClientQuote[] = [];
 
-const INITIAL_BOOKINGS: BookingDetails[] = [
-  {
-    id: 'BK-8902',
-    advisorId: 'david-chen',
-    advisorName: 'David Chen, CFA',
-    date: 'Oct 28, 2024',
-    timeSlot: '11:30 AM',
-    clientName: 'Jane Doe',
-    clientEmail: 'jane.doe@example.com',
-    clientPhone: '+91 98765 43210',
-    topic: 'Portfolio Growth & Risk Mitigation',
-    notes: 'Looking to reallocate ₹50 Lakh fixed deposits into tax-efficient equity and balanced funds.',
-    status: 'Confirmed',
-    createdAt: '2024-10-24 10:15 AM'
-  },
-  {
-    id: 'BK-8903',
-    advisorId: 'sarah-jenkins',
-    advisorName: 'Sarah Jenkins, CFP',
-    date: 'Nov 02, 2024',
-    timeSlot: '02:30 PM',
-    clientName: 'Rahul Verma',
-    clientEmail: 'r.verma@fintech.io',
-    clientPhone: '+91 98199 88776',
-    topic: 'Early Retirement (FIRE) Roadmap',
-    notes: 'Planning retirement in 8 years. Need systematic withdrawal plan calculation.',
-    status: 'Pending',
-    createdAt: '2024-10-25 03:40 PM'
-  }
-];
+const INITIAL_BOOKINGS: BookingDetails[] = [];
 
-const INITIAL_INQUIRIES: ContactInquiry[] = [
-  {
-    id: 'INQ-104',
-    name: 'Amitabh Sen',
-    email: 'amitabh.sen@capital.in',
-    phone: '+91 98201 12345',
-    subject: 'NRI Portfolio Onboarding & NRE Account Integration',
-    message: 'We are based in Singapore and looking to deploy USD 100k into Indian large-cap mutual funds on Shaiv Market. Please advise on PIS/NRE bank linking.',
-    date: '2024-10-24',
-    status: 'New'
-  },
-  {
-    id: 'INQ-105',
-    name: 'Pooja Hegde',
-    email: 'pooja.hegde@healthcorp.com',
-    phone: '+91 97654 32100',
-    subject: 'Corporate Treasury Liquid Fund Allocation',
-    message: 'Our firm has surplus liquidity of ₹2.5 Crores. We need advice on overnight vs ultra short duration debt funds.',
-    date: '2024-10-23',
-    status: 'In Progress'
-  }
-];
+const INITIAL_INQUIRIES: ContactInquiry[] = [];
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -390,28 +271,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Stored Users in Local Storage
   const [users, setUsers] = useState<User[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_users');
+      const saved = localStorage.getItem('shaivmarket_v2_users');
       if (saved) return JSON.parse(saved);
     } catch {}
     return [
       {
         id: 'usr_admin',
-        name: 'Shaiv Market Master Admin',
+        name: 'Shaiv Market Admin',
         email: 'admin@shaivmarket.com',
         phone: '+91 22 6890 4500',
         role: 'admin',
         accountType: 'Institutional Master Admin',
         createdAt: '2024-01-01'
-      },
-      {
-        id: 'usr_client_demo',
-        name: 'Rahul Sharma',
-        email: 'investor@example.com',
-        phone: '+91 98765 43210',
-        role: 'user',
-        accountType: 'Individual Investor (Verified)',
-        quoteId: 'SM-QUOTE-8491',
-        createdAt: '2024-06-15'
       }
     ];
   });
@@ -419,7 +290,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Current Logged in User (Default guest/unauthenticated for proper access control)
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_current_user');
+      const saved = localStorage.getItem('shaivmarket_v2_current_user');
       if (saved) return JSON.parse(saved);
     } catch {}
     return null;
@@ -428,7 +299,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Nav items state
   const [navItems, setNavItems] = useState<CustomNavItem[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_nav_items');
+      const saved = localStorage.getItem('shaivmarket_v2_nav_items');
       if (saved) {
         const parsed: CustomNavItem[] = JSON.parse(saved);
         const filtered = parsed.filter(item => (item.screenId as string) !== 'invest' && item.id !== 'nav-invest');
@@ -441,7 +312,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Articles state
   const [articles, setArticles] = useState<InsightArticle[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_articles');
+      const saved = localStorage.getItem('shaivmarket_v2_articles');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_ARTICLES;
@@ -450,7 +321,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Banner state
   const [banner, setBanner] = useState<SiteBanner>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_banner');
+      const saved = localStorage.getItem('shaivmarket_v2_banner');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_BANNER;
@@ -459,7 +330,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Site Settings
   const [siteSettings, setSiteSettings] = useState<SiteSettings>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_settings');
+      const saved = localStorage.getItem('shaivmarket_v2_settings');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_SETTINGS;
@@ -468,7 +339,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Client Onboarding Quotes
   const [quotes, setQuotes] = useState<ClientQuote[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_quotes');
+      const saved = localStorage.getItem('shaivmarket_v2_quotes');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_QUOTES;
@@ -477,7 +348,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Bookings
   const [bookings, setBookings] = useState<BookingDetails[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_bookings');
+      const saved = localStorage.getItem('shaivmarket_v2_bookings');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_BOOKINGS;
@@ -486,7 +357,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Contact Inquiries
   const [contactInquiries, setContactInquiries] = useState<ContactInquiry[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_inquiries');
+      const saved = localStorage.getItem('shaivmarket_v2_inquiries');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_INQUIRIES;
@@ -495,7 +366,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Testimonials
   const [testimonials, setTestimonials] = useState<Testimonial[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_testimonials');
+      const saved = localStorage.getItem('shaivmarket_v2_testimonials');
       if (saved) return JSON.parse(saved);
     } catch {}
     return INITIAL_TESTIMONIALS;
@@ -504,107 +375,107 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Persist states
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_users', JSON.stringify(users));
+      localStorage.setItem('shaivmarket_v2_users', JSON.stringify(users));
     } catch {}
   }, [users]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_testimonials', JSON.stringify(testimonials));
+      localStorage.setItem('shaivmarket_v2_testimonials', JSON.stringify(testimonials));
     } catch {}
   }, [testimonials]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_inquiries', JSON.stringify(contactInquiries));
+      localStorage.setItem('shaivmarket_v2_inquiries', JSON.stringify(contactInquiries));
     } catch {}
   }, [contactInquiries]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_articles', JSON.stringify(articles));
+      localStorage.setItem('shaivmarket_v2_articles', JSON.stringify(articles));
     } catch {}
   }, [articles]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v2_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v2_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v2_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_quotes', JSON.stringify(quotes));
+      localStorage.setItem('shaivmarket_v2_quotes', JSON.stringify(quotes));
     } catch {}
   }, [quotes]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_bookings', JSON.stringify(bookings));
+      localStorage.setItem('shaivmarket_v2_bookings', JSON.stringify(bookings));
     } catch {}
   }, [bookings]);
 
   useEffect(() => {
     try {
       if (currentUser) {
-        localStorage.setItem('shaivmarket_current_user', JSON.stringify(currentUser));
+        localStorage.setItem('shaivmarket_v2_current_user', JSON.stringify(currentUser));
       } else {
-        localStorage.removeItem('shaivmarket_current_user');
+        localStorage.removeItem('shaivmarket_v2_current_user');
       }
     } catch {}
   }, [currentUser]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v2_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_articles', JSON.stringify(articles));
+      localStorage.setItem('shaivmarket_v2_articles', JSON.stringify(articles));
     } catch {}
   }, [articles]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v2_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v2_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_quotes', JSON.stringify(quotes));
+      localStorage.setItem('shaivmarket_v2_quotes', JSON.stringify(quotes));
     } catch {}
   }, [quotes]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_bookings', JSON.stringify(bookings));
+      localStorage.setItem('shaivmarket_v2_bookings', JSON.stringify(bookings));
     } catch {}
   }, [bookings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_inquiries', JSON.stringify(contactInquiries));
+      localStorage.setItem('shaivmarket_v2_inquiries', JSON.stringify(contactInquiries));
     } catch {}
   }, [contactInquiries]);
 
@@ -619,7 +490,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (password === '@Finsathi01') {
         const adminUser: User = {
           id: 'usr_admin',
-          name: 'Shaiv Market Master Admin',
+          name: 'Shaiv Market Admin',
           email: 'admin@shaivmarket.com',
           role: 'admin',
           accountType: 'Institutional Master Admin',

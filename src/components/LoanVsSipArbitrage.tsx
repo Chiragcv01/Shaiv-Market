@@ -457,7 +457,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       onClick={() => onNavigate?.('open-account')}
                       className="flex-1 min-w-[200px] bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                     >
-                      <span>Start This Wealth SIP with Advisor</span>
+                      <span>Start This SIP With Us</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <button

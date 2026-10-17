@@ -24,11 +24,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span className="text-xl font-bold text-white tracking-tight">{siteSettings.companyName}</span>
             </div>
             <p className="text-[#c2c6d1] text-xs leading-relaxed max-w-sm">
-              {siteSettings.footerAboutText || 'Empowering investors with goal-based wealth planning, required SIP target calculators, and dedicated AMFI certified mutual fund distributor advisory.'}
+              {siteSettings.footerAboutText || 'Empowering investors with goal-based wealth planning, required SIP target calculators, and personal guidance from an AMFI registered mutual fund distributor.'}
             </p>
             <div className="flex items-center gap-2 text-xs text-[#96f6bd]">
               <ShieldCheck className="w-4 h-4 shrink-0 text-[#96f6bd]" />
-              <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-284912'})</span>
+              <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Support & Admin Links */}
           <div>
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
-              Connect & Advisory
+              Connect With Us
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
               <li>
@@ -108,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate?.('contact')}
                   className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
                 >
-                  Contact Advisory Desk
+                  Contact Us
                 </button>
               </li>
               <li>
@@ -157,7 +157,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-[#424750]/50 text-[#8c9199] text-xs flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>{siteSettings.footerCopyrightText || `© 2024-2026 ${siteSettings.companyName} Pvt. Ltd. All rights reserved. AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks, read all scheme related documents carefully.`}</p>
+          <p>{siteSettings.footerCopyrightText || `© 2026 ${siteSettings.companyName}. All rights reserved. AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks, read all scheme related documents carefully.`}</p>
           <div className="flex items-center gap-4 shrink-0 text-[#96f6bd]">
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
@@ -165,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4" />
-              <span>AMFI ARN: {siteSettings.sebiRegNumber || 'ARN-284912'}</span>
+              <span>AMFI ARN: {siteSettings.sebiRegNumber || 'ARN-337289'}</span>
             </div>
           </div>
         </div>
