@@ -85,7 +85,7 @@ const DEFAULT_BANNER: SiteBanner = {
   themeColor: 'blue'
 };
 
-const ADMIN_PASSWORD_SHA256 = 'e1075f2c0856486d740c5b4573946631efaafc5891ed3c67af47d789eb6b3952';
+const ADMIN_PASSWORD_SHA256 = 'ce40e1e9a9df6ee92ca230cc56d438806e9a4fb4568490a69bdafb24278d16cf';
 
 const DEFAULT_SETTINGS: SiteSettings = {
   companyName: 'Shaiv Market',
