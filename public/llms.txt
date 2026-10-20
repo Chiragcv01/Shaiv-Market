@@ -1,0 +1,43 @@
+# Shaiv Market
+
+> Shaiv Market is the practice of Chirag Sharma, an AMFI registered mutual fund distributor (ARN-337289, EUIN E641362, NISM Series V-A certified) based in Jaipur, Rajasthan, India. It helps individuals and families plan SIPs and life goals, reviews existing portfolios for free, and opens mutual fund accounts with paperless KYC for investors anywhere in India.
+
+Key facts:
+- Name: Shaiv Market (shaivmarket.com)
+- Founder: Chirag Sharma, AMFI Registered Mutual Fund Distributor
+- AMFI ARN: ARN-337289, valid 18 Aug 2025 to 13 Aug 2028. Verify at https://www.amfiindia.com/locate-distributor
+- EUIN: E641362
+- Certification: NISM Series V-A (Mutual Fund Distributors), valid until 13 Aug 2028
+- Office: 6th Floor, Bhamashah Techno Hub, Jhalana Doongari, Jaipur, Rajasthan 302004, India
+- Phone / WhatsApp: +91 99506 53247
+- Email: marketlive45@gmail.com
+- Serves: Jaipur in person; all of India online (video, phone, WhatsApp)
+- Fees: first portfolio review call is free; as a distributor, Shaiv Market is paid commission by fund houses on regular plans, with no separate advisory fee
+- Languages: English, Hindi
+
+## Services
+- Free portfolio review
+- SIP planning and setup, including step-up SIPs
+- Goal-based planning: child education, home down payment, retirement
+- Retirement income through SWP (systematic withdrawal plans)
+- Paperless KYC and mutual fund account opening
+- Yearly portfolio review and rebalancing
+
+## Free calculators
+- [Required SIP calculator](https://shaivmarket.com/calculators/required-sip-calculator): monthly SIP needed for a target such as ₹1 crore
+- [SIP calculator](https://shaivmarket.com/calculators/sip-calculator): growth of a SIP or lumpsum, with step-up
+- [Goal planner](https://shaivmarket.com/calculators/goal-planner): inflation-adjusted goals
+- [SWP calculator](https://shaivmarket.com/calculators/swp-calculator): monthly pension from mutual funds
+- [Home loan prepayment vs SIP](https://shaivmarket.com/calculators/home-loan-prepayment-vs-sip)
+- [FIRE calculator](https://shaivmarket.com/calculators/fire-calculator): early retirement corpus
+- [Emergency fund calculator](https://shaivmarket.com/calculators/emergency-fund-calculator)
+
+## Pages
+- [Home](https://shaivmarket.com/)
+- [About Chirag Sharma](https://shaivmarket.com/about)
+- [Book a free consultation](https://shaivmarket.com/book-free-consultation)
+- [Start a SIP](https://shaivmarket.com/start-sip)
+- [Contact](https://shaivmarket.com/contact)
+- [Full text for AI assistants](https://shaivmarket.com/llms-full.txt)
+
+Disclaimer: Mutual fund investments are subject to market risks, read all scheme related documents carefully. Calculator results are illustrations at assumed returns, not guarantees.

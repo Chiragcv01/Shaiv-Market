@@ -12,12 +12,15 @@ import { InsightsScreen } from './components/InsightsScreen';
 import { ContactUsScreen } from './components/ContactUsScreen';
 import { AboutUsScreen } from './components/AboutUsScreen';
 import { TestimonialsScreen } from './components/TestimonialsScreen';
-import { AdminPortalScreen } from './components/AdminPortalScreen';
-import { AuthScreen } from './components/AuthScreen';
+const AdminPortalScreen = React.lazy(() => import('./components/AdminPortalScreen').then((m) => ({ default: m.AdminPortalScreen })));
+const AuthScreen = React.lazy(() => import('./components/AuthScreen').then((m) => ({ default: m.AuthScreen })));
 import { NotificationModal } from './components/NotificationModal';
 import { AccountProfileModal } from './components/AccountProfileModal';
 import { CommandPalette } from './components/interactive/CommandPalette';
 import { EngagementLayer } from './components/interactive/EngagementLayer';
+import { routeForPath, pathForScreen } from './seo/routes';
+import { applyHead } from './seo/head';
+import { setPendingTab } from './utils/deepLink';
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -43,15 +46,23 @@ export default function App() {
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [notificationCount, setNotificationCount] = useState<number>(0);
 
-  // Private admin entry: only reachable at /sm-admin (not linked anywhere on the site)
+  // Every screen has a real URL: push it when the screen changes, and keep <head> in sync
   React.useEffect(() => {
-    if (window.location.pathname.replace(/\/+$/, '') === '/sm-admin') {
-      setActiveScreen('admin');
-      const meta = document.createElement('meta');
-      meta.name = 'robots';
-      meta.content = 'noindex, nofollow';
-      document.head.appendChild(meta);
-    }
+    const cur = routeForPath(window.location.pathname);
+    if (cur.screen !== activeScreen) window.history.pushState({}, '', pathForScreen(activeScreen));
+    applyHead(routeForPath(window.location.pathname));
+  }, [activeScreen]);
+
+  // Browser back / forward
+  React.useEffect(() => {
+    const onPop = () => {
+      const r = routeForPath(window.location.pathname);
+      if (r.tab) { setPendingTab(r.tab); window.dispatchEvent(new CustomEvent('sm:tab', { detail: r.tab })); }
+      setActiveScreen(r.screen);
+      applyHead(r);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   // Scroll to top when changing screens
@@ -80,7 +91,7 @@ export default function App() {
 
       {/* Main Screen Canvas */}
       <main className="flex-grow" style={{ paddingTop: 'var(--header-full, 80px)' }}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeScreen}
             initial={{ opacity: 0, y: 12 }}
@@ -121,11 +132,11 @@ export default function App() {
             )}
 
             {activeScreen === 'admin' && (
-              <AdminPortalScreen onNavigate={handleNavigate} />
+              <React.Suspense fallback={<div className="py-32 text-center text-[#6B7C8F]">Loading…</div>}><AdminPortalScreen onNavigate={handleNavigate} /></React.Suspense>
             )}
 
             {activeScreen === 'auth' && (
-              <AuthScreen onNavigate={handleNavigate} />
+              <React.Suspense fallback={<div className="py-32 text-center text-[#6B7C8F]">Loading…</div>}><AuthScreen onNavigate={handleNavigate} /></React.Suspense>
             )}
       </motion.div>
         </AnimatePresence>

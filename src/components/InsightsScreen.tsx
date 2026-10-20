@@ -100,7 +100,7 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#0F2740] leading-[1.05] mb-3">
-            Plan a goal. See the exact monthly amount it needs.
+            Goal planner: the exact monthly SIP each goal needs
           </h1>
           <p className="text-sm sm:text-base text-[#43566B] max-w-3xl leading-relaxed">
             Scientifically map your life milestones: Child education, dream home down payment, early retirement corpus, and systematic monthly pension cash flows.

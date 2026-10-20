@@ -5,6 +5,8 @@ import { CompoundingPlayground } from './interactive/CompoundingPlayground';
 import { GoalJourney } from './interactive/GoalJourney';
 import { HabitJar } from './interactive/HabitJar';
 import { RiskQuiz } from './interactive/RiskQuiz';
+import { FaqSection } from './interactive/FaqSection';
+import { HOME_FAQ } from '../seo/faq';
 import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import {
@@ -123,6 +125,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2d. RISK PROFILE QUIZ */}
       <RiskQuiz onBook={() => onNavigate('booking')} />
+
+      {/* 2e. FAQ: direct answers for search and AI assistants */}
+      <FaqSection
+        items={HOME_FAQ}
+        title="Questions investors ask before they start"
+        intro="Straight answers about SIPs, fees, documents and how to verify a distributor."
+      />
 
       {/* 3. COMPREHENSIVE INVESTMENT CALCULATOR SECTION */}
       <section className="bg-[#F6F8FB] py-14 md:py-20 border-b border-[#E4EAF0]">

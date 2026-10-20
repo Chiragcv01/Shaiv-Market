@@ -205,12 +205,12 @@ export const CompoundingPlayground: React.FC<{
     <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       {/* Sentence-as-calculator */}
       <div className="lg:col-span-5 space-y-7">
-        <p className="inline-flex items-center gap-2 text-[13px] text-[#B9CCE0]">
-          <ShieldCheck className="w-4 h-4 text-[#E3B65C]" />
-          AMFI Registered Mutual Fund Distributor, {arn}
-        </p>
+        <h1 className="inline-flex items-center gap-2 text-sm text-[#B9CCE0] font-normal">
+          <ShieldCheck className="w-4 h-4 text-[#E3B65C] shrink-0" />
+          Mutual fund distributor in Jaipur: Chirag Sharma, AMFI registered, {arn}
+        </h1>
 
-        <h1 className="font-display text-[34px] sm:text-[44px] xl:text-[50px] leading-[1.12] font-medium text-white text-pretty">
+        <p className="font-display text-[34px] sm:text-[44px] xl:text-[50px] leading-[1.12] font-medium text-white text-pretty">
           Invest{' '}
           <ScrubNumber label="Monthly SIP amount" value={monthly} onChange={setMonthly} min={500} max={200000}
             step={amountStep} format={(v) => `₹${v.toLocaleString('en-IN')}`} onFirstUse={firstUse} pxPerStep={7} />{' '}
@@ -227,7 +227,7 @@ export const CompoundingPlayground: React.FC<{
           >
             <Money v={final} />
           </motion.span>
-        </h1>
+        </p>
 
         <div className="h-6">
         <AnimatePresence>

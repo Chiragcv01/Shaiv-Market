@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { takePendingTab } from '../utils/deepLink';
+import { routeForPath, pathForScreen, CALC_ROUTES } from '../seo/routes';
+import { currentPath } from '../seo/ssr';
+import { applyHead } from '../seo/head';
+import { CALC_FAQ } from '../seo/faq';
+import { FaqSection } from './interactive/FaqSection';
 import { ActiveScreen } from '../types';
 import { RequiredSipCalculator } from './RequiredSipCalculator';
 import { InvestmentCalculator } from './InvestmentCalculator';
@@ -31,7 +36,27 @@ interface CalculatorsScreenProps {
 type CalculatorTab = 'required-sip' | 'sip-compounder' | 'goal' | 'swp' | 'loan-sip' | 'fire' | 'emergency';
 
 export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate }) => {
-  const [activeTab, setActiveTab] = useState<CalculatorTab>(() => (takePendingTab() as CalculatorTab) || 'required-sip');
+  const [activeTab, setActiveTab] = useState<CalculatorTab>(() => (routeForPath(currentPath()).tab as CalculatorTab) || (takePendingTab() as CalculatorTab) || 'required-sip');
+
+  // keep the URL on /calculators/<calculator> so each calculator is its own indexable page
+  const firstSync = React.useRef(true);
+  React.useEffect(() => {
+    const target = pathForScreen('calculators', activeTab);
+    const here = window.location.pathname;
+    if (!here.startsWith('/calculators')) return;
+    if (firstSync.current) {
+      firstSync.current = false;
+      if (here === target || (activeTab === 'required-sip' && here === '/calculators')) return;
+    }
+    if (here !== target) window.history.replaceState({}, '', target);
+    applyHead(routeForPath(target));
+  }, [activeTab]);
+  React.useEffect(() => {
+    const onTab = (e: Event) => setActiveTab((e as CustomEvent).detail as CalculatorTab);
+    window.addEventListener('sm:tab', onTab);
+    return () => window.removeEventListener('sm:tab', onTab);
+  }, []);
+  const calcMeta = CALC_ROUTES.find((c) => c.tab === activeTab);
 
   const tabs: { id: CalculatorTab; label: string; icon: any; tag?: string }[] = [
     { id: 'required-sip', label: 'Know Required SIP Amount', icon: Target, tag: 'Goal Target' },
@@ -49,8 +74,9 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
       {/* Header */}
       <div className="mb-8 max-w-3xl">
         <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#0F2740] leading-[1.05]">
-          Seven calculators. Pick a question, move the sliders, get your number.
+          {currentPath() === '/calculators' && activeTab === 'required-sip' ? 'Free SIP, SWP and goal calculators' : calcMeta?.name}
         </h1>
+        <p className="mt-2 font-display text-xl text-[#3F6E96]">Seven calculators. Pick a question, move the sliders, get your number.</p>
         <p className="mt-3 text-base text-[#43566B] leading-relaxed">
           From "how much SIP do I need?" to "should I prepay my home loan?". Every result is illustrative, at the return you choose.
         </p>
@@ -143,6 +169,11 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
         )}
       </motion.div>
       </AnimatePresence>
+
+      {/* Questions people ask about this calculator */}
+      {CALC_FAQ[activeTab]?.length > 0 && (
+        <FaqSection compact id="calc-faq" items={CALC_FAQ[activeTab]} title={`${calcMeta?.name}: common questions`} />
+      )}
 
       {/* Educational Guide Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

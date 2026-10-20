@@ -1,4 +1,6 @@
 import { sha256Hex } from '../utils/sha256';
+import { routeForPath } from '../seo/routes';
+import { currentPath } from '../seo/ssr';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   User,
@@ -269,7 +271,7 @@ const INITIAL_INQUIRIES: ContactInquiry[] = [];
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [activeScreen, setActiveScreen] = useState<ActiveScreen>('home');
+  const [activeScreen, setActiveScreen] = useState<ActiveScreen>(() => routeForPath(currentPath()).screen);
   const [activePolicyModal, setActivePolicyModal] = useState<'privacy' | 'terms' | 'disclosures' | null>(null);
 
   // Stored Users in Local Storage

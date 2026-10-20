@@ -124,8 +124,8 @@ export const OpenAccountScreen: React.FC<OpenAccountScreenProps> = ({
             <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber})</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#13263B] tracking-tight">
-            Start Your Mutual Fund Investment Journey
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0F2740] leading-[1.05]">
+            Start a SIP with a free investment plan
           </h1>
           <p className="text-xs sm:text-sm text-[#43566B] max-w-xl mx-auto mt-2">
             No complicated paperwork or immediate bank mandate required. Provide your basic contact details, and Chirag will prepare a plan and guide you personally.

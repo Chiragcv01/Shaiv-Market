@@ -141,8 +141,9 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
           <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
         </div>
         <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-[#0F2740] leading-[1.05] mb-3">
-          Pick a time. Chirag calls you.
+          Book a free mutual fund consultation
         </h1>
+        <p className="font-display text-2xl text-[#3F6E96] mb-2">Pick a time. Chirag calls you.</p>
         <p className="text-base sm:text-lg text-[#43566B] max-w-2xl mx-auto leading-relaxed">
           A free 30-minute call to review your portfolio, set your SIP goals and check your asset mix. No charges, no obligation.
         </p>

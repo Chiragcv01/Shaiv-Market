@@ -38,8 +38,8 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
           <ShieldCheck className="w-4 h-4 text-[#8A6420]" />
           <span>AMFI Registered Mutual Fund Distributor • {siteSettings.sebiRegNumber || 'ARN-337289'}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F2740] tracking-tight">
-          Empowering Financial Freedom Through Disciplined Investing
+        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#0F2740] leading-[1.05]">
+          Chirag Sharma, AMFI registered mutual fund distributor in Jaipur
         </h1>
         <p className="text-base sm:text-lg text-[#43566B] leading-relaxed">
           {siteSettings.aboutMission || 'To be your most trusted mutual fund distribution partner, guiding families and business leaders with goal-based asset allocation and lifelong support.'}
