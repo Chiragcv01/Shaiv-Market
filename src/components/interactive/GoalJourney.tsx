@@ -8,6 +8,7 @@ import {
   useReducedMotion
 } from 'motion/react';
 import { requiredMonthlySip, formatINRShort } from '../../utils/money';
+import { ScrubNumber } from './ScrubNumber';
 
 interface Goal {
   years: number;
@@ -53,14 +54,31 @@ const GOALS: Goal[] = [
   }
 ];
 
-const HORIZON = 25;
+const targetStep = (v: number, dir: 1 | -1) => {
+  const size = v < 1e6 || (dir === -1 && v <= 1e6) ? 50000 : v < 1e7 || (dir === -1 && v <= 1e7) ? 500000 : 2500000;
+  return v + dir * size;
+};
 
 export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: listRef, offset: ['start 65%', 'end 65%'] });
-  const stops = GOALS.map((g) => g.years / HORIZON);
-  const fill = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.7, 0.95], [0, stops[0], stops[1], stops[2], stops[3]]);
+  const [goals, setGoals] = useState<Goal[]>(GOALS);
+  const HORIZON = Math.max(25, goals[goals.length - 1].years);
+  const stops = goals.map((g) => g.years / HORIZON);
+  const stopsRef = useRef(stops);
+  stopsRef.current = stops;
+  const fill = useTransform(scrollYProgress, (p: number) => {
+    const xs = [0, 0.2, 0.45, 0.7, 0.95];
+    const ys = [0, ...stopsRef.current];
+    if (p >= xs[4]) return ys[4];
+    let i = 0;
+    while (i < 3 && p > xs[i + 1]) i++;
+    const t = Math.max(0, (p - xs[i]) / (xs[i + 1] - xs[i]));
+    return ys[i] + t * (ys[i + 1] - ys[i]);
+  });
+  const update = (idx: number, patch: Partial<Goal>) =>
+    setGoals((gs) => gs.map((g, i) => (i === idx ? { ...g, ...patch } : g)));
   const fillPct = useTransform(fill, (f) => `${f * 100}%`);
   const [active, setActive] = useState(0);
 
@@ -70,7 +88,7 @@ export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
     setActive(idx);
   });
 
-  const goal = GOALS[active];
+  const goal = goals[active];
   const sip = requiredMonthlySip(goal.target, goal.years, goal.rate);
 
   return (
@@ -90,7 +108,7 @@ export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
           <div className="lg:hidden sticky top-[var(--header-h,84px)] z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 bg-[#0F2740] text-white shadow-lg">
             <div className="relative h-1.5 rounded-full bg-white/15">
               <motion.div className="absolute left-0 top-0 h-1.5 rounded-full bg-[#E3B65C]" style={{ width: fillPct }} />
-              {GOALS.map((g, i) => (
+              {goals.map((g, i) => (
                 <span key={g.title} className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2
                   ${i <= active ? 'bg-[#E3B65C] border-[#E3B65C]' : 'bg-[#0F2740] border-white/40'}`}
                   style={{ left: `${(g.years / HORIZON) * 100}%` }} />
@@ -109,7 +127,7 @@ export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
               <div className="relative h-14">
                 <div className="absolute left-0 right-0 top-6 h-1.5 rounded-full bg-white/10" />
                 <motion.div className="absolute left-0 top-6 h-1.5 rounded-full bg-[#E3B65C]" style={{ width: fillPct }} />
-                {GOALS.map((g, i) => (
+                {goals.map((g, i) => (
                   <div key={g.title} className="absolute top-0 -translate-x-1/2 flex flex-col items-center" style={{ left: `${(g.years / HORIZON) * 100}%` }}>
                     <span className={`text-[11px] mb-1 tabular-nums transition-colors ${i <= active ? 'text-[#E3B65C]' : 'text-white/45'}`}>{g.years}y</span>
                     <span className={`w-4 h-4 rounded-full border-2 transition-all duration-300
@@ -127,14 +145,24 @@ export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
                   transition={{ duration: 0.28 }}
                   className="mt-8"
                 >
-                  <p className="text-[#9DB4CC] text-sm">{goal.title}, in {goal.years} years</p>
+                  <p className="text-[#9DB4CC] text-sm">{goal.title}</p>
                   <p className="font-display text-[56px] sm:text-[72px] leading-none font-semibold tabular-nums mt-2">
                     {formatINRShort(sip)}
                     <span className="text-xl sm:text-2xl font-normal text-[#9DB4CC]"> / month</span>
                   </p>
-                  <p className="mt-4 text-sm text-white/80">
-                    to build <strong className="text-white">{formatINRShort(goal.target)}</strong>, assuming {(goal.rate * 100).toFixed(1).replace('.0', '')}% a year.
+                  <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-white/90">
+                    to build{' '}
+                    <ScrubNumber label={`${goal.title} target amount`} value={goal.target}
+                      onChange={(v) => update(active, { target: v })} min={50000} max={200000000}
+                      step={targetStep} format={formatINRShort} pxPerStep={10} />{' '}
+                    in{' '}
+                    <ScrubNumber label={`${goal.title} years away`} value={goal.years}
+                      onChange={(v) => update(active, { years: v })}
+                      min={active === 0 ? 1 : goals[active - 1].years + 1}
+                      max={active === goals.length - 1 ? 40 : goals[active + 1].years - 1}
+                      step={(v, d) => v + d} format={(v) => `${v} years`} pxPerStep={14} />
                   </p>
+                  <p className="mt-2 text-sm text-white/60">Assuming {(goal.rate * 100).toFixed(1).replace('.0', '')}% a year. Drag the gold numbers to make it yours.</p>
                   <p className="mt-1 text-sm text-[#E3B65C]">{goal.fundHint}</p>
                 </motion.div>
               </AnimatePresence>
@@ -149,7 +177,7 @@ export const GoalJourney: React.FC<{ onPlan: () => void }> = ({ onPlan }) => {
 
           {/* Scrolling goal stories */}
           <div ref={listRef} className="lg:col-span-6 lg:order-1 space-y-6 lg:space-y-[28vh] lg:py-[8vh]">
-            {GOALS.map((g, i) => (
+            {goals.map((g, i) => (
               <article
                 key={g.title}
                 className={`rounded-2xl p-6 sm:p-7 transition-all duration-500

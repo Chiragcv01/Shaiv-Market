@@ -8,9 +8,10 @@ import {
   useReducedMotion,
   MotionValue
 } from 'motion/react';
-import { ShieldCheck, MoveHorizontal } from 'lucide-react';
+import { ShieldCheck, MoveHorizontal, PartyPopper } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { ScrubNumber, amountStep, unitStep } from './ScrubNumber';
-import { sipFutureValue, formatINRShort } from '../../utils/money';
+import { sipFutureValue, requiredMonthlySip, formatINRShort } from '../../utils/money';
 
 const DELAY_YEARS = 5;
 const SAMPLES = 60;
@@ -20,11 +21,11 @@ const W = 640, H = 320, PAD_L = 4, PAD_R = 4, PAD_T = 18, PAD_B = 4;
 const PLOT_W = W - PAD_L - PAD_R;
 const PLOT_H = H - PAD_T - PAD_B;
 
-interface Params { m: number; y: number; r: number; d: number }
+interface Params { m: number; y: number; r: number; d: number; top?: number }
 
-function series({ m, y, r, d }: Params) {
+function series({ m, y, r, d, top: topIn }: Params) {
   const delay = DELAY_YEARS * d;
-  const top = sipFutureValue(m, y, r) * 1.12 || 1;
+  const top = topIn || sipFutureValue(m, y, r) * 1.12 || 1;
   const pts: { x: number; wealth: number; invested: number; late: number }[] = [];
   for (let i = 0; i <= SAMPLES; i++) {
     const t = (i / SAMPLES) * y;
@@ -82,13 +83,77 @@ export const CompoundingPlayground: React.FC<{
   const [touched, setTouched] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const plotRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLSpanElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const [crore, setCrore] = useState(false);
+  const croreArmed = useRef(sipFutureValue(10000, 20, 0.12) < 1e7);
 
   const sM = useParam(monthly, reduced);
   const sY = useParam(years, reduced);
   const sR = useParam(rate / 100, reduced);
   const sD = useParam(late ? 1 : 0, reduced);
 
-  const geo = useTransform([sM, sY, sR, sD], ([m, y, r, d]: number[]) => series({ m, y, r, d }));
+  // y-axis ceiling: follows the curve normally, but freezes while the dot is dragged
+  const autoTop = sipFutureValue(monthly, years, rate / 100) * 1.12;
+  const topMv = useMotionValue<number>(autoTop);
+  const sTop = useSpring(topMv, reduced ? { duration: 0 } : { stiffness: 120, damping: 24 });
+  useEffect(() => { if (!dragging) topMv.set(autoTop); }, [autoTop, dragging, topMv]);
+
+  // celebrate the first time the corpus crosses ₹1 crore
+  const fv = sipFutureValue(monthly, years, rate / 100);
+  useEffect(() => {
+    if (fv < 0.9e7) { croreArmed.current = true; return; }
+    if (fv >= 1e7 && croreArmed.current) {
+      croreArmed.current = false;
+      setCrore(true);
+      const b = dotRef.current?.getBoundingClientRect();
+      confetti({
+        particleCount: 90, spread: 70, startVelocity: 38, scalar: 0.9, ticks: 160,
+        colors: ['#E3B65C', '#F3D58E', '#7FA6C9', '#ffffff'],
+        origin: b ? { x: (b.left + b.width / 2) / window.innerWidth, y: (b.top + b.height / 2) / window.innerHeight } : { x: 0.7, y: 0.4 },
+        disableForReducedMotion: true
+      });
+      const t = setTimeout(() => setCrore(false), 3200);
+      return () => clearTimeout(t);
+    }
+  }, [fv]);
+
+  const setFromTarget = (target: number) => {
+    const raw = requiredMonthlySip(Math.max(target, 1), years, rate / 100);
+    const step = raw < 5000 ? 500 : raw < 25000 ? 1000 : 5000;
+    setMonthly(Math.min(200000, Math.max(500, Math.round(raw / step) * step)));
+  };
+
+  const onDotDown = (e: React.PointerEvent<HTMLSpanElement>) => {
+    e.stopPropagation();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setDragging(true);
+    setHover(null);
+    setTouched(true);
+    topMv.set(sTop.get());
+  };
+  const onDotMove = (e: React.PointerEvent<HTMLSpanElement>) => {
+    if (!dragging) return;
+    const box = plotRef.current?.getBoundingClientRect();
+    if (!box) return;
+    const frac = ((e.clientY - box.top) / box.height * H - PAD_T) / PLOT_H;
+    let top = topMv.get();
+    // near the edges, zoom the axis so you can keep pulling
+    if (frac < 0.08) top *= 1.035;
+    else if (frac > 0.9 && top > 2e5) top *= 0.97;
+    topMv.set(top);
+    setFromTarget((1 - Math.min(0.98, Math.max(0, frac))) * top);
+  };
+  const onDotUp = () => setDragging(false);
+  const onDotKey = (e: React.KeyboardEvent) => {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    e.preventDefault();
+    setTouched(true);
+    setMonthly((v) => Math.min(200000, Math.max(500, amountStep(v, e.key === 'ArrowUp' ? 1 : -1))));
+  };
+
+  const geo = useTransform([sM, sY, sR, sD, sTop], ([m, y, r, d, top]: number[]) => series({ m, y, r, d, top }));
   const wealthLine = useTransform(geo, (g) => g.wealthLine);
   const wealthArea = useTransform(geo, (g) => g.wealthArea);
   const investedArea = useTransform(geo, (g) => g.investedArea);
@@ -114,7 +179,7 @@ export const CompoundingPlayground: React.FC<{
   const readout = useMemo(() => {
     if (hover === null) return null;
     const t = hover * years;
-    const g = series({ m: monthly, y: years, r: rate / 100, d: late ? 1 : 0 });
+    const g = series({ m: monthly, y: years, r: rate / 100, d: late ? 1 : 0, top: sTop.get() });
     const w = sipFutureValue(monthly, t, rate / 100);
     return {
       t,
@@ -181,7 +246,7 @@ export const CompoundingPlayground: React.FC<{
               >
                 <MoveHorizontal className="w-4 h-4" />
               </motion.span>
-              Drag any gold number sideways
+              Drag the gold numbers sideways, or the gold dot up and down
             </motion.p>
           )}
         </AnimatePresence>
@@ -217,7 +282,7 @@ export const CompoundingPlayground: React.FC<{
             </div>
           </div>
 
-          <div className="relative mt-3">
+          <div ref={plotRef} className="relative mt-3">
             <svg
               ref={svgRef}
               viewBox={`0 0 ${W} ${H}`}
@@ -268,13 +333,47 @@ export const CompoundingPlayground: React.FC<{
             {/* end marker + hover dot live in HTML so they don't stretch with the SVG */}
             {!readout && (
               <motion.span
-                className="absolute right-0 w-3.5 h-3.5 -mr-1.5 -mt-1.5 rounded-full bg-[#E3B65C] ring-4 ring-[#E3B65C]/25 pointer-events-none"
-                style={{ top: endTop }}
+                ref={dotRef}
+                role="slider"
+                tabIndex={0}
+                aria-label="Target amount. Drag up or down, or use arrow keys, to change the monthly SIP"
+                aria-valuetext={formatINRShort(fv)}
+                onPointerDown={onDotDown}
+                onPointerMove={onDotMove}
+                onPointerUp={onDotUp}
+                onPointerCancel={onDotUp}
+                onKeyDown={onDotKey}
+                className="absolute right-0 w-10 h-10 -mr-5 -mt-5 flex items-center justify-center cursor-ns-resize outline-none group z-10"
+                style={{ top: endTop, touchAction: 'none' }}
                 initial={{ scale: reduced ? 1 : 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 1.7 }}
-              />
+              >
+                {!touched && !reduced && (
+                  <motion.span aria-hidden className="absolute inset-1 rounded-full border-2 border-[#E3B65C]"
+                    animate={{ scale: [1, 1.8], opacity: [0.8, 0] }} transition={{ duration: 1.4, repeat: Infinity, delay: 2 }} />
+                )}
+                <span className={`w-4 h-4 rounded-full bg-[#E3B65C] ring-4 transition-all
+                  ${dragging ? 'ring-[#E3B65C]/50 scale-125' : 'ring-[#E3B65C]/25 group-hover:scale-110 group-focus-visible:ring-white'}`} />
+                {dragging && (
+                  <span className="absolute right-12 whitespace-nowrap rounded-lg bg-white text-[#0F2740] text-xs px-2.5 py-1.5 shadow-lg pointer-events-none">
+                    Target <strong>{formatINRShort(fv)}</strong> needs <strong>₹{monthly.toLocaleString('en-IN')}</strong>/month
+                  </span>
+                )}
+              </motion.span>
             )}
+            <AnimatePresence>
+              {crore && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  className="absolute left-3 top-2 z-10 inline-flex items-center gap-2 rounded-xl bg-[#E3B65C] text-[#0F2740] px-3 py-2 text-sm font-semibold shadow-lg pointer-events-none"
+                >
+                  <PartyPopper className="w-4 h-4" /> You just crossed ₹1 crore
+                </motion.div>
+              )}
+            </AnimatePresence>
             {readout && (
               <>
                 <span className="absolute w-3 h-3 -ml-1.5 -mt-1.5 rounded-full bg-[#E3B65C] ring-4 ring-[#E3B65C]/25 pointer-events-none"

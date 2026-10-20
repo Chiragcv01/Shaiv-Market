@@ -3,6 +3,8 @@ import { ActiveScreen } from '../types';
 import { InvestmentCalculator } from './InvestmentCalculator';
 import { CompoundingPlayground } from './interactive/CompoundingPlayground';
 import { GoalJourney } from './interactive/GoalJourney';
+import { HabitJar } from './interactive/HabitJar';
+import { RiskQuiz } from './interactive/RiskQuiz';
 import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import {
@@ -115,6 +117,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2b. LIFE GOALS, SCROLL-DRIVEN */}
       <GoalJourney onPlan={() => onNavigate('insights')} />
+
+      {/* 2c. HABITS TO WEALTH */}
+      <HabitJar onStart={() => onNavigate('open-account')} />
+
+      {/* 2d. RISK PROFILE QUIZ */}
+      <RiskQuiz onBook={() => onNavigate('booking')} />
 
       {/* 3. COMPREHENSIVE INVESTMENT CALCULATOR SECTION */}
       <section className="bg-[#f7f9fb] py-14 md:py-20 border-b border-[#e0e3e5]">
