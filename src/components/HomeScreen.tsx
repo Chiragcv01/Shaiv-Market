@@ -1,7 +1,8 @@
 import React from 'react';
 import { ActiveScreen } from '../types';
 import { InvestmentCalculator } from './InvestmentCalculator';
-import { HeroGrowthChart } from './visuals/HeroGrowthChart';
+import { CompoundingPlayground } from './interactive/CompoundingPlayground';
+import { GoalJourney } from './interactive/GoalJourney';
 import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import {
@@ -39,86 +40,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div id="home-screen" className="w-full">
       
-      {/* 1. HERO SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-20">
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
-          
-          {/* Left Column Text & CTAs */}
-          <div className="flex flex-col gap-6 items-start">
-            
-            <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1.5 rounded-full text-xs font-bold">
-              <ShieldCheck className="w-4 h-4 text-[#006d42]" />
-              <span>{siteSettings.heroBadgeText || 'AMFI Registered Mutual Fund Distributor'} ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#191c1e] tracking-tight leading-[1.15] text-balance">
-              {siteSettings.heroHeading || 'Intelligent wealth creation, built on institutional trust.'}
-            </h1>
-
-            <p className="text-base sm:text-lg text-[#424750] leading-relaxed max-w-lg">
-              {siteSettings.heroSubheading || `Navigate the markets with confidence. ${siteSettings.companyName} offers curated mutual fund portfolios designed for long-term stability and consistent compounding, backed by certified research.`}
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-2 w-full sm:w-auto">
-              <button
-                id="hero-start-investing-btn"
-                onClick={() => onNavigate('open-account')}
-                className="bg-[#006d42] hover:bg-[#005231] active:bg-[#002111] text-white font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-150 active:scale-98 cursor-pointer"
-              >
-                {siteSettings.heroPrimaryCtaText || 'Start Investing Now'}
-              </button>
-
-              {/* External Direct Account Referral Link (if configured in Admin) */}
-              {siteSettings.enableMfReferralDirect && siteSettings.mfReferralLink && (
-                <a
-                  id="hero-mf-referral-btn"
-                  href={siteSettings.mfReferralLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-white hover:bg-[#f7f9fb] text-[#003461] font-bold text-sm sm:text-base px-5 py-3.5 rounded-lg border-2 border-[#003461] transition-colors flex items-center gap-2 cursor-pointer shadow-2xs"
-                >
-                  <span>{siteSettings.mfReferralLinkTitle}</span>
-                  <ExternalLink className="w-4 h-4 text-[#006d42]" />
-                </a>
-              )}
-
-              <button
-                id="hero-view-calculators-btn"
-                onClick={() => onNavigate('calculators')}
-                className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] font-semibold text-sm sm:text-base px-7 py-3.5 rounded-lg border border-[#c2c6d1] transition-colors cursor-pointer"
-              >
-                {siteSettings.heroSecondaryCtaText || 'Explore Calculators'}
-              </button>
-            </div>
-
-            {/* Social Proof Trust Bar */}
-            <div className="flex items-center gap-4 pt-4 border-t border-[#c2c6d1] w-full max-w-md mt-2">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-[#e0e3e5] border-2 border-white flex items-center justify-center text-[#424750]">
-                  <User className="w-4 h-4" />
-                </div>
-                <div className="w-8 h-8 rounded-full bg-[#d3e4fe] border-2 border-white flex items-center justify-center text-[#003461]">
-                  <User className="w-4 h-4" />
-                </div>
-                <div className="w-8 h-8 rounded-full bg-[#93f3bb] border-2 border-white flex items-center justify-center text-[#006d42]">
-                  <User className="w-4 h-4" />
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm text-[#424750]">
-                {siteSettings.heroTrustText || 'Personal guidance from Jaipur for investors across India.'}
-              </p>
-            </div>
-
-          </div>
-
-          {/* Right Column Hero Visual & Floating Card */}
-          <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-[#c2c6d1] bg-[#f7f9fb]">
-            
-            <HeroGrowthChart arn={siteSettings.sebiRegNumber} />
-
-          </div>
-
+      {/* 1. HERO: the headline is the calculator */}
+      <section className="relative bg-[#0F2740] overflow-hidden">
+        <svg aria-hidden className="absolute -right-40 -top-40 w-[720px] h-[720px] opacity-[0.12] pointer-events-none" viewBox="0 0 200 200" fill="none">
+          {[96, 84, 72, 60].map((r, i) => (
+            <circle key={r} cx="100" cy="100" r={r} stroke={i === 0 ? '#E3B65C' : '#7FA6C9'} strokeWidth={i === 0 ? 1.2 : 2.4} />
+          ))}
+        </svg>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-20">
+          <CompoundingPlayground
+            arn={siteSettings.sebiRegNumber || 'ARN-337289'}
+            onBook={() => onNavigate('booking')}
+            onPlan={() => onNavigate('insights')}
+          />
         </div>
       </section>
 
@@ -178,6 +112,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 2b. LIFE GOALS, SCROLL-DRIVEN */}
+      <GoalJourney onPlan={() => onNavigate('insights')} />
 
       {/* 3. COMPREHENSIVE INVESTMENT CALCULATOR SECTION */}
       <section className="bg-[#f7f9fb] py-14 md:py-20 border-b border-[#e0e3e5]">

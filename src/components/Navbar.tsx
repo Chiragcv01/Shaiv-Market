@@ -27,6 +27,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenProfile,
   notificationCount = 2
 }) => {
+  // expose header height as a CSS variable so sticky elements can sit just below it
+  const headerRef = React.useRef<HTMLElement>(null);
+  React.useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const set = () => document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const { currentUser, banner, siteSettings, navItems } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -41,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 shadow-xs">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 w-full z-50 shadow-xs">
       
       {/* 1. TOP ANNOUNCEMENT BANNER (Managed by Admin) */}
       {banner.enabled && (

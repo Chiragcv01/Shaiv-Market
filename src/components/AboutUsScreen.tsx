@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
+import { Tilt } from './interactive/Tilt';
 import {
   ShieldCheck,
   Award,
@@ -172,8 +173,8 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
               { src: siteSettings.arnCertificateUrl, title: 'AMFI ARN Card', sub: `${siteSettings.sebiRegNumber || 'ARN-337289'} · Valid till 13-Aug-2028` },
               { src: siteSettings.nismCertificateUrl, title: 'NISM Series V-A Certificate', sub: 'Mutual Fund Distributors Certification Examination' }
             ].filter((c) => c.src).map((c) => (
+              <Tilt key={c.title} className="rounded-2xl">
               <button
-                key={c.title}
                 type="button"
                 onClick={() => setCertView({ src: c.src as string, title: c.title })}
                 className="group text-left w-full rounded-2xl overflow-hidden border-2 border-[#003461]/20 hover:border-[#003461] bg-white p-2 shadow-sm transition-all cursor-pointer"
@@ -190,6 +191,7 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
                   <p className="text-[11px] text-[#727781]">{c.sub}</p>
                 </div>
               </button>
+              </Tilt>
             ))}
             <a href="https://www.amfiindia.com/locate-distributor" target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#006d42] hover:underline text-center">
               Verify ARN on amfiindia.com ↗

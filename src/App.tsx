@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatePresence, MotionConfig, motion, useScroll, useSpring } from 'motion/react';
 import { ActiveScreen } from './types';
 import { useApp } from './context/AppContext';
 import { Navbar } from './components/Navbar';
@@ -15,6 +16,12 @@ import { AdminPortalScreen } from './components/AdminPortalScreen';
 import { AuthScreen } from './components/AuthScreen';
 import { NotificationModal } from './components/NotificationModal';
 import { AccountProfileModal } from './components/AccountProfileModal';
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
+  return <motion.div aria-hidden className="fixed top-0 left-0 right-0 h-[3px] bg-[#E3B65C] origin-left z-[70]" style={{ scaleX }} />;
+}
 
 export default function App() {
   const { activeScreen, setActiveScreen } = useApp();
@@ -40,7 +47,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-[#f7f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#003461] selection:text-white">
+    <MotionConfig reducedMotion="user">
+    <ScrollProgress />
+    <div className="min-h-screen w-full overflow-x-clip bg-[#f7f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#003461] selection:text-white">
       
       {/* Top Fixed Navigation Bar */}
       <Navbar
@@ -56,45 +65,55 @@ export default function App() {
 
       {/* Main Screen Canvas */}
       <main className="flex-grow pt-20">
-        {activeScreen === 'home' && (
-          <HomeScreen onNavigate={handleNavigate} />
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeScreen}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {activeScreen === 'home' && (
+              <HomeScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'booking' && (
-          <BookingScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'booking' && (
+              <BookingScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'open-account' && (
-          <OpenAccountScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'open-account' && (
+              <OpenAccountScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'calculators' && (
-          <CalculatorsScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'calculators' && (
+              <CalculatorsScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'insights' && (
-          <InsightsScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'insights' && (
+              <InsightsScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'contact' && (
-          <ContactUsScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'contact' && (
+              <ContactUsScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'about' && (
-          <AboutUsScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'about' && (
+              <AboutUsScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'testimonials' && (
-          <TestimonialsScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'testimonials' && (
+              <TestimonialsScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'admin' && (
-          <AdminPortalScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'admin' && (
+              <AdminPortalScreen onNavigate={handleNavigate} />
+            )}
 
-        {activeScreen === 'auth' && (
-          <AuthScreen onNavigate={handleNavigate} />
-        )}
+            {activeScreen === 'auth' && (
+              <AuthScreen onNavigate={handleNavigate} />
+            )}
+      </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Global Modals */}
@@ -114,6 +133,7 @@ export default function App() {
       <Footer onNavigate={handleNavigate} />
 
     </div>
+    </MotionConfig>
   );
 }
 
