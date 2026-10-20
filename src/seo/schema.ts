@@ -1,5 +1,5 @@
 import { RouteMeta, SITE_URL, ROUTES } from './routes';
-import { HOME_FAQ, CALC_FAQ, Faq } from './faq';
+import { HOME_FAQ, CALC_FAQ, ABOUT_FAQ, Faq } from './faq';
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const PERSON_ID = `${SITE_URL}/#chirag-sharma`;
@@ -117,9 +117,9 @@ function breadcrumbs(route: RouteMeta) {
 
 export function faqFor(route: RouteMeta): Faq[] {
   if (route.screen === 'home') return HOME_FAQ;
-  if (route.screen === 'calculators' && route.tab) return CALC_FAQ[route.tab] || [];
-  if (route.screen === 'calculators') return Object.values(CALC_FAQ).map((l) => l[0]);
-  if (route.screen === 'about' || route.screen === 'booking' || route.screen === 'contact') return HOME_FAQ.slice(0, 4);
+  // must match the FAQ that is visible on the page
+  if (route.screen === 'calculators') return CALC_FAQ[route.tab || 'required-sip'] || [];
+  if (route.screen === 'about') return ABOUT_FAQ;
   return [];
 }
 

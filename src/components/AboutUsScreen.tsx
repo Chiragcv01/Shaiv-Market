@@ -3,6 +3,8 @@ import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
 import { Tilt } from './interactive/Tilt';
 import { ProcessTimeline } from './interactive/ProcessTimeline';
+import { FaqSection } from './interactive/FaqSection';
+import { ABOUT_FAQ } from '../seo/faq';
 import {
   ShieldCheck,
   Award,
@@ -204,6 +206,9 @@ export const AboutUsScreen: React.FC<AboutUsScreenProps> = ({ onNavigate }) => {
 
       {/* HOW WE WORK, scroll-driven */}
       <ProcessTimeline onBook={() => onNavigate('booking')} />
+
+      {/* Credentials and fees, answered plainly */}
+      <FaqSection compact id="about-faq" items={ABOUT_FAQ} title="Credentials, fees and how to verify" />
 
       {/* 4. OUR STORY & 4 PILLARS */}
       <section className="space-y-8">

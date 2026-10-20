@@ -76,3 +76,5 @@ export const CALC_FAQ: Record<string, Faq[]> = {
     { q: 'Where should I keep an emergency fund?', a: 'Somewhere safe and quick to access, such as a savings account, a sweep-in fixed deposit or a liquid mutual fund that can be redeemed within a working day.' }
   ]
 };
+
+export const ABOUT_FAQ: Faq[] = HOME_FAQ.slice(0, 4);
