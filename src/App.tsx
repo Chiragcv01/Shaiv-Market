@@ -16,6 +16,8 @@ import { AdminPortalScreen } from './components/AdminPortalScreen';
 import { AuthScreen } from './components/AuthScreen';
 import { NotificationModal } from './components/NotificationModal';
 import { AccountProfileModal } from './components/AccountProfileModal';
+import { CommandPalette } from './components/interactive/CommandPalette';
+import { EngagementLayer } from './components/interactive/EngagementLayer';
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -24,7 +26,19 @@ function ScrollProgress() {
 }
 
 export default function App() {
-  const { activeScreen, setActiveScreen } = useApp();
+  const { activeScreen, setActiveScreen, siteSettings } = useApp();
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  // Ctrl/Cmd+K or "/" opens search
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const typing = /input|textarea|select/i.test((e.target as HTMLElement)?.tagName) || (e.target as HTMLElement)?.isContentEditable;
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); setPaletteOpen((v) => !v); }
+      else if (e.key === '/' && !typing) { e.preventDefault(); setPaletteOpen(true); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [notificationCount, setNotificationCount] = useState<number>(0);
@@ -49,7 +63,7 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
     <ScrollProgress />
-    <div className="min-h-screen w-full overflow-x-clip bg-[#f7f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#003461] selection:text-white">
+    <div className="min-h-screen w-full overflow-x-clip bg-[#F6F8FB] text-[#13263B] flex flex-col font-sans selection:bg-[#0F2740] selection:text-white">
       
       {/* Top Fixed Navigation Bar */}
       <Navbar
@@ -60,11 +74,12 @@ export default function App() {
           setNotificationCount(0);
         }}
         onOpenProfile={() => setIsProfileOpen(true)}
+        onOpenSearch={() => setPaletteOpen(true)}
         notificationCount={notificationCount}
       />
 
       {/* Main Screen Canvas */}
-      <main className="flex-grow pt-20">
+      <main className="flex-grow" style={{ paddingTop: 'var(--header-full, 80px)' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeScreen}
@@ -128,6 +143,24 @@ export default function App() {
         onClose={() => setIsProfileOpen(false)}
         onNavigate={handleNavigate}
       />
+
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        onNavigate={handleNavigate}
+        whatsapp={(siteSettings.whatsappSupportNumber || '').replace(/[^0-9]/g, '')}
+        phone={(siteSettings.supportPhone || '').replace(/[^0-9+]/g, '')}
+        email={siteSettings.supportEmail || ''}
+      />
+      {activeScreen !== 'admin' && (
+        <EngagementLayer
+          whatsapp={(siteSettings.whatsappSupportNumber || '').replace(/[^0-9]/g, '')}
+          founder={siteSettings.founderName || 'Chirag Sharma'}
+          photo={siteSettings.founderPhotoUrl}
+          onNavigate={handleNavigate}
+          activeScreen={activeScreen}
+        />
+      )}
 
       {/* Footer */}
       <Footer onNavigate={handleNavigate} />

@@ -156,13 +156,13 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
   const donutData = useMemo(() => {
     if (activeTab === 'target-sip') {
       return [
-        { name: 'Your Total Capital Outflow', value: targetCalc.totalInvested, color: '#003461' },
-        { name: 'Compounded Market Gain', value: targetCalc.totalGains, color: '#006d42' }
+        { name: 'Your Total Capital Outflow', value: targetCalc.totalInvested, color: '#0F2740' },
+        { name: 'Compounded Market Gain', value: targetCalc.totalGains, color: '#8A6420' }
       ];
     }
     return [
-      { name: 'Your Total Invested', value: standardCalc.investedAmount, color: '#003461' },
-      { name: 'Estimated Market Gains', value: standardCalc.estimatedReturns, color: '#006d42' }
+      { name: 'Your Total Invested', value: standardCalc.investedAmount, color: '#0F2740' },
+      { name: 'Estimated Market Gains', value: standardCalc.estimatedReturns, color: '#8A6420' }
     ];
   }, [activeTab, targetCalc, standardCalc]);
 
@@ -185,23 +185,23 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
 
   return (
     <div id="investment-calculator" className="w-full">
-      <div className="bg-[#ffffff] border border-[#c2c6d1] rounded-2xl shadow-sm overflow-hidden flex flex-col lg:flex-row">
+      <div className="bg-[#ffffff] border border-[#D3DCE6] rounded-2xl shadow-sm overflow-hidden flex flex-col lg:flex-row">
         
         {/* Controls Area (Left / Top - 60% Width) */}
-        <div className="w-full lg:w-7/12 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[#c2c6d1]">
+        <div className="w-full lg:w-7/12 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[#D3DCE6]">
           
           {/* Main Navigation Tabs */}
-          <div className="flex overflow-x-auto gap-2 mb-6 pb-2 scrollbar-none border-b border-[#e0e3e5]">
+          <div className="flex overflow-x-auto gap-2 mb-6 pb-2 scrollbar-none border-b border-[#E4EAF0]">
             <button
               id="calc-tab-target-sip"
               onClick={() => setActiveTab('target-sip')}
               className={`whitespace-nowrap px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                 activeTab === 'target-sip'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] bg-[#f0f4f8] hover:bg-[#e0e8f2] hover:text-[#003461]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] bg-[#EEF3F8] hover:bg-[#e0e8f2] hover:text-[#0F2740]'
               }`}
             >
-              <Target className="w-3.5 h-3.5 text-[#96f6bd]" />
+              <Target className="w-3.5 h-3.5 text-[#F3D58E]" />
               <span>Know Your SIP (Target)</span>
             </button>
 
@@ -210,8 +210,8 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               onClick={() => setActiveTab('sip')}
               className={`whitespace-nowrap px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 activeTab === 'sip'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:bg-[#eceef0] hover:text-[#003461]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:bg-[#EDF1F5] hover:text-[#0F2740]'
               }`}
             >
               Monthly SIP
@@ -222,8 +222,8 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               onClick={() => setActiveTab('step-up')}
               className={`whitespace-nowrap px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 activeTab === 'step-up'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:bg-[#eceef0] hover:text-[#003461]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:bg-[#EDF1F5] hover:text-[#0F2740]'
               }`}
             >
               Step-up SIP (+10%)
@@ -234,8 +234,8 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               onClick={() => setActiveTab('lumpsum')}
               className={`whitespace-nowrap px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 activeTab === 'lumpsum'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:bg-[#eceef0] hover:text-[#003461]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:bg-[#EDF1F5] hover:text-[#0F2740]'
               }`}
             >
               Lumpsum One-Time
@@ -246,8 +246,8 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               onClick={() => setActiveTab('sip-lumpsum')}
               className={`whitespace-nowrap px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 activeTab === 'sip-lumpsum'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:bg-[#eceef0] hover:text-[#003461]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:bg-[#EDF1F5] hover:text-[#0F2740]'
               }`}
             >
               SIP + Lumpsum
@@ -258,9 +258,9 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
           {activeTab === 'target-sip' && (
             <div className="space-y-4">
               
-              <div className="p-3.5 bg-[#d3e4fe]/60 border border-[#b8d5fc] rounded-xl flex items-start gap-2.5">
-                <Target className="w-5 h-5 text-[#003461] shrink-0 mt-0.5" />
-                <div className="text-xs text-[#003461] leading-relaxed">
+              <div className="p-3.5 bg-[#E3ECF5]/60 border border-[#C9DAEA] rounded-xl flex items-start gap-2.5">
+                <Target className="w-5 h-5 text-[#0F2740] shrink-0 mt-0.5" />
+                <div className="text-xs text-[#0F2740] leading-relaxed">
                   <span className="font-bold">Reverse Goal Planner:</span> Set your dream wealth target (e.g. ₹1 Crore, ₹50 Lakhs) and time frame. We compute the exact monthly SIP amount needed to hit your milestone!
                 </div>
               </div>
@@ -275,7 +275,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 max={100000000}
                 step={500000}
                 isCurrency={true}
-                icon={<Target className="w-4 h-4 text-[#003461]" />}
+                icon={<Target className="w-4 h-4 text-[#0F2740]" />}
                 minLabel="₹5 Lakh"
                 midLabel="₹50 Lakh"
                 maxLabel="₹10 Crore"
@@ -295,7 +295,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   max={35}
                   step={1}
                   suffix=" Yrs"
-                  icon={<Clock className="w-4 h-4 text-[#003461]" />}
+                  icon={<Clock className="w-4 h-4 text-[#0F2740]" />}
                   minLabel="1 Yr"
                   maxLabel="35 Yrs"
                   themeColor="blue"
@@ -316,7 +316,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   max={22}
                   step={0.5}
                   suffix="%"
-                  icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+                  icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
                   minLabel="8% (Debt)"
                   maxLabel="22% (High Alpha)"
                   themeColor="green"
@@ -338,7 +338,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 max={25}
                 step={5}
                 suffix="%"
-                icon={<Sparkles className="w-4 h-4 text-[#003461]" />}
+                icon={<Sparkles className="w-4 h-4 text-[#0F2740]" />}
                 minLabel="0% (Flat SIP)"
                 maxLabel="+25% / Yr"
                 themeColor="blue"
@@ -367,7 +367,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   max={1000000}
                   step={500}
                   isCurrency={true}
-                  icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+                  icon={<Wallet className="w-4 h-4 text-[#0F2740]" />}
                   minLabel="₹500/mo"
                   midLabel="₹25,000/mo"
                   maxLabel="₹10 Lakh/mo"
@@ -393,7 +393,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   max={50000000}
                   step={5000}
                   isCurrency={true}
-                  icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+                  icon={<Wallet className="w-4 h-4 text-[#0F2740]" />}
                   minLabel="₹5,000"
                   midLabel="₹10 Lakh"
                   maxLabel="₹5 Crore"
@@ -418,7 +418,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   max={30}
                   step={1}
                   suffix="%"
-                  icon={<Sparkles className="w-4 h-4 text-[#003461]" />}
+                  icon={<Sparkles className="w-4 h-4 text-[#0F2740]" />}
                   minLabel="1%"
                   maxLabel="30%"
                   themeColor="blue"
@@ -440,7 +440,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 max={24}
                 step={0.5}
                 suffix="%"
-                icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+                icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
                 minLabel="6% (FD/Debt)"
                 midLabel="14% (Equity MF)"
                 maxLabel="24% (Alpha)"
@@ -462,7 +462,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 max={35}
                 step={1}
                 suffix=" Yrs"
-                icon={<Clock className="w-4 h-4 text-[#003461]" />}
+                icon={<Clock className="w-4 h-4 text-[#0F2740]" />}
                 minLabel="1 Year"
                 midLabel="15 Years"
                 maxLabel="35 Years"
@@ -482,22 +482,22 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
         </div>
 
         {/* Visual Charts & Results Area (Right / Bottom - 50% Width) */}
-        <div className="w-full lg:w-5/12 bg-[#f7f9fb] p-6 sm:p-8 flex flex-col justify-between">
+        <div className="w-full lg:w-5/12 bg-[#F6F8FB] p-6 sm:p-8 flex flex-col justify-between">
           
           {/* Chart Header & Mode Switcher */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#003461] flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-[#006d42]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0F2740] flex items-center gap-1.5">
+                <TrendingUp className="w-3.5 h-3.5 text-[#8A6420]" />
                 Interactive Visual Simulation
               </span>
 
-              <div className="flex bg-[#e0e3e5] p-0.5 rounded-lg border border-[#c2c6d1]">
+              <div className="flex bg-[#E4EAF0] p-0.5 rounded-lg border border-[#D3DCE6]">
                 <button
                   type="button"
                   onClick={() => setChartMode('growth')}
                   className={`px-2 py-1 rounded text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    chartMode === 'growth' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750]'
+                    chartMode === 'growth' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B]'
                   }`}
                   title="Growth Curve"
                 >
@@ -508,7 +508,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   type="button"
                   onClick={() => setChartMode('bars')}
                   className={`px-2 py-1 rounded text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    chartMode === 'bars' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750]'
+                    chartMode === 'bars' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B]'
                   }`}
                   title="Yearly Bars"
                 >
@@ -519,7 +519,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   type="button"
                   onClick={() => setChartMode('donut')}
                   className={`px-2 py-1 rounded text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                    chartMode === 'donut' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750]'
+                    chartMode === 'donut' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B]'
                   }`}
                   title="Donut Allocation"
                 >
@@ -530,23 +530,23 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
             </div>
 
             {/* Visual Chart Canvas */}
-            <div className="w-full h-52 bg-white border border-[#c2c6d1] rounded-xl p-2.5 shadow-2xs flex items-center justify-center">
+            <div className="w-full h-52 bg-white border border-[#D3DCE6] rounded-xl p-2.5 shadow-2xs flex items-center justify-center">
               {chartMode === 'growth' && (
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="wealthGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#006d42" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#8A6420" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#8A6420" stopOpacity={0.0} />
                       </linearGradient>
                       <linearGradient id="investedGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#003461" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#003461" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#0F2740" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#0F2740" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#727781' }} />
+                    <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#6B7C8F' }} />
                     <YAxis
-                      tick={{ fontSize: 9, fill: '#727781' }}
+                      tick={{ fontSize: 9, fill: '#6B7C8F' }}
                       tickFormatter={(val) => val >= 10000000 ? `₹${(val / 10000000).toFixed(1)}Cr` : `₹${(val / 100000).toFixed(0)}L`}
                     />
                     <Tooltip formatter={formatTooltipValue} />
@@ -554,7 +554,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                       type="monotone"
                       dataKey="wealth"
                       name="Total Wealth Created"
-                      stroke="#006d42"
+                      stroke="#8A6420"
                       strokeWidth={2.5}
                       fillOpacity={1}
                       fill="url(#wealthGrad)"
@@ -563,7 +563,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                       type="monotone"
                       dataKey="invested"
                       name="Your Total Invested"
-                      stroke="#003461"
+                      stroke="#0F2740"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#investedGrad)"
@@ -575,15 +575,15 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               {chartMode === 'bars' && (
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                    <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#727781' }} />
+                    <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#6B7C8F' }} />
                     <YAxis
-                      tick={{ fontSize: 9, fill: '#727781' }}
+                      tick={{ fontSize: 9, fill: '#6B7C8F' }}
                       tickFormatter={(val) => val >= 10000000 ? `₹${(val / 10000000).toFixed(1)}Cr` : `₹${(val / 100000).toFixed(0)}L`}
                     />
                     <Tooltip formatter={formatTooltipValue} />
                     <Legend iconSize={8} wrapperStyle={{ fontSize: '10px', paddingTop: '2px' }} />
-                    <Bar dataKey="invested" name="Invested Capital" fill="#003461" stackId="a" />
-                    <Bar dataKey="returns" name="Compounded Gain" fill="#006d42" stackId="a" />
+                    <Bar dataKey="invested" name="Invested Capital" fill="#0F2740" stackId="a" />
+                    <Bar dataKey="returns" name="Compounded Gain" fill="#8A6420" stackId="a" />
                   </BarChart>
                 </ResponsiveContainer>
               )}
@@ -618,12 +618,12 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
             {/* HERO METRIC: TARGET SIP VS REGULAR MATURITY */}
             {activeTab === 'target-sip' ? (
               <>
-                <div className="p-4 bg-[#003461] text-white rounded-xl shadow-xs space-y-3">
+                <div className="p-4 bg-[#0F2740] text-white rounded-xl shadow-xs space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-[#96f6bd] uppercase tracking-wider block">
+                    <span className="text-[11px] font-semibold text-[#F3D58E] uppercase tracking-wider block">
                       {targetStepUp > 0 ? `Required Step-Up SIP (+${targetStepUp}%/Yr)` : 'Required Monthly SIP'}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#93f3bb] text-[#005231]">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#F3D58E] text-[#6F501A]">
                       Target {formatIndianCurrency(targetCorpus)}
                     </span>
                   </div>
@@ -631,13 +631,13 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   {targetStepUp > 0 ? (
                     <div className="grid grid-cols-2 gap-2 bg-white/10 p-2.5 rounded-lg border border-white/15">
                       <div>
-                        <span className="text-[10px] text-[#d3e4fe] block">Starting Monthly SIP (Yr 1)</span>
+                        <span className="text-[10px] text-[#E3ECF5] block">Starting Monthly SIP (Yr 1)</span>
                         <span className="text-xl sm:text-2xl font-black text-white">
                           ₹{formatRawIndianNumber(targetCalc.requiredMonthlySip)}
                         </span>
                       </div>
                       <div className="border-l border-white/15 pl-2.5">
-                        <span className="text-[10px] text-[#d3e4fe] block">Final Monthly SIP (Yr {targetYears})</span>
+                        <span className="text-[10px] text-[#E3ECF5] block">Final Monthly SIP (Yr {targetYears})</span>
                         <span className="text-xl sm:text-2xl font-black text-amber-300">
                           ₹{formatRawIndianNumber(targetCalc.finalMonthlySip)}
                         </span>
@@ -653,22 +653,22 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   )}
 
                   {targetStepUp > 0 && targetCalc.monthlySavingsAtStart > 0 && (
-                    <div className="text-[10px] text-[#96f6bd] font-semibold bg-white/10 px-2.5 py-1 rounded-md">
+                    <div className="text-[10px] text-[#F3D58E] font-semibold bg-white/10 px-2.5 py-1 rounded-md">
                       ✨ Starts ₹{targetCalc.monthlySavingsAtStart.toLocaleString('en-IN')}/mo lower than Flat SIP!
                     </div>
                   )}
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2.5 bg-white border border-[#c2c6d1] rounded-xl">
-                    <span className="text-[10px] text-[#727781] font-bold block">Your Total Capital</span>
-                    <span className="text-xs sm:text-sm font-bold text-[#003461]">
+                  <div className="p-2.5 bg-white border border-[#D3DCE6] rounded-xl">
+                    <span className="text-[10px] text-[#6B7C8F] font-bold block">Your Total Capital</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#0F2740]">
                       {formatIndianCurrency(targetCalc.totalInvested)}
                     </span>
                   </div>
-                  <div className="p-2.5 bg-white border border-[#c2c6d1] rounded-xl">
-                    <span className="text-[10px] text-[#727781] font-bold block">Compounded Gain</span>
-                    <span className="text-xs sm:text-sm font-bold text-[#006d42]">
+                  <div className="p-2.5 bg-white border border-[#D3DCE6] rounded-xl">
+                    <span className="text-[10px] text-[#6B7C8F] font-bold block">Compounded Gain</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#8A6420]">
                       {formatIndianCurrency(targetCalc.totalGains)}
                     </span>
                   </div>
@@ -676,12 +676,12 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               </>
             ) : (
               <>
-                <div className="p-4 bg-[#003461] text-white rounded-xl shadow-xs flex items-center justify-between">
+                <div className="p-4 bg-[#0F2740] text-white rounded-xl shadow-xs flex items-center justify-between">
                   <div>
                     <span className="text-[11px] font-medium text-white/80 uppercase tracking-wider block">
                       Projected Maturity Corpus
                     </span>
-                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#96f6bd]">
+                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#F3D58E]">
                       {formatIndianCurrency(standardCalc.totalValue)}
                     </span>
                   </div>
@@ -693,15 +693,15 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2.5 bg-white border border-[#c2c6d1] rounded-xl">
-                    <span className="text-[10px] text-[#727781] font-bold block">Total Capital Invested</span>
-                    <span className="text-xs sm:text-sm font-bold text-[#003461]">
+                  <div className="p-2.5 bg-white border border-[#D3DCE6] rounded-xl">
+                    <span className="text-[10px] text-[#6B7C8F] font-bold block">Total Capital Invested</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#0F2740]">
                       {formatIndianCurrency(standardCalc.investedAmount)}
                     </span>
                   </div>
-                  <div className="p-2.5 bg-white border border-[#c2c6d1] rounded-xl">
-                    <span className="text-[10px] text-[#727781] font-bold block">Estimated Wealth Gain</span>
-                    <span className="text-xs sm:text-sm font-bold text-[#006d42]">
+                  <div className="p-2.5 bg-white border border-[#D3DCE6] rounded-xl">
+                    <span className="text-[10px] text-[#6B7C8F] font-bold block">Estimated Wealth Gain</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#8A6420]">
                       {formatIndianCurrency(standardCalc.estimatedReturns)}
                     </span>
                   </div>
@@ -715,7 +715,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
           <button
             id="calc-invest-now-btn"
             onClick={handleAction}
-            className="w-full bg-[#006d42] hover:bg-[#005231] active:bg-[#002647] text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-xl shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full bg-[#8A6420] hover:bg-[#6F501A] active:bg-[#0A1D30] text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-xl shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Start Disciplined SIP with Shaiv Market</span>
             <ArrowRight className="w-4 h-4" />

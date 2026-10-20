@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { takePendingTab } from '../utils/deepLink';
 import { ActiveScreen, InsightArticle } from '../types';
 import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
@@ -85,7 +87,7 @@ const WEALTH_TOOLS: ToolMeta[] = [
 
 export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) => {
   const { articles, currentUser } = useApp();
-  const [activeTool, setActiveTool] = useState<ToolTabId>('goal');
+  const [activeTool, setActiveTool] = useState<ToolTabId>(() => (takePendingTab() as ToolTabId) || 'goal');
   const [selectedArticle, setSelectedArticle] = useState<InsightArticle | null>(null);
 
   const featuredArticle = articles.find((a) => a.featured) || articles[0];
@@ -97,14 +99,10 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2">
-            <Target className="w-3.5 h-3.5 text-[#006d42]" />
-            Goal-Based Wealth Architecture
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#003461] mb-2">
-            Goal Planner & Wealth Strategy Desk
+          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#0F2740] leading-[1.05] mb-3">
+            Plan a goal. See the exact monthly amount it needs.
           </h1>
-          <p className="text-sm sm:text-base text-[#424750] max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-[#43566B] max-w-3xl leading-relaxed">
             Scientifically map your life milestones: Child education, dream home down payment, early retirement corpus, and systematic monthly pension cash flows.
           </p>
         </div>
@@ -112,7 +110,7 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
         {currentUser?.role === 'admin' && (
           <button
             onClick={() => onNavigate('admin')}
-            className="bg-[#003461] hover:bg-[#004b87] text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 shrink-0 self-start md:self-auto cursor-pointer shadow-xs"
+            className="bg-[#0F2740] hover:bg-[#1D4268] text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 shrink-0 self-start md:self-auto cursor-pointer shadow-xs"
           >
             <SlidersHorizontal className="w-4 h-4" />
             <span>Manage Content</span>
@@ -122,7 +120,7 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
 
       {/* 1. Interactive Tool Navigator Tabs */}
       <div className="space-y-6">
-        <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-2 sm:p-3">
+        <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-2 sm:p-3">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
             {WEALTH_TOOLS.map((tool) => {
               const Icon = tool.icon;
@@ -132,20 +130,26 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
                   key={tool.id}
                   type="button"
                   onClick={() => setActiveTool(tool.id)}
-                  className={`p-3 rounded-xl text-left transition-all cursor-pointer flex flex-col justify-between gap-2 border ${
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`relative p-3 rounded-xl text-left transition-colors cursor-pointer flex flex-col justify-between gap-2 border focus-visible:outline-2 focus-visible:outline-[#E3B65C] ${
                     isActive
-                      ? 'bg-[#003461] text-white border-[#003461] shadow-md scale-[1.02]'
-                      : 'bg-white text-[#191c1e] border-[#e0e3e5] hover:bg-[#eceef0]'
+                      ? 'text-white border-transparent'
+                      : 'bg-white text-[#13263B] border-[#E4EAF0] hover:bg-[#EDF1F5]'
                   }`}
                 >
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                    isActive ? 'bg-white/20 text-[#96f6bd]' : 'bg-[#d3e4fe] text-[#003461]'
+                  {isActive && (
+                    <motion.span layoutId="tool-tab" className="absolute inset-0 rounded-xl bg-[#0F2740] shadow-lg"
+                      transition={{ type: 'spring', stiffness: 450, damping: 35 }} />
+                  )}
+                  <div className={`relative w-8 h-8 rounded-lg flex items-center justify-center ${
+                    isActive ? 'bg-white/20 text-[#F3D58E]' : 'bg-[#E3ECF5] text-[#0F2740]'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="relative">
                     <div className="font-bold text-xs sm:text-sm line-clamp-1">{tool.label}</div>
-                    <div className={`text-[10px] line-clamp-1 ${isActive ? 'text-[#d3e4fe]' : 'text-[#727781]'}`}>
+                    <div className={`text-[10px] line-clamp-1 ${isActive ? 'text-[#E3ECF5]' : 'text-[#6B7C8F]'}`}>
                       {tool.tagline}
                     </div>
                   </div>
@@ -156,7 +160,15 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
         </div>
 
         {/* Dynamic Tool Renderer */}
-        <div className="mt-6">
+        <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTool}
+          className="mt-6"
+          initial={{ opacity: 0, y: 14, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
+          transition={{ duration: 0.25 }}
+        >
           {activeTool === 'required-sip' && (
             <RequiredSipCalculator
               onNavigate={onNavigate}
@@ -194,18 +206,19 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
               onNavigate={onNavigate}
             />
           )}
-        </div>
+        </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* 2. Educational Research Articles & Wealth Guides */}
       {articles.length > 0 && (
-        <div className="space-y-6 pt-6 border-t border-[#e0e3e5]">
+        <div className="space-y-6 pt-6 border-t border-[#E4EAF0]">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#003461]">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0F2740]">
                 Wealth Strategies & Compounding Guides
               </h2>
-              <p className="text-xs sm:text-sm text-[#727781]">
+              <p className="text-xs sm:text-sm text-[#6B7C8F]">
                 Educational analysis on rupee-cost averaging, asset allocation, and goal discipline.
               </p>
             </div>
@@ -216,10 +229,10 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
               <div
                 key={art.id}
                 onClick={() => setSelectedArticle(art)}
-                className="bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                className="bg-white border border-[#D3DCE6] hover:border-[#0F2740] rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
               >
                 {(
-                  <div className="w-full h-36 overflow-hidden bg-[#f7f9fb] border-b border-[#e0e3e5]">
+                  <div className="w-full h-36 overflow-hidden bg-[#F6F8FB] border-b border-[#E4EAF0]">
                     {art.imageUrl ? (<img
                       src={art.imageUrl}
                       alt={art.imageAlt || art.title}
@@ -230,24 +243,24 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
                 )}
                 <div className="p-5 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#d3e4fe] text-[#003461] rounded">
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-[#E3ECF5] text-[#0F2740] rounded">
                       {art.category}
                     </span>
-                    <span className="text-[10px] text-[#727781] flex items-center gap-1">
+                    <span className="text-[10px] text-[#6B7C8F] flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {art.readTime}
                     </span>
                   </div>
-                  <h3 className="font-bold text-sm text-[#191c1e] line-clamp-2 hover:text-[#003461]">
+                  <h3 className="font-bold text-sm text-[#13263B] line-clamp-2 hover:text-[#0F2740]">
                     {art.title}
                   </h3>
-                  <p className="text-xs text-[#424750] line-clamp-3 leading-relaxed">
+                  <p className="text-xs text-[#43566B] line-clamp-3 leading-relaxed">
                     {art.summary}
                   </p>
                 </div>
-                <div className="px-5 py-3 bg-[#f7f9fb] border-t border-[#eceef0] flex items-center justify-between text-xs text-[#727781]">
+                <div className="px-5 py-3 bg-[#F6F8FB] border-t border-[#EDF1F5] flex items-center justify-between text-xs text-[#6B7C8F]">
                   <span>{art.author}</span>
-                  <span className="text-[#006d42] font-semibold flex items-center gap-1">
+                  <span className="text-[#8A6420] font-semibold flex items-center gap-1">
                     Read <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -260,16 +273,16 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
       {/* Article Detail Modal */}
       {selectedArticle && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-[#c2c6d1] relative space-y-6">
+          <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-[#D3DCE6] relative space-y-6">
             <button
               onClick={() => setSelectedArticle(null)}
-              className="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#EDF1F5] hover:bg-[#E4EAF0] text-[#13263B] flex items-center justify-center cursor-pointer transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
             {(
-              <div className="w-full h-56 rounded-2xl overflow-hidden bg-[#f7f9fb] border border-[#e0e3e5]">
+              <div className="w-full h-56 rounded-2xl overflow-hidden bg-[#F6F8FB] border border-[#E4EAF0]">
                 {selectedArticle.imageUrl ? (<img
                   src={selectedArticle.imageUrl}
                   alt={selectedArticle.imageAlt || selectedArticle.title}
@@ -281,26 +294,26 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
 
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="bg-[#d3e4fe] text-[#003461] text-xs font-bold px-3 py-0.5 rounded-full">
+                <span className="bg-[#E3ECF5] text-[#0F2740] text-xs font-bold px-3 py-0.5 rounded-full">
                   {selectedArticle.category}
                 </span>
-                <span className="text-xs text-[#727781]">• {selectedArticle.date}</span>
-                <span className="text-xs text-[#727781]">• {selectedArticle.readTime}</span>
+                <span className="text-xs text-[#6B7C8F]">• {selectedArticle.date}</span>
+                <span className="text-xs text-[#6B7C8F]">• {selectedArticle.readTime}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461]">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740]">
                 {selectedArticle.title}
               </h2>
-              <p className="text-xs text-[#727781] mt-1">Author: {selectedArticle.author}</p>
+              <p className="text-xs text-[#6B7C8F] mt-1">Author: {selectedArticle.author}</p>
             </div>
 
-            <div className="text-sm text-[#424750] leading-relaxed whitespace-pre-line space-y-4 border-t border-[#e0e3e5] pt-4">
+            <div className="text-sm text-[#43566B] leading-relaxed whitespace-pre-line space-y-4 border-t border-[#E4EAF0] pt-4">
               {selectedArticle.content || selectedArticle.summary}
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 onClick={() => setSelectedArticle(null)}
-                className="px-5 py-2.5 bg-[#003461] text-white text-xs font-bold rounded-xl"
+                className="px-5 py-2.5 bg-[#0F2740] text-white text-xs font-bold rounded-xl"
               >
                 Close Article
               </button>

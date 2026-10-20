@@ -4,7 +4,7 @@ export const INSIGHTS_ARTICLES = [
     title: 'How Rupee Cost Averaging Shields Capital During Market Corrections',
     category: 'Investment Strategy',
     readTime: '4 min read',
-    date: 'Oct 18, 2024',
+    date: 'Oct 14, 2026',
     summary: 'Discover why systematic investment plans mathematically outshine lump-sum market timing over 10+ year compounding horizons.',
     author: 'Shaiv Market'
   },
@@ -13,7 +13,7 @@ export const INSIGHTS_ARTICLES = [
     title: 'ELSS Mutual Funds vs. PPF: Tax-Efficiency Comparison Under New Regimes',
     category: 'Tax Planning',
     readTime: '6 min read',
-    date: 'Oct 15, 2024',
+    date: 'Oct 9, 2026',
     summary: 'A forensic breakdown of lock-in periods, inflation-adjusted post-tax returns, and capital allocation frameworks.',
     author: 'Shaiv Market'
   },
@@ -22,7 +22,7 @@ export const INSIGHTS_ARTICLES = [
     title: 'Navigating Fixed Income in a Pivoting Interest Rate Environment',
     category: 'Macro Outlook',
     readTime: '5 min read',
-    date: 'Oct 10, 2024',
+    date: 'Oct 3, 2026',
     summary: 'Analyzing duration strategies and yield curve spreads for conservative investors seeking superior risk-adjusted yields.',
     author: 'Shaiv Market'
   }

@@ -59,51 +59,51 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 2. FOUNDER & AMFI ACCREDITATION SHOWCASE BANNER */}
-      <section className="bg-white border-y border-[#e0e3e5] py-12 md:py-16">
+      <section className="bg-white border-y border-[#E4EAF0] py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xs">
+          <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xs">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               
               <div className="md:col-span-4 flex justify-center">
-                <div className="relative w-48 sm:w-56 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#003461]/20 shadow-md bg-white">
+                <div className="relative w-48 sm:w-56 aspect-4/5 rounded-2xl overflow-hidden border-2 border-[#0F2740]/20 shadow-md bg-white">
                   {siteSettings.founderPhotoUrl ? (<img
                     src={siteSettings.founderPhotoUrl}
                     alt={siteSettings.founderPhotoAlt || `${siteSettings.founderName} - Founder`}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
-                  />) : (<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#003461] to-[#004b87] text-white text-6xl font-extrabold tracking-tight">{(siteSettings.founderName || 'Chirag Sharma').split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</div>)}
-                  <div className="absolute bottom-0 inset-x-0 bg-[#003461]/90 text-white p-2.5 text-center">
+                  />) : (<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0F2740] to-[#1D4268] text-white text-6xl font-extrabold tracking-tight">{(siteSettings.founderName || 'Chirag Sharma').split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</div>)}
+                  <div className="absolute bottom-0 inset-x-0 bg-[#0F2740]/90 text-white p-2.5 text-center">
                     <p className="text-xs font-bold">{siteSettings.founderName || 'Chirag Sharma'}</p>
-                    <p className="text-[10px] text-[#96f6bd]">{siteSettings.sebiRegNumber || 'ARN-337289'}</p>
+                    <p className="text-[10px] text-[#F3D58E]">{siteSettings.sebiRegNumber || 'ARN-337289'}</p>
                   </div>
                 </div>
               </div>
 
               <div className="md:col-span-8 space-y-4">
-                <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-md text-xs font-bold">
-                  <Award className="w-4 h-4 text-[#006d42]" />
+                <div className="inline-flex items-center gap-2 bg-[#E3ECF5] text-[#0F2740] px-3 py-1 rounded-md text-xs font-bold">
+                  <Award className="w-4 h-4 text-[#8A6420]" />
                   <span>Founder's Desk & AMFI Accreditation</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] leading-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740] leading-tight">
                   {siteSettings.founderSectionHeading || 'Personal, Goal-Based Mutual Fund Guidance'}
                 </h2>
 
-                <p className="text-sm text-[#424750] leading-relaxed">
+                <p className="text-sm text-[#43566B] leading-relaxed">
                   {siteSettings.founderSectionSubheading || siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.`}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <button
                     onClick={() => onNavigate('about')}
-                    className="bg-[#003461] hover:bg-[#004b87] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+                    className="bg-[#0F2740] hover:bg-[#1D4268] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-xs"
                   >
                     <span>Read Founder Story & View Certificate</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => onNavigate('contact')}
-                    className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-colors cursor-pointer"
+                    className="bg-white border border-[#D3DCE6] hover:bg-[#EDF1F5] text-[#0F2740] text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-colors cursor-pointer"
                   >
                     Contact Founder Desk
                   </button>
@@ -125,14 +125,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <RiskQuiz onBook={() => onNavigate('booking')} />
 
       {/* 3. COMPREHENSIVE INVESTMENT CALCULATOR SECTION */}
-      <section className="bg-[#f7f9fb] py-14 md:py-20 border-b border-[#e0e3e5]">
+      <section className="bg-[#F6F8FB] py-14 md:py-20 border-b border-[#E4EAF0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           
           <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#191c1e] tracking-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#13263B] tracking-tight mb-3">
               {siteSettings.calcHeading || 'Calculate Your Investment Potential'}
             </h2>
-            <p className="text-sm sm:text-base text-[#424750]">
+            <p className="text-sm sm:text-base text-[#43566B]">
               {siteSettings.calcSubheading || 'Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy.'}
             </p>
           </div>
@@ -148,17 +148,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {testimonials.length > 0 && (<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
           <div>
-            <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <div className="text-xs font-bold text-[#8A6420] uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
               <span>{siteSettings.testimonialBadge || 'Real Investor Experiences'}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461]">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740]">
               {siteSettings.testimonialHeading || `What Our Clients Say About ${siteSettings.companyName}`}
             </h2>
           </div>
           <button
             onClick={() => onNavigate('testimonials')}
-            className="text-xs sm:text-sm font-bold text-[#003461] hover:text-[#004b87] flex items-center gap-1 cursor-pointer"
+            className="text-xs sm:text-sm font-bold text-[#0F2740] hover:text-[#1D4268] flex items-center gap-1 cursor-pointer"
           >
             <span>View All Stories ({testimonials.length})</span>
             <ArrowRight className="w-4 h-4" />
@@ -169,7 +169,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {topTestimonials.map((item) => (
             <div
               key={item.id}
-              className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+              className="bg-white border border-[#D3DCE6] rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -179,39 +179,39 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     ))}
                   </div>
                   {item.investmentType && (
-                    <span className="bg-[#f0f4f8] text-[#003461] text-[10px] font-bold px-2 py-0.5 rounded">
+                    <span className="bg-[#EEF3F8] text-[#0F2740] text-[10px] font-bold px-2 py-0.5 rounded">
                       {item.investmentType}
                     </span>
                   )}
                 </div>
 
                 <div className="relative mb-4">
-                  <Quote className="w-6 h-6 text-[#003461]/15 absolute -top-2 -left-1 pointer-events-none" />
-                  <p className="text-xs sm:text-sm text-[#424750] leading-relaxed italic pl-3">
+                  <Quote className="w-6 h-6 text-[#0F2740]/15 absolute -top-2 -left-1 pointer-events-none" />
+                  <p className="text-xs sm:text-sm text-[#43566B] leading-relaxed italic pl-3">
                     "{item.text || item.reviewText || ''}"
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-[#eceef0] flex items-center gap-3">
+              <div className="pt-4 border-t border-[#EDF1F5] flex items-center gap-3">
                 {item.avatarUrl || item.clientPhotoUrl ? (
                   <img
                     src={item.avatarUrl || item.clientPhotoUrl}
                     alt={item.avatarAlt || item.clientPhotoAlt || item.clientName}
                     referrerPolicy="no-referrer"
-                    className="w-10 h-10 rounded-full object-cover border border-[#c2c6d1]"
+                    className="w-10 h-10 rounded-full object-cover border border-[#D3DCE6]"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-[#d3e4fe] text-[#003461] flex items-center justify-center font-bold text-xs">
+                  <div className="w-10 h-10 rounded-full bg-[#E3ECF5] text-[#0F2740] flex items-center justify-center font-bold text-xs">
                     {item.clientName.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <p className="text-xs font-bold text-[#191c1e] flex items-center gap-1">
+                  <p className="text-xs font-bold text-[#13263B] flex items-center gap-1">
                     <span>{item.clientName}</span>
-                    {(item.verified ?? item.isVerified ?? true) && <CheckCircle2 className="w-3 h-3 text-[#006d42]" />}
+                    {(item.verified ?? item.isVerified ?? true) && <CheckCircle2 className="w-3 h-3 text-[#8A6420]" />}
                   </p>
-                  <p className="text-[11px] text-[#727781]">
+                  <p className="text-[11px] text-[#6B7C8F]">
                     {item.locationOrRole || [item.clientRole, item.clientLocation].filter(Boolean).join(' • ') || 'Verified Investor'}
                   </p>
                 </div>
@@ -222,21 +222,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>)}
 
       {/* 5. LATEST RESEARCH & INSIGHTS BLOG PREVIEW */}
-      <section className="bg-[#f7f9fb] border-t border-[#e0e3e5] py-16 md:py-20">
+      <section className="bg-[#F6F8FB] border-t border-[#E4EAF0] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
-              <div className="text-xs font-bold text-[#006d42] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+              <div className="text-xs font-bold text-[#8A6420] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>{siteSettings.insightsBadge || 'Research Desk & Market Commentary'}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#003461]">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#0F2740]">
                 {siteSettings.insightsHeading || 'Recent Wealth Strategies & Dispatches'}
               </h2>
             </div>
             <button
               onClick={() => onNavigate('insights')}
-              className="text-xs font-bold text-[#003461] hover:text-[#004b87] flex items-center gap-1 cursor-pointer"
+              className="text-xs font-bold text-[#0F2740] hover:text-[#1D4268] flex items-center gap-1 cursor-pointer"
             >
               <span>View All Insights ({articles.length})</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -248,11 +248,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div
                 key={art.id}
                 onClick={() => onNavigate('insights')}
-                className="bg-white border border-[#c2c6d1] hover:border-[#003461] rounded-2xl overflow-hidden transition-all hover:shadow-md cursor-pointer flex flex-col justify-between"
+                className="bg-white border border-[#D3DCE6] hover:border-[#0F2740] rounded-2xl overflow-hidden transition-all hover:shadow-md cursor-pointer flex flex-col justify-between"
               >
                 <div>
                   {(
-                    <div className="w-full h-40 overflow-hidden bg-[#f7f9fb] border-b border-[#e0e3e5]">
+                    <div className="w-full h-40 overflow-hidden bg-[#F6F8FB] border-b border-[#E4EAF0]">
                       {art.imageUrl ? (<img
                         src={art.imageUrl}
                         alt={art.imageAlt || art.title}
@@ -263,25 +263,25 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   )}
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="bg-[#d3e4fe] text-[#003461] text-[11px] font-bold px-2.5 py-0.5 rounded-md">
+                      <span className="bg-[#E3ECF5] text-[#0F2740] text-[11px] font-bold px-2.5 py-0.5 rounded-md">
                         {art.category}
                       </span>
-                      <span className="text-[11px] text-[#727781] flex items-center gap-1">
+                      <span className="text-[11px] text-[#6B7C8F] flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {art.readTime}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-[#191c1e] mb-2 leading-snug hover:text-[#003461]">
+                    <h3 className="text-lg font-bold text-[#13263B] mb-2 leading-snug hover:text-[#0F2740]">
                       {art.title}
                     </h3>
-                    <p className="text-xs text-[#424750] line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-[#43566B] line-clamp-2 leading-relaxed">
                       {art.summary}
                     </p>
                   </div>
                 </div>
-                <div className="px-6 pb-5 pt-3 border-t border-[#eceef0] flex items-center justify-between text-xs text-[#727781]">
+                <div className="px-6 pb-5 pt-3 border-t border-[#EDF1F5] flex items-center justify-between text-xs text-[#6B7C8F]">
                   <span>{art.author}</span>
-                  <span className="text-[#006d42] font-semibold flex items-center gap-1">
+                  <span className="text-[#8A6420] font-semibold flex items-center gap-1">
                     Read Article <ChevronRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -293,18 +293,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 6. ADVISOR CONSULTATION TEASER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
-        <div className="bg-[#003461] rounded-3xl p-8 sm:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden">
+        <div className="bg-[#0F2740] rounded-3xl p-8 sm:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden">
           
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#004b87] rounded-full blur-3xl opacity-40 -mr-20 -mt-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#1D4268] rounded-full blur-3xl opacity-40 -mr-20 -mt-20 pointer-events-none" />
 
           <div className="max-w-xl space-y-3 z-10">
-            <span className="bg-[#d3e4fe] text-[#001c38] text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
+            <span className="bg-[#E3ECF5] text-[#0A1D30] text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
               {siteSettings.consultationBadge || 'Free Strategy Session'}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
               {siteSettings.consultationHeading || 'Unsure which portfolio matches your risk profile?'}
             </h2>
-            <p className="text-sm sm:text-base text-[#d3e4fe] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#E3ECF5] leading-relaxed">
               {siteSettings.consultationSubheading || 'Book a free 1-on-1 call with our AMFI registered distributor. We will review your retirement goals and portfolio allocation.'}
             </p>
           </div>
@@ -312,7 +312,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="flex flex-col sm:flex-row gap-3 z-10 w-full lg:w-auto shrink-0">
             <button
               onClick={() => onNavigate('booking')}
-              className="bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
               <span>{siteSettings.consultationCtaText || 'Book Expert Session'}</span>

@@ -158,24 +158,24 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
   };
 
   return (
-    <div id="goal-planner-card" className="w-full bg-white border border-[#c2c6d1] rounded-2xl shadow-sm overflow-hidden">
+    <div id="goal-planner-card" className="w-full bg-white border border-[#D3DCE6] rounded-2xl shadow-sm overflow-hidden">
       
       {/* Header Bar */}
-      <div className="p-6 bg-[#f7f9fb] border-b border-[#c2c6d1]">
-        <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
+      <div className="p-6 bg-[#F6F8FB] border-b border-[#D3DCE6]">
+        <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
           <Target className="w-3.5 h-3.5" />
           Goal-Based Financial Architecture
         </div>
-        <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
           Inflation-Adjusted Life Goal Planner
         </h3>
-        <p className="text-xs text-[#424750] mt-0.5 max-w-3xl">
+        <p className="text-xs text-[#43566B] mt-0.5 max-w-3xl">
           Account for education, healthcare, and lifestyle inflation. Calculate the exact monthly SIP required to achieve your future dreams with complete certainty.
         </p>
       </div>
 
       {/* Goal Preset Pills Selector */}
-      <div className="p-4 sm:px-8 bg-[#ffffff] border-b border-[#e0e3e5] overflow-x-auto scrollbar-none flex gap-2">
+      <div className="p-4 sm:px-8 bg-[#ffffff] border-b border-[#E4EAF0] overflow-x-auto scrollbar-none flex gap-2">
         {GOAL_PRESETS.map((preset) => {
           const Icon = preset.icon;
           const isSelected = preset.id === selectedGoalId;
@@ -186,11 +186,11 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               onClick={() => handleSelectPreset(preset)}
               className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer border ${
                 isSelected
-                  ? 'bg-[#003461] text-white border-[#003461] shadow-xs'
-                  : 'bg-[#f7f9fb] text-[#424750] border-[#c2c6d1] hover:bg-[#eceef0]'
+                  ? 'bg-[#0F2740] text-white border-[#0F2740] shadow-xs'
+                  : 'bg-[#F6F8FB] text-[#43566B] border-[#D3DCE6] hover:bg-[#EDF1F5]'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isSelected ? 'text-[#96f6bd]' : 'text-[#003461]'}`} />
+              <Icon className={`w-4 h-4 ${isSelected ? 'text-[#F3D58E]' : 'text-[#0F2740]'}`} />
               <span>{preset.name}</span>
             </button>
           );
@@ -198,14 +198,14 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
       </div>
 
       {/* Main Grid: Inputs (7 cols) & Outputs/Charts (5 cols) */}
-      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#c2c6d1]">
+      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#D3DCE6]">
         
         {/* Left Inputs (7 cols) */}
         <div className="lg:col-span-7 p-6 sm:p-8 space-y-6">
           
           {/* Preset Context Callout */}
-          <div className="p-3.5 bg-[#f7f9fb] rounded-xl border border-[#e0e3e5] text-xs text-[#424750] leading-relaxed">
-            <span className="font-bold text-[#003461]">{currentPreset.name}:</span> {currentPreset.description}
+          <div className="p-3.5 bg-[#F6F8FB] rounded-xl border border-[#E4EAF0] text-xs text-[#43566B] leading-relaxed">
+            <span className="font-bold text-[#0F2740]">{currentPreset.name}:</span> {currentPreset.description}
           </div>
 
           {/* Input 1: Goal Cost in Today's Value */}
@@ -218,7 +218,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
             max={100000000}
             step={50000}
             isCurrency={true}
-            icon={<Target className="w-4 h-4 text-[#003461]" />}
+            icon={<Target className="w-4 h-4 text-[#0F2740]" />}
             minLabel="₹1 Lakh"
             midLabel="₹2.5 Crore"
             maxLabel="₹10 Crore"
@@ -245,7 +245,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               max={35}
               step={1}
               suffix=" Yrs"
-              icon={<TrendingUp className="w-4 h-4 text-[#003461]" />}
+              icon={<TrendingUp className="w-4 h-4 text-[#0F2740]" />}
               minLabel="1 Yr"
               maxLabel="35 Yrs"
               themeColor="blue"
@@ -293,7 +293,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               max={22}
               step={0.5}
               suffix="%"
-              icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+              icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
               minLabel="6% (Debt)"
               maxLabel="22% (Equity)"
               themeColor="green"
@@ -314,7 +314,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               max={20000000}
               step={50000}
               isCurrency={true}
-              icon={<ShieldCheck className="w-4 h-4 text-[#006d42]" />}
+              icon={<ShieldCheck className="w-4 h-4 text-[#8A6420]" />}
               minLabel="₹0"
               maxLabel="₹2 Crore"
               themeColor="green"
@@ -331,17 +331,17 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
           {/* Enhanced Growth Area Chart */}
           <div className="pt-2">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-[#003461] uppercase tracking-wider flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-[#006d42]" />
+              <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider flex items-center gap-1.5">
+                <TrendingUp className="w-3.5 h-3.5 text-[#8A6420]" />
                 Corpus Accumulation Roadmap:
               </span>
               
-              <div className="flex bg-[#e0e3e5] p-0.5 rounded-md border border-[#c2c6d1]">
+              <div className="flex bg-[#E4EAF0] p-0.5 rounded-md border border-[#D3DCE6]">
                 <button
                   type="button"
                   onClick={() => setChartVisualMode('area')}
                   className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all ${
-                    chartVisualMode === 'area' ? 'bg-[#003461] text-white' : 'text-[#424750]'
+                    chartVisualMode === 'area' ? 'bg-[#0F2740] text-white' : 'text-[#43566B]'
                   }`}
                 >
                   Area Curve
@@ -350,7 +350,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
                   type="button"
                   onClick={() => setChartVisualMode('bar')}
                   className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-all ${
-                    chartVisualMode === 'bar' ? 'bg-[#003461] text-white' : 'text-[#424750]'
+                    chartVisualMode === 'bar' ? 'bg-[#0F2740] text-white' : 'text-[#43566B]'
                   }`}
                 >
                   Yearly Bars
@@ -358,24 +358,24 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               </div>
             </div>
 
-            <div className="h-52 w-full bg-[#f7f9fb] rounded-xl p-2.5 border border-[#e0e3e5]">
+            <div className="h-52 w-full bg-[#F6F8FB] rounded-xl p-2.5 border border-[#E4EAF0]">
               <ResponsiveContainer width="100%" height="100%">
                 {chartVisualMode === 'area' ? (
                   <AreaChart data={plan.yearlyRoadmap} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                     <defs>
                       <linearGradient id="goalCorpusGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#006d42" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#8A6420" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#8A6420" stopOpacity={0.0} />
                       </linearGradient>
                       <linearGradient id="goalInvestedGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#003461" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#003461" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#0F2740" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#0F2740" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#727781' }} />
+                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#6B7C8F' }} />
                     <YAxis
                       tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
-                      tick={{ fontSize: 10, fill: '#727781' }}
+                      tick={{ fontSize: 10, fill: '#6B7C8F' }}
                     />
                     <Tooltip formatter={formatTooltipValue} labelFormatter={(l) => `Year ${l}`} />
                     <Legend iconSize={8} wrapperStyle={{ fontSize: '10px', paddingTop: '2px' }} />
@@ -383,7 +383,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
                       type="monotone"
                       dataKey="expectedCorpus"
                       name="Projected Corpus"
-                      stroke="#006d42"
+                      stroke="#8A6420"
                       strokeWidth={2.5}
                       fillOpacity={1}
                       fill="url(#goalCorpusGrad)"
@@ -392,7 +392,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
                       type="monotone"
                       dataKey="invested"
                       name="Cumulative Invested"
-                      stroke="#003461"
+                      stroke="#0F2740"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#goalInvestedGrad)"
@@ -400,15 +400,15 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
                   </AreaChart>
                 ) : (
                   <BarChart data={plan.yearlyRoadmap} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
-                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#727781' }} />
+                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#6B7C8F' }} />
                     <YAxis
                       tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
-                      tick={{ fontSize: 10, fill: '#727781' }}
+                      tick={{ fontSize: 10, fill: '#6B7C8F' }}
                     />
                     <Tooltip formatter={formatTooltipValue} labelFormatter={(l) => `Year ${l}`} />
                     <Legend iconSize={8} wrapperStyle={{ fontSize: '10px', paddingTop: '2px' }} />
-                    <Bar dataKey="invested" name="Invested Capital" fill="#003461" />
-                    <Bar dataKey="expectedCorpus" name="Compounded Wealth" fill="#006d42" />
+                    <Bar dataKey="invested" name="Invested Capital" fill="#0F2740" />
+                    <Bar dataKey="expectedCorpus" name="Compounded Wealth" fill="#8A6420" />
                   </BarChart>
                 )}
               </ResponsiveContainer>
@@ -418,27 +418,27 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
         </div>
 
         {/* Right Output & Allocation Recommendation (5 cols) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#f7f9fb] flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#F6F8FB] flex flex-col justify-between space-y-6">
           
           <div className="space-y-5">
             
             {/* Target Future Value Banner */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-5 shadow-xs">
-              <span className="text-[11px] font-bold text-[#727781] uppercase tracking-wider block mb-1">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-5 shadow-xs">
+              <span className="text-[11px] font-bold text-[#6B7C8F] uppercase tracking-wider block mb-1">
                 Inflated Future Cost in {yearsToGoal} Years:
               </span>
-              <div className="text-2xl sm:text-3xl font-black text-[#003461] tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-[#0F2740] tracking-tight">
                 {formatIndianCurrency(plan.targetFutureValue)}
               </div>
-              <p className="text-[11px] text-[#424750] mt-1">
+              <p className="text-[11px] text-[#43566B] mt-1">
                 Due to {inflationRate}% inflation, ₹{formatRawIndianNumber(targetCostToday)} today will equal this amount in year {new Date().getFullYear() + yearsToGoal}.
               </p>
             </div>
 
             {/* Required Monthly SIP Box */}
-            <div className="bg-[#003461] text-white rounded-2xl p-5 shadow-md space-y-2">
+            <div className="bg-[#0F2740] text-white rounded-2xl p-5 shadow-md space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#96f6bd] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#F3D58E] uppercase tracking-wider">
                   Required Monthly SIP
                 </span>
                 <span className="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
@@ -454,41 +454,41 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
             </div>
 
             {/* Alternate: One-Time Lumpsum Option */}
-            <div className="bg-white border border-[#c2c6d1] rounded-xl p-3.5 flex items-center justify-between text-xs">
+            <div className="bg-white border border-[#D3DCE6] rounded-xl p-3.5 flex items-center justify-between text-xs">
               <div>
-                <span className="text-[11px] text-[#727781] block">Or One-time Lumpsum Today:</span>
-                <span className="font-extrabold text-[#191c1e] text-sm">{formatIndianCurrency(plan.requiredLumpsumToday)}</span>
+                <span className="text-[11px] text-[#6B7C8F] block">Or One-time Lumpsum Today:</span>
+                <span className="font-extrabold text-[#13263B] text-sm">{formatIndianCurrency(plan.requiredLumpsumToday)}</span>
               </div>
               <div className="text-right">
-                <span className="text-[11px] text-[#727781] block">Time Remaining:</span>
-                <span className="font-bold text-[#006d42]">{yearsToGoal} Years ({yearsToGoal * 12} SIPs)</span>
+                <span className="text-[11px] text-[#6B7C8F] block">Time Remaining:</span>
+                <span className="font-bold text-[#8A6420]">{yearsToGoal} Years ({yearsToGoal * 12} SIPs)</span>
               </div>
             </div>
 
             {/* Asset Allocation Strategy */}
-            <div className="bg-white border border-[#c2c6d1] rounded-xl p-4 space-y-2.5">
-              <span className="text-xs font-bold text-[#003461] block">
+            <div className="bg-white border border-[#D3DCE6] rounded-xl p-4 space-y-2.5">
+              <span className="text-xs font-bold text-[#0F2740] block">
                 Recommended Asset Allocation:
               </span>
-              <div className="w-full h-3 bg-[#e0e3e5] rounded-full overflow-hidden flex">
+              <div className="w-full h-3 bg-[#E4EAF0] rounded-full overflow-hidden flex">
                 <div
                   style={{ width: `${plan.equityAllocationPercent}%` }}
-                  className="bg-[#006d42] h-full"
+                  className="bg-[#8A6420] h-full"
                   title={`Equity: ${plan.equityAllocationPercent}%`}
                 />
                 <div
                   style={{ width: `${plan.debtAllocationPercent}%` }}
-                  className="bg-[#003461] h-full"
+                  className="bg-[#0F2740] h-full"
                   title={`Debt/Hybrid: ${plan.debtAllocationPercent}%`}
                 />
               </div>
               <div className="flex justify-between text-xs pt-0.5">
-                <span className="flex items-center gap-1.5 text-[#006d42] font-bold">
-                  <span className="w-2 h-2 rounded-full bg-[#006d42]" />
+                <span className="flex items-center gap-1.5 text-[#8A6420] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#8A6420]" />
                   Equity Funds ({plan.equityAllocationPercent}%)
                 </span>
-                <span className="flex items-center gap-1.5 text-[#003461] font-bold">
-                  <span className="w-2 h-2 rounded-full bg-[#003461]" />
+                <span className="flex items-center gap-1.5 text-[#0F2740] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#0F2740]" />
                   Debt / Liquid ({plan.debtAllocationPercent}%)
                 </span>
               </div>
@@ -501,12 +501,12 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
             <button
               type="button"
               onClick={handleStartGoalSIP}
-              className="w-full bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+              className="w-full bg-[#8A6420] hover:bg-[#6F501A] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Start Goal SIP with Shaiv Market</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="text-[10px] text-center text-[#727781] mt-2">
+            <p className="text-[10px] text-center text-[#6B7C8F] mt-2">
               AMFI Certified Distribution (ARN-337289) • 100% Paperless Onboarding
             </p>
           </div>

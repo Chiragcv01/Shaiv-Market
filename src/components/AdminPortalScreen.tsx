@@ -344,18 +344,18 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
   if (!currentUser || currentUser.role !== 'admin') {
     return (
       <div id="admin-login-screen" className="w-full max-w-md mx-auto px-4 py-16">
-        <div className="bg-white border border-[#c2c6d1] rounded-2xl p-8 shadow-md institutional-shadow">
+        <div className="bg-white border border-[#D3DCE6] rounded-2xl p-8 shadow-md institutional-shadow">
           <div className="text-center mb-6">
-            <div className="w-14 h-14 bg-[#003461] text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xs">
-              <Lock className="w-7 h-7 text-[#96f6bd]" />
+            <div className="w-14 h-14 bg-[#0F2740] text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xs">
+              <Lock className="w-7 h-7 text-[#F3D58E]" />
             </div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#006d42] bg-[#96f6bd]/30 px-3 py-0.5 rounded-full inline-block mb-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A6420] bg-[#F3D58E]/30 px-3 py-0.5 rounded-full inline-block mb-1">
               Admin & Content Control CMS
             </span>
-            <h1 className="text-2xl font-black text-[#003461] tracking-tight">
+            <h1 className="text-2xl font-black text-[#0F2740] tracking-tight">
               {siteSettings.companyName} Admin Login
             </h1>
-            <p className="text-xs text-[#424750] mt-1">
+            <p className="text-xs text-[#43566B] mt-1">
               Sign in to manage homepage text, headings, images, testimonials, blogs, and leads.
             </p>
           </div>
@@ -369,7 +369,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
           <form onSubmit={handleAdminAuthSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5" htmlFor="admin-username-input">
+              <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5" htmlFor="admin-username-input">
                 Admin Username
               </label>
               <input
@@ -378,14 +378,14 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 value={adminUsername}
                 onChange={(e) => setAdminUsername(e.target.value)}
                 placeholder="admin"
-                className="w-full border border-[#c2c6d1] rounded-xl px-4 py-2.5 bg-[#f7f9fb] text-sm text-[#191c1e] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                className="w-full border border-[#D3DCE6] rounded-xl px-4 py-2.5 bg-[#F6F8FB] text-sm text-[#13263B] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 autoComplete="username"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5" htmlFor="admin-password-input">
+              <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5" htmlFor="admin-password-input">
                 Master Password
               </label>
               <input
@@ -394,7 +394,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full border border-[#c2c6d1] rounded-xl px-4 py-2.5 bg-[#f7f9fb] text-sm text-[#191c1e] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                className="w-full border border-[#D3DCE6] rounded-xl px-4 py-2.5 bg-[#F6F8FB] text-sm text-[#13263B] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 autoComplete="current-password"
                 required
               />
@@ -404,17 +404,17 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               id="admin-login-submit-btn"
               type="submit"
               disabled={isSubmittingAdminAuth}
-              className="w-full bg-[#003461] hover:bg-[#004b87] active:bg-[#002647] text-white font-bold text-sm py-3 px-4 rounded-xl transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full bg-[#0F2740] hover:bg-[#1D4268] active:bg-[#0A1D30] text-white font-bold text-sm py-3 px-4 rounded-xl transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              <Lock className="w-4 h-4 text-[#96f6bd]" />
+              <Lock className="w-4 h-4 text-[#F3D58E]" />
               <span>{isSubmittingAdminAuth ? 'Verifying...' : 'Authenticate & Open Control Panel'}</span>
             </button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-[#e0e3e5] text-center">
+          <div className="mt-6 pt-4 border-t border-[#E4EAF0] text-center">
             <button
               onClick={() => onNavigate('home')}
-              className="text-xs text-[#003461] hover:underline font-semibold"
+              className="text-xs text-[#0F2740] hover:underline font-semibold"
             >
               ← Return to Public Homepage
             </button>
@@ -429,25 +429,25 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       
       {/* Toast Notification */}
       {successToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#003461] text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-[#96f6bd] animate-in slide-in-from-bottom-5">
-          <CheckCircle2 className="w-5 h-5 text-[#96f6bd]" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#0F2740] text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-[#F3D58E] animate-in slide-in-from-bottom-5">
+          <CheckCircle2 className="w-5 h-5 text-[#F3D58E]" />
           <span className="text-xs sm:text-sm font-semibold">{successToast}</span>
         </div>
       )}
 
       {/* Top Header & Quick Actions */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#c2c6d1]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#D3DCE6]">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 bg-[#006d42] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
+            <span className="px-2.5 py-0.5 bg-[#8A6420] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
               Super Admin Active
             </span>
-            <span className="text-xs text-[#727781] font-mono">ARN: {siteSettings.sebiRegNumber || '337289'}</span>
+            <span className="text-xs text-[#6B7C8F] font-mono">ARN: {siteSettings.sebiRegNumber || '337289'}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#003461] tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740] tracking-tight mt-1">
             {siteSettings.companyName} Administration Portal
           </h1>
-          <p className="text-xs sm:text-sm text-[#424750] mt-0.5">
+          <p className="text-xs sm:text-sm text-[#43566B] mt-0.5">
             Full platform control: Customize branding, homepage & blog images, about founder credentials, client testimonials, reply to inquiries & manage leads.
           </p>
         </div>
@@ -455,9 +455,9 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => onNavigate('home')}
-            className="px-4 py-2 bg-white hover:bg-[#eceef0] border border-[#c2c6d1] rounded-xl text-xs font-bold text-[#191c1e] transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+            className="px-4 py-2 bg-white hover:bg-[#EDF1F5] border border-[#D3DCE6] rounded-xl text-xs font-bold text-[#13263B] transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
           >
-            <Eye className="w-3.5 h-3.5 text-[#006d42]" />
+            <Eye className="w-3.5 h-3.5 text-[#8A6420]" />
             <span>View Live Site</span>
           </button>
           <button
@@ -474,7 +474,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       </div>
 
       {/* Navigation Tabs Bar */}
-      <div className="flex gap-2 overflow-x-auto py-3 border-b border-[#e0e3e5] scrollbar-none">
+      <div className="flex gap-2 overflow-x-auto py-3 border-b border-[#E4EAF0] scrollbar-none">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -484,16 +484,16 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'bg-white text-[#424750] hover:bg-[#eceef0] border border-[#c2c6d1]/80'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'bg-white text-[#43566B] hover:bg-[#EDF1F5] border border-[#D3DCE6]/80'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-[#96f6bd]' : 'text-[#727781]'}`} />
+              <Icon className={`w-4 h-4 ${isActive ? 'text-[#F3D58E]' : 'text-[#6B7C8F]'}`} />
               <span>{tab.label}</span>
               {typeof tab.count === 'number' && (
                 <span
                   className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-[#e0e3e5] text-[#003461]'
+                    isActive ? 'bg-white/20 text-white' : 'bg-[#E4EAF0] text-[#0F2740]'
                   }`}
                 >
                   {tab.count}
@@ -510,15 +510,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
           <form onSubmit={handleSaveSettings} className="space-y-8">
             
             {/* Top Save Bar */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm sticky top-24 z-30">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm sticky top-24 z-30">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 bg-[#006d42] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
+                  <span className="px-2.5 py-0.5 bg-[#8A6420] text-white text-[10px] font-black uppercase rounded-md tracking-wider">
                     Live CMS Active
                   </span>
-                  <span className="text-xs text-[#727781]">Changes update instantly across the entire website</span>
+                  <span className="text-xs text-[#6B7C8F]">Changes update instantly across the entire website</span>
                 </div>
-                <h2 className="text-xl font-black text-[#003461] tracking-tight mt-0.5">
+                <h2 className="text-xl font-black text-[#0F2740] tracking-tight mt-0.5">
                   Homepage Content, Headings & Media CMS
                 </h2>
               </div>
@@ -526,13 +526,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 <button
                   type="button"
                   onClick={() => onNavigate('home')}
-                  className="px-4 py-2.5 bg-[#f7f9fb] hover:bg-[#e0e3e5] border border-[#c2c6d1] text-[#003461] font-bold text-xs rounded-xl transition-all cursor-pointer"
+                  className="px-4 py-2.5 bg-[#F6F8FB] hover:bg-[#E4EAF0] border border-[#D3DCE6] text-[#0F2740] font-bold text-xs rounded-xl transition-all cursor-pointer"
                 >
                   Preview Homepage
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 sm:flex-none px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer transition-transform active:scale-95"
+                  className="flex-1 sm:flex-none px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer transition-transform active:scale-95"
                 >
                   <Save className="w-4 h-4" />
                   <span>Save All Changes</span>
@@ -541,22 +541,22 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             {/* 1. HERO SECTION CMS */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+                  <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                     1
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#003461]">Hero Section (Top Main Banner)</h3>
-                    <p className="text-xs text-[#727781]">Customize the main headline, tagline, CTAs, trust metric, floating CAGR card & hero banner image.</p>
+                    <h3 className="text-base font-bold text-[#0F2740]">Hero Section (Top Main Banner)</h3>
+                    <p className="text-xs text-[#6B7C8F]">Customize the main headline, tagline, CTAs, trust metric, floating CAGR card & hero banner image.</p>
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Hero Top Pill Badge Text
                   </label>
                   <input
@@ -564,12 +564,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroBadgeText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroBadgeText: e.target.value })}
                     placeholder="AMFI Registered Mutual Fund Distributor"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-medium"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-medium"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Hero Main Headline (H1 Title)
                   </label>
                   <input
@@ -577,12 +577,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroHeading: e.target.value })}
                     placeholder="Intelligent wealth creation, built on institutional trust."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-base bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-extrabold text-[#003461]"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-base bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-extrabold text-[#0F2740]"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Hero Sub-paragraph / Narrative Description
                   </label>
                   <textarea
@@ -590,12 +590,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroSubheading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroSubheading: e.target.value })}
                     placeholder="Navigate the markets with confidence. Shaiv Market offers curated mutual fund portfolios..."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden leading-relaxed"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Primary CTA Button Text
                   </label>
                   <input
@@ -603,12 +603,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroPrimaryCtaText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroPrimaryCtaText: e.target.value })}
                     placeholder="Start Investing Now"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#006d42]"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold text-[#8A6420]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Secondary CTA Button Text
                   </label>
                   <input
@@ -616,12 +616,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroSecondaryCtaText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroSecondaryCtaText: e.target.value })}
                     placeholder="View Portfolios"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Floating Card Title
                   </label>
                   <input
@@ -629,12 +629,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroFloatingCardTitle || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroFloatingCardTitle: e.target.value })}
                     placeholder="Curated Scheme SIPs"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Floating Card Metric / CAGR Value
                   </label>
                   <input
@@ -642,12 +642,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroFloatingCardValue || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroFloatingCardValue: e.target.value })}
                     placeholder="14.2% CAGR"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Trust Bar Metric Text
                   </label>
                   <input
@@ -655,23 +655,23 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.heroTrustText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, heroTrustText: e.target.value })}
                     placeholder="Trusted by over 50,000+ investors nationwide."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
               {/* Hero Banner Image & Presets */}
-              <div className="pt-6 border-t border-[#e0e3e5] space-y-4">
+              <div className="pt-6 border-t border-[#E4EAF0] space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-bold text-[#003461] uppercase tracking-wider flex items-center gap-1.5">
-                    <Image className="w-4 h-4 text-[#006d42]" />
+                  <h4 className="text-sm font-bold text-[#0F2740] uppercase tracking-wider flex items-center gap-1.5">
+                    <Image className="w-4 h-4 text-[#8A6420]" />
                     <span>Hero Banner Right Graphic</span>
                   </h4>
-                  <span className="text-[11px] text-[#727781]">Paste custom URL or choose a high-res preset</span>
+                  <span className="text-[11px] text-[#6B7C8F]">Paste custom URL or choose a high-res preset</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                  <div className="md:col-span-5 h-48 rounded-xl overflow-hidden border border-[#c2c6d1] bg-[#f7f9fb] relative">
+                  <div className="md:col-span-5 h-48 rounded-xl overflow-hidden border border-[#D3DCE6] bg-[#F6F8FB] relative">
                     <img
                       src={settingsForm.homepageHeroImageUrl || settingsForm.heroImageUrl || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80"}
                       alt="Hero Banner Preview"
@@ -685,7 +685,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
                   <div className="md:col-span-7 space-y-3">
                     <div>
-                      <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                         Hero Image URL
                       </label>
                       <input
@@ -696,12 +696,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                           setSettingsForm({ ...settingsForm, homepageHeroImageUrl: val, heroImageUrl: val });
                         }}
                         placeholder="https://images.unsplash.com/photo-..."
-                        className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                        className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                         Image Alt Text (SEO)
                       </label>
                       <input
@@ -712,13 +712,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                           setSettingsForm({ ...settingsForm, homepageHeroImageAlt: val, heroImageAlt: val });
                         }}
                         placeholder="Modern Financial Analytics and Wealth Creation Dashboard"
-                        className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                        className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                       />
                     </div>
 
                     {/* Quick Presets Picker */}
                     <div>
-                      <span className="text-[11px] font-bold text-[#727781] block mb-1.5">Quick 1-Click High-Res Presets:</span>
+                      <span className="text-[11px] font-bold text-[#6B7C8F] block mb-1.5">Quick 1-Click High-Res Presets:</span>
                       <div className="flex flex-wrap gap-2">
                         {[
                           { name: 'Stock Terminal', url: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80' },
@@ -737,7 +737,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                                 homepageHeroImageAlt: preset.name + ' - Shaiv Market'
                               });
                             }}
-                            className="px-2.5 py-1 bg-white border border-[#c2c6d1] hover:border-[#003461] text-[#003461] text-[11px] font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
+                            className="px-2.5 py-1 bg-white border border-[#D3DCE6] hover:border-[#0F2740] text-[#0F2740] text-[11px] font-bold rounded-lg transition-colors cursor-pointer shadow-2xs"
                           >
                             + {preset.name}
                           </button>
@@ -750,20 +750,20 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             {/* 2. FOUNDER & ACCREDITATION SECTION */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   2
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Founder & AMFI Accreditation Banner</h3>
-                  <p className="text-xs text-[#727781]">Customize headings and narrative for the founder highlight section on the homepage.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Founder & AMFI Accreditation Banner</h3>
+                  <p className="text-xs text-[#6B7C8F]">Customize headings and narrative for the founder highlight section on the homepage.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Founder Section Headline
                   </label>
                   <input
@@ -771,12 +771,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.founderSectionHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, founderSectionHeading: e.target.value })}
                     placeholder="Guided by 14+ Years of Capital Market Experience"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#003461]"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold text-[#0F2740]"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Founder Section Sub-heading / Overview
                   </label>
                   <textarea
@@ -784,27 +784,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.founderSectionSubheading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, founderSectionSubheading: e.target.value })}
                     placeholder="Shaiv Market is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution..."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden leading-relaxed"
                   />
                 </div>
               </div>
             </div>
 
             {/* 3. INVESTMENT CALCULATOR SECTION */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   3
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Investment Potential Calculator Section</h3>
-                  <p className="text-xs text-[#727781]">Change the heading and description above the interactive SIP/Lumpsum calculator.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Investment Potential Calculator Section</h3>
+                  <p className="text-xs text-[#6B7C8F]">Change the heading and description above the interactive SIP/Lumpsum calculator.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Calculator Section Heading
                   </label>
                   <input
@@ -812,12 +812,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.calcHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, calcHeading: e.target.value })}
                     placeholder="Calculate Your Investment Potential"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Calculator Section Subtitle
                   </label>
                   <input
@@ -825,27 +825,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.calcSubheading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, calcSubheading: e.target.value })}
                     placeholder="Simulate compound returns across SIPs and Lumpsum investments with institutional accuracy."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
             </div>
 
             {/* 4. CLIENT TESTIMONIALS SECTION */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   4
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Client Testimonials Section</h3>
-                  <p className="text-xs text-[#727781]">Customize the title and badge above client reviews on the homepage.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Client Testimonials Section</h3>
+                  <p className="text-xs text-[#6B7C8F]">Customize the title and badge above client reviews on the homepage.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Testimonial Badge Text
                   </label>
                   <input
@@ -853,12 +853,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.testimonialBadge || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, testimonialBadge: e.target.value })}
                     placeholder="Real Investor Experiences"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Testimonial Section Heading
                   </label>
                   <input
@@ -866,27 +866,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.testimonialHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, testimonialHeading: e.target.value })}
                     placeholder="What Our Clients Say About Shaiv Market"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                   />
                 </div>
               </div>
             </div>
 
             {/* 5. RESEARCH & INSIGHTS BLOG PREVIEW */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   5
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Research Desk & Insights Preview Section</h3>
-                  <p className="text-xs text-[#727781]">Change the headings for the market commentary and research blog preview.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Research Desk & Insights Preview Section</h3>
+                  <p className="text-xs text-[#6B7C8F]">Change the headings for the market commentary and research blog preview.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Insights Badge Text
                   </label>
                   <input
@@ -894,12 +894,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.insightsBadge || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, insightsBadge: e.target.value })}
                     placeholder="Research Desk & Market Commentary"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Insights Section Heading
                   </label>
                   <input
@@ -907,27 +907,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.insightsHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, insightsHeading: e.target.value })}
                     placeholder="Recent Wealth Strategies & Dispatches"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                   />
                 </div>
               </div>
             </div>
 
             {/* 6. ADVISOR CONSULTATION TEASER BANNER */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   6
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Strategy Session Consultation Banner</h3>
-                  <p className="text-xs text-[#727781]">Customize the bottom call-to-action banner for booking 1-on-1 advisor sessions.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Strategy Session Consultation Banner</h3>
+                  <p className="text-xs text-[#6B7C8F]">Customize the bottom call-to-action banner for booking 1-on-1 advisor sessions.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Banner Badge Text
                   </label>
                   <input
@@ -935,12 +935,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.consultationBadge || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, consultationBadge: e.target.value })}
                     placeholder="Free Strategy Session"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     CTA Button Text
                   </label>
                   <input
@@ -948,12 +948,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.consultationCtaText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, consultationCtaText: e.target.value })}
                     placeholder="Book Expert Session"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#006d42]"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold text-[#8A6420]"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Banner Heading
                   </label>
                   <input
@@ -961,12 +961,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.consultationHeading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, consultationHeading: e.target.value })}
                     placeholder="Unsure which portfolio matches your risk profile?"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#003461]"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold text-[#0F2740]"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Banner Subtitle Narrative
                   </label>
                   <textarea
@@ -974,27 +974,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.consultationSubheading || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, consultationSubheading: e.target.value })}
                     placeholder="Book a live 1-on-1 consultation with our AMFI certified advisors. We will analyze your retirement goals..."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden leading-relaxed"
                   />
                 </div>
               </div>
             </div>
 
             {/* 7. FOOTER CONTENT CMS */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-[#e0e3e5]">
-                <div className="w-8 h-8 rounded-lg bg-[#003461] text-[#96f6bd] flex items-center justify-center font-bold text-sm">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+              <div className="flex items-center gap-2.5 pb-4 border-b border-[#E4EAF0]">
+                <div className="w-8 h-8 rounded-lg bg-[#0F2740] text-[#F3D58E] flex items-center justify-center font-bold text-sm">
                   7
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#003461]">Global Footer Text & Copyright</h3>
-                  <p className="text-xs text-[#727781]">Customize footer brand description and compliance copyright notice.</p>
+                  <h3 className="text-base font-bold text-[#0F2740]">Global Footer Text & Copyright</h3>
+                  <p className="text-xs text-[#6B7C8F]">Customize footer brand description and compliance copyright notice.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Footer About Narrative
                   </label>
                   <textarea
@@ -1002,12 +1002,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.footerAboutText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, footerAboutText: e.target.value })}
                     placeholder="AMFI-Registered Mutual Fund Distributor dedicated to disciplined asset allocation..."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden leading-relaxed"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden leading-relaxed"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Footer Copyright & Regulatory Text
                   </label>
                   <input
@@ -1015,7 +1015,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.footerCopyrightText || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, footerCopyrightText: e.target.value })}
                     placeholder="© 2024-2026 Shaiv Market. All rights reserved. Mutual fund investments are subject to market risks."
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
@@ -1025,7 +1025,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <div className="pt-4 flex items-center justify-end gap-4">
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95"
+                className="px-8 py-3.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95"
               >
                 <Save className="w-5 h-5" />
                 <span>Save All Homepage Content</span>
@@ -1038,15 +1038,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 1: BRANDING & GENERAL SETTINGS */}
       {activeTab === 'branding' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveSettings} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveSettings} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Platform Identity & AMFI Registration</h2>
-                <p className="text-xs text-[#727781]">Change the platform title, AMFI ARN number, corporate logo, and contact info.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Platform Identity & AMFI Registration</h2>
+                <p className="text-xs text-[#6B7C8F]">Change the platform title, AMFI ARN number, corporate logo, and contact info.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Identity Changes</span>
@@ -1055,7 +1055,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Platform / Company Name
                 </label>
                 <input
@@ -1064,12 +1064,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   onChange={(e) => setSettingsForm({ ...settingsForm, companyName: e.target.value })}
                   placeholder="e.g. Shaiv Market"
                   required
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold text-[#003461]"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold text-[#0F2740]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Tagline / Sub-heading
                 </label>
                 <input
@@ -1077,12 +1077,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.tagline}
                   onChange={(e) => setSettingsForm({ ...settingsForm, tagline: e.target.value })}
                   placeholder="e.g. AMFI Registered Mutual Fund Distributor"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden text-[#191c1e]"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden text-[#13263B]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Logo Initial / Monogram (2-3 chars)
                 </label>
                 <input
@@ -1091,12 +1091,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.logoInitial}
                   onChange={(e) => setSettingsForm({ ...settingsForm, logoInitial: e.target.value.toUpperCase() })}
                   placeholder="SM"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono font-bold"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   AMFI ARN Registration Number
                 </label>
                 <input
@@ -1104,12 +1104,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.sebiRegNumber}
                   onChange={(e) => setSettingsForm({ ...settingsForm, sebiRegNumber: e.target.value })}
                   placeholder="ARN-337289"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Official Support Email
                 </label>
                 <input
@@ -1117,12 +1117,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.supportEmail}
                   onChange={(e) => setSettingsForm({ ...settingsForm, supportEmail: e.target.value })}
                   placeholder="invest@shaivmarket.com"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Institutional Phone Desk
                 </label>
                 <input
@@ -1130,12 +1130,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.supportPhone}
                   onChange={(e) => setSettingsForm({ ...settingsForm, supportPhone: e.target.value })}
                   placeholder="+91 22 6890 4500"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   WhatsApp Support / Advisory Number (with Country Code)
                 </label>
                 <input
@@ -1143,12 +1143,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.whatsappSupportNumber || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, whatsappSupportNumber: e.target.value })}
                   placeholder="+91 98200 44550"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden text-[#006d42] font-bold"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden text-[#8A6420] font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Registered Office Address
                 </label>
                 <input
@@ -1156,15 +1156,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.headquartersAddress}
                   onChange={(e) => setSettingsForm({ ...settingsForm, headquartersAddress: e.target.value })}
                   placeholder="Level 14, Tower B, Financial Center, BKC, Mumbai"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save All Identity Changes</span>
@@ -1177,15 +1177,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 2: HOMEPAGE & MEDIA CMS */}
       {activeTab === 'media' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveSettings} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveSettings} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Homepage Images & Media CMS</h2>
-                <p className="text-xs text-[#727781]">Replace hero graphics, feature screenshots, and provide accessible Alt text.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Homepage Images & Media CMS</h2>
+                <p className="text-xs text-[#6B7C8F]">Replace hero graphics, feature screenshots, and provide accessible Alt text.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Media Assets</span>
@@ -1195,13 +1195,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
               {/* Hero Image Block */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-4">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#003461] uppercase tracking-wider">
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-4">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#0F2740] uppercase tracking-wider">
                   <Image className="w-4 h-4" />
                   <span>Homepage Main Hero Banner</span>
                 </div>
 
-                <div className="w-full h-44 rounded-xl overflow-hidden border border-[#c2c6d1] bg-white relative">
+                <div className="w-full h-44 rounded-xl overflow-hidden border border-[#D3DCE6] bg-white relative">
                   <img
                     src={settingsForm.homepageHeroImageUrl || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&auto=format&fit=crop&q=80"}
                     alt={settingsForm.homepageHeroImageAlt || "Hero preview"}
@@ -1211,7 +1211,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Hero Image URL
                   </label>
                   <input
@@ -1219,12 +1219,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.homepageHeroImageUrl || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, homepageHeroImageUrl: e.target.value })}
                     placeholder="https://images.unsplash.com/photo-..."
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Image Alt Text (SEO & Accessibility)
                   </label>
                   <input
@@ -1232,19 +1232,19 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.homepageHeroImageAlt || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, homepageHeroImageAlt: e.target.value })}
                     placeholder="Shaiv Market Institutional Wealth Management HQ"
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
               {/* Feature Showcase Image Block */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-4">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#003461] uppercase tracking-wider">
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-4">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#0F2740] uppercase tracking-wider">
                   <Image className="w-4 h-4" />
                   <span>Homepage Analytics / Feature Banner</span>
                 </div>
 
-                <div className="w-full h-44 rounded-xl overflow-hidden border border-[#c2c6d1] bg-white relative">
+                <div className="w-full h-44 rounded-xl overflow-hidden border border-[#D3DCE6] bg-white relative">
                   <img
                     src={settingsForm.homepageFeatureImageUrl || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80"}
                     alt={settingsForm.homepageFeatureImageAlt || "Feature preview"}
@@ -1254,7 +1254,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Feature Image URL
                   </label>
                   <input
@@ -1262,12 +1262,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.homepageFeatureImageUrl || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, homepageFeatureImageUrl: e.target.value })}
                     placeholder="https://images.unsplash.com/photo-..."
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Feature Image Alt Text
                   </label>
                   <input
@@ -1275,17 +1275,17 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.homepageFeatureImageAlt || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, homepageFeatureImageAlt: e.target.value })}
                     placeholder="Mutual fund sector distribution and asset allocation charts"
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save All Images</span>
@@ -1298,15 +1298,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 3: ABOUT US & FOUNDER CMS */}
       {activeTab === 'about' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveSettings} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveSettings} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">About Us, Founder Profile & AMFI Certificate CMS</h2>
-                <p className="text-xs text-[#727781]">Update your founder details, credentials, experience, certificate image, and mission narrative.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">About Us, Founder Profile & AMFI Certificate CMS</h2>
+                <p className="text-xs text-[#6B7C8F]">Update your founder details, credentials, experience, certificate image, and mission narrative.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save About Profile</span>
@@ -1316,7 +1316,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Founder Full Name
                 </label>
                 <input
@@ -1324,12 +1324,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderName || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderName: e.target.value })}
                   placeholder="Mr. Arvind Sharma"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Founder Designation / Title
                 </label>
                 <input
@@ -1337,12 +1337,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderTitle || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderTitle: e.target.value })}
                   placeholder="Founder & Principal Mutual Fund Distributor (MFD)"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Experience Highlight
                 </label>
                 <input
@@ -1350,12 +1350,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderExperience || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderExperience: e.target.value })}
                   placeholder="14+ Years Dedicated Capital Markets Experience"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden text-[#006d42] font-semibold"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden text-[#8A6420] font-semibold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Qualifications & Certifications
                 </label>
                 <input
@@ -1363,12 +1363,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderQualification || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderQualification: e.target.value })}
                   placeholder="NISM Series V-A Certified Mutual Fund Distributor, MBA (Finance)"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Founder Photo URL
                 </label>
                 <input
@@ -1376,12 +1376,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderPhotoUrl || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderPhotoUrl: e.target.value })}
                   placeholder="https://images.unsplash.com/photo-..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Founder Photo Alt Text
                 </label>
                 <input
@@ -1389,12 +1389,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderPhotoAlt || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderPhotoAlt: e.target.value })}
                   placeholder="Arvind Sharma - AMFI Registered Mutual Fund Distributor"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   AMFI ARN Certificate Image URL
                 </label>
                 <input
@@ -1402,12 +1402,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.arnCertificateUrl || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, arnCertificateUrl: e.target.value })}
                   placeholder="https://images.unsplash.com/photo-..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Certificate Image Alt Text
                 </label>
                 <input
@@ -1415,12 +1415,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.arnCertificateAlt || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, arnCertificateAlt: e.target.value })}
                   placeholder="Official AMFI Registration Certificate ARN-337289"
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Founder Bio & Executive Background
                 </label>
                 <textarea
@@ -1428,12 +1428,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.founderBio || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, founderBio: e.target.value })}
                   placeholder="Executive background description..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   About Story & Platform Journey
                 </label>
                 <textarea
@@ -1441,12 +1441,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.aboutStory || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, aboutStory: e.target.value })}
                   placeholder="Write the company story and journey here..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Mission Statement
                 </label>
                 <textarea
@@ -1454,16 +1454,16 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.aboutMission || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, aboutMission: e.target.value })}
                   placeholder="Our mission is..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save About Us CMS</span>
@@ -1476,15 +1476,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 4: CLIENT TESTIMONIALS CMS */}
       {activeTab === 'testimonials' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Client Testimonials & Video Stories CMS</h2>
-                <p className="text-xs text-[#727781]">Add, edit, or delete client testimonials, photos, ratings, and video embed links.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Client Testimonials & Video Stories CMS</h2>
+                <p className="text-xs text-[#6B7C8F]">Add, edit, or delete client testimonials, photos, ratings, and video embed links.</p>
               </div>
               <button
                 onClick={handleOpenAddTestimonial}
-                className="px-4 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-4 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Testimonial</span>
@@ -1495,7 +1495,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               {testimonials.map((test) => (
                 <div
                   key={test.id}
-                  className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 flex flex-col justify-between space-y-4 hover:shadow-md transition-all"
+                  className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 flex flex-col justify-between space-y-4 hover:shadow-md transition-all"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -1512,7 +1512,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                       )}
                     </div>
 
-                    <p className="text-xs text-[#424750] italic line-clamp-3">
+                    <p className="text-xs text-[#43566B] italic line-clamp-3">
                       "{test.text}"
                     </p>
 
@@ -1522,29 +1522,29 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                           src={test.avatarUrl}
                           alt={test.avatarAlt || test.clientName}
                           referrerPolicy="no-referrer"
-                          className="w-9 h-9 rounded-full object-cover border border-[#c2c6d1]"
+                          className="w-9 h-9 rounded-full object-cover border border-[#D3DCE6]"
                         />
                       ) : (
-                        <div className="w-9 h-9 rounded-full bg-[#d3e4fe] text-[#003461] flex items-center justify-center font-bold text-xs">
+                        <div className="w-9 h-9 rounded-full bg-[#E3ECF5] text-[#0F2740] flex items-center justify-center font-bold text-xs">
                           {test.clientName.charAt(0)}
                         </div>
                       )}
                       <div>
-                        <div className="text-xs font-bold text-[#191c1e] flex items-center gap-1">
+                        <div className="text-xs font-bold text-[#13263B] flex items-center gap-1">
                           <span>{test.clientName}</span>
-                          {test.verified && <CheckCircle2 className="w-3 h-3 text-[#006d42]" />}
+                          {test.verified && <CheckCircle2 className="w-3 h-3 text-[#8A6420]" />}
                         </div>
-                        <div className="text-[11px] text-[#727781]">{test.locationOrRole}</div>
+                        <div className="text-[11px] text-[#6B7C8F]">{test.locationOrRole}</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-[#e0e3e5] flex items-center justify-between">
-                    <span className="text-[10px] text-[#003461] font-semibold">{test.investmentType}</span>
+                  <div className="pt-3 border-t border-[#E4EAF0] flex items-center justify-between">
+                    <span className="text-[10px] text-[#0F2740] font-semibold">{test.investmentType}</span>
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleOpenEditTestimonial(test)}
-                        className="p-1.5 bg-white hover:bg-[#eceef0] border border-[#c2c6d1] rounded-lg text-[#003461] transition-colors cursor-pointer"
+                        className="p-1.5 bg-white hover:bg-[#EDF1F5] border border-[#D3DCE6] rounded-lg text-[#0F2740] transition-colors cursor-pointer"
                         title="Edit Testimonial"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -1568,19 +1568,19 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 5: CONTACT INQUIRIES & MESSAGING DESK */}
       {activeTab === 'inquiries' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Contact Inquiries Desk</h2>
-                <p className="text-xs text-[#727781]">View client tickets and send instant 1-click replies via WhatsApp or Email.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Contact Inquiries Desk</h2>
+                <p className="text-xs text-[#6B7C8F]">View client tickets and send instant 1-click replies via WhatsApp or Email.</p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-[#424750]">Status:</span>
+                <span className="text-xs font-bold text-[#43566B]">Status:</span>
                 <select
                   value={inquiryStatusFilter}
                   onChange={(e) => setInquiryStatusFilter(e.target.value)}
-                  className="px-3 py-1.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] text-[#191c1e]"
+                  className="px-3 py-1.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] text-[#13263B]"
                 >
                   <option value="all">All Inquiries ({contactInquiries.length})</option>
                   <option value="New">New</option>
@@ -1591,7 +1591,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             {filteredInquiries.length === 0 ? (
-              <div className="text-center py-12 text-[#727781] text-xs">
+              <div className="text-center py-12 text-[#6B7C8F] text-xs">
                 No contact inquiries found matching the selected filter.
               </div>
             ) : (
@@ -1605,15 +1605,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   return (
                     <div
                       key={inq.id}
-                      className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 sm:p-6 space-y-4 transition-all"
+                      className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 sm:p-6 space-y-4 transition-all"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e0e3e5]">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#E4EAF0]">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
+                          <span className="font-mono text-xs font-bold text-[#0F2740] bg-[#E3ECF5] px-2.5 py-0.5 rounded-md">
                             {inq.id}
                           </span>
-                          <h3 className="font-bold text-sm text-[#191c1e]">{inq.name}</h3>
-                          <span className="text-xs text-[#727781]">• {inq.date}</span>
+                          <h3 className="font-bold text-sm text-[#13263B]">{inq.name}</h3>
+                          <span className="text-xs text-[#6B7C8F]">• {inq.date}</span>
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -1637,20 +1637,20 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                         <div>
-                          <span className="text-[11px] text-[#727781] uppercase font-bold block">Contact Details</span>
-                          <div className="font-semibold text-[#191c1e] mt-1">{inq.phone}</div>
-                          {inq.email && <div className="text-[#424750]">{inq.email}</div>}
+                          <span className="text-[11px] text-[#6B7C8F] uppercase font-bold block">Contact Details</span>
+                          <div className="font-semibold text-[#13263B] mt-1">{inq.phone}</div>
+                          {inq.email && <div className="text-[#43566B]">{inq.email}</div>}
                         </div>
                         <div className="md:col-span-2">
-                          <span className="text-[11px] text-[#727781] uppercase font-bold block">Subject & Inquiry</span>
-                          <div className="font-bold text-[#003461] mt-1">{inq.subject}</div>
-                          <div className="text-[#424750] mt-1 whitespace-pre-wrap">{inq.message}</div>
+                          <span className="text-[11px] text-[#6B7C8F] uppercase font-bold block">Subject & Inquiry</span>
+                          <div className="font-bold text-[#0F2740] mt-1">{inq.subject}</div>
+                          <div className="text-[#43566B] mt-1 whitespace-pre-wrap">{inq.message}</div>
                         </div>
                       </div>
 
                       {/* Instant Direct Reply Actions */}
-                      <div className="pt-3 border-t border-[#e0e3e5] flex flex-wrap items-center justify-between gap-3">
-                        <div className="text-[11px] text-[#727781]">
+                      <div className="pt-3 border-t border-[#E4EAF0] flex flex-wrap items-center justify-between gap-3">
+                        <div className="text-[11px] text-[#6B7C8F]">
                           Quick Dispatch Options:
                         </div>
 
@@ -1674,7 +1674,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                             <a
                               href={`mailto:${inq.email}?subject=Re: ${encodeURIComponent(inq.subject)} - ${encodeURIComponent(siteSettings.companyName)}&body=Hello ${encodeURIComponent(inq.name)},%0D%0A%0D%0AThank you for contacting ${encodeURIComponent(siteSettings.companyName)}.`}
                               onClick={() => updateInquiryStatus(inq.id, 'In Progress')}
-                              className="px-3.5 py-1.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                              className="px-3.5 py-1.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-2xs cursor-pointer"
                             >
                               <Mail className="w-3.5 h-3.5" />
                               <span>Reply via Email</span>
@@ -1694,15 +1694,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 6: NAVBAR MANAGER */}
       {activeTab === 'navbar' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Navbar Menu Items Manager</h2>
-                <p className="text-xs text-[#727781]">Add custom menu tabs, rename items, toggle visibility, or delete custom links.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Navbar Menu Items Manager</h2>
+                <p className="text-xs text-[#6B7C8F]">Add custom menu tabs, rename items, toggle visibility, or delete custom links.</p>
               </div>
               <button
                 onClick={() => setIsAddingNav(true)}
-                className="px-4 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-4 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Nav Link</span>
@@ -1710,26 +1710,26 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             {isAddingNav && (
-              <form onSubmit={handleAddNavItem} className="p-4 bg-[#f7f9fb] border border-[#003461] rounded-xl space-y-3 animate-in fade-in">
-                <div className="text-xs font-bold text-[#003461] uppercase tracking-wider">Create New Menu Item</div>
+              <form onSubmit={handleAddNavItem} className="p-4 bg-[#F6F8FB] border border-[#0F2740] rounded-xl space-y-3 animate-in fade-in">
+                <div className="text-xs font-bold text-[#0F2740] uppercase tracking-wider">Create New Menu Item</div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block text-[11px] font-bold text-[#424750] mb-1">Label</label>
+                    <label className="block text-[11px] font-bold text-[#43566B] mb-1">Label</label>
                     <input
                       type="text"
                       value={newNavLabel}
                       onChange={(e) => setNewNavLabel(e.target.value)}
                       placeholder="e.g. NRI Desk"
                       required
-                      className="w-full px-3 py-1.5 border border-[#c2c6d1] rounded-lg text-xs bg-white"
+                      className="w-full px-3 py-1.5 border border-[#D3DCE6] rounded-lg text-xs bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-[#424750] mb-1">Destination Type</label>
+                    <label className="block text-[11px] font-bold text-[#43566B] mb-1">Destination Type</label>
                     <select
                       value={newNavType}
                       onChange={(e) => setNewNavType(e.target.value as any)}
-                      className="w-full px-3 py-1.5 border border-[#c2c6d1] rounded-lg text-xs bg-white"
+                      className="w-full px-3 py-1.5 border border-[#D3DCE6] rounded-lg text-xs bg-white"
                     >
                       <option value="screen">Internal Screen</option>
                       <option value="external">External Web URL</option>
@@ -1737,11 +1737,11 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   </div>
                   {newNavType === 'screen' ? (
                     <div>
-                      <label className="block text-[11px] font-bold text-[#424750] mb-1">Screen</label>
+                      <label className="block text-[11px] font-bold text-[#43566B] mb-1">Screen</label>
                       <select
                         value={newNavScreen}
                         onChange={(e) => setNewNavScreen(e.target.value as any)}
-                        className="w-full px-3 py-1.5 border border-[#c2c6d1] rounded-lg text-xs bg-white"
+                        className="w-full px-3 py-1.5 border border-[#D3DCE6] rounded-lg text-xs bg-white"
                       >
                         <option value="calculators">Calculators</option>
                         <option value="insights">Goal Planner & Insights</option>
@@ -1753,14 +1753,14 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     </div>
                   ) : (
                     <div>
-                      <label className="block text-[11px] font-bold text-[#424750] mb-1">External URL</label>
+                      <label className="block text-[11px] font-bold text-[#43566B] mb-1">External URL</label>
                       <input
                         type="url"
                         value={newNavExternalUrl}
                         onChange={(e) => setNewNavExternalUrl(e.target.value)}
                         placeholder="https://bsestarmf.in"
                         required
-                        className="w-full px-3 py-1.5 border border-[#c2c6d1] rounded-lg text-xs bg-white font-mono"
+                        className="w-full px-3 py-1.5 border border-[#D3DCE6] rounded-lg text-xs bg-white font-mono"
                       />
                     </div>
                   )}
@@ -1769,13 +1769,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   <button
                     type="button"
                     onClick={() => setIsAddingNav(false)}
-                    className="px-3 py-1.5 text-xs text-[#424750] hover:bg-[#e0e3e5] rounded-lg"
+                    className="px-3 py-1.5 text-xs text-[#43566B] hover:bg-[#E4EAF0] rounded-lg"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-1.5 bg-[#006d42] text-white text-xs font-bold rounded-lg shadow-xs"
+                    className="px-4 py-1.5 bg-[#8A6420] text-white text-xs font-bold rounded-lg shadow-xs"
                   >
                     Add to Navbar
                   </button>
@@ -1783,21 +1783,21 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               </form>
             )}
 
-            <div className="divide-y divide-[#e0e3e5] border border-[#c2c6d1] rounded-xl overflow-hidden">
+            <div className="divide-y divide-[#E4EAF0] border border-[#D3DCE6] rounded-xl overflow-hidden">
               {navItems.map((item) => (
-                <div key={item.id} className="p-4 flex items-center justify-between bg-white hover:bg-[#f7f9fb] transition-colors">
+                <div key={item.id} className="p-4 flex items-center justify-between bg-white hover:bg-[#F6F8FB] transition-colors">
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2 py-0.5 rounded">
+                    <span className="text-xs font-bold text-[#0F2740] bg-[#E3ECF5] px-2 py-0.5 rounded">
                       Order #{item.order}
                     </span>
-                    <span className="text-sm font-bold text-[#191c1e]">{item.label}</span>
+                    <span className="text-sm font-bold text-[#13263B]">{item.label}</span>
                     {item.screenId && (
-                      <span className="text-[11px] text-[#727781] bg-[#eceef0] px-2 py-0.5 rounded">
+                      <span className="text-[11px] text-[#6B7C8F] bg-[#EDF1F5] px-2 py-0.5 rounded">
                         Screen: {item.screenId}
                       </span>
                     )}
                     {item.externalUrl && (
-                      <span className="text-[11px] text-[#006d42] bg-[#96f6bd]/30 px-2 py-0.5 rounded flex items-center gap-1">
+                      <span className="text-[11px] text-[#8A6420] bg-[#F3D58E]/30 px-2 py-0.5 rounded flex items-center gap-1">
                         <ExternalLink className="w-3 h-3" />
                         {item.externalUrl}
                       </span>
@@ -1809,8 +1809,8 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                       onClick={() => toggleNavItemVisibility(item.id)}
                       className={`px-3 py-1 rounded-lg text-xs font-bold cursor-pointer transition-colors ${
                         item.isVisible
-                          ? 'bg-[#96f6bd]/40 text-[#006d42] border border-[#006d42]/30'
-                          : 'bg-[#eceef0] text-[#727781]'
+                          ? 'bg-[#F3D58E]/40 text-[#8A6420] border border-[#8A6420]/30'
+                          : 'bg-[#EDF1F5] text-[#6B7C8F]'
                       }`}
                     >
                       {item.isVisible ? 'Visible' : 'Hidden'}
@@ -1835,15 +1835,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 7: TOP ANNOUNCEMENT BANNERS */}
       {activeTab === 'banners' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveBanner} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveBanner} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Top Announcement Banner</h2>
-                <p className="text-xs text-[#727781]">Configure the site-wide notice or announcement top banner.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Top Announcement Banner</h2>
+                <p className="text-xs text-[#6B7C8F]">Configure the site-wide notice or announcement top banner.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Publish Banner</span>
@@ -1851,18 +1851,18 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             <div className="space-y-4">
-              <label className="flex items-center gap-3 p-3 bg-[#f7f9fb] border border-[#c2c6d1] rounded-xl cursor-pointer">
+              <label className="flex items-center gap-3 p-3 bg-[#F6F8FB] border border-[#D3DCE6] rounded-xl cursor-pointer">
                 <input
                   type="checkbox"
                   checked={bannerForm.enabled}
                   onChange={(e) => setBannerForm({ ...bannerForm, enabled: e.target.checked })}
-                  className="w-4 h-4 rounded text-[#003461]"
+                  className="w-4 h-4 rounded text-[#0F2740]"
                 />
-                <span className="text-xs font-bold text-[#191c1e]">Enable Announcement Banner across all pages</span>
+                <span className="text-xs font-bold text-[#13263B]">Enable Announcement Banner across all pages</span>
               </label>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Banner Text Message
                 </label>
                 <input
@@ -1870,13 +1870,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={bannerForm.text}
                   onChange={(e) => setBannerForm({ ...bannerForm, text: e.target.value })}
                   placeholder="Market Update: Q3 corporate earnings review is now live."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Action Button Label (Optional)
                   </label>
                   <input
@@ -1884,18 +1884,18 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={bannerForm.linkText || ''}
                     onChange={(e) => setBannerForm({ ...bannerForm, linkText: e.target.value })}
                     placeholder="e.g. Read Insights"
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                     Button Target Screen
                   </label>
                   <select
                     value={bannerForm.linkTarget as string || 'insights'}
                     onChange={(e) => setBannerForm({ ...bannerForm, linkTarget: e.target.value as any })}
-                    className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   >
                     <option value="insights">Holdings & Insights</option>
                     <option value="invest">Mutual Funds Explorer</option>
@@ -1906,10 +1906,10 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Banner</span>
@@ -1922,15 +1922,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 8: REFERRALS, CALENDLY & WEBHOOKS */}
       {activeTab === 'links' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveSettings} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveSettings} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">BSE/NSE Referral, Calendly & Lead Webhook URLs</h2>
-                <p className="text-xs text-[#727781]">Configure external onboarding links, calendar links, and Zapier/Google Sheets endpoints.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">BSE/NSE Referral, Calendly & Lead Webhook URLs</h2>
+                <p className="text-xs text-[#6B7C8F]">Configure external onboarding links, calendar links, and Zapier/Google Sheets endpoints.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Integrations</span>
@@ -1940,19 +1940,19 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <div className="space-y-6">
               
               {/* Calendly */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={settingsForm.enableCalendlyBooking}
                     onChange={(e) => setSettingsForm({ ...settingsForm, enableCalendlyBooking: e.target.checked })}
-                    className="w-4 h-4 rounded text-[#003461]"
+                    className="w-4 h-4 rounded text-[#0F2740]"
                   />
-                  <span className="text-xs font-bold text-[#003461] uppercase tracking-wider">Enable Calendly Direct Booking Link</span>
+                  <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider">Enable Calendly Direct Booking Link</span>
                 </label>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#424750] uppercase mb-1">
+                  <label className="block text-[11px] font-bold text-[#43566B] uppercase mb-1">
                     Calendly Meeting URL
                   </label>
                   <input
@@ -1960,73 +1960,73 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={settingsForm.calendlyUrl}
                     onChange={(e) => setSettingsForm({ ...settingsForm, calendlyUrl: e.target.value })}
                     placeholder="https://calendly.com/your-username/30min"
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white font-mono"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white font-mono"
                   />
                 </div>
               </div>
 
               {/* BSE / NSE Referral */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={settingsForm.enableMfReferralDirect}
                     onChange={(e) => setSettingsForm({ ...settingsForm, enableMfReferralDirect: e.target.checked })}
-                    className="w-4 h-4 rounded text-[#003461]"
+                    className="w-4 h-4 rounded text-[#0F2740]"
                   />
-                  <span className="text-xs font-bold text-[#003461] uppercase tracking-wider">Enable Direct BSE StAR / NSE NMF Referral Button on Hero</span>
+                  <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider">Enable Direct BSE StAR / NSE NMF Referral Button on Hero</span>
                 </label>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] font-bold text-[#424750] uppercase mb-1">Button Title</label>
+                    <label className="block text-[11px] font-bold text-[#43566B] uppercase mb-1">Button Title</label>
                     <input
                       type="text"
                       value={settingsForm.mfReferralLinkTitle}
                       onChange={(e) => setSettingsForm({ ...settingsForm, mfReferralLinkTitle: e.target.value })}
                       placeholder="Open Account on BSE StAR MF"
-                      className="w-full px-3 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white"
+                      className="w-full px-3 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-[#424750] uppercase mb-1">Referral Link URL</label>
+                    <label className="block text-[11px] font-bold text-[#43566B] uppercase mb-1">Referral Link URL</label>
                     <input
                       type="url"
                       value={settingsForm.mfReferralLink}
                       onChange={(e) => setSettingsForm({ ...settingsForm, mfReferralLink: e.target.value })}
                       placeholder="https://bsestarmf.in/referral?arn=337289"
-                      className="w-full px-3 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white font-mono"
+                      className="w-full px-3 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white font-mono"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Lead Webhook / Zapier */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
-                <div className="text-xs font-bold text-[#003461] uppercase tracking-wider flex items-center gap-2">
-                  <Share2 className="w-4 h-4 text-[#006d42]" />
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-bold text-[#0F2740] uppercase tracking-wider flex items-center gap-2">
+                  <Share2 className="w-4 h-4 text-[#8A6420]" />
                   <span>Real-time Lead Webhooks (Zapier / Make / Custom Server)</span>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#424750] uppercase mb-1">Webhook Endpoint URL</label>
+                  <label className="block text-[11px] font-bold text-[#43566B] uppercase mb-1">Webhook Endpoint URL</label>
                   <input
                     type="url"
                     value={settingsForm.leadWebhookUrl || ''}
                     onChange={(e) => setSettingsForm({ ...settingsForm, leadWebhookUrl: e.target.value })}
                     placeholder="https://hooks.zapier.com/hooks/catch/..."
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-white font-mono"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-white font-mono"
                   />
-                  <p className="text-[10px] text-[#727781] mt-1">Whenever a client selects a mutual fund and enters their phone/name, instant JSON lead payload is dispatched to this endpoint.</p>
+                  <p className="text-[10px] text-[#6B7C8F] mt-1">Whenever a client selects a mutual fund and enters their phone/name, instant JSON lead payload is dispatched to this endpoint.</p>
                 </div>
               </div>
 
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save All Links</span>
@@ -2039,26 +2039,26 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB: SCHEDULED MEETINGS & BOOKINGS */}
       {activeTab === 'bookings' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">
-                  <Calendar className="w-3.5 h-3.5 text-[#006d42]" />
+                <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">
+                  <Calendar className="w-3.5 h-3.5 text-[#8A6420]" />
                   <span>Real-Time Meeting Schedule</span>
                 </div>
-                <h2 className="text-lg font-bold text-[#003461]">Client Consultation Bookings ({bookings.length})</h2>
-                <p className="text-xs text-[#727781]">Clients who scheduled 1-on-1 sessions. Use 1-click WhatsApp, Call, or Email to connect with them instantly.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Client Consultation Bookings ({bookings.length})</h2>
+                <p className="text-xs text-[#6B7C8F]">Clients who scheduled 1-on-1 sessions. Use 1-click WhatsApp, Call, or Email to connect with them instantly.</p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-[#006d42] bg-[#f0fdf4] border border-[#bbf7d0] px-3 py-1.5 rounded-xl">
+                <span className="text-xs font-bold text-[#8A6420] bg-[#FBF6EA] border border-[#F6E7C1] px-3 py-1.5 rounded-xl">
                   {bookings.filter(b => b.status === 'Confirmed' || !b.status).length} Active Sessions
                 </span>
               </div>
             </div>
 
             {bookings.length === 0 ? (
-              <div className="text-center py-12 text-[#727781] text-xs">
+              <div className="text-center py-12 text-[#6B7C8F] text-xs">
                 No meeting bookings received yet.
               </div>
             ) : (
@@ -2070,27 +2070,27 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   );
 
                   return (
-                    <div key={b.id || idx} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-4 hover:border-[#003461] transition-all">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e0e3e5]">
+                    <div key={b.id || idx} className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-4 hover:border-[#0F2740] transition-all">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#E4EAF0]">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
+                          <span className="font-mono text-xs font-bold text-[#0F2740] bg-[#E3ECF5] px-2.5 py-0.5 rounded-md">
                             {b.id || `BK-${idx + 101}`}
                           </span>
-                          <span className="font-bold text-base text-[#191c1e]">{b.clientName}</span>
-                          <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#006d42]/10 text-[#006d42]">
+                          <span className="font-bold text-base text-[#13263B]">{b.clientName}</span>
+                          <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#8A6420]/10 text-[#8A6420]">
                             {b.topic || 'General Portfolio Advisory'}
                           </span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-[#727781]">Status:</span>
+                          <span className="text-xs text-[#6B7C8F]">Status:</span>
                           <select
                             value={b.status || 'Confirmed'}
                             onChange={(e) => {
                               updateBookingStatus(idx, e.target.value as any);
                               showNotification(`Meeting status updated to ${e.target.value}`);
                             }}
-                            className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#003461]"
+                            className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#0F2740]"
                           >
                             <option value="Confirmed">Confirmed</option>
                             <option value="Pending">Pending</option>
@@ -2102,46 +2102,46 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                       {/* Details Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Date & Time</span>
-                          <div className="font-extrabold text-[#003461] flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5 text-[#006d42]" />
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block mb-0.5">Date & Time</span>
+                          <div className="font-extrabold text-[#0F2740] flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5 text-[#8A6420]" />
                             <span>{b.date} • {b.timeSlot}</span>
                           </div>
                         </div>
 
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Contact Phone</span>
-                          <div className="font-bold text-[#191c1e] flex items-center gap-1">
-                            <Phone className="w-3.5 h-3.5 text-[#003461]" />
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block mb-0.5">Contact Phone</span>
+                          <div className="font-bold text-[#13263B] flex items-center gap-1">
+                            <Phone className="w-3.5 h-3.5 text-[#0F2740]" />
                             <span>{b.clientPhone}</span>
                           </div>
                         </div>
 
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Email Address</span>
-                          <div className="font-semibold text-[#424750] truncate flex items-center gap-1">
-                            <Mail className="w-3.5 h-3.5 text-[#727781]" />
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block mb-0.5">Email Address</span>
+                          <div className="font-semibold text-[#43566B] truncate flex items-center gap-1">
+                            <Mail className="w-3.5 h-3.5 text-[#6B7C8F]" />
                             <span>{b.clientEmail || 'Not provided'}</span>
                           </div>
                         </div>
 
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block mb-0.5">Assigned Advisor</span>
-                          <div className="font-semibold text-[#003461] truncate">
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block mb-0.5">Assigned Advisor</span>
+                          <div className="font-semibold text-[#0F2740] truncate">
                             {b.advisorName || 'Mr. Arvind Sharma (Founder Desk)'}
                           </div>
                         </div>
                       </div>
 
                       {b.notes && (
-                        <div className="bg-white p-3 rounded-xl border border-[#e0e3e5] text-xs text-[#424750]">
-                          <span className="font-bold text-[#191c1e]">Client Note / Query: </span>
+                        <div className="bg-white p-3 rounded-xl border border-[#E4EAF0] text-xs text-[#43566B]">
+                          <span className="font-bold text-[#13263B]">Client Note / Query: </span>
                           <span>{b.notes}</span>
                         </div>
                       )}
 
                       {/* Direct Connect Action Buttons */}
-                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#e0e3e5]">
+                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E4EAF0]">
                         <a
                           href={`https://wa.me/${cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone}?text=${waMsg}`}
                           target="_blank"
@@ -2154,7 +2154,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
                         <a
                           href={`tel:${cleanPhone}`}
-                          className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
+                          className="bg-[#0F2740] hover:bg-[#1D4268] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow-2xs"
                         >
                           <Phone className="w-3.5 h-3.5" />
                           <span>Call Client</span>
@@ -2163,7 +2163,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                         {b.clientEmail && (
                           <a
                             href={`mailto:${b.clientEmail}?subject=Regarding Your Consultation Session with ${siteSettings.companyName}`}
-                            className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5"
+                            className="bg-white border border-[#D3DCE6] hover:bg-[#EDF1F5] text-[#0F2740] text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5"
                           >
                             <Mail className="w-3.5 h-3.5" />
                             <span>Send Email</span>
@@ -2178,7 +2178,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                             );
                             showNotification('Client details copied to clipboard!');
                           }}
-                          className="bg-[#eceef0] hover:bg-[#e0e3e5] text-[#424750] text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer"
+                          className="bg-[#EDF1F5] hover:bg-[#E4EAF0] text-[#43566B] text-xs font-semibold px-3 py-2 rounded-xl transition-all cursor-pointer"
                         >
                           Copy Details
                         </button>
@@ -2196,19 +2196,19 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 9: CLIENT QUOTES & LEADS */}
       {activeTab === 'quotes' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Client Registrations & Scheme Quotes ({quotes.length})</h2>
-                <p className="text-xs text-[#727781]">Clients who registered for mutual fund onboarding and personalized SIP quotes.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Client Registrations & Scheme Quotes ({quotes.length})</h2>
+                <p className="text-xs text-[#6B7C8F]">Clients who registered for mutual fund onboarding and personalized SIP quotes.</p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-[#424750]">Filter:</span>
+                <span className="text-xs font-bold text-[#43566B]">Filter:</span>
                 <select
                   value={quoteStatusFilter}
                   onChange={(e) => setQuoteStatusFilter(e.target.value)}
-                  className="px-3 py-1.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] text-[#191c1e]"
+                  className="px-3 py-1.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] text-[#13263B]"
                 >
                   <option value="all">All Leads ({quotes.length})</option>
                   <option value="New Lead">New Leads</option>
@@ -2221,7 +2221,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             </div>
 
             {filteredQuotes.length === 0 ? (
-              <div className="text-center py-12 text-[#727781] text-xs">
+              <div className="text-center py-12 text-[#6B7C8F] text-xs">
                 No quote submissions found matching filter.
               </div>
             ) : (
@@ -2233,23 +2233,23 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   );
 
                   return (
-                    <div key={q.id} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3 hover:border-[#003461] transition-all">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#e0e3e5]">
+                    <div key={q.id} className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3 hover:border-[#0F2740] transition-all">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#E4EAF0]">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-xs font-bold text-[#003461] bg-[#d3e4fe] px-2.5 py-0.5 rounded-md">
+                          <span className="font-mono text-xs font-bold text-[#0F2740] bg-[#E3ECF5] px-2.5 py-0.5 rounded-md">
                             {q.id}
                           </span>
-                          <span className="font-bold text-sm text-[#191c1e]">{q.fullName}</span>
+                          <span className="font-bold text-sm text-[#13263B]">{q.fullName}</span>
                           {q.city && (
-                            <span className="text-xs text-[#727781]">({q.city})</span>
+                            <span className="text-xs text-[#6B7C8F]">({q.city})</span>
                           )}
-                          <span className="text-xs text-[#727781]">• {q.submittedAt}</span>
+                          <span className="text-xs text-[#6B7C8F]">• {q.submittedAt}</span>
                         </div>
 
                         <select
                           value={q.status}
                           onChange={(e) => updateQuoteStatus(q.id, e.target.value as any)}
-                          className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#003461]"
+                          className="text-xs font-bold px-3 py-1 rounded-lg border bg-white text-[#0F2740]"
                         >
                           <option value="New Lead">New Lead</option>
                           <option value="Contacted">Contacted</option>
@@ -2261,25 +2261,25 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Phone</span>
-                          <div className="font-bold text-[#191c1e]">{q.phone}</div>
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block">Phone</span>
+                          <div className="font-bold text-[#13263B]">{q.phone}</div>
                         </div>
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Target Goal / Fund</span>
-                          <div className="font-bold text-[#003461] truncate">{q.investmentGoal || q.selectedFund || 'Mutual Fund SIP'}</div>
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block">Target Goal / Fund</span>
+                          <div className="font-bold text-[#0F2740] truncate">{q.investmentGoal || q.selectedFund || 'Mutual Fund SIP'}</div>
                         </div>
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Investment Amount</span>
-                          <div className="font-bold text-[#006d42]">₹{q.investmentAmount?.toLocaleString('en-IN') || 0} ({q.investmentType || 'SIP'})</div>
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block">Investment Amount</span>
+                          <div className="font-bold text-[#8A6420]">₹{q.investmentAmount?.toLocaleString('en-IN') || 0} ({q.investmentType || 'SIP'})</div>
                         </div>
                         <div>
-                          <span className="text-[10px] text-[#727781] uppercase font-bold block">Email</span>
-                          <div className="font-semibold text-[#424750] truncate">{q.email || 'N/A'}</div>
+                          <span className="text-[10px] text-[#6B7C8F] uppercase font-bold block">Email</span>
+                          <div className="font-semibold text-[#43566B] truncate">{q.email || 'N/A'}</div>
                         </div>
                       </div>
 
                       {/* Action buttons */}
-                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#e0e3e5]">
+                      <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E4EAF0]">
                         <a
                           href={`https://wa.me/${cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone}?text=${waMsg}`}
                           target="_blank"
@@ -2292,7 +2292,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
                         <a
                           href={`tel:${cleanPhone}`}
-                          className="bg-[#003461] hover:bg-[#004b87] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-2xs"
+                          className="bg-[#0F2740] hover:bg-[#1D4268] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-2xs"
                         >
                           <Phone className="w-3.5 h-3.5" />
                           <span>Call</span>
@@ -2301,7 +2301,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                         {q.email && (
                           <a
                             href={`mailto:${q.email}?subject=Your Mutual Fund Investment Request - ${siteSettings.companyName}`}
-                            className="bg-white border border-[#c2c6d1] hover:bg-[#eceef0] text-[#003461] text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1"
+                            className="bg-white border border-[#D3DCE6] hover:bg-[#EDF1F5] text-[#0F2740] text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1"
                           >
                             <Mail className="w-3.5 h-3.5" />
                             <span>Email</span>
@@ -2316,7 +2316,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                             );
                             showNotification('Lead details copied to clipboard!');
                           }}
-                          className="text-[11px] bg-[#eceef0] hover:bg-[#e0e3e5] text-[#424750] px-2.5 py-1.5 rounded-lg cursor-pointer ml-auto"
+                          className="text-[11px] bg-[#EDF1F5] hover:bg-[#E4EAF0] text-[#43566B] px-2.5 py-1.5 rounded-lg cursor-pointer ml-auto"
                         >
                           Copy Lead
                         </button>
@@ -2333,15 +2333,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 10: BLOGS & RESEARCH INSIGHTS */}
       {activeTab === 'blogs' && (
         <div className="py-4 space-y-6">
-          <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e0e3e5]">
+          <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 institutional-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Research Articles & Market Insights CMS</h2>
-                <p className="text-xs text-[#727781]">Publish educational reports, commentary, and scheme reviews with custom cover images and alt text.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Research Articles & Market Insights CMS</h2>
+                <p className="text-xs text-[#6B7C8F]">Publish educational reports, commentary, and scheme reviews with custom cover images and alt text.</p>
               </div>
               <button
                 onClick={handleOpenAddArticle}
-                className="px-4 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-4 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Write New Article</span>
@@ -2350,9 +2350,9 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {articles.map((art) => (
-                <div key={art.id} className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl overflow-hidden flex flex-col justify-between">
+                <div key={art.id} className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl overflow-hidden flex flex-col justify-between">
                   {art.imageUrl && (
-                    <div className="w-full h-36 overflow-hidden bg-white border-b border-[#e0e3e5]">
+                    <div className="w-full h-36 overflow-hidden bg-white border-b border-[#E4EAF0]">
                       <img
                         src={art.imageUrl}
                         alt={art.imageAlt || art.title}
@@ -2363,21 +2363,21 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   )}
                   <div className="p-5 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#d3e4fe] text-[#003461] rounded">
+                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#E3ECF5] text-[#0F2740] rounded">
                         {art.category}
                       </span>
-                      <span className="text-[10px] text-[#727781]">{art.readTime}</span>
+                      <span className="text-[10px] text-[#6B7C8F]">{art.readTime}</span>
                     </div>
-                    <h3 className="font-bold text-sm text-[#191c1e] line-clamp-2">{art.title}</h3>
-                    <p className="text-xs text-[#424750] line-clamp-2">{art.summary}</p>
+                    <h3 className="font-bold text-sm text-[#13263B] line-clamp-2">{art.title}</h3>
+                    <p className="text-xs text-[#43566B] line-clamp-2">{art.summary}</p>
                   </div>
 
-                  <div className="p-4 bg-white border-t border-[#e0e3e5] flex items-center justify-between text-xs">
-                    <span className="text-[11px] text-[#727781]">{art.author}</span>
+                  <div className="p-4 bg-white border-t border-[#E4EAF0] flex items-center justify-between text-xs">
+                    <span className="text-[11px] text-[#6B7C8F]">{art.author}</span>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleOpenEditArticle(art)}
-                        className="p-1.5 text-[#003461] hover:bg-[#eceef0] rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 text-[#0F2740] hover:bg-[#EDF1F5] rounded-lg transition-colors cursor-pointer"
                         title="Edit Article"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -2401,15 +2401,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TAB 11: POLICIES & COMPLIANCE */}
       {activeTab === 'policies' && (
         <div className="py-4 space-y-6">
-          <form onSubmit={handleSaveSettings} className="bg-white border border-[#c2c6d1] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e0e3e5]">
+          <form onSubmit={handleSaveSettings} className="bg-white border border-[#D3DCE6] rounded-2xl p-6 sm:p-8 space-y-6 institutional-shadow">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E4EAF0]">
               <div>
-                <h2 className="text-lg font-bold text-[#003461]">Privacy Policy, Terms & Statutory Disclosures</h2>
-                <p className="text-xs text-[#727781]">Update regulatory disclosures and compliance clauses displayed across the platform.</p>
+                <h2 className="text-lg font-bold text-[#0F2740]">Privacy Policy, Terms & Statutory Disclosures</h2>
+                <p className="text-xs text-[#6B7C8F]">Update regulatory disclosures and compliance clauses displayed across the platform.</p>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-[#003461] hover:bg-[#004b87] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-2.5 bg-[#0F2740] hover:bg-[#1D4268] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Policies</span>
@@ -2418,7 +2418,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Privacy Policy & Data Security
                 </label>
                 <textarea
@@ -2426,12 +2426,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.privacyPolicy || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, privacyPolicy: e.target.value })}
                   placeholder="Enter privacy policy..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   Terms of Service (AMFI Registered MFD Status)
                 </label>
                 <textarea
@@ -2439,12 +2439,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.termsOfService || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, termsOfService: e.target.value })}
                   placeholder="Enter terms of service..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1.5">
                   AMFI Statutory Risk Disclosures
                 </label>
                 <textarea
@@ -2452,15 +2452,15 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={settingsForm.riskDisclosures || ''}
                   onChange={(e) => setSettingsForm({ ...settingsForm, riskDisclosures: e.target.value })}
                   placeholder="Mutual Fund investments are subject to market risks..."
-                  className="w-full px-4 py-2.5 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2.5 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#e0e3e5] flex justify-end">
+            <div className="pt-4 border-t border-[#E4EAF0] flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-[#006d42] hover:bg-[#005231] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-2.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm rounded-xl flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <Save className="w-4 h-4" />
                 <span>Save All Compliance Policies</span>
@@ -2473,14 +2473,14 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* ARTICLE EDITOR MODAL (With Image URL & Alt Text) */}
       {isArticleModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-4 border border-[#c2c6d1] shadow-2xl animate-in zoom-in-95">
-            <div className="flex items-center justify-between pb-3 border-b border-[#e0e3e5]">
-              <h3 className="text-base font-bold text-[#003461]">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-4 border border-[#D3DCE6] shadow-2xl animate-in zoom-in-95">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E4EAF0]">
+              <h3 className="text-base font-bold text-[#0F2740]">
                 {editingArticleId ? 'Edit Research Article' : 'Publish New Market Article'}
               </h3>
               <button
                 onClick={() => setIsArticleModalOpen(false)}
-                className="p-1 text-[#727781] hover:text-[#191c1e] cursor-pointer"
+                className="p-1 text-[#6B7C8F] hover:text-[#13263B] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2488,7 +2488,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
             <form onSubmit={handleSaveArticle} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                   Article Title
                 </label>
                 <input
@@ -2497,19 +2497,19 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })}
                   placeholder="e.g. The Power of SIP Compounding in Quality Mutual Funds"
                   required
-                  className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-sm bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                  className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Category
                   </label>
                   <select
                     value={articleForm.category}
                     onChange={(e) => setArticleForm({ ...articleForm, category: e.target.value })}
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   >
                     <option value="Mutual Funds">Mutual Funds</option>
                     <option value="Market Insights">Market Insights</option>
@@ -2520,7 +2520,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Read Time
                   </label>
                   <input
@@ -2528,7 +2528,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={articleForm.readTime}
                     onChange={(e) => setArticleForm({ ...articleForm, readTime: e.target.value })}
                     placeholder="4 min read"
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
@@ -2536,7 +2536,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
               {/* Cover Image & Alt Text */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Cover Image URL
                   </label>
                   <input
@@ -2544,12 +2544,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={articleForm.imageUrl}
                     onChange={(e) => setArticleForm({ ...articleForm, imageUrl: e.target.value })}
                     placeholder="https://images.unsplash.com/photo-..."
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Cover Image Alt Text
                   </label>
                   <input
@@ -2557,13 +2557,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={articleForm.imageAlt}
                     onChange={(e) => setArticleForm({ ...articleForm, imageAlt: e.target.value })}
                     placeholder="SIP Growth Chart Illustration"
-                    className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                   Executive Summary
                 </label>
                 <textarea
@@ -2572,12 +2572,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   onChange={(e) => setArticleForm({ ...articleForm, summary: e.target.value })}
                   placeholder="Short summary..."
                   required
-                  className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                   Article Body (Markdown Supported)
                 </label>
                 <textarea
@@ -2585,17 +2585,17 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={articleForm.content}
                   onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
                   placeholder="Write full article here..."
-                  className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-[#e0e3e5]">
-                <label className="flex items-center gap-2 text-xs font-bold text-[#006d42] cursor-pointer">
+              <div className="flex items-center justify-between pt-3 border-t border-[#E4EAF0]">
+                <label className="flex items-center gap-2 text-xs font-bold text-[#8A6420] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={articleForm.featured}
                     onChange={(e) => setArticleForm({ ...articleForm, featured: e.target.checked })}
-                    className="rounded text-[#006d42]"
+                    className="rounded text-[#8A6420]"
                   />
                   <span>Mark as Featured</span>
                 </label>
@@ -2604,13 +2604,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   <button
                     type="button"
                     onClick={() => setIsArticleModalOpen(false)}
-                    className="px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs font-bold text-[#424750] hover:bg-[#eceef0] cursor-pointer"
+                    className="px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs font-bold text-[#43566B] hover:bg-[#EDF1F5] cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 bg-[#006d42] text-white rounded-xl text-xs font-bold hover:bg-[#005231] cursor-pointer"
+                    className="px-5 py-2 bg-[#8A6420] text-white rounded-xl text-xs font-bold hover:bg-[#6F501A] cursor-pointer"
                   >
                     Save Article
                   </button>
@@ -2624,14 +2624,14 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
       {/* TESTIMONIAL EDITOR MODAL */}
       {isTestimonialModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-4 border border-[#c2c6d1] shadow-2xl animate-in zoom-in-95">
-            <div className="flex items-center justify-between pb-3 border-b border-[#e0e3e5]">
-              <h3 className="text-base font-bold text-[#003461]">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-4 border border-[#D3DCE6] shadow-2xl animate-in zoom-in-95">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E4EAF0]">
+              <h3 className="text-base font-bold text-[#0F2740]">
                 {editingTestimonialId ? 'Edit Testimonial' : 'Add Client Testimonial & Review'}
               </h3>
               <button
                 onClick={() => setIsTestimonialModalOpen(false)}
-                className="p-1 text-[#727781] hover:text-[#191c1e] cursor-pointer"
+                className="p-1 text-[#6B7C8F] hover:text-[#13263B] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2640,7 +2640,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
             <form onSubmit={handleSaveTestimonial} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Client Name
                   </label>
                   <input
@@ -2649,12 +2649,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, clientName: e.target.value })}
                     placeholder="e.g. Priya Iyer"
                     required
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-bold"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Role & Location
                   </label>
                   <input
@@ -2662,14 +2662,14 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={testimonialForm.locationOrRole}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, locationOrRole: e.target.value })}
                     placeholder="Senior IT Consultant, Bengaluru"
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Investment Category / Goal
                   </label>
                   <input
@@ -2677,18 +2677,18 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={testimonialForm.investmentType}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, investmentType: e.target.value })}
                     placeholder="Monthly SIP & Tax Saver (ELSS)"
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Star Rating (1 to 5)
                   </label>
                   <select
                     value={testimonialForm.rating}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, rating: Number(e.target.value) })}
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   >
                     <option value={5}>5 Stars ★★★★★</option>
                     <option value={4}>4 Stars ★★★★☆</option>
@@ -2699,7 +2699,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Client Photo URL
                   </label>
                   <input
@@ -2707,12 +2707,12 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={testimonialForm.avatarUrl}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, avatarUrl: e.target.value })}
                     placeholder="https://images.unsplash.com/photo-..."
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                     Photo Alt Text
                   </label>
                   <input
@@ -2720,13 +2720,13 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                     value={testimonialForm.avatarAlt}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, avatarAlt: e.target.value })}
                     placeholder="Priya Iyer Investor Profile"
-                    className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                    className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                   Video URL (YouTube or Direct Video Embed Link - Optional)
                 </label>
                 <input
@@ -2734,24 +2734,24 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   value={testimonialForm.videoUrl}
                   onChange={(e) => setTestimonialForm({ ...testimonialForm, videoUrl: e.target.value })}
                   placeholder="https://www.youtube.com/watch?v=..."
-                  className="w-full px-3.5 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden font-mono"
+                  className="w-full px-3.5 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden font-mono"
                 />
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-xs font-bold text-[#006d42] cursor-pointer">
+                <label className="flex items-center gap-2 text-xs font-bold text-[#8A6420] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={testimonialForm.verified}
                     onChange={(e) => setTestimonialForm({ ...testimonialForm, verified: e.target.checked })}
-                    className="rounded text-[#006d42]"
+                    className="rounded text-[#8A6420]"
                   />
                   <span>Show Verified Investor Badge</span>
                 </label>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#191c1e] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-[#13263B] uppercase tracking-wider mb-1">
                   Client Review / Testimonial Text
                 </label>
                 <textarea
@@ -2760,21 +2760,21 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   onChange={(e) => setTestimonialForm({ ...testimonialForm, text: e.target.value })}
                   placeholder="Write the investor's experience and words here..."
                   required
-                  className="w-full px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs bg-[#f7f9fb] focus:ring-2 focus:ring-[#003461] outline-hidden"
+                  className="w-full px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-[#e0e3e5]">
+              <div className="flex justify-end gap-2 pt-3 border-t border-[#E4EAF0]">
                 <button
                   type="button"
                   onClick={() => setIsTestimonialModalOpen(false)}
-                  className="px-4 py-2 border border-[#c2c6d1] rounded-xl text-xs font-bold text-[#424750] hover:bg-[#eceef0] cursor-pointer"
+                  className="px-4 py-2 border border-[#D3DCE6] rounded-xl text-xs font-bold text-[#43566B] hover:bg-[#EDF1F5] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-[#006d42] text-white rounded-xl text-xs font-bold hover:bg-[#005231] cursor-pointer"
+                  className="px-5 py-2 bg-[#8A6420] text-white rounded-xl text-xs font-bold hover:bg-[#6F501A] cursor-pointer"
                 >
                   Save Testimonial
                 </button>

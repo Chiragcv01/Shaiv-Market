@@ -84,16 +84,16 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
 
   const colorClasses = {
     blue: {
-      accent: 'accent-[#003461]',
-      text: 'text-[#003461]',
-      border: 'focus-within:border-[#003461] focus-within:ring-2 focus-within:ring-[#003461]/20',
-      activeBtn: 'bg-[#003461] text-white border-[#003461]'
+      accent: 'accent-[#0F2740]',
+      text: 'text-[#0F2740]',
+      border: 'focus-within:border-[#0F2740] focus-within:ring-2 focus-within:ring-[#0F2740]/20',
+      activeBtn: 'bg-[#0F2740] text-white border-[#0F2740]'
     },
     green: {
-      accent: 'accent-[#006d42]',
-      text: 'text-[#006d42]',
-      border: 'focus-within:border-[#006d42] focus-within:ring-2 focus-within:ring-[#006d42]/20',
-      activeBtn: 'bg-[#006d42] text-white border-[#006d42]'
+      accent: 'accent-[#8A6420]',
+      text: 'text-[#8A6420]',
+      border: 'focus-within:border-[#8A6420] focus-within:ring-2 focus-within:ring-[#8A6420]/20',
+      activeBtn: 'bg-[#8A6420] text-white border-[#8A6420]'
     },
     amber: {
       accent: 'accent-amber-600',
@@ -104,18 +104,18 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
   }[themeColor];
 
   return (
-    <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-4 sm:p-5 space-y-3">
+    <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-4 sm:p-5 space-y-3">
       {/* Label and Manual Editable Input Box */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <label htmlFor={id} className="text-xs font-bold text-[#191c1e] uppercase tracking-wider flex items-center gap-1.5">
+        <label htmlFor={id} className="text-xs font-bold text-[#13263B] uppercase tracking-wider flex items-center gap-1.5">
           {icon}
           <span>{label}</span>
         </label>
 
         {/* Dual Input: Clean editable text box supporting manual typing like '3 lakh', '2,50,890', etc. */}
-        <div className={`flex items-center bg-white border border-[#c2c6d1] rounded-xl px-2.5 py-1.5 transition-all shadow-2xs ${colorClasses.border}`}>
+        <div className={`flex items-center bg-white border border-[#D3DCE6] rounded-xl px-2.5 py-1.5 transition-all shadow-2xs ${colorClasses.border}`}>
           {prefix && (
-            <span className="text-xs font-bold text-[#727781] mr-1 select-none">
+            <span className="text-xs font-bold text-[#6B7C8F] mr-1 select-none">
               {prefix}
             </span>
           )}
@@ -130,7 +130,7 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
             className={`font-mono text-sm sm:text-base font-extrabold ${colorClasses.text} bg-transparent outline-hidden w-28 sm:w-36 text-right`}
           />
           {suffix && (
-            <span className="text-xs font-bold text-[#727781] ml-1 select-none">
+            <span className="text-xs font-bold text-[#6B7C8F] ml-1 select-none">
               {suffix}
             </span>
           )}
@@ -153,7 +153,7 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer truncate ${
                   isSelected
                     ? colorClasses.activeBtn
-                    : 'bg-white text-[#424750] border-[#c2c6d1] hover:bg-[#eceef0]'
+                    : 'bg-white text-[#43566B] border-[#D3DCE6] hover:bg-[#EDF1F5]'
                 }`}
               >
                 {p.label}
@@ -172,14 +172,14 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
           step={step}
           value={Math.min(Math.max(value, min), max)}
           onChange={handleSliderChange}
-          className={`w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer ${colorClasses.accent}`}
+          className={`w-full h-2 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer ${colorClasses.accent}`}
         />
         
         {/* Min/Max indicators and quick words feedback */}
-        <div className="flex justify-between items-center text-[10px] text-[#727781] font-mono">
+        <div className="flex justify-between items-center text-[10px] text-[#6B7C8F] font-mono">
           <span>{minLabel || (isCurrency ? formatIndianCurrency(min) : `${min}${suffix}`)}</span>
           {isCurrency && (
-            <span className="font-sans font-semibold text-[#003461] bg-[#d3e4fe]/40 px-2 py-0.5 rounded text-[11px]">
+            <span className="font-sans font-semibold text-[#0F2740] bg-[#E3ECF5]/40 px-2 py-0.5 rounded text-[11px]">
               {formatIndianCurrency(value)}
             </span>
           )}
@@ -189,7 +189,7 @@ export const SmartNumberInput: React.FC<SmartNumberInputProps> = ({
       </div>
 
       {helperText && (
-        <p className="text-[11px] text-[#727781] italic">
+        <p className="text-[11px] text-[#6B7C8F] italic">
           {helperText}
         </p>
       )}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { takePendingTab } from '../utils/deepLink';
 import { ActiveScreen } from '../types';
 import { RequiredSipCalculator } from './RequiredSipCalculator';
 import { InvestmentCalculator } from './InvestmentCalculator';
@@ -29,7 +31,7 @@ interface CalculatorsScreenProps {
 type CalculatorTab = 'required-sip' | 'sip-compounder' | 'goal' | 'swp' | 'loan-sip' | 'fire' | 'emergency';
 
 export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate }) => {
-  const [activeTab, setActiveTab] = useState<CalculatorTab>('required-sip');
+  const [activeTab, setActiveTab] = useState<CalculatorTab>(() => (takePendingTab() as CalculatorTab) || 'required-sip');
 
   const tabs: { id: CalculatorTab; label: string; icon: any; tag?: string }[] = [
     { id: 'required-sip', label: 'Know Required SIP Amount', icon: Target, tag: 'Goal Target' },
@@ -45,21 +47,17 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
     <div id="calculators-screen" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 md:py-16">
       
       {/* Header */}
-      <div className="text-center md:text-left mb-8">
-        <div className="inline-flex items-center gap-2 bg-[#d3e4fe] text-[#003461] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-          <Calculator className="w-4 h-4 text-[#006d42]" />
-          Smart Financial Planning Suite
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#003461] mb-2">
-          Interactive Wealth & SIP Calculators
+      <div className="mb-8 max-w-3xl">
+        <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#0F2740] leading-[1.05]">
+          Seven calculators. Pick a question, move the sliders, get your number.
         </h1>
-        <p className="text-sm sm:text-base text-[#424750] max-w-3xl leading-relaxed">
-          Easily calculate required monthly SIP amounts for your target goals, simulate compound wealth accumulation, plan SWP pensions, and evaluate loan prepayment vs. equity SIP returns.
+        <p className="mt-3 text-base text-[#43566B] leading-relaxed">
+          From "how much SIP do I need?" to "should I prepay my home loan?". Every result is illustrative, at the return you choose.
         </p>
       </div>
 
-      {/* Calculator Navigation Tabs */}
-      <div className="flex gap-2 overflow-x-auto scrollbar-none pb-2 mb-8 border-b border-[#c2c6d1]">
+      {/* Calculator tabs with a sliding highlight */}
+      <div role="tablist" aria-label="Calculators" className="flex gap-1.5 overflow-x-auto scrollbar-none p-1.5 mb-8 rounded-2xl bg-[#EEF3F8]">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -67,19 +65,20 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
             <button
               key={tab.id}
               type="button"
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-3 rounded-t-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shrink-0 cursor-pointer border-b-2 relative ${
-                isActive
-                  ? 'bg-white text-[#003461] border-[#003461] shadow-xs'
-                  : 'bg-transparent text-[#727781] border-transparent hover:text-[#003461] hover:bg-[#eceef0]/60'
-              }`}
+              className={`relative px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 shrink-0 cursor-pointer transition-colors
+                focus-visible:outline-2 focus-visible:outline-[#E3B65C] ${isActive ? 'text-white' : 'text-[#43566B] hover:text-[#0F2740]'}`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-[#006d42]' : 'text-[#727781]'}`} />
-              <span>{tab.label}</span>
+              {isActive && (
+                <motion.span layoutId="calc-tab" className="absolute inset-0 rounded-xl bg-[#0F2740] shadow-md"
+                  transition={{ type: 'spring', stiffness: 450, damping: 35 }} />
+              )}
+              <Icon className={`relative w-4 h-4 ${isActive ? 'text-[#E3B65C]' : 'text-[#6B7C8F]'}`} />
+              <span className="relative whitespace-nowrap">{tab.label}</span>
               {tab.tag && (
-                <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                  isActive ? 'bg-[#f0fdf4] text-[#006d42] border border-[#bbf7d0]' : 'bg-[#e0e3e5] text-[#424750]'
-                }`}>
+                <span className={`relative text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${isActive ? 'bg-[#E3B65C] text-[#0F2740]' : 'bg-white text-[#8A6420]'}`}>
                   {tab.tag}
                 </span>
               )}
@@ -89,7 +88,15 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
       </div>
 
       {/* Active Calculator Component */}
-      <div className="mb-14">
+      <AnimatePresence mode="wait">
+      <motion.div
+        key={activeTab}
+        className="mb-14"
+        initial={{ opacity: 0, y: 14, filter: 'blur(4px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
+        transition={{ duration: 0.25 }}
+      >
         {activeTab === 'required-sip' && (
           <RequiredSipCalculator
             onNavigate={onNavigate}
@@ -134,52 +141,53 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
             onNavigate={onNavigate}
           />
         )}
-      </div>
+      </motion.div>
+      </AnimatePresence>
 
       {/* Educational Guide Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs">
-          <div className="w-10 h-10 rounded-xl bg-[#d3e4fe] text-[#003461] flex items-center justify-center mb-4">
-            <Target className="w-5 h-5 text-[#003461]" />
+        <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#E3ECF5] text-[#0F2740] flex items-center justify-center mb-4">
+            <Target className="w-5 h-5 text-[#0F2740]" />
           </div>
-          <h3 className="text-base font-bold text-[#191c1e] mb-2">
+          <h3 className="text-base font-bold text-[#13263B] mb-2">
             Target Goal Precision
           </h3>
-          <p className="text-xs text-[#424750] leading-relaxed mb-4">
+          <p className="text-xs text-[#43566B] leading-relaxed mb-4">
             Instead of arbitrary investing, calculate the exact monthly SIP needed to fund life milestones like a ₹1 Crore home downpayment or child higher education.
           </p>
-          <div className="text-xs font-bold text-[#006d42]">
+          <div className="text-xs font-bold text-[#8A6420]">
             Reverse SIP Compounder
           </div>
         </div>
 
-        <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs">
-          <div className="w-10 h-10 rounded-xl bg-[#93f3bb] text-[#007146] flex items-center justify-center mb-4">
-            <Zap className="w-5 h-5 text-[#006d42]" />
+        <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#F3D58E] text-[#8A6420] flex items-center justify-center mb-4">
+            <Zap className="w-5 h-5 text-[#8A6420]" />
           </div>
-          <h3 className="text-base font-bold text-[#191c1e] mb-2">
+          <h3 className="text-base font-bold text-[#13263B] mb-2">
             Rupee-Cost Averaging
           </h3>
-          <p className="text-xs text-[#424750] leading-relaxed mb-4">
+          <p className="text-xs text-[#43566B] leading-relaxed mb-4">
             SIP removes the stress of timing market peaks by automatically purchasing more mutual fund units when valuations are lower.
           </p>
-          <div className="text-xs font-bold text-[#003461]">
+          <div className="text-xs font-bold text-[#0F2740]">
             Protects against volatility
           </div>
         </div>
 
-        <div className="bg-white border border-[#c2c6d1] rounded-2xl p-6 shadow-xs">
-          <div className="w-10 h-10 rounded-xl bg-[#d3e4fe] text-[#003461] flex items-center justify-center mb-4">
-            <TrendingUp className="w-5 h-5 text-[#006d42]" />
+        <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#E3ECF5] text-[#0F2740] flex items-center justify-center mb-4">
+            <TrendingUp className="w-5 h-5 text-[#8A6420]" />
           </div>
-          <h3 className="text-base font-bold text-[#191c1e] mb-2">
+          <h3 className="text-base font-bold text-[#13263B] mb-2">
             The Power of Step-Up SIP
           </h3>
-          <p className="text-xs text-[#424750] leading-relaxed mb-4">
+          <p className="text-xs text-[#43566B] leading-relaxed mb-4">
             Increasing your monthly investment by just 10% annually with salary hikes can boost your final accumulated corpus by up to 80%.
           </p>
-          <div className="text-xs font-bold text-[#006d42]">
+          <div className="text-xs font-bold text-[#8A6420]">
             Accelerated Compounding
           </div>
         </div>

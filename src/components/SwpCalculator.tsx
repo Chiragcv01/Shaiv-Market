@@ -55,30 +55,30 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
   const isSafeWithdrawalRate = annualWithdrawalRate <= (expectedReturn - 2);
 
   return (
-    <div id="swp-calculator-card" className="w-full bg-white border border-[#c2c6d1] rounded-2xl shadow-sm overflow-hidden">
+    <div id="swp-calculator-card" className="w-full bg-white border border-[#D3DCE6] rounded-2xl shadow-sm overflow-hidden">
       
       {/* Header Bar */}
-      <div className="p-6 bg-[#f7f9fb] border-b border-[#c2c6d1] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="p-6 bg-[#F6F8FB] border-b border-[#D3DCE6] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
+          <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
             <Wallet className="w-3.5 h-3.5" />
             Systematic Withdrawal Plan (SWP)
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
             Monthly Pension & Capital Sustainability Simulator
           </h3>
-          <p className="text-xs text-[#424750] mt-0.5">
+          <p className="text-xs text-[#43566B] mt-0.5">
             Ideal for retirees, HNI living off investments, and regular cash-flow planning with maximum tax efficiency.
           </p>
         </div>
 
         {/* Chart vs Table Toggle */}
-        <div className="flex bg-[#eceef0] p-1 rounded-xl border border-[#c2c6d1] self-start sm:self-auto">
+        <div className="flex bg-[#EDF1F5] p-1 rounded-xl border border-[#D3DCE6] self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setViewMode('chart')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              viewMode === 'chart' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750] hover:text-[#003461]'
+              viewMode === 'chart' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B] hover:text-[#0F2740]'
             }`}
           >
             Growth Chart
@@ -87,7 +87,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             type="button"
             onClick={() => setViewMode('table')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              viewMode === 'table' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750] hover:text-[#003461]'
+              viewMode === 'table' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B] hover:text-[#0F2740]'
             }`}
           >
             Yearly Statement
@@ -95,7 +95,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#c2c6d1]">
+      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#D3DCE6]">
         
         {/* Controls Column (7 cols) */}
         <div className="lg:col-span-7 p-6 sm:p-8 space-y-4">
@@ -110,7 +110,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             max={100000000}
             step={100000}
             isCurrency={true}
-            icon={<Wallet className="w-4 h-4 text-[#003461]" />}
+            icon={<Wallet className="w-4 h-4 text-[#0F2740]" />}
             minLabel="₹1 Lakh"
             midLabel="₹2.5 Crore"
             maxLabel="₹10 Crore"
@@ -134,7 +134,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             max={1000000}
             step={1000}
             isCurrency={true}
-            icon={<Calendar className="w-4 h-4 text-[#006d42]" />}
+            icon={<Calendar className="w-4 h-4 text-[#8A6420]" />}
             minLabel="₹1,000/mo"
             midLabel="₹1,00,000/mo"
             maxLabel="₹10 Lakh/mo"
@@ -159,7 +159,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
               max={16}
               step={0.5}
               suffix="%"
-              icon={<TrendingUp className="w-4 h-4 text-[#003461]" />}
+              icon={<TrendingUp className="w-4 h-4 text-[#0F2740]" />}
               minLabel="5% (Conservative)"
               maxLabel="16% (Aggressive)"
               themeColor="blue"
@@ -179,7 +179,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
               max={40}
               step={1}
               suffix=" Yrs"
-              icon={<Layers className="w-4 h-4 text-[#003461]" />}
+              icon={<Layers className="w-4 h-4 text-[#0F2740]" />}
               minLabel="1 Yr"
               maxLabel="40 Yrs"
               themeColor="blue"
@@ -219,28 +219,28 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
           {viewMode === 'chart' ? (
             <div className="pt-2">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-[#003461] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider">
                   Remaining Balance & Cumulative Payouts:
                 </span>
-                <span className="text-[11px] text-[#727781]">
+                <span className="text-[11px] text-[#6B7C8F]">
                   Withdrawal Rate: {annualWithdrawalRate.toFixed(1)}% p.a.
                 </span>
               </div>
-              <div className="h-48 w-full bg-[#f7f9fb] rounded-xl p-2 border border-[#e0e3e5]">
+              <div className="h-48 w-full bg-[#F6F8FB] rounded-xl p-2 border border-[#E4EAF0]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={swp.yearlySchedule} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                     <defs>
                       <linearGradient id="balanceGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#003461" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#003461" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#0F2740" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#0F2740" stopOpacity={0.0} />
                       </linearGradient>
                       <linearGradient id="withdrawnGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#006d42" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#8A6420" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#8A6420" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#727781' }} />
-                    <YAxis tickFormatter={(v) => formatIndianCurrency(v).replace('₹ ', '')} tick={{ fontSize: 10, fill: '#727781' }} />
+                    <XAxis dataKey="year" tickFormatter={(v) => `Yr ${v}`} tick={{ fontSize: 10, fill: '#6B7C8F' }} />
+                    <YAxis tickFormatter={(v) => formatIndianCurrency(v).replace('₹ ', '')} tick={{ fontSize: 10, fill: '#6B7C8F' }} />
                     <Tooltip
                       formatter={(val: any, name: any) => [
                         `₹ ${Number(val).toLocaleString('en-IN')}`,
@@ -255,7 +255,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
                     <Area
                       type="monotone"
                       dataKey="closingBalance"
-                      stroke="#003461"
+                      stroke="#0F2740"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#balanceGrad)"
@@ -263,7 +263,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
                     <Area
                       type="monotone"
                       dataKey="cumulativeWithdrawn"
-                      stroke="#006d42"
+                      stroke="#8A6420"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#withdrawnGrad)"
@@ -273,9 +273,9 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
               </div>
             </div>
           ) : (
-            <div className="pt-2 max-h-56 overflow-y-auto border border-[#e0e3e5] rounded-xl">
+            <div className="pt-2 max-h-56 overflow-y-auto border border-[#E4EAF0] rounded-xl">
               <table className="w-full text-xs text-left">
-                <thead className="bg-[#eceef0] text-[#003461] font-bold sticky top-0">
+                <thead className="bg-[#EDF1F5] text-[#0F2740] font-bold sticky top-0">
                   <tr>
                     <th className="p-2">Year</th>
                     <th className="p-2">Payout This Yr</th>
@@ -284,14 +284,14 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
                     <th className="p-2">Remaining Corpus</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#eceef0]">
+                <tbody className="divide-y divide-[#EDF1F5]">
                   {swp.yearlySchedule.map((row) => (
-                    <tr key={row.year} className="hover:bg-[#f7f9fb]">
+                    <tr key={row.year} className="hover:bg-[#F6F8FB]">
                       <td className="p-2 font-bold">Year {row.year}</td>
-                      <td className="p-2 text-[#006d42] font-semibold">{formatIndianCurrency(row.withdrawnThisYear)}</td>
-                      <td className="p-2 text-[#424750]">{formatIndianCurrency(row.cumulativeWithdrawn)}</td>
-                      <td className="p-2 text-[#003461]">{formatIndianCurrency(row.interestEarned)}</td>
-                      <td className="p-2 font-bold text-[#191c1e]">{formatIndianCurrency(row.closingBalance)}</td>
+                      <td className="p-2 text-[#8A6420] font-semibold">{formatIndianCurrency(row.withdrawnThisYear)}</td>
+                      <td className="p-2 text-[#43566B]">{formatIndianCurrency(row.cumulativeWithdrawn)}</td>
+                      <td className="p-2 text-[#0F2740]">{formatIndianCurrency(row.interestEarned)}</td>
+                      <td className="p-2 font-bold text-[#13263B]">{formatIndianCurrency(row.closingBalance)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -302,7 +302,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
         </div>
 
         {/* Output Summary Column (5 cols) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#f7f9fb] flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#F6F8FB] flex flex-col justify-between space-y-6">
           
           <div className="space-y-4">
             
@@ -318,8 +318,8 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
                 </div>
               </div>
             ) : (
-              <div className="bg-[#f0fdf4] border border-[#bbf7d0] text-[#006d42] p-4 rounded-xl flex items-start gap-3 text-xs">
-                <CheckCircle2 className="w-5 h-5 shrink-0 text-[#006d42] mt-0.5" />
+              <div className="bg-[#FBF6EA] border border-[#F6E7C1] text-[#8A6420] p-4 rounded-xl flex items-start gap-3 text-xs">
+                <CheckCircle2 className="w-5 h-5 shrink-0 text-[#8A6420] mt-0.5" />
                 <div>
                   <span className="font-extrabold block">100% Sustainable SWP Model</span>
                   <span>
@@ -330,21 +330,21 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             )}
 
             {/* Key Metric 1: Total Pension Withdrawn */}
-            <div className="bg-white border border-[#c2c6d1] rounded-2xl p-5 shadow-xs">
-              <span className="text-[11px] font-bold text-[#727781] uppercase tracking-wider block mb-1">
+            <div className="bg-white border border-[#D3DCE6] rounded-2xl p-5 shadow-xs">
+              <span className="text-[11px] font-bold text-[#6B7C8F] uppercase tracking-wider block mb-1">
                 Total Cashflow Withdrawn Over {tenureYears} Years:
               </span>
-              <div className="text-3xl font-black text-[#006d42] tracking-tight">
+              <div className="text-3xl font-black text-[#8A6420] tracking-tight">
                 {formatIndianCurrency(swp.totalWithdrawn)}
               </div>
-              <p className="text-[11px] text-[#424750] mt-1">
+              <p className="text-[11px] text-[#43566B] mt-1">
                 Monthly income paid directly to your bank account with minimal LTCG tax.
               </p>
             </div>
 
             {/* Key Metric 2: Final Remaining Balance */}
-            <div className="bg-[#003461] text-white rounded-2xl p-5 shadow-md">
-              <span className="text-[11px] font-bold text-[#96f6bd] uppercase tracking-wider block mb-1">
+            <div className="bg-[#0F2740] text-white rounded-2xl p-5 shadow-md">
+              <span className="text-[11px] font-bold text-[#F3D58E] uppercase tracking-wider block mb-1">
                 Remaining Balance at End of {tenureYears} Years:
               </span>
               <div className="text-3xl font-black tracking-tight text-white">
@@ -356,18 +356,18 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             </div>
 
             {/* Breakdown Snapshot */}
-            <div className="bg-white border border-[#c2c6d1] rounded-xl p-4 space-y-2 text-xs">
+            <div className="bg-white border border-[#D3DCE6] rounded-xl p-4 space-y-2 text-xs">
               <div className="flex justify-between">
-                <span className="text-[#727781]">Initial Corpus Invested:</span>
-                <span className="font-bold text-[#191c1e]">{formatIndianCurrency(swp.initialCorpus)}</span>
+                <span className="text-[#6B7C8F]">Initial Corpus Invested:</span>
+                <span className="font-bold text-[#13263B]">{formatIndianCurrency(swp.initialCorpus)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#727781]">Total Growth / Profit Created:</span>
-                <span className="font-bold text-[#006d42]">+{formatIndianCurrency(swp.totalGainOrLoss)}</span>
+                <span className="text-[#6B7C8F]">Total Growth / Profit Created:</span>
+                <span className="font-bold text-[#8A6420]">+{formatIndianCurrency(swp.totalGainOrLoss)}</span>
               </div>
-              <div className="flex justify-between pt-1 border-t border-[#eceef0]">
-                <span className="text-[#727781]">Total Economic Value (Withdrawn + Balance):</span>
-                <span className="font-extrabold text-[#003461]">{formatIndianCurrency(swp.totalWithdrawn + swp.finalCorpus)}</span>
+              <div className="flex justify-between pt-1 border-t border-[#EDF1F5]">
+                <span className="text-[#6B7C8F]">Total Economic Value (Withdrawn + Balance):</span>
+                <span className="font-extrabold text-[#0F2740]">{formatIndianCurrency(swp.totalWithdrawn + swp.finalCorpus)}</span>
               </div>
             </div>
 
@@ -378,12 +378,12 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => onNavigate?.('open-account')}
-              className="w-full bg-[#003461] hover:bg-[#004b87] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+              className="w-full bg-[#0F2740] hover:bg-[#1D4268] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Setup Customized SWP Portfolio</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="text-[10px] text-center text-[#727781] mt-2">
+            <p className="text-[10px] text-center text-[#6B7C8F] mt-2">
               BSE StAR MF Execution • Tailored Hybrid & Balanced Advantage Funds
             </p>
           </div>

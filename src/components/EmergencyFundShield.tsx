@@ -52,10 +52,10 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
 
   // Donut chart dataset of mandatory outflows
   const expensePieData = useMemo(() => [
-    { name: 'Rent / Home EMI', value: rentOrEmi, color: '#003461' },
-    { name: 'Groceries & Bills', value: groceriesAndUtilities, color: '#006d42' },
+    { name: 'Rent / Home EMI', value: rentOrEmi, color: '#0F2740' },
+    { name: 'Groceries & Bills', value: groceriesAndUtilities, color: '#8A6420' },
     { name: 'Family & Education', value: familyAndEducation, color: '#e28743' },
-    { name: 'Insurance Premiums', value: insuranceMonthly, color: '#727781' }
+    { name: 'Insurance Premiums', value: insuranceMonthly, color: '#6B7C8F' }
   ].filter(item => item.value > 0), [rentOrEmi, groceriesAndUtilities, familyAndEducation, insuranceMonthly]);
 
   const formatTooltipValue = (val: any) => {
@@ -63,36 +63,36 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
   };
 
   return (
-    <div id="emergency-fund-shield-card" className="w-full bg-white border border-[#c2c6d1] rounded-2xl shadow-sm overflow-hidden">
+    <div id="emergency-fund-shield-card" className="w-full bg-white border border-[#D3DCE6] rounded-2xl shadow-sm overflow-hidden">
       
       {/* Header */}
-      <div className="p-6 bg-[#f7f9fb] border-b border-[#c2c6d1]">
-        <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
+      <div className="p-6 bg-[#F6F8FB] border-b border-[#D3DCE6]">
+        <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
           <ShieldCheck className="w-3.5 h-3.5" />
           Financial Health & Resilience
         </div>
-        <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
           Emergency Fund & Liquid Reserve Cushion Analyzer
         </h3>
-        <p className="text-xs text-[#424750] mt-0.5 max-w-3xl">
+        <p className="text-xs text-[#43566B] mt-0.5 max-w-3xl">
           Before taking equity market risks, safeguard your family with an inflation-resilient liquid reserve parked in high-safety Overnight and Liquid Mutual Funds.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#c2c6d1]">
+      <div className="grid lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#D3DCE6]">
         
         {/* Left Inputs (7 cols) */}
         <div className="lg:col-span-7 p-6 sm:p-8 space-y-5">
           
-          <span className="text-xs font-bold text-[#003461] uppercase tracking-wider block">
+          <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider block">
             Monthly Mandatory Living Outflows:
           </span>
 
           {/* Slider 1: Rent / Home Loan EMI */}
           <div className="space-y-1.5">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-semibold text-[#424750]">House Rent or Home Loan EMI</span>
-              <span className="font-bold text-[#003461] bg-[#eceef0] px-2 py-0.5 rounded-md">
+              <span className="font-semibold text-[#43566B]">House Rent or Home Loan EMI</span>
+              <span className="font-bold text-[#0F2740] bg-[#EDF1F5] px-2 py-0.5 rounded-md">
                 ₹ {formatRawIndianNumber(rentOrEmi)}/mo
               </span>
             </div>
@@ -103,15 +103,15 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               step={2000}
               value={rentOrEmi}
               onChange={(e) => setRentOrEmi(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+              className="w-full h-1.5 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer accent-[#0F2740]"
             />
           </div>
 
           {/* Slider 2: Groceries & Utilities */}
           <div className="space-y-1.5">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-semibold text-[#424750]">Groceries, Electricity, Bills & Fuel</span>
-              <span className="font-bold text-[#003461] bg-[#eceef0] px-2 py-0.5 rounded-md">
+              <span className="font-semibold text-[#43566B]">Groceries, Electricity, Bills & Fuel</span>
+              <span className="font-bold text-[#0F2740] bg-[#EDF1F5] px-2 py-0.5 rounded-md">
                 ₹ {formatRawIndianNumber(groceriesAndUtilities)}/mo
               </span>
             </div>
@@ -122,15 +122,15 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               step={2000}
               value={groceriesAndUtilities}
               onChange={(e) => setGroceriesAndUtilities(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+              className="w-full h-1.5 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer accent-[#0F2740]"
             />
           </div>
 
           {/* Slider 3: Child Education & Family */}
           <div className="space-y-1.5">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-semibold text-[#424750]">School/Tuition Fees & Medical</span>
-              <span className="font-bold text-[#003461] bg-[#eceef0] px-2 py-0.5 rounded-md">
+              <span className="font-semibold text-[#43566B]">School/Tuition Fees & Medical</span>
+              <span className="font-bold text-[#0F2740] bg-[#EDF1F5] px-2 py-0.5 rounded-md">
                 ₹ {formatRawIndianNumber(familyAndEducation)}/mo
               </span>
             </div>
@@ -141,15 +141,15 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               step={2000}
               value={familyAndEducation}
               onChange={(e) => setFamilyAndEducation(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+              className="w-full h-1.5 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer accent-[#0F2740]"
             />
           </div>
 
           {/* Slider 4: Insurance Premiums */}
           <div className="space-y-1.5">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-semibold text-[#424750]">Term & Health Insurance Premiums (Monthly)</span>
-              <span className="font-bold text-[#003461] bg-[#eceef0] px-2 py-0.5 rounded-md">
+              <span className="font-semibold text-[#43566B]">Term & Health Insurance Premiums (Monthly)</span>
+              <span className="font-bold text-[#0F2740] bg-[#EDF1F5] px-2 py-0.5 rounded-md">
                 ₹ {formatRawIndianNumber(insuranceMonthly)}/mo
               </span>
             </div>
@@ -160,15 +160,15 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               step={500}
               value={insuranceMonthly}
               onChange={(e) => setInsuranceMonthly(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#003461]"
+              className="w-full h-1.5 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer accent-[#0F2740]"
             />
           </div>
 
           {/* Slider 5: Current Liquid Reserve Available */}
-          <div className="space-y-2 pt-2 border-t border-[#e0e3e5]">
+          <div className="space-y-2 pt-2 border-t border-[#E4EAF0]">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-[#006d42]">Current Savings in Bank / Liquid Funds</span>
-              <span className="font-extrabold text-sm text-[#006d42] bg-[#f0fdf4] border border-[#bbf7d0] px-2.5 py-1 rounded-md">
+              <span className="font-bold text-[#8A6420]">Current Savings in Bank / Liquid Funds</span>
+              <span className="font-extrabold text-sm text-[#8A6420] bg-[#FBF6EA] border border-[#F6E7C1] px-2.5 py-1 rounded-md">
                 {formatIndianCurrency(currentLiquidSavings)}
               </span>
             </div>
@@ -179,9 +179,9 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
               step={25000}
               value={currentLiquidSavings}
               onChange={(e) => setCurrentLiquidSavings(Number(e.target.value))}
-              className="w-full h-2 bg-[#e0e3e5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
+              className="w-full h-2 bg-[#E4EAF0] rounded-lg appearance-none cursor-pointer accent-[#8A6420]"
             />
-            <div className="flex justify-between text-[10px] text-[#727781]">
+            <div className="flex justify-between text-[10px] text-[#6B7C8F]">
               <span>₹0</span>
               <span>₹15 Lakh</span>
               <span>₹30 Lakh</span>
@@ -190,11 +190,11 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
 
           {/* Visual Donut Chart of Monthly Expenses */}
           <div className="space-y-2 pt-1">
-            <span className="text-xs font-bold text-[#003461] uppercase tracking-wider flex items-center gap-1.5">
-              <PieIcon className="w-3.5 h-3.5 text-[#006d42]" />
+            <span className="text-xs font-bold text-[#0F2740] uppercase tracking-wider flex items-center gap-1.5">
+              <PieIcon className="w-3.5 h-3.5 text-[#8A6420]" />
               Monthly Essential Outflows Distribution:
             </span>
-            <div className="h-40 w-full bg-[#f7f9fb] rounded-xl p-2 border border-[#e0e3e5]">
+            <div className="h-40 w-full bg-[#F6F8FB] rounded-xl p-2 border border-[#E4EAF0]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -220,18 +220,18 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
         </div>
 
         {/* Right Output Verdict (5 cols) */}
-        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#f7f9fb] flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 p-6 sm:p-8 bg-[#F6F8FB] flex flex-col justify-between space-y-6">
           
           <div className="space-y-4">
             
             {/* Health Score Banner */}
-            <div className="bg-[#003461] text-white rounded-2xl p-6 shadow-md space-y-3">
+            <div className="bg-[#0F2740] text-white rounded-2xl p-6 shadow-md space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#96f6bd] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#F3D58E] uppercase tracking-wider">
                   Emergency Readiness Shield
                 </span>
                 <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${
-                  coverageMonths >= 6 ? 'bg-[#006d42] text-white' : coverageMonths >= 3 ? 'bg-[#ffeed9] text-[#9c4100]' : 'bg-[#ba1a1a] text-white'
+                  coverageMonths >= 6 ? 'bg-[#8A6420] text-white' : coverageMonths >= 3 ? 'bg-[#ffeed9] text-[#9c4100]' : 'bg-[#ba1a1a] text-white'
                 }`}>
                   {coverageMonths >= 6 ? 'Excellent Shield' : coverageMonths >= 3 ? 'Moderate Buffer' : 'At Risk'}
                 </span>
@@ -255,7 +255,7 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
                 <div className="w-full h-2.5 bg-white/20 rounded-full overflow-hidden">
                   <div
                     style={{ width: `${Math.min(100, (coverageMonths / 6) * 100)}%` }}
-                    className={`h-full ${coverageMonths >= 6 ? 'bg-[#96f6bd]' : 'bg-[#ffd28e]'}`}
+                    className={`h-full ${coverageMonths >= 6 ? 'bg-[#F3D58E]' : 'bg-[#ffd28e]'}`}
                   />
                 </div>
               </div>
@@ -263,26 +263,26 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
 
             {/* Target Tier Cushions */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="bg-white border border-[#c2c6d1] rounded-xl p-3 text-center space-y-1">
-                <span className="text-[10px] font-bold text-[#727781] block">3-Month Basic</span>
-                <span className="text-xs font-extrabold text-[#003461] block">{formatIndianCurrency(shield.threeMonthCushion)}</span>
+              <div className="bg-white border border-[#D3DCE6] rounded-xl p-3 text-center space-y-1">
+                <span className="text-[10px] font-bold text-[#6B7C8F] block">3-Month Basic</span>
+                <span className="text-xs font-extrabold text-[#0F2740] block">{formatIndianCurrency(shield.threeMonthCushion)}</span>
               </div>
 
-              <div className="bg-[#d3e4fe] border border-[#b8d5fc] rounded-xl p-3 text-center space-y-1">
-                <span className="text-[10px] font-bold text-[#003461] block">6-Month Optimal</span>
-                <span className="text-xs font-extrabold text-[#003461] block">{formatIndianCurrency(shield.sixMonthCushion)}</span>
+              <div className="bg-[#E3ECF5] border border-[#C9DAEA] rounded-xl p-3 text-center space-y-1">
+                <span className="text-[10px] font-bold text-[#0F2740] block">6-Month Optimal</span>
+                <span className="text-xs font-extrabold text-[#0F2740] block">{formatIndianCurrency(shield.sixMonthCushion)}</span>
               </div>
 
-              <div className="bg-white border border-[#c2c6d1] rounded-xl p-3 text-center space-y-1">
-                <span className="text-[10px] font-bold text-[#727781] block">12-Month Rock-Solid</span>
-                <span className="text-xs font-extrabold text-[#006d42] block">{formatIndianCurrency(shield.twelveMonthCushion)}</span>
+              <div className="bg-white border border-[#D3DCE6] rounded-xl p-3 text-center space-y-1">
+                <span className="text-[10px] font-bold text-[#6B7C8F] block">12-Month Rock-Solid</span>
+                <span className="text-xs font-extrabold text-[#8A6420] block">{formatIndianCurrency(shield.twelveMonthCushion)}</span>
               </div>
             </div>
 
             {/* Where to park recommendation */}
-            <div className="bg-white border border-[#c2c6d1] rounded-xl p-4 text-xs space-y-2">
-              <strong className="text-[#003461] block">Where to Park Your Emergency Reserve?</strong>
-              <div className="space-y-1 text-[#424750] text-[11px] leading-relaxed">
+            <div className="bg-white border border-[#D3DCE6] rounded-xl p-4 text-xs space-y-2">
+              <strong className="text-[#0F2740] block">Where to Park Your Emergency Reserve?</strong>
+              <div className="space-y-1 text-[#43566B] text-[11px] leading-relaxed">
                 <div>• <strong>50% in Liquid Mutual Funds:</strong> Instant T+0 withdrawal up to ₹50,000 via IMPS + higher yield than bank savings.</div>
                 <div>• <strong>30% in Ultra Short Duration Funds:</strong> Earn stable 6.5% - 7.2% with sovereign/AAA paper safety.</div>
                 <div>• <strong>20% in Savings Bank:</strong> Immediate debit card ATM access for acute emergencies.</div>
@@ -296,12 +296,12 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
             <button
               type="button"
               onClick={() => onNavigate?.('open-account')}
-              className="w-full bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+              className="w-full bg-[#8A6420] hover:bg-[#6F501A] text-white font-extrabold text-sm py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Setup Liquid Reserve Account</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="text-[10px] text-center text-[#727781] mt-2">
+            <p className="text-[10px] text-center text-[#6B7C8F] mt-2">
               AMFI Certified Distribution (ARN-337289) • Zero Exit-Load Liquid Funds
             </p>
           </div>

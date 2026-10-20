@@ -86,37 +86,37 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
   }, [result, targetCorpus]);
 
   const pieData = [
-    { name: 'Your Investment', value: result.totalInvested, color: '#003461' },
-    { name: 'Compound Returns (Gains)', value: result.totalGains, color: '#006d42' }
+    { name: 'Your Investment', value: result.totalInvested, color: '#0F2740' },
+    { name: 'Compound Returns (Gains)', value: result.totalGains, color: '#8A6420' }
   ];
 
   return (
-    <div id="required-sip-calculator" className="bg-white border border-[#c2c6d1] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xs space-y-8 animate-in fade-in">
+    <div id="required-sip-calculator" className="bg-white border border-[#D3DCE6] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xs space-y-8 animate-in fade-in">
       
       {/* Top Banner / Explanation */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#e0e3e5]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#E4EAF0]">
         <div>
-          <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-full text-xs font-bold mb-2">
-            <Target className="w-3.5 h-3.5 text-[#006d42]" />
+          <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-3 py-1 rounded-full text-xs font-bold mb-2">
+            <Target className="w-3.5 h-3.5 text-[#8A6420]" />
             <span>Target Wealth SIP Calculator</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740] tracking-tight">
             Know Your Required Monthly SIP Amount
           </h2>
-          <p className="text-xs sm:text-sm text-[#424750] mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-[#43566B] mt-1 max-w-2xl">
             Calculate the exact monthly SIP needed to build your target wealth. Enable <strong>Annual Step-Up SIP</strong> to start smaller today and step up as your income grows!
           </p>
         </div>
 
         {/* View switcher tabs */}
-        <div className="flex items-center gap-1.5 self-start md:self-auto bg-[#eceef0] p-1 rounded-xl border border-[#c2c6d1]">
+        <div className="flex items-center gap-1.5 self-start md:self-auto bg-[#EDF1F5] p-1 rounded-xl border border-[#D3DCE6]">
           <button
             type="button"
             onClick={() => setChartView('area')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               chartView === 'area'
-                ? 'bg-[#003461] text-white shadow-2xs'
-                : 'text-[#424750] hover:text-[#191c1e]'
+                ? 'bg-[#0F2740] text-white shadow-2xs'
+                : 'text-[#43566B] hover:text-[#13263B]'
             }`}
           >
             <BarChart3 className="w-3.5 h-3.5" />
@@ -127,8 +127,8 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             onClick={() => setChartView('donut')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               chartView === 'donut'
-                ? 'bg-[#003461] text-white shadow-2xs'
-                : 'text-[#424750] hover:text-[#191c1e]'
+                ? 'bg-[#0F2740] text-white shadow-2xs'
+                : 'text-[#43566B] hover:text-[#13263B]'
             }`}
           >
             <PieIcon className="w-3.5 h-3.5" />
@@ -139,8 +139,8 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             onClick={() => setChartView('table')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               chartView === 'table'
-                ? 'bg-[#003461] text-white shadow-2xs'
-                : 'text-[#424750] hover:text-[#191c1e]'
+                ? 'bg-[#0F2740] text-white shadow-2xs'
+                : 'text-[#43566B] hover:text-[#13263B]'
             }`}
           >
             <TableIcon className="w-3.5 h-3.5" />
@@ -165,7 +165,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             max={100000000}
             step={50000}
             isCurrency={true}
-            icon={<Target className="w-4 h-4 text-[#003461]" />}
+            icon={<Target className="w-4 h-4 text-[#0F2740]" />}
             minLabel="₹1 Lakh"
             midLabel="₹50 Lakh"
             maxLabel="₹10 Crore"
@@ -184,7 +184,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             max={35}
             step={1}
             suffix=" Yrs"
-            icon={<Clock className="w-4 h-4 text-[#006d42]" />}
+            icon={<Clock className="w-4 h-4 text-[#8A6420]" />}
             minLabel="1 Yr"
             midLabel="15 Yrs"
             maxLabel="35 Yrs"
@@ -202,7 +202,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             max={20}
             step={0.5}
             suffix="%"
-            icon={<Percent className="w-4 h-4 text-[#003461]" />}
+            icon={<Percent className="w-4 h-4 text-[#0F2740]" />}
             minLabel="6% (Debt/FD)"
             midLabel="13% (Equity Average)"
             maxLabel="20% (High Growth)"
@@ -215,19 +215,19 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
           />
 
           {/* Dedicated Annual Step-Up SIP Toggle & Configuration Box */}
-          <div className="bg-[#f0fdf4] border-2 border-[#bbf7d0] rounded-2xl p-5 space-y-4">
+          <div className="bg-[#FBF6EA] border-2 border-[#F6E7C1] rounded-2xl p-5 space-y-4">
             
             {/* Toggle Header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-[#006d42] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#8A6420] text-white flex items-center justify-center">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-extrabold text-[#006d42] uppercase tracking-wider">
+                  <h4 className="text-xs sm:text-sm font-extrabold text-[#8A6420] uppercase tracking-wider">
                     Annual Step-Up SIP Mode
                   </h4>
-                  <p className="text-[11px] text-[#424750]">
+                  <p className="text-[11px] text-[#43566B]">
                     Increase SIP yearly with your salary appraisal
                   </p>
                 </div>
@@ -245,7 +245,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   }
                 }}
                 className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                  isStepUpEnabled ? 'bg-[#006d42]' : 'bg-[#c2c6d1]'
+                  isStepUpEnabled ? 'bg-[#8A6420]' : 'bg-[#D3DCE6]'
                 }`}
                 role="switch"
                 aria-checked={isStepUpEnabled}
@@ -261,10 +261,10 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
 
             {/* If Step-Up is active */}
             {isStepUpEnabled ? (
-              <div className="space-y-3 pt-2 border-t border-[#bbf7d0]">
+              <div className="space-y-3 pt-2 border-t border-[#F6E7C1]">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-[#191c1e]">Annual Step-Up Percentage:</span>
-                  <span className="font-extrabold text-[#006d42] font-mono bg-white px-2 py-0.5 rounded border border-[#bbf7d0]">
+                  <span className="font-bold text-[#13263B]">Annual Step-Up Percentage:</span>
+                  <span className="font-extrabold text-[#8A6420] font-mono bg-white px-2 py-0.5 rounded border border-[#F6E7C1]">
                     +{annualStepUp}% Every Year
                   </span>
                 </div>
@@ -278,8 +278,8 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                       onClick={() => setAnnualStepUp(val)}
                       className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                         annualStepUp === val
-                          ? 'bg-[#006d42] text-white border-[#006d42] shadow-2xs'
-                          : 'bg-white text-[#424750] border-[#bbf7d0] hover:bg-white/80'
+                          ? 'bg-[#8A6420] text-white border-[#8A6420] shadow-2xs'
+                          : 'bg-white text-[#43566B] border-[#F6E7C1] hover:bg-white/80'
                       }`}
                     >
                       +{val}%
@@ -295,21 +295,21 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   step={1}
                   value={annualStepUp}
                   onChange={(e) => setAnnualStepUp(Number(e.target.value))}
-                  className="w-full h-2 bg-[#d1fae5] rounded-lg appearance-none cursor-pointer accent-[#006d42]"
+                  className="w-full h-2 bg-[#F6E7C1] rounded-lg appearance-none cursor-pointer accent-[#8A6420]"
                 />
 
-                <div className="flex justify-between text-[10px] text-[#727781] font-mono">
+                <div className="flex justify-between text-[10px] text-[#6B7C8F] font-mono">
                   <span>1% Min</span>
                   <span>10% (Recommended)</span>
                   <span>30% Max</span>
                 </div>
 
-                <p className="text-[11px] text-[#006d42] font-medium bg-white/70 p-2 rounded-lg border border-[#bbf7d0] leading-snug">
+                <p className="text-[11px] text-[#8A6420] font-medium bg-white/70 p-2 rounded-lg border border-[#F6E7C1] leading-snug">
                   ✨ <strong>Benefit:</strong> With +{annualStepUp}% annual step-up, you only need to start with <strong>{formatIndianCurrency(result.requiredMonthlySip)}/month</strong> in Year 1 instead of {formatIndianCurrency(result.flatRequiredMonthlySip)}/month!
                 </p>
               </div>
             ) : (
-              <div className="text-[11px] text-[#727781] italic pt-1 border-t border-[#bbf7d0]">
+              <div className="text-[11px] text-[#6B7C8F] italic pt-1 border-t border-[#F6E7C1]">
                 Flat SIP mode active (same monthly installment every year). Toggle ON above to see Step-Up benefits.
               </div>
             )}
@@ -322,15 +322,15 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
         <div className="lg:col-span-7 space-y-6">
           
           {/* Main Key Result Highlight Box */}
-          <div className="bg-gradient-to-br from-[#003461] to-[#002647] text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#004b87] rounded-full blur-3xl opacity-30 -mr-16 -mt-16 pointer-events-none" />
+          <div className="bg-gradient-to-br from-[#0F2740] to-[#0A1D30] text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#1D4268] rounded-full blur-3xl opacity-30 -mr-16 -mt-16 pointer-events-none" />
             
             <div className="relative z-10 space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#96f6bd] bg-white/10 px-3 py-1 rounded-full">
+                <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#F3D58E] bg-white/10 px-3 py-1 rounded-full">
                   {isStepUpEnabled && annualStepUp > 0 ? `Step-Up SIP Plan (+${annualStepUp}%/Yr)` : 'Fixed / Flat SIP Plan'}
                 </span>
-                <span className="text-xs text-[#d3e4fe]">
+                <span className="text-xs text-[#E3ECF5]">
                   Target: {formatIndianCurrency(targetCorpus)} in {targetYears} Yrs
                 </span>
               </div>
@@ -340,22 +340,22 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white/10 p-4 rounded-2xl border border-white/15">
                   {/* Starting SIP */}
                   <div>
-                    <span className="text-[11px] text-[#d3e4fe] font-medium flex items-center gap-1">
-                      <ArrowRight className="w-3.5 h-3.5 text-[#96f6bd]" />
+                    <span className="text-[11px] text-[#E3ECF5] font-medium flex items-center gap-1">
+                      <ArrowRight className="w-3.5 h-3.5 text-[#F3D58E]" />
                       Starting Monthly SIP (Year 1)
                     </span>
                     <div className="text-2xl sm:text-3xl font-black text-white mt-1">
                       ₹{Math.round(result.requiredMonthlySip).toLocaleString('en-IN')}
-                      <span className="text-xs font-normal text-[#96f6bd] ml-1">/ mo</span>
+                      <span className="text-xs font-normal text-[#F3D58E] ml-1">/ mo</span>
                     </div>
-                    <span className="text-[10px] text-[#96f6bd] block mt-0.5">
+                    <span className="text-[10px] text-[#F3D58E] block mt-0.5">
                       First 12 months installment
                     </span>
                   </div>
 
                   {/* Final Year SIP */}
                   <div className="sm:border-l sm:border-white/15 sm:pl-4">
-                    <span className="text-[11px] text-[#d3e4fe] font-medium flex items-center gap-1">
+                    <span className="text-[11px] text-[#E3ECF5] font-medium flex items-center gap-1">
                       <ArrowUpRight className="w-3.5 h-3.5 text-amber-300" />
                       Final Year Monthly SIP (Year {targetYears})
                     </span>
@@ -371,12 +371,12 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
               ) : (
                 /* Flat SIP Single Card */
                 <div>
-                  <div className="text-xs text-[#d3e4fe] font-medium">Required Monthly SIP (Flat / Fixed)</div>
+                  <div className="text-xs text-[#E3ECF5] font-medium">Required Monthly SIP (Flat / Fixed)</div>
                   <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mt-1">
                     ₹{Math.round(result.requiredMonthlySip).toLocaleString('en-IN')}
-                    <span className="text-sm sm:text-base font-normal text-[#96f6bd] ml-2">/ month</span>
+                    <span className="text-sm sm:text-base font-normal text-[#F3D58E] ml-2">/ month</span>
                   </div>
-                  <p className="text-[11px] text-[#d3e4fe] mt-1">
+                  <p className="text-[11px] text-[#E3ECF5] mt-1">
                     Fixed monthly installment maintained throughout {targetYears} years.
                   </p>
                 </div>
@@ -384,14 +384,14 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
 
               {/* Comparison Callout if Step-Up is enabled */}
               {isStepUpEnabled && annualStepUp > 0 && result.monthlySavingsAtStart > 0 && (
-                <div className="bg-[#006d42]/60 border border-[#96f6bd]/40 rounded-xl p-3 flex items-center justify-between text-xs">
+                <div className="bg-[#8A6420]/60 border border-[#F3D58E]/40 rounded-xl p-3 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#96f6bd] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#F3D58E] shrink-0" />
                     <span>
                       Flat SIP would require <strong>₹{result.flatRequiredMonthlySip.toLocaleString('en-IN')}/mo</strong> from Day 1.
                     </span>
                   </div>
-                  <span className="font-extrabold text-[#96f6bd] text-right shrink-0">
+                  <span className="font-extrabold text-[#F3D58E] text-right shrink-0">
                     Saves ₹{result.monthlySavingsAtStart.toLocaleString('en-IN')}/mo today!
                   </span>
                 </div>
@@ -400,27 +400,27 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
               {/* Stat Grid */}
               <div className="grid grid-cols-3 gap-3 pt-2 border-t border-white/15">
                 <div>
-                  <span className="text-[10px] text-[#d3e4fe] uppercase font-bold block">Total You Invest</span>
+                  <span className="text-[10px] text-[#E3ECF5] uppercase font-bold block">Total You Invest</span>
                   <span className="text-sm sm:text-base font-bold text-white">
                     {formatIndianCurrency(result.totalInvested)}
                   </span>
-                  <span className="text-[10px] text-[#96f6bd] block">
+                  <span className="text-[10px] text-[#F3D58E] block">
                     ({result.investedPercentage.toFixed(0)}% of Goal)
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[10px] text-[#d3e4fe] uppercase font-bold block">Compound Wealth Gain</span>
-                  <span className="text-sm sm:text-base font-bold text-[#96f6bd]">
+                  <span className="text-[10px] text-[#E3ECF5] uppercase font-bold block">Compound Wealth Gain</span>
+                  <span className="text-sm sm:text-base font-bold text-[#F3D58E]">
                     {formatIndianCurrency(result.totalGains)}
                   </span>
-                  <span className="text-[10px] text-[#96f6bd] block">
+                  <span className="text-[10px] text-[#F3D58E] block">
                     ({result.returnsPercentage.toFixed(0)}% of Goal)
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[10px] text-[#d3e4fe] uppercase font-bold block">Target Maturity Corpus</span>
+                  <span className="text-[10px] text-[#E3ECF5] uppercase font-bold block">Target Maturity Corpus</span>
                   <span className="text-sm sm:text-base font-bold text-white">
                     {formatIndianCurrency(targetCorpus)}
                   </span>
@@ -438,7 +438,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                     if (onStartSip) onStartSip();
                     else if (onNavigate) onNavigate('open-account');
                   }}
-                  className="flex-1 min-w-[180px] bg-[#006d42] hover:bg-[#005231] text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="flex-1 min-w-[180px] bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <span>Start This SIP With Us</span>
                   <ArrowRight className="w-4 h-4" />
@@ -448,7 +448,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   onClick={() => onNavigate && onNavigate('booking')}
                   className="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                 >
-                  <Calendar className="w-3.5 h-3.5 text-[#96f6bd]" />
+                  <Calendar className="w-3.5 h-3.5 text-[#F3D58E]" />
                   <span>Book Free Consultation</span>
                 </button>
               </div>
@@ -456,15 +456,15 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
           </div>
 
           {/* Interactive Chart or Yearly Schedule Table */}
-          <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-[#003461]">
+          <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-[#0F2740]">
               <span className="flex items-center gap-1.5">
-                <TrendingUp className="w-4 h-4 text-[#006d42]" />
+                <TrendingUp className="w-4 h-4 text-[#8A6420]" />
                 {chartView === 'area' && 'Wealth Accumulation Timeline'}
                 {chartView === 'donut' && 'Capital vs Compounded Returns'}
                 {chartView === 'table' && 'Year-by-Year Step-Up Schedule'}
               </span>
-              <span className="text-[11px] text-[#727781]">
+              <span className="text-[11px] text-[#6B7C8F]">
                 Compounding at {expectedReturnRate}% CAGR
               </span>
             </div>
@@ -476,24 +476,24 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                     <defs>
                       <linearGradient id="corpusGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#006d42" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#8A6420" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#8A6420" stopOpacity={0.0} />
                       </linearGradient>
                       <linearGradient id="investedGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#003461" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#003461" stopOpacity={0.0} />
+                        <stop offset="5%" stopColor="#0F2740" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#0F2740" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" stroke="#727781" fontSize={11} />
+                    <XAxis dataKey="year" stroke="#6B7C8F" fontSize={11} />
                     <YAxis
-                      stroke="#727781"
+                      stroke="#6B7C8F"
                       fontSize={11}
                       tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`}
                     />
                     <Tooltip
                       formatter={(val: any) => [`₹${Number(val).toLocaleString('en-IN')}`, '']}
                       contentStyle={{
-                        backgroundColor: '#003461',
+                        backgroundColor: '#0F2740',
                         borderRadius: '12px',
                         color: '#fff',
                         border: 'none',
@@ -504,7 +504,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                       type="monotone"
                       dataKey="corpus"
                       name="Accumulated Wealth"
-                      stroke="#006d42"
+                      stroke="#8A6420"
                       strokeWidth={2.5}
                       fill="url(#corpusGrad)"
                     />
@@ -512,7 +512,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                       type="monotone"
                       dataKey="invested"
                       name="Total Invested"
-                      stroke="#003461"
+                      stroke="#0F2740"
                       strokeWidth={2}
                       fill="url(#investedGrad)"
                     />
@@ -542,7 +542,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                     <Tooltip
                       formatter={(val: any) => [`₹${Number(val).toLocaleString('en-IN')}`, '']}
                       contentStyle={{
-                        backgroundColor: '#003461',
+                        backgroundColor: '#0F2740',
                         borderRadius: '12px',
                         color: '#fff',
                         border: 'none',
@@ -552,7 +552,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                     <Legend
                       verticalAlign="bottom"
                       height={36}
-                      formatter={(val) => <span className="text-xs font-semibold text-[#191c1e]">{val}</span>}
+                      formatter={(val) => <span className="text-xs font-semibold text-[#13263B]">{val}</span>}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -563,7 +563,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             {chartView === 'table' && (
               <div className="overflow-x-auto max-h-72 pt-2 scrollbar-thin">
                 <table className="w-full text-xs text-left border-collapse">
-                  <thead className="bg-[#eceef0] text-[#003461] font-bold sticky top-0 border-b border-[#c2c6d1]">
+                  <thead className="bg-[#EDF1F5] text-[#0F2740] font-bold sticky top-0 border-b border-[#D3DCE6]">
                     <tr>
                       <th className="py-2 px-3">Year</th>
                       <th className="py-2 px-3">Monthly SIP</th>
@@ -572,20 +572,20 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                       <th className="py-2 px-3 text-right">Portfolio Value</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#e0e3e5]">
+                  <tbody className="divide-y divide-[#E4EAF0]">
                     {result.yearlyMilestones.map((m) => (
                       <tr key={m.yearNum} className="hover:bg-white transition-colors">
-                        <td className="py-2 px-3 font-bold text-[#191c1e]">Year {m.yearNum}</td>
-                        <td className="py-2 px-3 font-semibold text-[#006d42]">
+                        <td className="py-2 px-3 font-bold text-[#13263B]">Year {m.yearNum}</td>
+                        <td className="py-2 px-3 font-semibold text-[#8A6420]">
                           ₹{m.monthlySip.toLocaleString('en-IN')} / mo
                         </td>
-                        <td className="py-2 px-3 text-[#424750]">
+                        <td className="py-2 px-3 text-[#43566B]">
                           ₹{m.yearlyInvested.toLocaleString('en-IN')}
                         </td>
-                        <td className="py-2 px-3 font-mono text-[#003461]">
+                        <td className="py-2 px-3 font-mono text-[#0F2740]">
                           ₹{m.invested.toLocaleString('en-IN')}
                         </td>
-                        <td className="py-2 px-3 font-bold text-right text-[#006d42]">
+                        <td className="py-2 px-3 font-bold text-right text-[#8A6420]">
                           ₹{m.corpus.toLocaleString('en-IN')}
                         </td>
                       </tr>
@@ -596,28 +596,28 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             )}
 
             {/* Quick Milestone Summary */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#e0e3e5] text-center text-xs">
-              <div className="bg-white p-2 rounded-lg border border-[#e0e3e5]">
-                <div className="text-[10px] text-[#727781] uppercase font-bold">In 3 Years</div>
-                <div className="font-bold text-[#003461]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#E4EAF0] text-center text-xs">
+              <div className="bg-white p-2 rounded-lg border border-[#E4EAF0]">
+                <div className="text-[10px] text-[#6B7C8F] uppercase font-bold">In 3 Years</div>
+                <div className="font-bold text-[#0F2740]">
                   {formatIndianCurrency(result.yearlyMilestones[Math.min(2, result.yearlyMilestones.length - 1)]?.corpus || 0)}
                 </div>
               </div>
-              <div className="bg-white p-2 rounded-lg border border-[#e0e3e5]">
-                <div className="text-[10px] text-[#727781] uppercase font-bold">In 5 Years</div>
-                <div className="font-bold text-[#003461]">
+              <div className="bg-white p-2 rounded-lg border border-[#E4EAF0]">
+                <div className="text-[10px] text-[#6B7C8F] uppercase font-bold">In 5 Years</div>
+                <div className="font-bold text-[#0F2740]">
                   {formatIndianCurrency(result.yearlyMilestones[Math.min(4, result.yearlyMilestones.length - 1)]?.corpus || 0)}
                 </div>
               </div>
-              <div className="bg-white p-2 rounded-lg border border-[#e0e3e5]">
-                <div className="text-[10px] text-[#727781] uppercase font-bold">In 10 Years</div>
-                <div className="font-bold text-[#003461]">
+              <div className="bg-white p-2 rounded-lg border border-[#E4EAF0]">
+                <div className="text-[10px] text-[#6B7C8F] uppercase font-bold">In 10 Years</div>
+                <div className="font-bold text-[#0F2740]">
                   {formatIndianCurrency(result.yearlyMilestones[Math.min(9, result.yearlyMilestones.length - 1)]?.corpus || 0)}
                 </div>
               </div>
-              <div className="bg-white p-2 rounded-lg border border-[#e0e3e5]">
-                <div className="text-[10px] text-[#727781] uppercase font-bold">Target Maturity</div>
-                <div className="font-bold text-[#006d42]">
+              <div className="bg-white p-2 rounded-lg border border-[#E4EAF0]">
+                <div className="text-[10px] text-[#6B7C8F] uppercase font-bold">Target Maturity</div>
+                <div className="font-bold text-[#8A6420]">
                   {formatIndianCurrency(targetCorpus)}
                 </div>
               </div>

@@ -123,38 +123,38 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
       strategy: 'Option B: Mutual Fund SIP',
       benefit: Math.round(result.sipMaturityWealth),
       label: `SIP Corpus Built: ${formatIndianCurrency(result.sipMaturityWealth)}`,
-      color: '#006d42'
+      color: '#8A6420'
     }
   ], [result]);
 
   return (
-    <div id="loan-vs-sip-card" className="w-full bg-white border border-[#c2c6d1] rounded-3xl shadow-xs overflow-hidden space-y-6">
+    <div id="loan-vs-sip-card" className="w-full bg-white border border-[#D3DCE6] rounded-3xl shadow-xs overflow-hidden space-y-6">
       
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 bg-gradient-to-r from-[#f0f4f9] via-[#f7f9fb] to-[#e8f1ff] border-b border-[#c2c6d1]">
+      <div className="p-6 sm:p-8 bg-gradient-to-r from-[#f0f4f9] via-[#F6F8FB] to-[#EEF3F8] border-b border-[#D3DCE6]">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 bg-[#d3e4fe] text-[#003461] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-              <Scale className="w-3.5 h-3.5 text-[#006d42]" />
+            <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+              <Scale className="w-3.5 h-3.5 text-[#8A6420]" />
               <span>Smart Financial Arbitrage Engine</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#003461] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F2740] tracking-tight">
               Prepay Home Loan or Invest in SIP?
             </h2>
-            <p className="text-xs sm:text-sm text-[#424750] mt-1 max-w-3xl">
+            <p className="text-xs sm:text-sm text-[#43566B] mt-1 max-w-3xl">
               Understand the exact mathematical difference between clearing your loan early vs compounding your surplus savings in an Equity Mutual Fund.
             </p>
           </div>
 
           {/* Tab Selector */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#c2c6d1] shadow-2xs self-start md:self-auto">
+          <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#D3DCE6] shadow-2xs self-start md:self-auto">
             <button
               type="button"
               onClick={() => setActiveTab('simulator')}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'simulator'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:text-[#191c1e] hover:bg-[#f0f2f4]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:text-[#13263B] hover:bg-[#EEF2F6]'
               }`}
             >
               <Calculator className="w-3.5 h-3.5" />
@@ -165,11 +165,11 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               onClick={() => setActiveTab('explainer')}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'explainer'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:text-[#191c1e] hover:bg-[#f0f2f4]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:text-[#13263B] hover:bg-[#EEF2F6]'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5 text-[#006d42]" />
+              <BookOpen className="w-3.5 h-3.5 text-[#8A6420]" />
               <span>Simple Explainer Story</span>
             </button>
             <button
@@ -177,8 +177,8 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               onClick={() => setActiveTab('decision-guide')}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'decision-guide'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:text-[#191c1e] hover:bg-[#f0f2f4]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:text-[#13263B] hover:bg-[#EEF2F6]'
               }`}
             >
               <Award className="w-3.5 h-3.5 text-amber-600" />
@@ -189,8 +189,8 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               onClick={() => setActiveTab('faqs')}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'faqs'
-                  ? 'bg-[#003461] text-white shadow-xs'
-                  : 'text-[#424750] hover:text-[#191c1e] hover:bg-[#f0f2f4]'
+                  ? 'bg-[#0F2740] text-white shadow-xs'
+                  : 'text-[#43566B] hover:text-[#13263B] hover:bg-[#EEF2F6]'
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5" />
@@ -207,16 +207,16 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
         <div className="p-6 sm:p-8 space-y-8">
           
           {/* Quick Concept Summary Bar */}
-          <div className="p-4 bg-[#f0fdf4] border border-[#bbf7d0] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="p-4 bg-[#FBF6EA] border border-[#F6E7C1] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#006d42] text-white flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-[#8A6420] text-white flex items-center justify-center shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-extrabold text-[#006d42] block text-sm">
+                <span className="font-extrabold text-[#8A6420] block text-sm">
                   The Core Financial Arbitrage Rule:
                 </span>
-                <span className="text-[#424750]">
+                <span className="text-[#43566B]">
                   Home Loan costs <strong>{interestRate}%</strong> interest, while Equity SIP compounds at <strong>{expectedMfReturn}%</strong>. The net spread of <strong>+{(expectedMfReturn - interestRate).toFixed(2)}%</strong> creates massive compound wealth.
                 </span>
               </div>
@@ -224,7 +224,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
             <button
               type="button"
               onClick={() => setActiveTab('explainer')}
-              className="text-[#006d42] font-extrabold hover:underline flex items-center gap-1 shrink-0 cursor-pointer"
+              className="text-[#8A6420] font-extrabold hover:underline flex items-center gap-1 shrink-0 cursor-pointer"
             >
               <span>See visual story</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -246,7 +246,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 max={30000000}
                 step={100000}
                 isCurrency={true}
-                icon={<Building className="w-4 h-4 text-[#003461]" />}
+                icon={<Building className="w-4 h-4 text-[#0F2740]" />}
                 minLabel="₹5 Lakh"
                 midLabel="₹50 Lakh"
                 maxLabel="₹3 Crore"
@@ -294,7 +294,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                   max={30}
                   step={1}
                   suffix=" Yrs"
-                  icon={<Clock className="w-4 h-4 text-[#003461]" />}
+                  icon={<Clock className="w-4 h-4 text-[#0F2740]" />}
                   minLabel="1 Yr"
                   maxLabel="30 Yrs"
                   themeColor="blue"
@@ -308,9 +308,9 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               </div>
 
               {/* Regular EMI Info Badge */}
-              <div className="p-3 bg-[#f7f9fb] border border-[#e0e3e5] rounded-xl flex items-center justify-between text-xs">
-                <span className="text-[#424750] font-medium">Calculated Regular Monthly EMI:</span>
-                <span className="font-extrabold text-[#003461] font-mono text-sm bg-white px-2.5 py-0.5 rounded border border-[#c2c6d1]">
+              <div className="p-3 bg-[#F6F8FB] border border-[#E4EAF0] rounded-xl flex items-center justify-between text-xs">
+                <span className="text-[#43566B] font-medium">Calculated Regular Monthly EMI:</span>
+                <span className="font-extrabold text-[#0F2740] font-mono text-sm bg-white px-2.5 py-0.5 rounded border border-[#D3DCE6]">
                   ₹{formatRawIndianNumber(result.regularEMI)} / mo
                 </span>
               </div>
@@ -325,7 +325,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 max={200000}
                 step={1000}
                 isCurrency={true}
-                icon={<Wallet className="w-4 h-4 text-[#006d42]" />}
+                icon={<Wallet className="w-4 h-4 text-[#8A6420]" />}
                 minLabel="₹2,000/mo"
                 midLabel="₹25,000/mo"
                 maxLabel="₹2 Lakh/mo"
@@ -349,7 +349,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 max={16.0}
                 step={0.5}
                 suffix="%"
-                icon={<TrendingUp className="w-4 h-4 text-[#006d42]" />}
+                icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
                 minLabel="9% (Conservative)"
                 midLabel="13% (Equity Average)"
                 maxLabel="16% (High Alpha)"
@@ -367,16 +367,16 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
             <div className="lg:col-span-7 space-y-6">
               
               {/* Verdict Hero Card */}
-              <div className="bg-gradient-to-br from-[#003461] to-[#00203d] text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden space-y-5">
-                <div className="absolute top-0 right-0 w-72 h-72 bg-[#006d42] rounded-full blur-3xl opacity-25 -mr-20 -mt-20 pointer-events-none" />
+              <div className="bg-gradient-to-br from-[#0F2740] to-[#00203d] text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden space-y-5">
+                <div className="absolute top-0 right-0 w-72 h-72 bg-[#8A6420] rounded-full blur-3xl opacity-25 -mr-20 -mt-20 pointer-events-none" />
 
                 <div className="relative z-10 space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#96f6bd] bg-white/10 px-3 py-1 rounded-full flex items-center gap-1.5">
-                      <Award className="w-3.5 h-3.5 text-[#96f6bd]" />
+                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#F3D58E] bg-white/10 px-3 py-1 rounded-full flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5 text-[#F3D58E]" />
                       Mathematical Winner: {result.verdict}
                     </span>
-                    <span className="text-xs text-[#d3e4fe]">
+                    <span className="text-xs text-[#E3ECF5]">
                       Horizon: {tenureYears} Years
                     </span>
                   </div>
@@ -384,26 +384,26 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                       Investing in Mutual Fund SIP gives{' '}
-                      <span className="text-[#96f6bd]">
+                      <span className="text-[#F3D58E]">
                         +{formatIndianCurrency(result.netWealthAdvantage)}
                       </span>{' '}
                       Extra Net Wealth!
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#d3e4fe] mt-2 leading-relaxed">
-                      While prepaying saves <span className="text-white font-bold">{formatIndianCurrency(result.interestSaved)}</span> in bank interest, investing that same ₹{extraMonthlySavings.toLocaleString('en-IN')}/mo in an equity SIP creates a staggering <span className="text-[#96f6bd] font-bold">{formatIndianCurrency(result.sipMaturityWealth)}</span> corpus!
+                    <p className="text-xs sm:text-sm text-[#E3ECF5] mt-2 leading-relaxed">
+                      While prepaying saves <span className="text-white font-bold">{formatIndianCurrency(result.interestSaved)}</span> in bank interest, investing that same ₹{extraMonthlySavings.toLocaleString('en-IN')}/mo in an equity SIP creates a staggering <span className="text-[#F3D58E] font-bold">{formatIndianCurrency(result.sipMaturityWealth)}</span> corpus!
                     </p>
                   </div>
 
                   {/* Golden Milestone: Crossover Point */}
                   <div className="bg-white/10 border border-white/20 rounded-2xl p-4 flex items-start gap-3 text-xs">
-                    <div className="w-8 h-8 rounded-lg bg-[#96f6bd] text-[#003461] flex items-center justify-center shrink-0 font-extrabold text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-[#F3D58E] text-[#0F2740] flex items-center justify-center shrink-0 font-extrabold text-sm">
                       Yr {crossoverData.crossoverYear}
                     </div>
                     <div>
-                      <span className="font-extrabold text-[#96f6bd] text-sm block">
+                      <span className="font-extrabold text-[#F3D58E] text-sm block">
                         Golden Crossover Freedom Point (Year {crossoverData.crossoverYear})
                       </span>
-                      <p className="text-[#d3e4fe] mt-0.5 leading-snug">
+                      <p className="text-[#E3ECF5] mt-0.5 leading-snug">
                         By Year {crossoverData.crossoverYear}, your SIP portfolio value will surpass your entire remaining home loan! You have the complete freedom to prepay the remaining loan in 1 click or let it keep compounding.
                       </p>
                     </div>
@@ -420,31 +420,31 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       <div className="text-lg font-black text-white">
                         {result.prepayTenureYears} Yrs <span className="text-xs font-normal text-rose-200">({result.yearsSaved} yrs early)</span>
                       </div>
-                      <div className="text-xs text-[#d3e4fe] flex justify-between">
+                      <div className="text-xs text-[#E3ECF5] flex justify-between">
                         <span>Interest Saved:</span>
                         <span className="font-bold text-white">{formatIndianCurrency(result.interestSaved)}</span>
                       </div>
-                      <div className="text-xs text-[#d3e4fe] flex justify-between">
+                      <div className="text-xs text-[#E3ECF5] flex justify-between">
                         <span>Wealth Created:</span>
                         <span className="font-bold text-rose-300">₹0 (All in bricks)</span>
                       </div>
                     </div>
 
                     {/* Strategy B */}
-                    <div className="bg-[#006d42]/30 border border-[#96f6bd]/30 rounded-xl p-3.5 space-y-1.5">
-                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#96f6bd] block">
+                    <div className="bg-[#8A6420]/30 border border-[#F3D58E]/30 rounded-xl p-3.5 space-y-1.5">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#F3D58E] block">
                         Strategy B: Invest in SIP
                       </span>
-                      <div className="text-lg font-black text-[#96f6bd]">
+                      <div className="text-lg font-black text-[#F3D58E]">
                         {formatIndianCurrency(result.sipMaturityWealth)} <span className="text-xs font-normal text-white">Corpus</span>
                       </div>
-                      <div className="text-xs text-[#d3e4fe] flex justify-between">
+                      <div className="text-xs text-[#E3ECF5] flex justify-between">
                         <span>Your SIP Capital:</span>
                         <span className="font-bold text-white">{formatIndianCurrency(result.sipInvestedAmount)}</span>
                       </div>
-                      <div className="text-xs text-[#d3e4fe] flex justify-between">
+                      <div className="text-xs text-[#E3ECF5] flex justify-between">
                         <span>Pure Compounded Gain:</span>
-                        <span className="font-bold text-[#96f6bd]">+{formatIndianCurrency(result.sipNetProfit)}</span>
+                        <span className="font-bold text-[#F3D58E]">+{formatIndianCurrency(result.sipNetProfit)}</span>
                       </div>
                     </div>
 
@@ -455,7 +455,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                     <button
                       type="button"
                       onClick={() => onNavigate?.('open-account')}
-                      className="flex-1 min-w-[200px] bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                      className="flex-1 min-w-[200px] bg-[#8A6420] hover:bg-[#6F501A] text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                     >
                       <span>Start This SIP With Us</span>
                       <ArrowRight className="w-4 h-4" />
@@ -465,7 +465,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       onClick={() => onNavigate?.('booking')}
                       className="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      <Clock className="w-3.5 h-3.5 text-[#96f6bd]" />
+                      <Clock className="w-3.5 h-3.5 text-[#F3D58E]" />
                       <span>Book Strategy Call</span>
                     </button>
                   </div>
@@ -474,20 +474,20 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               </div>
 
               {/* Visual Comparative Charts */}
-              <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3">
+              <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs font-bold text-[#003461] flex items-center gap-1.5">
-                    <BarChart3 className="w-4 h-4 text-[#006d42]" />
+                  <div className="text-xs font-bold text-[#0F2740] flex items-center gap-1.5">
+                    <BarChart3 className="w-4 h-4 text-[#8A6420]" />
                     <span>Visual Arbitrage Simulation</span>
                   </div>
                   
                   {/* Chart view selector */}
-                  <div className="flex items-center gap-1 bg-[#eceef0] p-1 rounded-lg border border-[#c2c6d1] text-xs">
+                  <div className="flex items-center gap-1 bg-[#EDF1F5] p-1 rounded-lg border border-[#D3DCE6] text-xs">
                     <button
                       type="button"
                       onClick={() => setChartView('timeline')}
                       className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                        chartView === 'timeline' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750]'
+                        chartView === 'timeline' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B]'
                       }`}
                     >
                       Timeline Growth
@@ -496,7 +496,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       type="button"
                       onClick={() => setChartView('comparison')}
                       className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                        chartView === 'comparison' ? 'bg-[#003461] text-white shadow-2xs' : 'text-[#424750]'
+                        chartView === 'comparison' ? 'bg-[#0F2740] text-white shadow-2xs' : 'text-[#43566B]'
                       }`}
                     >
                       Net Financial Benefit
@@ -510,24 +510,24 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       <AreaChart data={timelineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                         <defs>
                           <linearGradient id="sipGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#006d42" stopOpacity={0.4} />
-                            <stop offset="95%" stopColor="#006d42" stopOpacity={0.0} />
+                            <stop offset="5%" stopColor="#8A6420" stopOpacity={0.4} />
+                            <stop offset="95%" stopColor="#8A6420" stopOpacity={0.0} />
                           </linearGradient>
                           <linearGradient id="loanGrad" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#ba1a1a" stopOpacity={0.3} />
                             <stop offset="95%" stopColor="#ba1a1a" stopOpacity={0.0} />
                           </linearGradient>
                         </defs>
-                        <XAxis dataKey="year" stroke="#727781" fontSize={11} />
+                        <XAxis dataKey="year" stroke="#6B7C8F" fontSize={11} />
                         <YAxis
-                          stroke="#727781"
+                          stroke="#6B7C8F"
                           fontSize={11}
                           tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
                         />
                         <Tooltip
                           formatter={(val: any) => [`₹${Number(val).toLocaleString('en-IN')}`, '']}
                           contentStyle={{
-                            backgroundColor: '#003461',
+                            backgroundColor: '#0F2740',
                             borderRadius: '12px',
                             color: '#fff',
                             border: 'none',
@@ -537,13 +537,13 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                         <Legend
                           verticalAlign="top"
                           height={32}
-                          formatter={(val) => <span className="text-xs font-semibold text-[#191c1e]">{val}</span>}
+                          formatter={(val) => <span className="text-xs font-semibold text-[#13263B]">{val}</span>}
                         />
                         <Area
                           type="monotone"
                           dataKey="sipWealth"
                           name="Strategy B: SIP Wealth Corpus"
-                          stroke="#006d42"
+                          stroke="#8A6420"
                           strokeWidth={2.5}
                           fill="url(#sipGrad)"
                         />
@@ -562,16 +562,16 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                   <div className="h-64 sm:h-72 w-full pt-2">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={comparisonData} margin={{ top: 20, right: 20, left: 10, bottom: 5 }}>
-                        <XAxis dataKey="strategy" stroke="#191c1e" fontSize={12} fontWeight={600} />
+                        <XAxis dataKey="strategy" stroke="#13263B" fontSize={12} fontWeight={600} />
                         <YAxis
-                          stroke="#727781"
+                          stroke="#6B7C8F"
                           fontSize={11}
                           tickFormatter={(v) => v >= 10000000 ? `₹${(v / 10000000).toFixed(1)}Cr` : `₹${(v / 100000).toFixed(0)}L`}
                         />
                         <Tooltip
                           formatter={(val: any) => [`₹${Number(val).toLocaleString('en-IN')}`, 'Net Financial Value']}
                           contentStyle={{
-                            backgroundColor: '#003461',
+                            backgroundColor: '#0F2740',
                             borderRadius: '12px',
                             color: '#fff',
                             border: 'none',
@@ -605,10 +605,10 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
           
           {/* Story Introduction Header */}
           <div className="max-w-3xl space-y-2">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+            <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
               The Story of Two Friends: Rahul vs. Priya
             </h3>
-            <p className="text-xs sm:text-sm text-[#424750] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#43566B] leading-relaxed">
               Both Rahul and Priya took a <strong>₹45 Lakh Home Loan</strong> at <strong>8.75% interest for 15 years</strong> (Regular EMI: ~₹45,000/month). Both had an extra <strong>₹15,000/month surplus savings</strong>. See what happened when they chose different paths.
             </p>
           </div>
@@ -617,27 +617,27 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* Step 1 */}
-            <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-5 space-y-3 relative overflow-hidden">
+            <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-5 space-y-3 relative overflow-hidden">
               <div className="w-10 h-10 rounded-xl bg-[#ba1a1a] text-white flex items-center justify-center font-black text-lg">
                 1
               </div>
-              <h4 className="text-base font-extrabold text-[#191c1e]">
+              <h4 className="text-base font-extrabold text-[#13263B]">
                 Rahul Chooses: Loan Prepayment
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 Rahul puts his extra ₹15,000 every month into his home loan (paying ₹60,000/mo).
               </p>
-              <div className="bg-white p-3 rounded-xl border border-[#e0e3e5] space-y-1.5 text-xs">
+              <div className="bg-white p-3 rounded-xl border border-[#E4EAF0] space-y-1.5 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">Loan closed in:</span>
-                  <span className="font-bold text-[#006d42]">9.5 Years (5.5 yrs early)</span>
+                  <span className="text-[#6B7C8F]">Loan closed in:</span>
+                  <span className="font-bold text-[#8A6420]">9.5 Years (5.5 yrs early)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">Total Interest Saved:</span>
-                  <span className="font-bold text-[#006d42]">~₹16.5 Lakhs</span>
+                  <span className="text-[#6B7C8F]">Total Interest Saved:</span>
+                  <span className="font-bold text-[#8A6420]">~₹16.5 Lakhs</span>
                 </div>
-                <div className="flex justify-between border-t border-[#e0e3e5] pt-1">
-                  <span className="text-[#727781]">Liquid Wealth at Yr 15:</span>
+                <div className="flex justify-between border-t border-[#E4EAF0] pt-1">
+                  <span className="text-[#6B7C8F]">Liquid Wealth at Yr 15:</span>
                   <span className="font-bold text-rose-600">₹0 (Only flat ownership)</span>
                 </div>
               </div>
@@ -647,61 +647,61 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
             </div>
 
             {/* Step 2 */}
-            <div className="bg-[#f0fdf4] border-2 border-[#bbf7d0] rounded-2xl p-5 space-y-3 relative overflow-hidden">
-              <div className="w-10 h-10 rounded-xl bg-[#006d42] text-white flex items-center justify-center font-black text-lg">
+            <div className="bg-[#FBF6EA] border-2 border-[#F6E7C1] rounded-2xl p-5 space-y-3 relative overflow-hidden">
+              <div className="w-10 h-10 rounded-xl bg-[#8A6420] text-white flex items-center justify-center font-black text-lg">
                 2
               </div>
-              <h4 className="text-base font-extrabold text-[#006d42]">
+              <h4 className="text-base font-extrabold text-[#8A6420]">
                 Priya Chooses: Equity SIP Arbitrage
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 Priya pays her normal EMI (₹45,000) and invests her extra ₹15,000 into a Flexi-cap Mutual Fund SIP compounding at ~13% CAGR.
               </p>
-              <div className="bg-white p-3 rounded-xl border border-[#bbf7d0] space-y-1.5 text-xs">
+              <div className="bg-white p-3 rounded-xl border border-[#F6E7C1] space-y-1.5 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">Total Invested in SIP:</span>
-                  <span className="font-bold text-[#191c1e]">₹27.0 Lakhs</span>
+                  <span className="text-[#6B7C8F]">Total Invested in SIP:</span>
+                  <span className="font-bold text-[#13263B]">₹27.0 Lakhs</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">SIP Maturity at Yr 15:</span>
-                  <span className="font-extrabold text-[#006d42]">~₹81.8 Lakhs</span>
+                  <span className="text-[#6B7C8F]">SIP Maturity at Yr 15:</span>
+                  <span className="font-extrabold text-[#8A6420]">~₹81.8 Lakhs</span>
                 </div>
-                <div className="flex justify-between border-t border-[#bbf7d0] pt-1">
-                  <span className="text-[#727781]">Pure Wealth Gain:</span>
-                  <span className="font-extrabold text-[#006d42]">+₹54.8 Lakhs</span>
+                <div className="flex justify-between border-t border-[#F6E7C1] pt-1">
+                  <span className="text-[#6B7C8F]">Pure Wealth Gain:</span>
+                  <span className="font-extrabold text-[#8A6420]">+₹54.8 Lakhs</span>
                 </div>
               </div>
-              <div className="text-[11px] text-[#006d42] font-semibold bg-[#d1fae5] p-2 rounded-lg border border-[#a7f3d0]">
+              <div className="text-[11px] text-[#8A6420] font-semibold bg-[#F6E7C1] p-2 rounded-lg border border-[#a7f3d0]">
                 ✨ Priya built an ₹81.8 Lakh liquid portfolio AND claimed up to ₹2 Lakh/year in Sec 24(b) tax deductions!
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="bg-[#d3e4fe]/40 border border-[#b8d5fc] rounded-2xl p-5 space-y-3 relative overflow-hidden">
-              <div className="w-10 h-10 rounded-xl bg-[#003461] text-white flex items-center justify-center font-black text-lg">
+            <div className="bg-[#E3ECF5]/40 border border-[#C9DAEA] rounded-2xl p-5 space-y-3 relative overflow-hidden">
+              <div className="w-10 h-10 rounded-xl bg-[#0F2740] text-white flex items-center justify-center font-black text-lg">
                 3
               </div>
-              <h4 className="text-base font-extrabold text-[#003461]">
+              <h4 className="text-base font-extrabold text-[#0F2740]">
                 The Grand Finale Comparison
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 At Year 15, both Rahul and Priya own their house 100% debt-free. But look at their bank accounts:
               </p>
-              <div className="bg-white p-3 rounded-xl border border-[#b8d5fc] space-y-2 text-xs">
+              <div className="bg-white p-3 rounded-xl border border-[#C9DAEA] space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">Rahul&apos;s Bank Balance:</span>
-                  <span className="font-bold text-[#191c1e]">Saved ₹16.5L in interest</span>
+                  <span className="text-[#6B7C8F]">Rahul&apos;s Bank Balance:</span>
+                  <span className="font-bold text-[#13263B]">Saved ₹16.5L in interest</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#727781]">Priya&apos;s Bank Balance:</span>
-                  <span className="font-bold text-[#006d42]">₹81.8 Lakhs Cash in Mutual Funds</span>
+                  <span className="text-[#6B7C8F]">Priya&apos;s Bank Balance:</span>
+                  <span className="font-bold text-[#8A6420]">₹81.8 Lakhs Cash in Mutual Funds</span>
                 </div>
-                <div className="flex justify-between border-t border-[#b8d5fc] pt-1.5 font-extrabold text-[#003461] text-sm">
+                <div className="flex justify-between border-t border-[#C9DAEA] pt-1.5 font-extrabold text-[#0F2740] text-sm">
                   <span>Priya&apos;s Net Advantage:</span>
-                  <span className="text-[#006d42]">+₹38.3 Lakhs richer!</span>
+                  <span className="text-[#8A6420]">+₹38.3 Lakhs richer!</span>
                 </div>
               </div>
-              <div className="text-[11px] text-[#003461] font-medium bg-white/80 p-2 rounded-lg border border-[#b8d5fc]">
+              <div className="text-[11px] text-[#0F2740] font-medium bg-white/80 p-2 rounded-lg border border-[#C9DAEA]">
                 💡 <strong>Key Takeaway:</strong> Debt is fixed interest (~8.75%), but equity compounding (~13%) creates exponential wealth over 10-15 years.
               </div>
             </div>
@@ -709,22 +709,22 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
           </div>
 
           {/* Golden Rule Explainer Banner */}
-          <div className="bg-[#003461] text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-[#0F2740] text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold text-[#96f6bd] uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#F3D58E] uppercase tracking-wider">
                 Why does this happen?
               </span>
               <h4 className="text-lg sm:text-xl font-bold">
                 The Power of Compounding Spread (+4.25% Net Margin)
               </h4>
-              <p className="text-xs sm:text-sm text-[#d3e4fe] max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#E3ECF5] max-w-2xl leading-relaxed">
                 When you prepay a home loan, your effective return is capped at the loan interest rate (8.75%). When you invest in a disciplined equity SIP, you compound at 12-14%. Over a decade, that 4-5% annual compounding difference creates millions in surplus wealth.
               </p>
             </div>
             <button
               type="button"
               onClick={() => setActiveTab('simulator')}
-              className="px-6 py-3.5 bg-[#006d42] hover:bg-[#005231] text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all shadow-md shrink-0 cursor-pointer"
+              className="px-6 py-3.5 bg-[#8A6420] hover:bg-[#6F501A] text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all shadow-md shrink-0 cursor-pointer"
             >
               Simulate Your Own Loan Numbers
             </button>
@@ -740,10 +740,10 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
         <div className="p-6 sm:p-8 space-y-8 animate-in fade-in">
           
           <div className="max-w-3xl space-y-2">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+            <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
               Should You Prepay or Invest? Complete Rulebook
             </h3>
-            <p className="text-xs sm:text-sm text-[#424750]">
+            <p className="text-xs sm:text-sm text-[#43566B]">
               While math favors SIP, emotional comfort and loan types also matter. Use this checklist to choose what is right for your life stage.
             </p>
           </div>
@@ -761,11 +761,11 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                   <h4 className="text-base font-extrabold text-[#ba1a1a]">
                     When You SHOULD Prepay Your Loan
                   </h4>
-                  <span className="text-xs text-[#727781]">High interest, low risk appetite, or near retirement</span>
+                  <span className="text-xs text-[#6B7C8F]">High interest, low risk appetite, or near retirement</span>
                 </div>
               </div>
 
-              <ul className="space-y-2.5 text-xs text-[#191c1e]">
+              <ul className="space-y-2.5 text-xs text-[#13263B]">
                 <li className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#ba1a1a] shrink-0 mt-0.5" />
                   <span><strong>High-Cost Debt:</strong> Personal loans (12-16%) or credit card dues (36-42%) must ALWAYS be prepaid first.</span>
@@ -786,34 +786,34 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
             </div>
 
             {/* When to INVEST IN SIP */}
-            <div className="bg-[#f0fdf4] border-2 border-[#bbf7d0] rounded-2xl p-6 space-y-4">
+            <div className="bg-[#FBF6EA] border-2 border-[#F6E7C1] rounded-2xl p-6 space-y-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#006d42] text-white flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-[#8A6420] text-white flex items-center justify-center font-bold">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-extrabold text-[#006d42]">
+                  <h4 className="text-base font-extrabold text-[#8A6420]">
                     When You SHOULD Invest in Mutual Fund SIP
                   </h4>
-                  <span className="text-xs text-[#727781]">Long horizon, young investor, wealth maximizer</span>
+                  <span className="text-xs text-[#6B7C8F]">Long horizon, young investor, wealth maximizer</span>
                 </div>
               </div>
 
-              <ul className="space-y-2.5 text-xs text-[#191c1e]">
+              <ul className="space-y-2.5 text-xs text-[#13263B]">
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#006d42] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#8A6420] shrink-0 mt-0.5" />
                   <span><strong>Low-Interest Home Loan (&lt;9%):</strong> Home loans are the cheapest leverage in India.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#006d42] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#8A6420] shrink-0 mt-0.5" />
                   <span><strong>Time Horizon &gt; 7 Years:</strong> Gives equity compounding full power to outpace debt rates.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#006d42] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#8A6420] shrink-0 mt-0.5" />
                   <span><strong>Section 24(b) Tax Deductions:</strong> Save up to ₹60,000/yr in income tax on your home loan interest.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#006d42] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#8A6420] shrink-0 mt-0.5" />
                   <span><strong>Emergency Liquidity:</strong> Money put into a loan cannot be withdrawn if you lose a job, but an SIP portfolio can be redeemed anytime!</span>
                 </li>
               </ul>
@@ -822,12 +822,12 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
           </div>
 
           {/* The 50:50 Hybrid Strategy Recommendation */}
-          <div className="bg-[#f7f9fb] border border-[#c2c6d1] rounded-2xl p-6 space-y-3">
-            <div className="flex items-center gap-2 text-[#003461] font-bold text-sm">
+          <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-6 space-y-3">
+            <div className="flex items-center gap-2 text-[#0F2740] font-bold text-sm">
               <Zap className="w-4 h-4 text-amber-600" />
               <span>The Financial Planner&apos;s Secret: The 50:50 Golden Hybrid</span>
             </div>
-            <p className="text-xs text-[#424750] leading-relaxed">
+            <p className="text-xs text-[#43566B] leading-relaxed">
               If you are torn between emotional debt freedom and mathematical wealth: <strong>Split your surplus 50:50!</strong>
               <br />
               For example, with ₹15,000 extra per month: Put <strong>₹7,500 towards loan principal reduction</strong> and <strong>₹7,500 into an Equity Mutual Fund SIP</strong>. You reduce your loan tenure by ~3.5 years while simultaneously building a ₹40+ Lakh investment fund!
@@ -843,48 +843,48 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
       {activeTab === 'faqs' && (
         <div className="p-6 sm:p-8 space-y-4 animate-in fade-in">
           <div className="max-w-3xl space-y-1 mb-6">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-[#003461]">
+            <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
               Frequently Asked Questions (Loan vs SIP)
             </h3>
-            <p className="text-xs sm:text-sm text-[#424750]">
+            <p className="text-xs sm:text-sm text-[#43566B]">
               Common doubts, tax impacts, and liquidity questions clarified.
             </p>
           </div>
 
           <div className="space-y-3">
             
-            <div className="bg-[#f7f9fb] p-4 rounded-xl border border-[#e0e3e5] space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-[#003461]">
+            <div className="bg-[#F6F8FB] p-4 rounded-xl border border-[#E4EAF0] space-y-1">
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F2740]">
                 1. What if the stock market crashes during my loan tenure?
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 Short-term market volatility is normal. Over a 10 to 15-year loan tenure, Indian equity indices (Nifty 50) have never delivered negative returns over rolling 7+ year periods, averaging 12-14% CAGR. SIP also allows you to buy more units when markets are down (Rupee Cost Averaging).
               </p>
             </div>
 
-            <div className="bg-[#f7f9fb] p-4 rounded-xl border border-[#e0e3e5] space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-[#003461]">
+            <div className="bg-[#F6F8FB] p-4 rounded-xl border border-[#E4EAF0] space-y-1">
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F2740]">
                 2. Can I use my Mutual Fund SIP corpus to close the loan later?
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 <strong>Yes, absolutely!</strong> In fact, this is the smartest strategy. Because SIP compounds faster than loan amortisation, around Year 7-9 (the Crossover Point), your SIP fund will exceed your remaining loan balance. You can redeem and close the loan in one cheque if you wish!
               </p>
             </div>
 
-            <div className="bg-[#f7f9fb] p-4 rounded-xl border border-[#e0e3e5] space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-[#003461]">
+            <div className="bg-[#F6F8FB] p-4 rounded-xl border border-[#E4EAF0] space-y-1">
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F2740]">
                 3. What is the tax benefit advantage under Section 24(b)?
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 Under the Old Tax Regime, you can deduct up to ₹2,00,000 per year on home loan interest paid. In a 30% tax bracket, this saves you ~₹62,400 in cash taxes every single year. Prepaying your loan early kills this tax shield.
               </p>
             </div>
 
-            <div className="bg-[#f7f9fb] p-4 rounded-xl border border-[#e0e3e5] space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold text-[#003461]">
+            <div className="bg-[#F6F8FB] p-4 rounded-xl border border-[#E4EAF0] space-y-1">
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F2740]">
                 4. What about personal loans or car loans? Should I prepay them?
               </h4>
-              <p className="text-xs text-[#424750] leading-relaxed">
+              <p className="text-xs text-[#43566B] leading-relaxed">
                 <strong>Always prepay personal loans and credit cards immediately.</strong> Personal loans charge 12-16% interest with no tax deduction. Only cheap, tax-deductible debt like Home Loans (8.5-9%) should be kept running alongside SIPs.
               </p>
             </div>

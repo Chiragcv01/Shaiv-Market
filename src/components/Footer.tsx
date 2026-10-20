@@ -1,5 +1,6 @@
-import React from 'react';
-import { Mail, Phone, MapPin, ShieldCheck, CheckCircle, SlidersHorizontal, ArrowRight } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { Mail, Phone, MapPin, ShieldCheck, CheckCircle, SlidersHorizontal, ArrowRight, MessageCircle } from 'lucide-react';
 import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
 
@@ -9,9 +10,40 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const { siteSettings, currentUser } = useApp();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end end'] });
+  const wdth = useTransform(scrollYProgress, [0.3, 1], ["'wdth' 75", "'wdth' 125"]);
+  const wordY = useTransform(scrollYProgress, [0.3, 1], ['40%', '0%']);
+  const wa = (siteSettings.whatsappSupportNumber || '').replace(/[^0-9]/g, '');
 
   return (
-    <footer className="bg-[#191c1e] text-[#eff1f3] font-normal text-sm w-full mt-auto border-t border-[#424750]/30">
+    <footer ref={ref} className="bg-[#0A1D30] text-[#eff1f3] font-normal text-sm w-full mt-auto overflow-hidden">
+      {/* closing CTA */}
+      <div className="border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-20 grid md:grid-cols-12 gap-8 items-end">
+          <h2 className="md:col-span-7 font-display text-4xl sm:text-6xl font-semibold leading-[1.02] text-white">
+            Your first SIP can start this week.
+          </h2>
+          <div className="md:col-span-5 flex flex-wrap gap-3 md:justify-end">
+            <motion.button
+              onClick={() => onNavigate?.('booking')}
+              whileHover={{ y: -3, boxShadow: '0 18px 40px -12px rgba(227,182,92,0.6)' }}
+              whileTap={{ scale: 0.97 }}
+              className="rounded-xl bg-[#E3B65C] text-[#0F2740] font-semibold px-7 py-4 text-base cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Book a free call
+            </motion.button>
+            {wa && (
+              <motion.a whileHover={{ y: -3 }} href={`https://wa.me/${wa}?text=${encodeURIComponent('Hi Chirag, I would like to start a SIP.')}`}
+                target="_blank" rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl ring-1 ring-white/25 hover:ring-white/60 px-6 py-4 text-base text-white">
+                <MessageCircle className="w-5 h-5 text-[#25D366]" /> WhatsApp
+              </motion.a>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           
@@ -21,17 +53,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {siteSettings.logoImageUrl ? (
                 <img src={siteSettings.logoImageUrl} alt={siteSettings.companyName} className="w-11 h-11 rounded-full bg-white object-contain p-0.5" />
               ) : (
-                <div className="w-7 h-7 rounded-md bg-[#006d42] flex items-center justify-center text-white text-sm font-bold">
+                <div className="w-7 h-7 rounded-md bg-[#8A6420] flex items-center justify-center text-white text-sm font-bold">
                   {siteSettings.logoInitial || 'S'}
                 </div>
               )}
               <span className="text-xl font-bold text-white tracking-tight">{siteSettings.companyName}</span>
             </div>
-            <p className="text-[#c2c6d1] text-xs leading-relaxed max-w-sm">
+            <p className="text-[#D3DCE6] text-xs leading-relaxed max-w-sm">
               {siteSettings.footerAboutText || 'Empowering investors with goal-based wealth planning, required SIP target calculators, and personal guidance from an AMFI registered mutual fund distributor.'}
             </p>
-            <div className="flex items-center gap-2 text-xs text-[#96f6bd]">
-              <ShieldCheck className="w-4 h-4 shrink-0 text-[#96f6bd]" />
+            <div className="flex items-center gap-2 text-xs text-[#F3D58E]">
+              <ShieldCheck className="w-4 h-4 shrink-0 text-[#F3D58E]" />
               <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
             </div>
           </div>
@@ -45,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('about')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   About Founder & Accreditation
                 </button>
@@ -53,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('insights')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Goal Planner & Strategy Desk
                 </button>
@@ -61,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('calculators')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Know Your Required SIP Amount
                 </button>
@@ -69,17 +101,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('calculators')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   SIP Wealth & SWP Calculators
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('testimonials')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Client Reviews & Stories
                 </button>
               </li>
             </ul>
@@ -94,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('booking')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer font-medium text-[#96f6bd]"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer font-medium text-[#F3D58E]"
                 >
                   Schedule 1-on-1 Meeting
                 </button>
@@ -102,7 +126,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('open-account')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Register & Onboard Investor
                 </button>
@@ -110,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate?.('contact')}
-                  className="text-[#c2c6d1] hover:text-white transition-colors text-left cursor-pointer"
+                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Contact Us
                 </button>
@@ -123,19 +147,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
               Direct Contact
             </h4>
-            <div className="flex flex-col gap-3 text-xs text-[#c2c6d1]">
+            <div className="flex flex-col gap-3 text-xs text-[#D3DCE6]">
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#96f6bd] shrink-0" />
+                <Mail className="w-4 h-4 text-[#F3D58E] shrink-0" />
                 <a href={`mailto:${siteSettings.advisoryEmail}`} className="hover:text-white transition-colors">
                   {siteSettings.advisoryEmail}
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#96f6bd] shrink-0" />
+                <Phone className="w-4 h-4 text-[#F3D58E] shrink-0" />
                 <span>{siteSettings.supportPhone} (Mon - Fri)</span>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#96f6bd] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#F3D58E] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">{siteSettings.headquartersAddress}</span>
               </div>
             </div>
@@ -143,12 +167,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-[#424750]/50 text-[#8c9199] text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 pt-6 border-t border-[#43566B]/50 text-[#8c9199] text-xs flex flex-col md:flex-row justify-between items-center gap-4">
           <p>{siteSettings.footerCopyrightText || `© 2026 ${siteSettings.companyName}. All rights reserved. AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks, read all scheme related documents carefully.`}</p>
-          <div className="flex items-center gap-4 shrink-0 text-[#96f6bd]">
+          <div className="flex items-center gap-4 shrink-0 text-[#F3D58E]">
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
-              <span>256-Bit SSL Encrypted</span>
+              <span>Secure HTTPS</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4" />
@@ -157,6 +181,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
       </div>
+
+      {/* wordmark that stretches as you reach the end of the page */}
+      <motion.p aria-hidden style={{ fontVariationSettings: wdth, y: wordY }}
+        className="font-display font-semibold text-center leading-[0.78] text-[19vw] text-white/[0.06] select-none whitespace-nowrap -mb-[2vw]">
+        {siteSettings.companyName}
+      </motion.p>
     </footer>
   );
 };
