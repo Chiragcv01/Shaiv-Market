@@ -1,0 +1,27 @@
+name: Notify search engines (IndexNow)
+
+# After each push to main, wait for Vercel to finish deploying, then send every
+# sitemap URL to IndexNow (Bing, Yandex, Seznam, Naver and partners).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the new deployment to go live
+        run: sleep 150
+      - name: Submit sitemap URLs
+        run: |
+          set -e
+          KEY=5cae7812769769425bbf31f65402afd1
+          URLS=$(curl -fsSL https://shaivmarket.com/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -R . | jq -s -c .)
+          echo "Submitting: $URLS"
+          BODY=$(jq -n -c --arg key "$KEY" --argjson urls "$URLS" \
+            '{host:"shaivmarket.com", key:$key, keyLocation:("https://shaivmarket.com/" + $key + ".txt"), urlList:$urls}')
+          CODE=$(curl -s -o resp.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' -d "$BODY")
+          echo "IndexNow responded HTTP $CODE"; cat resp.txt || true
+          test "$CODE" = "200" -o "$CODE" = "202"
