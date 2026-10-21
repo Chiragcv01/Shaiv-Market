@@ -94,13 +94,14 @@ export const ROUTES: RouteMeta[] = [
   },
   { path: '/reviews', screen: 'testimonials', name: 'Reviews', index: false, title: 'Client Reviews | Shaiv Market', description: 'Client reviews of Shaiv Market.' },
   { path: '/login', screen: 'auth', name: 'Login', index: false, title: 'Login | Shaiv Market', description: 'Login.' },
-  { path: '/sm-admin', screen: 'admin', name: 'Admin', index: false, title: 'Admin | Shaiv Market', description: 'Admin.' }
+  { path: '/sm-admin', screen: 'admin', name: 'Admin', index: false, title: 'Admin | Shaiv Market', description: 'Admin.' },
+  { path: '/404', screen: 'not-found', name: 'Page not found', index: false, title: 'Page not found | Shaiv Market', description: 'This page has moved. Find calculators, the goal planner and contact details for Shaiv Market.' }
 ];
 
 const norm = (p: string) => (p.replace(/\/+$/, '') || '/').toLowerCase();
 
 export function routeForPath(pathname: string): RouteMeta {
-  return ROUTES.find((r) => r.path === norm(pathname)) || ROUTES[0];
+  return ROUTES.find((r) => r.path === norm(pathname)) || ROUTES.find((r) => r.screen === 'not-found')!;
 }
 
 export function pathForScreen(screen: ActiveScreen, tab?: string): string {

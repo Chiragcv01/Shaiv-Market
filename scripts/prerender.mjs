@@ -36,7 +36,11 @@ for (const r of ROUTES) {
   console.log(`prerendered ${r.path} (${Math.round(html.length / 1024)} KB)`);
 }
 
-// app shell for private / unknown paths (admin, login, 404s): not indexable
+// custom 404 page (Vercel serves dist/404.html with a real 404 status)
+const nf = ROUTES.find((r) => r.screen === 'not-found');
+fs.writeFileSync(path.join(dist, '404.html'), base.replace('<!--seo-head-->', headHtml(nf)).replace('<div id="root"></div>', `<div id="root">${render(nf.path)}</div>`));
+
+// app shell for private routes (admin, login): not indexable
 const shellRoute = ROUTES.find((r) => r.path === '/sm-admin');
 fs.writeFileSync(path.join(dist, 'shell.html'), base.replace('<!--seo-head-->', headHtml(shellRoute)));
 

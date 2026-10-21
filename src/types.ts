@@ -8,7 +8,8 @@ export type ActiveScreen =
   | 'testimonials'
   | 'contact'
   | 'admin'
-  | 'auth';
+  | 'auth'
+  | 'not-found';
 
 export type AuthMode = 'login' | 'signup' | 'forgot-password';
 

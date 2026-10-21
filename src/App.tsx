@@ -17,6 +17,7 @@ const AuthScreen = React.lazy(() => import('./components/AuthScreen').then((m) =
 import { NotificationModal } from './components/NotificationModal';
 import { AccountProfileModal } from './components/AccountProfileModal';
 import { CommandPalette } from './components/interactive/CommandPalette';
+import { NotFoundScreen } from './components/NotFoundScreen';
 import { EngagementLayer } from './components/interactive/EngagementLayer';
 import { routeForPath, pathForScreen } from './seo/routes';
 import { applyHead } from './seo/head';
@@ -133,6 +134,10 @@ export default function App() {
 
             {activeScreen === 'admin' && (
               <React.Suspense fallback={<div className="py-32 text-center text-[#6B7C8F]">Loading…</div>}><AdminPortalScreen onNavigate={handleNavigate} /></React.Suspense>
+            )}
+
+            {activeScreen === 'not-found' && (
+              <NotFoundScreen onNavigate={handleNavigate} onSearch={() => setPaletteOpen(true)} />
             )}
 
             {activeScreen === 'auth' && (

@@ -5,8 +5,16 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/shell.html"
+      "source": "/sm-admin",
+      "destination": "/shell"
+    },
+    {
+      "source": "/login",
+      "destination": "/shell"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/shell"
     }
   ],
   "cleanUrls": true,
@@ -29,6 +37,73 @@
           "value": "text/plain; charset=utf-8"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/what-is-mutual-:slug*",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/sl-calculator",
+      "destination": "/calculators",
+      "permanent": true
+    },
+    {
+      "source": "/sl-calculator/",
+      "destination": "/calculators",
+      "permanent": true
+    },
+    {
+      "source": "/decoding-cryptocurrency-a-beginners-guide",
+      "destination": "/goal-planner",
+      "permanent": true
+    },
+    {
+      "source": "/decoding-cryptocurrency-a-beginners-guide/",
+      "destination": "/goal-planner",
+      "permanent": true
+    },
+    {
+      "source": "/sip-calculator",
+      "destination": "/calculators/sip-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/swp-calculator",
+      "destination": "/calculators/swp-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/goal-planner",
+      "permanent": true
+    },
+    {
+      "source": "/category/:path*",
+      "destination": "/goal-planner",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:path*",
+      "destination": "/goal-planner",
+      "permanent": true
+    },
+    {
+      "source": "/author/:path*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
     }
   ]
 }
