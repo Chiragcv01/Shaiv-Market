@@ -60,7 +60,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
-  const visibleNavItems = [...navItems].filter((i) => i.isVisible).sort((a, b) => a.order - b.order);
+  const visibleNavItems = [...navItems.filter((i) => i.screenId !== 'blog'), { id: 'nav-blog', label: 'Blog', screenId: 'blog' as ActiveScreen, isVisible: true, order: 2.5 }]
+    .filter((i) => i.isVisible).sort((a, b) => a.order - b.order);
   const go = (screen: ActiveScreen) => { onNavigate(screen); setMobileMenuOpen(false); };
   const wa = (siteSettings.whatsappSupportNumber || '').replace(/[^0-9]/g, '');
   const phone = (siteSettings.supportPhone || '').replace(/[^0-9+]/g, '');

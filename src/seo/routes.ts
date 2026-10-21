@@ -1,4 +1,5 @@
 import { ActiveScreen } from '../types';
+import { POSTS } from '../content/blog';
 
 export const SITE_URL = 'https://shaivmarket.com';
 
@@ -6,6 +7,7 @@ export interface RouteMeta {
   path: string;
   screen: ActiveScreen;
   tab?: string;           // calculator tab id for /calculators/*
+  slug?: string;          // blog post slug for /blog/*
   title: string;
   description: string;
   name: string;           // breadcrumb name
@@ -92,6 +94,15 @@ export const ROUTES: RouteMeta[] = [
     title: 'Start a SIP: Get a Free Investment Plan | Shaiv Market',
     description: 'Share your goal and budget and get a free mutual fund plan from an AMFI registered distributor. Paperless KYC, first SIP usually within a day.'
   },
+  {
+    path: '/blog', screen: 'blog', name: 'Blog', index: true, priority: 0.8, changefreq: 'weekly',
+    title: 'Mutual Fund Blog: SIP, Tax and Goal Guides from Jaipur | Shaiv Market',
+    description: 'Plain-language guides on SIPs, ELSS, SWP, KYC and choosing a mutual fund distributor in Jaipur, written by Chirag Sharma (AMFI ARN-337289).'
+  },
+  ...POSTS.map((p) => ({
+    path: `/blog/${p.slug}`, screen: 'blog' as ActiveScreen, slug: p.slug, name: p.title, index: true,
+    priority: 0.7, changefreq: 'monthly' as const, title: `${p.title} | Shaiv Market`, description: p.description
+  })),
   { path: '/reviews', screen: 'testimonials', name: 'Reviews', index: false, title: 'Client Reviews | Shaiv Market', description: 'Client reviews of Shaiv Market.' },
   { path: '/login', screen: 'auth', name: 'Login', index: false, title: 'Login | Shaiv Market', description: 'Login.' },
   { path: '/sm-admin', screen: 'admin', name: 'Admin', index: false, title: 'Admin | Shaiv Market', description: 'Admin.' },

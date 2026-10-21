@@ -7,6 +7,9 @@ import { HabitJar } from './interactive/HabitJar';
 import { RiskQuiz } from './interactive/RiskQuiz';
 import { FaqSection } from './interactive/FaqSection';
 import { HOME_FAQ } from '../seo/faq';
+import { POSTS } from '../content/blog';
+import { navigateTo } from '../utils/navigate';
+import { motion } from 'motion/react';
 import { ArticleCover } from './visuals/ArticleCover';
 import { useApp } from '../context/AppContext';
 import {
@@ -230,71 +233,28 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>)}
 
-      {/* 5. LATEST RESEARCH & INSIGHTS BLOG PREVIEW */}
-      <section className="bg-[#F6F8FB] border-t border-[#E4EAF0] py-16 md:py-20">
+      {/* 5. LATEST GUIDES FROM THE BLOG */}
+      <section className="bg-[#F6F8FB] border-t border-[#E4EAF0] py-16 md:py-20" aria-labelledby="home-blog-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-            <div>
-              <div className="text-xs font-bold text-[#8A6420] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>{siteSettings.insightsBadge || 'Research Desk & Market Commentary'}</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#0F2740]">
-                {siteSettings.insightsHeading || 'Recent Wealth Strategies & Dispatches'}
-              </h2>
-            </div>
-            <button
-              onClick={() => onNavigate('insights')}
-              className="text-xs font-bold text-[#0F2740] hover:text-[#1D4268] flex items-center gap-1 cursor-pointer"
-            >
-              <span>View All Insights ({articles.length})</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            <h2 id="home-blog-heading" className="font-display text-3xl sm:text-[40px] font-semibold text-[#0F2740] leading-tight max-w-2xl">
+              Guides that answer the questions people ask before investing
+            </h2>
+            <a href="/blog" onClick={(e) => { e.preventDefault(); navigateTo('/blog'); }} className="text-sm font-semibold text-[#8A6420] hover:underline shrink-0">
+              All {POSTS.length} guides
+            </a>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {recentArticles.map((art) => (
-              <div
-                key={art.id}
-                onClick={() => onNavigate('insights')}
-                className="bg-white border border-[#D3DCE6] hover:border-[#0F2740] rounded-2xl overflow-hidden transition-all hover:shadow-md cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  {(
-                    <div className="w-full h-40 overflow-hidden bg-[#F6F8FB] border-b border-[#E4EAF0]">
-                      {art.imageUrl ? (<img
-                        src={art.imageUrl}
-                        alt={art.imageAlt || art.title}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />) : (<ArticleCover seed={art.id} />)}
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="bg-[#E3ECF5] text-[#0F2740] text-[11px] font-bold px-2.5 py-0.5 rounded-md">
-                        {art.category}
-                      </span>
-                      <span className="text-[11px] text-[#6B7C8F] flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {art.readTime}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-[#13263B] mb-2 leading-snug hover:text-[#0F2740]">
-                      {art.title}
-                    </h3>
-                    <p className="text-xs text-[#43566B] line-clamp-2 leading-relaxed">
-                      {art.summary}
-                    </p>
-                  </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {POSTS.slice(0, 3).map((p) => (
+              <motion.a key={p.slug} href={`/blog/${p.slug}`} onClick={(e) => { e.preventDefault(); navigateTo(`/blog/${p.slug}`); }}
+                whileHover={{ y: -4 }} className="group rounded-3xl bg-white ring-1 ring-[#D3DCE6] hover:ring-[#0F2740] overflow-hidden flex flex-col">
+                <div className="h-36"><ArticleCover seed={p.slug} /></div>
+                <div className="p-6">
+                  <p className="text-xs font-semibold text-[#8A6420]">{p.category}</p>
+                  <h3 className="font-display text-xl font-semibold text-[#0F2740] mt-1 leading-snug group-hover:underline decoration-[#E3B65C] decoration-2 underline-offset-4">{p.title}</h3>
+                  <p className="mt-2 text-sm text-[#43566B] line-clamp-3">{p.description}</p>
                 </div>
-                <div className="px-6 pb-5 pt-3 border-t border-[#EDF1F5] flex items-center justify-between text-xs text-[#6B7C8F]">
-                  <span>{art.author}</span>
-                  <span className="text-[#8A6420] font-semibold flex items-center gap-1">
-                    Read Article <ChevronRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
+              </motion.a>
             ))}
           </div>
         </div>

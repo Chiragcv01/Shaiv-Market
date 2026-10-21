@@ -2,16 +2,18 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Search, Home, Calculator, Target, User, CalendarCheck, Mail, FileText, MessageCircle, Phone,
-  Wallet, Scale, Flame, ShieldCheck, PieChart, Coins, BadgeCheck, CornerDownLeft
+  Wallet, Scale, Flame, ShieldCheck, PieChart, Coins, BadgeCheck, CornerDownLeft, BookOpen
 } from 'lucide-react';
 import { ActiveScreen } from '../../types';
 import { setPendingTab, setPendingScroll, scrollToId } from '../../utils/deepLink';
+import { POSTS } from '../../content/blog';
+import { navigateTo } from '../../utils/navigate';
 
 interface Cmd {
   id: string;
   label: string;
   hint: string;
-  group: 'Pages' | 'Calculators' | 'On the home page' | 'Get in touch';
+  group: 'Pages' | 'Calculators' | 'Guides' | 'On the home page' | 'Get in touch';
   icon: React.ElementType;
   keywords?: string;
   run: () => void;
@@ -42,6 +44,8 @@ export const CommandPalette: React.FC<{
     { id: 'book', label: 'Book a free call', hint: 'Pick a date and time', group: 'Pages', icon: CalendarCheck, keywords: 'appointment meeting consultation', run: go('booking') },
     { id: 'quote', label: 'Get a free investment quote', hint: 'Share your goal, get a plan', group: 'Pages', icon: FileText, keywords: 'open account start sip invest', run: go('open-account') },
     { id: 'contact', label: 'Contact', hint: 'Form, phone, email, office', group: 'Pages', icon: Mail, run: go('contact') },
+    { id: 'blog', label: 'Blog: all guides', hint: 'SIP, tax, retirement, KYC', group: 'Pages', icon: BookOpen, keywords: 'articles read learn', run: () => navigateTo('/blog') },
+    ...POSTS.map((p) => ({ id: `post-${p.slug}`, label: p.title, hint: p.category, group: 'Guides' as const, icon: BookOpen, keywords: p.keywords.join(' '), run: () => navigateTo(`/blog/${p.slug}`) })),
     { id: 'c-req', label: 'How much SIP do I need?', hint: 'Required SIP calculator', group: 'Calculators', icon: Target, keywords: 'target corpus', run: calc('required-sip') },
     { id: 'c-sip', label: 'SIP growth calculator', hint: 'What my SIP becomes', group: 'Calculators', icon: Calculator, keywords: 'compounding lumpsum step up', run: calc('sip-compounder') },
     { id: 'c-swp', label: 'SWP monthly pension', hint: 'Withdraw a monthly income', group: 'Calculators', icon: Wallet, keywords: 'retirement income withdrawal', run: calc('swp') },

@@ -1,5 +1,6 @@
 import { RouteMeta, SITE_URL, ROUTES } from './routes';
 import { HOME_FAQ, CALC_FAQ, ABOUT_FAQ, Faq } from './faq';
+import { postBySlug, POSTS } from '../content/blog';
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const PERSON_ID = `${SITE_URL}/#chirag-sharma`;
@@ -120,6 +121,7 @@ export function faqFor(route: RouteMeta): Faq[] {
   // must match the FAQ that is visible on the page
   if (route.screen === 'calculators') return CALC_FAQ[route.tab || 'required-sip'] || [];
   if (route.screen === 'about') return ABOUT_FAQ;
+  if (route.screen === 'blog' && route.slug) return postBySlug(route.slug)?.faq || [];
   return [];
 }
 
@@ -153,6 +155,36 @@ export function schemaFor(route: RouteMeta) {
       operatingSystem: 'Any (web browser)',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
       provider: { '@id': ORG_ID }
+    });
+  }
+  if (route.screen === 'blog' && route.slug) {
+    const p = postBySlug(route.slug);
+    if (p) graph.push({
+      '@type': 'BlogPosting',
+      '@id': `${url}#article`,
+      headline: p.title,
+      description: p.description,
+      datePublished: p.date,
+      dateModified: p.updated,
+      inLanguage: 'en-IN',
+      mainEntityOfPage: { '@id': `${url}#webpage` },
+      image: `${SITE_URL}/images/og-card.png`,
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': ORG_ID },
+      keywords: p.keywords.join(', '),
+      articleSection: p.category,
+      timeRequired: `PT${p.minutes}M`,
+      abstract: p.answer
+    });
+  }
+  if (route.screen === 'blog' && !route.slug) {
+    graph.push({
+      '@type': 'Blog',
+      '@id': `${url}#blog`,
+      name: 'Shaiv Market Blog',
+      url,
+      publisher: { '@id': ORG_ID },
+      blogPost: POSTS.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: `${SITE_URL}/blog/${p.slug}`, datePublished: p.date, author: { '@id': PERSON_ID } }))
     });
   }
   const faq = faqFor(route);

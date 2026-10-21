@@ -76,18 +76,13 @@
       "permanent": true
     },
     {
-      "source": "/blog/:path*",
-      "destination": "/goal-planner",
-      "permanent": true
-    },
-    {
       "source": "/category/:path*",
-      "destination": "/goal-planner",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/tag/:path*",
-      "destination": "/goal-planner",
+      "destination": "/blog",
       "permanent": true
     },
     {
