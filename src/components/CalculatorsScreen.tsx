@@ -114,7 +114,7 @@ export const CalculatorsScreen: React.FC<CalculatorsScreenProps> = ({ onNavigate
       </div>
 
       {/* Active Calculator Component */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={activeTab}
         className="mb-14"

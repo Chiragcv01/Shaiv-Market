@@ -160,7 +160,7 @@ export const InsightsScreen: React.FC<InsightsScreenProps> = ({ onNavigate }) =>
         </div>
 
         {/* Dynamic Tool Renderer */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={activeTool}
           className="mt-6"
