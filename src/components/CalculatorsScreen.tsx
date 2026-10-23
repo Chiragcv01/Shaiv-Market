@@ -35,7 +35,7 @@ export const CALC_ICONS: Record<string, React.ElementType> = {
   ppf: Landmark, 'mf-tax': Receipt, 'loan-sip': Scale, emergency: ShieldCheck
 };
 
-/** Renders one calculator by tab id. Shared with the embed page. */
+/** Renders one calculator by tab id. */
 export const CalculatorById: React.FC<{ tab: string; onNavigate: (s: ActiveScreen) => void }> = ({ tab, onNavigate }) => {
   switch (tab) {
     case 'required-sip': return <RequiredSipCalculator onNavigate={onNavigate} onStartSip={() => onNavigate('open-account')} />;
