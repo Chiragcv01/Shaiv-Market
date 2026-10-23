@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 
 const dist = path.resolve('dist');
 const ssr = await import(pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href);
-const { render, ROUTES, SITE_URL, headHtml, HOME_FAQ, CALC_FAQ } = ssr;
+const { render, ROUTES, SITE_URL, headHtml, HOME_FAQ, CALC_FAQ, CALC_ROUTES, CALC_GUIDES } = ssr;
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 // strip template's generic SEO tags; each page gets its own
@@ -57,6 +57,11 @@ ${urls}
 </urlset>
 `);
 
+// llms.txt: keep the calculator list in step with the site
+const calcList = CALC_ROUTES.map((c) => `- [${c.name}](${SITE_URL}/calculators/${c.slug}): ${c.blurb}`).join('\n');
+const llmsPath = path.join(dist, 'llms.txt');
+fs.writeFileSync(llmsPath, fs.readFileSync(llmsPath, 'utf8').replace(/## Free calculators\n[\s\S]*?\n\n## /, `## Free calculators\n- [All calculators](${SITE_URL}/calculators)\n${calcList}\n\n## `));
+
 // llms-full.txt: every page summary + all FAQs, for AI assistants
 const faqText = (list) => list.map((f) => `Q: ${f.q}\nA: ${f.a}`).join('\n\n');
 const llmsFull = [
@@ -65,7 +70,8 @@ const llmsFull = [
   ...ROUTES.filter((r) => r.index).map((r) => `- [${r.name}](${SITE_URL}${r.path === '/' ? '/' : r.path}): ${r.description}`),
   '\n## Frequently asked questions\n',
   faqText(HOME_FAQ),
-  ...Object.entries(CALC_FAQ).map(([k, v]) => `\n### ${k} calculator\n\n${faqText(v)}`)
+  '\n## Calculators: short answers\n',
+  ...CALC_ROUTES.map((c) => `### ${c.name}\n${SITE_URL}/calculators/${c.slug}\n\n${CALC_GUIDES[c.tab]?.answer || c.description}\n\n${faqText(CALC_FAQ[c.tab] || [])}\n`)
 ].join('\n');
 fs.writeFileSync(path.join(dist, 'llms-full.txt'), llmsFull + '\n');
 

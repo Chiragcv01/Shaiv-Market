@@ -4,7 +4,8 @@ import App from './App';
 import { AppProvider } from './context/AppContext';
 import { setSsrPath } from './seo/ssr';
 import { takePendingTab } from './utils/deepLink';
-import { routeForPath, ROUTES, SITE_URL } from './seo/routes';
+import { routeForPath, ROUTES, SITE_URL, CALC_ROUTES } from './seo/routes';
+import { CALC_GUIDES } from './content/calculators';
 import { headHtml } from './seo/head';
 import { HOME_FAQ, CALC_FAQ } from './seo/faq';
 
@@ -20,4 +21,4 @@ export function render(path: string): string {
   );
 }
 
-export { ROUTES, SITE_URL, headHtml, routeForPath, HOME_FAQ, CALC_FAQ };
+export { ROUTES, SITE_URL, headHtml, routeForPath, HOME_FAQ, CALC_FAQ, CALC_ROUTES, CALC_GUIDES };

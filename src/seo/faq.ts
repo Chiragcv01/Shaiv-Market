@@ -1,3 +1,5 @@
+import { CALC_GUIDES } from '../content/calculators';
+
 export interface Faq { q: string; a: string }
 
 export const HOME_FAQ: Faq[] = [
@@ -47,34 +49,10 @@ export const HOME_FAQ: Faq[] = [
   }
 ];
 
-export const CALC_FAQ: Record<string, Faq[]> = {
-  'required-sip': [
-    { q: 'How much SIP is needed for ₹1 crore in 15 years?', a: 'About ₹19,800 a month at an assumed 12% yearly return. At 10% it rises to roughly ₹23,900. The calculator shows the exact figure for any target, period and return.' },
-    { q: 'Should I plan for inflation?', a: 'Yes. A goal that costs ₹25 lakh today can cost about ₹50 lakh in 12 years at 6% inflation. Set the target in future rupees, or raise your SIP every year with a step-up.' }
-  ],
-  'sip-compounder': [
-    { q: 'What is a step-up SIP?', a: 'A step-up SIP raises your monthly amount by a fixed percentage every year, usually in line with salary increases. Even a 10% yearly step-up can grow the final corpus substantially.' },
-    { q: 'How does a SIP grow over time?', a: 'Each instalment buys units at that day’s NAV and compounds from then on. Early instalments compound the longest, which is why time in the market matters more than the exact start date.' }
-  ],
-  goal: [
-    { q: 'How do I plan for my child’s higher education?', a: 'Estimate today’s cost, inflate it at 8 to 10% a year to the year of admission, and work out the monthly SIP needed. Move gradually to safer funds in the last two or three years.' },
-    { q: 'Can I plan several goals at once?', a: 'Yes. Plan each goal separately with its own amount, date and fund mix, so a near goal is not exposed to the same risk as a far one.' }
-  ],
-  swp: [
-    { q: 'What is a systematic withdrawal plan (SWP)?', a: 'An SWP pays you a fixed amount from your mutual fund every month or quarter. The rest of the money stays invested, which can help the corpus last longer.' },
-    { q: 'How is SWP income taxed?', a: 'Only the capital gain portion of each withdrawal is taxed, not the full amount. Tax depends on the fund type and how long the units were held.' }
-  ],
-  'loan-sip': [
-    { q: 'Should I prepay my home loan or invest in a SIP?', a: 'Prepaying gives a certain saving equal to your loan rate. A SIP may earn more over long periods but is not guaranteed. Many people split surplus money between both; the calculator compares the two for your loan.' }
-  ],
-  fire: [
-    { q: 'What is FIRE?', a: 'FIRE stands for Financial Independence, Retire Early: building a corpus large enough that its returns cover your living costs, so work becomes optional.' },
-    { q: 'How big a corpus do I need to retire early in India?', a: 'A common rule of thumb is 30 to 33 times your yearly expenses, which assumes withdrawing about 3 to 3.5% a year. The calculator adjusts for inflation and your timeline.' }
-  ],
-  emergency: [
-    { q: 'How much emergency fund should I keep?', a: 'Six months of essential expenses is a common starting point; twelve months if you have a single income, are self-employed or have dependants.' },
-    { q: 'Where should I keep an emergency fund?', a: 'Somewhere safe and quick to access, such as a savings account, a sweep-in fixed deposit or a liquid mutual fund that can be redeemed within a working day.' }
-  ]
-};
+// Calculator FAQs live with each calculator's guide (src/content/calculators/*.md), so the
+// visible FAQ, the FAQPage schema and llms-full.txt always say the same thing.
+export const CALC_FAQ: Record<string, Faq[]> = Object.fromEntries(
+  Object.entries(CALC_GUIDES).map(([tab, g]) => [tab, g.faq])
+);
 
 export const ABOUT_FAQ: Faq[] = HOME_FAQ.slice(0, 4);

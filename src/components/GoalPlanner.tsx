@@ -170,7 +170,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
           Inflation-Adjusted Life Goal Planner
         </h3>
         <p className="text-xs text-[#43566B] mt-0.5 max-w-3xl">
-          Account for education, healthcare, and lifestyle inflation. Calculate the exact monthly SIP required to achieve your future dreams with complete certainty.
+          Account for education, healthcare, and lifestyle inflation. Get the monthly SIP each goal needs, in future rupees.
         </p>
       </div>
 
@@ -233,7 +233,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
           />
 
           {/* Grid: Years to Goal & Inflation */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             
             {/* Years to Goal */}
             <SmartNumberInput
@@ -281,7 +281,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
           </div>
 
           {/* Grid: Expected Returns & Existing Savings */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             
             {/* Expected MF Return */}
             <SmartNumberInput
@@ -449,7 +449,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
                 ₹ {formatRawIndianNumber(plan.requiredMonthlySIP)}<span className="text-sm font-normal text-white/80">/month</span>
               </div>
               <p className="text-xs text-white/80 leading-relaxed">
-                Investing this amount monthly into a well-diversified mutual fund portfolio will comfortably achieve your target.
+                At the return you assumed, this monthly SIP reaches your target. Review it once a year, since actual returns will differ.
               </p>
             </div>
 

@@ -96,7 +96,7 @@ export const FireCalculator: React.FC<FireCalculatorProps> = ({ onNavigate }) =>
           FIRE Number & Freedom Timeline Engine
         </h3>
         <p className="text-xs text-[#43566B] mt-0.5 max-w-3xl">
-          Calculate your exact target corpus required to never have to work for money again, based on your current lifestyle and savings rate.
+          Work out the corpus that could make work optional, based on your expenses, savings and timeline.
         </p>
       </div>
 
@@ -305,7 +305,7 @@ export const FireCalculator: React.FC<FireCalculatorProps> = ({ onNavigate }) =>
                 {formatIndianCurrency(fire.fireCorpusRequired)}
               </div>
               <p className="text-xs text-white/80 leading-relaxed">
-                At {inflationRate}% inflation, your annual expenses will be {formatIndianCurrency(fire.futureAnnualExpenseAtRetirement)}/year. This corpus generates perpetual income.
+                At {inflationRate}% inflation, your annual expenses will be {formatIndianCurrency(fire.futureAnnualExpenseAtRetirement)}/year. At a 3.5% yearly withdrawal, this corpus is sized to last through a long early retirement. Returns are not guaranteed.
               </p>
             </div>
 
@@ -339,7 +339,7 @@ export const FireCalculator: React.FC<FireCalculatorProps> = ({ onNavigate }) =>
             <div className="bg-white border border-[#D3DCE6] rounded-xl p-4 text-xs text-[#43566B] space-y-1">
               <strong className="text-[#0F2740] block">The Indian Safe Withdrawal Rule (3.5%):</strong>
               <p className="leading-relaxed text-[11px]">
-                By investing your retirement corpus into a combination of Equity Flexi-Cap, Balanced Advantage, and Arbitrage funds, a 3.5% annual SWP withdrawal lets you live off capital gains without ever eroding the core principal.
+                Withdrawing about 3.5% of the corpus in the first year, then raising it with inflation, leaves room for weak market years over a retirement that may last 40 years or more. It is a planning rule of thumb, not a guarantee.
               </p>
             </div>
 

@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/
 import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
 import { Bell, Menu, X, ExternalLink, ChevronRight, SlidersHorizontal, Search, Phone, MessageCircle } from 'lucide-react';
+import { pathForScreen } from '../seo/routes';
 
 interface NavbarProps {
   activeScreen: ActiveScreen;
@@ -111,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className={`w-full transition-all duration-300 ${scrolled ? 'bg-white/85 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(15,39,64,0.25)]' : 'bg-white/95 backdrop-blur-md'} border-b border-[#D3DCE6]/60`}>
         <div className={`max-w-7xl mx-auto px-3 sm:px-5 lg:px-8 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300 ${scrolled ? 'h-16' : 'h-18 sm:h-20'}`}>
           <div className="flex items-center gap-3 sm:gap-5 lg:gap-8 min-w-0">
-            <button id="nav-logo" onClick={() => go('home')} className="flex items-center gap-2.5 text-left group cursor-pointer shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-[#E3B65C]">
+            <a id="nav-logo" href="/" aria-label={`${siteSettings.companyName} home`} onClick={(e) => { if (e.metaKey || e.ctrlKey) return; e.preventDefault(); go('home'); }} className="flex items-center gap-2.5 text-left group cursor-pointer shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-[#E3B65C]">
               {siteSettings.logoImageUrl ? (
                 <motion.img
                   src={siteSettings.logoImageUrl}
@@ -129,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   AMFI Registered MFD, {siteSettings.sebiRegNumber}
                 </span>
               </span>
-            </button>
+            </a>
 
             <nav className="hidden xl:flex items-center text-sm font-medium" onMouseLeave={() => setHovered(null)}>
               {visibleNavItems.map((item) => {
@@ -144,10 +145,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 const target = item.screenId || 'home';
                 const active = activeScreen === target;
                 return (
-                  <button
+                  <a
                     key={item.id}
                     id={`nav-link-${item.id}`}
-                    onClick={() => go(target)}
+                    href={pathForScreen(target)}
+                    onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); go(target); }}
                     onMouseEnter={() => setHovered(item.id)}
                     aria-current={active ? 'page' : undefined}
                     className={`relative px-3 py-2 rounded-lg cursor-pointer whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-[#E3B65C]
@@ -162,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <motion.span layoutId="nav-active" className="absolute left-3 right-3 -bottom-0.5 h-[3px] rounded-full bg-[#E3B65C]"
                         transition={{ type: 'spring', stiffness: 500, damping: 35 }} />
                     )}
-                  </button>
+                  </a>
                 );
               })}
               {currentUser?.role === 'admin' && (
@@ -237,12 +239,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 const active = activeScreen === target;
                 return (
                   <motion.li key={item.id} variants={{ hidden: { opacity: 0, x: 24 }, show: { opacity: 1, x: 0 } }}>
-                    <button onClick={() => go(target)}
+                    <a href={pathForScreen(target)} onClick={(e) => { e.preventDefault(); go(target); }}
                       className={`w-full text-left font-display text-[34px] leading-tight py-1.5 cursor-pointer flex items-center justify-between
                         ${active ? 'text-[#E3B65C]' : 'text-white/90 hover:text-white'}`}>
                       {item.label}
                       {active && <span className="w-2.5 h-2.5 rounded-full bg-[#E3B65C]" />}
-                    </button>
+                    </a>
                   </motion.li>
                 );
               })}

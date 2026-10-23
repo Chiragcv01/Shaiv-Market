@@ -107,6 +107,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
     return result.comparisonChart.map((item) => ({
       year: `Yr ${item.year}`,
       loanBalance: item.loanRemainingStrategy1,
+      prepayWealth: item.sipCorpusStrategy1,
       sipWealth: item.sipCorpusStrategy2
     }));
   }, [result.comparisonChart]);
@@ -114,18 +115,18 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
   // Comparison Bar Chart Dataset
   const comparisonData = useMemo(() => [
     {
-      strategy: 'Option A: Prepay Loan',
-      benefit: Math.round(result.interestSaved),
-      label: `Interest Saved: ${formatIndianCurrency(result.interestSaved)}`,
+      strategy: 'Option A: Prepay, then SIP',
+      benefit: Math.round(result.prepayThenInvestWealth),
+      label: `Wealth after ${tenureYears} yrs: ${formatIndianCurrency(result.prepayThenInvestWealth)}`,
       color: '#ba1a1a'
     },
     {
-      strategy: 'Option B: Mutual Fund SIP',
+      strategy: 'Option B: SIP from day one',
       benefit: Math.round(result.sipMaturityWealth),
-      label: `SIP Corpus Built: ${formatIndianCurrency(result.sipMaturityWealth)}`,
+      label: `Wealth after ${tenureYears} yrs: ${formatIndianCurrency(result.sipMaturityWealth)}`,
       color: '#8A6420'
     }
-  ], [result]);
+  ], [result, tenureYears]);
 
   return (
     <div id="loan-vs-sip-card" className="w-full bg-white border border-[#D3DCE6] rounded-3xl shadow-xs overflow-hidden space-y-6">
@@ -214,10 +215,10 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               </div>
               <div>
                 <span className="font-extrabold text-[#8A6420] block text-sm">
-                  The Core Financial Arbitrage Rule:
+                  The one rule that decides it:
                 </span>
                 <span className="text-[#43566B]">
-                  Home Loan costs <strong>{interestRate}%</strong> interest, while Equity SIP compounds at <strong>{expectedMfReturn}%</strong>. The net spread of <strong>+{(expectedMfReturn - interestRate).toFixed(2)}%</strong> creates massive compound wealth.
+                  Your loan costs <strong>{interestRate}%</strong>. You are assuming the SIP earns <strong>{expectedMfReturn}%</strong>. If the SIP really beats the loan rate over the whole period, investing wins; if it doesn't, prepaying wins. Only the loan rate is certain.
                 </span>
               </div>
             </div>
@@ -261,7 +262,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               />
 
               {/* Grid: Interest Rate & Loan Tenure */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 
                 {/* Interest Rate */}
                 <SmartNumberInput
@@ -374,7 +375,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#F3D58E] bg-white/10 px-3 py-1 rounded-full flex items-center gap-1.5">
                       <Award className="w-3.5 h-3.5 text-[#F3D58E]" />
-                      Mathematical Winner: {result.verdict}
+                      Higher wealth: {result.verdict}
                     </span>
                     <span className="text-xs text-[#E3ECF5]">
                       Horizon: {tenureYears} Years
@@ -383,14 +384,14 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
 
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
-                      Investing in Mutual Fund SIP gives{' '}
+                      {result.verdict === 'Invest in SIP' ? 'Investing the extra in a SIP' : 'Prepaying the loan first'} leaves you{' '}
                       <span className="text-[#F3D58E]">
-                        +{formatIndianCurrency(result.netWealthAdvantage)}
+                        {formatIndianCurrency(result.netWealthAdvantage)}
                       </span>{' '}
-                      Extra Net Wealth!
+                      richer after {tenureYears} years
                     </h3>
                     <p className="text-xs sm:text-sm text-[#E3ECF5] mt-2 leading-relaxed">
-                      While prepaying saves <span className="text-white font-bold">{formatIndianCurrency(result.interestSaved)}</span> in bank interest, investing that same ₹{extraMonthlySavings.toLocaleString('en-IN')}/mo in an equity SIP creates a staggering <span className="text-[#F3D58E] font-bold">{formatIndianCurrency(result.sipMaturityWealth)}</span> corpus!
+                      Both plans spend the same ₹{(result.regularEMI + extraMonthlySavings).toLocaleString('en-IN')} a month and are debt-free on the same date. Prepaying saves <span className="text-white font-bold">{formatIndianCurrency(result.interestSaved)}</span> of interest and closes the loan in {result.prepayTenureYears} years; after that the full EMI goes into a SIP. Returns are assumed, not guaranteed, and tax on gains is not included.
                     </p>
                   </div>
 
@@ -401,10 +402,10 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                     </div>
                     <div>
                       <span className="font-extrabold text-[#F3D58E] text-sm block">
-                        Golden Crossover Freedom Point (Year {crossoverData.crossoverYear})
+                        Crossover point (year {crossoverData.crossoverYear})
                       </span>
                       <p className="text-[#E3ECF5] mt-0.5 leading-snug">
-                        By Year {crossoverData.crossoverYear}, your SIP portfolio value will surpass your entire remaining home loan! You have the complete freedom to prepay the remaining loan in 1 click or let it keep compounding.
+                        Around year {crossoverData.crossoverYear}, at the assumed return, your SIP value passes the remaining loan. From then on you could redeem and close the loan, or let the SIP keep growing.
                       </p>
                     </div>
                   </div>
@@ -425,8 +426,8 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                         <span className="font-bold text-white">{formatIndianCurrency(result.interestSaved)}</span>
                       </div>
                       <div className="text-xs text-[#E3ECF5] flex justify-between">
-                        <span>Wealth Created:</span>
-                        <span className="font-bold text-rose-300">₹0 (All in bricks)</span>
+                        <span>Then SIP of EMI grows to:</span>
+                        <span className="font-bold text-white">{formatIndianCurrency(result.prepayThenInvestWealth)}</span>
                       </div>
                     </div>
 
@@ -549,6 +550,14 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                         />
                         <Area
                           type="monotone"
+                          dataKey="prepayWealth"
+                          name="Strategy A: SIP after loan closes"
+                          stroke="#3F6E96"
+                          strokeWidth={2}
+                          fill="none"
+                        />
+                        <Area
+                          type="monotone"
                           dataKey="loanBalance"
                           name="Strategy A: Prepay Remaining Loan Balance"
                           stroke="#ba1a1a"
@@ -630,19 +639,19 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               <div className="bg-white p-3 rounded-xl border border-[#E4EAF0] space-y-1.5 text-xs">
                 <div className="flex justify-between">
                   <span className="text-[#6B7C8F]">Loan closed in:</span>
-                  <span className="font-bold text-[#8A6420]">9.5 Years (5.5 yrs early)</span>
+                  <span className="font-bold text-[#8A6420]">9.2 Years (5.8 yrs early)</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7C8F]">Total Interest Saved:</span>
-                  <span className="font-bold text-[#8A6420]">~₹16.5 Lakhs</span>
+                  <span className="font-bold text-[#8A6420]">~₹15.6 Lakhs</span>
                 </div>
                 <div className="flex justify-between border-t border-[#E4EAF0] pt-1">
-                  <span className="text-[#6B7C8F]">Liquid Wealth at Yr 15:</span>
-                  <span className="font-bold text-rose-600">₹0 (Only flat ownership)</span>
+                  <span className="text-[#6B7C8F]">Then SIPs ₹60,000/mo; value at Yr 15:</span>
+                  <span className="font-bold text-[#0F2740]">~₹64.3 Lakhs</span>
                 </div>
               </div>
               <div className="text-[11px] text-rose-700 font-semibold bg-rose-50 p-2 rounded-lg border border-rose-200">
-                ⚠️ Rahul is debt-free earlier, but his savings were locked inside concrete walls with zero liquidity.
+                Rahul is debt-free 5.8 years earlier, but his investing starts late, so it has less time to compound.
               </div>
             </div>
 
@@ -664,15 +673,15 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7C8F]">SIP Maturity at Yr 15:</span>
-                  <span className="font-extrabold text-[#8A6420]">~₹81.8 Lakhs</span>
+                  <span className="font-extrabold text-[#8A6420]">~₹83.4 Lakhs</span>
                 </div>
                 <div className="flex justify-between border-t border-[#F6E7C1] pt-1">
                   <span className="text-[#6B7C8F]">Pure Wealth Gain:</span>
-                  <span className="font-extrabold text-[#8A6420]">+₹54.8 Lakhs</span>
+                  <span className="font-extrabold text-[#8A6420]">+₹56.4 Lakhs</span>
                 </div>
               </div>
               <div className="text-[11px] text-[#8A6420] font-semibold bg-[#F6E7C1] p-2 rounded-lg border border-[#a7f3d0]">
-                ✨ Priya built an ₹81.8 Lakh liquid portfolio AND claimed up to ₹2 Lakh/year in Sec 24(b) tax deductions!
+                Priya keeps the loan longer but her money compounds for the full 15 years. Under the old tax regime, home loan interest may also be deductible.
               </div>
             </div>
 
@@ -690,19 +699,19 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
               <div className="bg-white p-3 rounded-xl border border-[#C9DAEA] space-y-2 text-xs">
                 <div className="flex justify-between">
                   <span className="text-[#6B7C8F]">Rahul&apos;s Bank Balance:</span>
-                  <span className="font-bold text-[#13263B]">Saved ₹16.5L in interest</span>
+                  <span className="font-bold text-[#13263B]">~₹64.3 Lakhs in mutual funds</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#6B7C8F]">Priya&apos;s Bank Balance:</span>
-                  <span className="font-bold text-[#8A6420]">₹81.8 Lakhs Cash in Mutual Funds</span>
+                  <span className="font-bold text-[#8A6420]">~₹83.4 Lakhs in mutual funds</span>
                 </div>
                 <div className="flex justify-between border-t border-[#C9DAEA] pt-1.5 font-extrabold text-[#0F2740] text-sm">
                   <span>Priya&apos;s Net Advantage:</span>
-                  <span className="text-[#8A6420]">+₹38.3 Lakhs richer!</span>
+                  <span className="text-[#8A6420]">~₹19.1 Lakhs, at an assumed 13%</span>
                 </div>
               </div>
               <div className="text-[11px] text-[#0F2740] font-medium bg-white/80 p-2 rounded-lg border border-[#C9DAEA]">
-                💡 <strong>Key Takeaway:</strong> Debt is fixed interest (~8.75%), but equity compounding (~13%) creates exponential wealth over 10-15 years.
+                <strong>Key takeaway:</strong> the SIP wins only if it earns more than the loan rate. At 8.75% returns the two plans end up exactly equal, and equity returns are never guaranteed. Prepaying is a certain 8.75%.
               </div>
             </div>
 
@@ -715,10 +724,10 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 Why does this happen?
               </span>
               <h4 className="text-lg sm:text-xl font-bold">
-                The Power of Compounding Spread (+4.25% Net Margin)
+                It comes down to the gap between two rates
               </h4>
               <p className="text-xs sm:text-sm text-[#E3ECF5] max-w-2xl leading-relaxed">
-                When you prepay a home loan, your effective return is capped at the loan interest rate (8.75%). When you invest in a disciplined equity SIP, you compound at 12-14%. Over a decade, that 4-5% annual compounding difference creates millions in surplus wealth.
+                Prepaying earns you exactly the loan rate (8.75%), with no risk. An equity SIP may compound faster over long periods, and that gap is what Priya captures. If markets return less than the loan rate over your tenure, prepaying wins instead.
               </p>
             </div>
             <button
@@ -858,7 +867,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 1. What if the stock market crashes during my loan tenure?
               </h4>
               <p className="text-xs text-[#43566B] leading-relaxed">
-                Short-term market volatility is normal. Over a 10 to 15-year loan tenure, Indian equity indices (Nifty 50) have never delivered negative returns over rolling 7+ year periods, averaging 12-14% CAGR. SIP also allows you to buy more units when markets are down (Rupee Cost Averaging).
+                Markets can fall sharply, sometimes for a year or more. Longer holding periods have historically lowered the chance of a loss, but they do not remove it, and past returns do not guarantee future ones. A SIP does buy more units when prices are low. If a fall would make you stop the SIP or sell in panic, prepaying is the safer choice for you.
               </p>
             </div>
 
@@ -867,7 +876,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 2. Can I use my Mutual Fund SIP corpus to close the loan later?
               </h4>
               <p className="text-xs text-[#43566B] leading-relaxed">
-                <strong>Yes, absolutely!</strong> In fact, this is the smartest strategy. Because SIP compounds faster than loan amortisation, around Year 7-9 (the Crossover Point), your SIP fund will exceed your remaining loan balance. You can redeem and close the loan in one cheque if you wish!
+                <strong>Yes.</strong> Many people keep this as an option: if the SIP grows faster than the loan shrinks, there comes a year (the crossover point) when the fund value exceeds the outstanding loan, and you can redeem to close it. Remember that redeeming may trigger capital gains tax and that the crossover year depends on actual returns.
               </p>
             </div>
 
@@ -876,7 +885,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 3. What is the tax benefit advantage under Section 24(b)?
               </h4>
               <p className="text-xs text-[#43566B] leading-relaxed">
-                Under the Old Tax Regime, you can deduct up to ₹2,00,000 per year on home loan interest paid. In a 30% tax bracket, this saves you ~₹62,400 in cash taxes every single year. Prepaying your loan early kills this tax shield.
+                Under the old tax regime, interest on a self-occupied home loan can be deducted up to ₹2,00,000 a year. In the 30% slab (plus 4% cess) that is worth up to about ₹62,400 a year. The new regime does not allow this deduction for a self-occupied home, so check which regime you file under.
               </p>
             </div>
 

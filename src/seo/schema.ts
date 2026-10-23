@@ -1,4 +1,5 @@
-import { RouteMeta, SITE_URL, ROUTES } from './routes';
+import { RouteMeta, SITE_URL, ROUTES, CALC_ROUTES } from './routes';
+import { CALC_GUIDES } from '../content/calculators';
 import { HOME_FAQ, CALC_FAQ, ABOUT_FAQ, Faq } from './faq';
 import { postBySlug, POSTS } from '../content/blog';
 
@@ -119,7 +120,7 @@ function breadcrumbs(route: RouteMeta) {
 export function faqFor(route: RouteMeta): Faq[] {
   if (route.screen === 'home') return HOME_FAQ;
   // must match the FAQ that is visible on the page
-  if (route.screen === 'calculators') return CALC_FAQ[route.tab || 'required-sip'] || [];
+  if (route.screen === 'calculators') return CALC_FAQ[route.tab || 'hub'] || [];
   if (route.screen === 'about') return ABOUT_FAQ;
   if (route.screen === 'blog' && route.slug) return postBySlug(route.slug)?.faq || [];
   return [];
@@ -133,7 +134,7 @@ export function schemaFor(route: RouteMeta) {
     person,
     website,
     {
-      '@type': route.screen === 'about' ? 'AboutPage' : route.screen === 'contact' ? 'ContactPage' : 'WebPage',
+      '@type': route.screen === 'about' ? 'AboutPage' : route.screen === 'contact' ? 'ContactPage' : route.path === '/calculators' ? 'CollectionPage' : 'WebPage',
       '@id': `${url}#webpage`,
       url,
       name: route.title,
@@ -142,19 +143,42 @@ export function schemaFor(route: RouteMeta) {
       isPartOf: { '@id': SITE_ID },
       about: { '@id': ORG_ID },
       ...(route.screen === 'about' ? { mainEntity: { '@id': PERSON_ID } } : {}),
+      ...(route.screen === 'calculators' && route.tab ? { mainEntity: { '@id': `${url}#app` }, author: { '@id': PERSON_ID } } : {}),
       dateModified: new Date().toISOString().slice(0, 10)
     }
   ];
   if (route.path !== '/') graph.push(breadcrumbs(route));
-  if (route.screen === 'calculators') {
+  if (route.screen === 'calculators' && route.tab) {
+    const c = CALC_ROUTES.find((x) => x.tab === route.tab);
+    const g = CALC_GUIDES[route.tab];
     graph.push({
       '@type': 'WebApplication',
-      name: route.tab ? route.name : 'Shaiv Market calculators',
+      '@id': `${url}#app`,
+      name: route.name,
       url,
+      description: g?.answer || route.description,
       applicationCategory: 'FinanceApplication',
+      applicationSubCategory: 'Calculator',
       operatingSystem: 'Any (web browser)',
+      browserRequirements: 'Requires JavaScript',
+      isAccessibleForFree: true,
+      inLanguage: 'en-IN',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
-      provider: { '@id': ORG_ID }
+      featureList: c ? [c.blurb, 'Year-by-year schedule', 'Chart', 'Works on mobile', 'No sign-up'] : undefined,
+      author: { '@id': PERSON_ID },
+      provider: { '@id': ORG_ID },
+      dateModified: g?.updated
+    });
+  }
+  if (route.screen === 'calculators' && !route.tab) {
+    graph.push({
+      '@type': 'ItemList',
+      '@id': `${url}#calculators`,
+      name: 'Free mutual fund calculators',
+      numberOfItems: CALC_ROUTES.length,
+      itemListElement: CALC_ROUTES.map((c, i) => ({
+        '@type': 'ListItem', position: i + 1, name: c.name, url: `${SITE_URL}/calculators/${c.slug}`, description: c.blurb
+      }))
     });
   }
   if (route.screen === 'blog' && route.slug) {

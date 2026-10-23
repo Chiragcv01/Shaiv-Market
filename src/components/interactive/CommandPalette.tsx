@@ -5,7 +5,9 @@ import {
   Wallet, Scale, Flame, ShieldCheck, PieChart, Coins, BadgeCheck, CornerDownLeft, BookOpen
 } from 'lucide-react';
 import { ActiveScreen } from '../../types';
-import { setPendingTab, setPendingScroll, scrollToId } from '../../utils/deepLink';
+import { setPendingScroll, scrollToId } from '../../utils/deepLink';
+import { CALC_ROUTES } from '../../seo/routes';
+import { CALC_ICONS } from '../CalculatorsScreen';
 import { POSTS } from '../../content/blog';
 import { navigateTo } from '../../utils/navigate';
 
@@ -33,12 +35,11 @@ export const CommandPalette: React.FC<{
   const listRef = useRef<HTMLUListElement>(null);
 
   const go = (s: ActiveScreen) => () => onNavigate(s);
-  const calc = (tab: string) => () => { setPendingTab(tab); onNavigate('calculators'); };
   const homeSection = (id: string) => () => { setPendingScroll(id); onNavigate('home'); setTimeout(() => scrollToId(id), 350); };
 
   const cmds: Cmd[] = useMemo(() => [
     { id: 'home', label: 'Home', hint: 'Start page', group: 'Pages', icon: Home, run: go('home') },
-    { id: 'calcs', label: 'All calculators', hint: 'SIP, SWP, FIRE and more', group: 'Pages', icon: Calculator, run: go('calculators') },
+    { id: 'calcs', label: 'All calculators', hint: `${CALC_ROUTES.length} free calculators`, group: 'Pages', icon: Calculator, run: () => navigateTo('/calculators') },
     { id: 'planner', label: 'Goal planner', hint: 'Plan a life goal', group: 'Pages', icon: Target, keywords: 'insights articles', run: go('insights') },
     { id: 'about', label: 'About Chirag Sharma', hint: 'Founder, ARN and certificates', group: 'Pages', icon: User, keywords: 'founder arn nism amfi certificate', run: go('about') },
     { id: 'book', label: 'Book a free call', hint: 'Pick a date and time', group: 'Pages', icon: CalendarCheck, keywords: 'appointment meeting consultation', run: go('booking') },
@@ -46,12 +47,10 @@ export const CommandPalette: React.FC<{
     { id: 'contact', label: 'Contact', hint: 'Form, phone, email, office', group: 'Pages', icon: Mail, run: go('contact') },
     { id: 'blog', label: 'Blog: all guides', hint: 'SIP, tax, retirement, KYC', group: 'Pages', icon: BookOpen, keywords: 'articles read learn', run: () => navigateTo('/blog') },
     ...POSTS.map((p) => ({ id: `post-${p.slug}`, label: p.title, hint: p.category, group: 'Guides' as const, icon: BookOpen, keywords: p.keywords.join(' '), run: () => navigateTo(`/blog/${p.slug}`) })),
-    { id: 'c-req', label: 'How much SIP do I need?', hint: 'Required SIP calculator', group: 'Calculators', icon: Target, keywords: 'target corpus', run: calc('required-sip') },
-    { id: 'c-sip', label: 'SIP growth calculator', hint: 'What my SIP becomes', group: 'Calculators', icon: Calculator, keywords: 'compounding lumpsum step up', run: calc('sip-compounder') },
-    { id: 'c-swp', label: 'SWP monthly pension', hint: 'Withdraw a monthly income', group: 'Calculators', icon: Wallet, keywords: 'retirement income withdrawal', run: calc('swp') },
-    { id: 'c-loan', label: 'Home loan prepay vs SIP', hint: 'Which wins for you', group: 'Calculators', icon: Scale, keywords: 'emi prepayment', run: calc('loan-sip') },
-    { id: 'c-fire', label: 'FIRE calculator', hint: 'Retire early', group: 'Calculators', icon: Flame, keywords: 'financial independence early retirement', run: calc('fire') },
-    { id: 'c-emg', label: 'Emergency fund', hint: 'How big a buffer you need', group: 'Calculators', icon: ShieldCheck, run: calc('emergency') },
+    ...CALC_ROUTES.map((c) => ({
+      id: `c-${c.tab}`, label: c.name, hint: c.blurb, group: 'Calculators' as const, icon: CALC_ICONS[c.tab] || Calculator,
+      keywords: `${c.short} ${c.title}`, run: () => navigateTo(`/calculators/${c.slug}`)
+    })),
     { id: 'quiz', label: 'Take the risk quiz', hint: 'Five questions, one minute', group: 'On the home page', icon: PieChart, keywords: 'risk profile investor type', run: homeSection('risk-quiz-heading') },
     { id: 'jar', label: 'Small spends jar', hint: 'Turn habits into a SIP', group: 'On the home page', icon: Coins, keywords: 'habits savings', run: homeSection('habit-jar-heading') },
     { id: 'goals', label: 'Life goals journey', hint: 'Education, home, retirement', group: 'On the home page', icon: Target, run: homeSection('goal-journey-heading') },

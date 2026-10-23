@@ -72,6 +72,8 @@ Many retirees use two of the three together.
 
 Try different corpus sizes and withdrawals in the [SWP calculator](/calculators/swp-calculator). If you're within a few years of retirement and want the buckets set up properly, I can help you plan it: [book a free call](/book-free-consultation).
 
+Before you set up the SWP, the [retirement calculator](/calculators/retirement-calculator) shows whether your corpus is big enough for the years ahead, and the [mutual fund tax calculator](/calculators/mutual-fund-tax-calculator) estimates the tax on each withdrawal.
+
 ## Questions people ask
 
 ### What is a safe withdrawal rate for SWP in India?

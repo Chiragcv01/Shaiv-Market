@@ -3,10 +3,19 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Mail, Phone, MapPin, ShieldCheck, CheckCircle, SlidersHorizontal, ArrowRight, MessageCircle } from 'lucide-react';
 import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
+import { CALC_ROUTES } from '../seo/routes';
+import { navigateTo } from '../utils/navigate';
 
 interface FooterProps {
   onNavigate?: (screen: ActiveScreen) => void;
 }
+
+const FOOTER_CALCS = ['sip-compounder', 'required-sip', 'step-up-sip', 'retirement', 'swp', 'ppf', 'mf-tax', 'loan-sip'];
+const footerLink = (path: string) => (e: React.MouseEvent) => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  navigateTo(path);
+};
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const { siteSettings, currentUser } = useApp();
@@ -68,82 +77,43 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Company Links */}
+          {/* Calculators: real links so every calculator is linked from every page */}
           <div>
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
-              Financial Planning
+              Free calculators
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
+              {FOOTER_CALCS.map((tab) => {
+                const c = CALC_ROUTES.find((x) => x.tab === tab)!;
+                return (
+                  <li key={tab}>
+                    <a href={`/calculators/${c.slug}`} onClick={footerLink(`/calculators/${c.slug}`)} className="text-[#D3DCE6] hover:text-white transition-colors">{c.name}</a>
+                  </li>
+                );
+              })}
               <li>
-                <button
-                  onClick={() => onNavigate?.('about')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  About Founder & Accreditation
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('insights')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Goal Planner & Strategy Desk
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate?.('blog')} className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer">
-                  Blog: SIP, tax and goal guides
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('calculators')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Know Your Required SIP Amount
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('calculators')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  SIP Wealth & SWP Calculators
-                </button>
+                <a href="/calculators" onClick={footerLink('/calculators')} className="font-medium text-[#F3D58E] hover:text-white transition-colors">All {CALC_ROUTES.length} calculators</a>
               </li>
             </ul>
           </div>
 
-          {/* Support & Admin Links */}
           <div>
             <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-4">
-              Connect With Us
+              Shaiv Market
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
-              <li>
-                <button
-                  onClick={() => onNavigate?.('booking')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer font-medium text-[#F3D58E]"
-                >
-                  Schedule 1-on-1 Meeting
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('open-account')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Register & Onboard Investor
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate?.('contact')}
-                  className="text-[#D3DCE6] hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Contact Us
-                </button>
-              </li>
+              {[
+                ['/book-free-consultation', 'Book a free consultation'],
+                ['/about', 'About Chirag Sharma'],
+                ['/blog', 'Blog: SIP, tax and goal guides'],
+                ['/goal-planner', 'Goal planner and guides'],
+                ['/start-sip', 'Start a SIP'],
+                ['/contact', 'Contact us']
+              ].map(([href, label], i) => (
+                <li key={href}>
+                  <a href={href} onClick={footerLink(href)} className={`hover:text-white transition-colors ${i === 0 ? 'font-medium text-[#F3D58E]' : 'text-[#D3DCE6]'}`}>{label}</a>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -148,7 +148,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
           />
 
           {/* Grid: Expected Return & Tenure */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             
             <SmartNumberInput
               id="swp-return-rate"

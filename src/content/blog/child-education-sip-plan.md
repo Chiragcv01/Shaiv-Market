@@ -56,6 +56,8 @@ This "glide path" is the single most important part of a child education plan, a
 
 Use the [goal planner](/calculators/goal-planner) to change today's cost, inflation and years. If you want a plan with the glide path built in, I can set it up with you in one call: [book a free consultation](/book-free-consultation).
 
+To price a different course or a different year, use the [inflation calculator](/calculators/inflation-calculator) with an education inflation rate of 8 to 10%.
+
 ## Questions people ask
 
 ### What is the best investment for a child's education in India?

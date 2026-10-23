@@ -21,8 +21,8 @@ import { NotFoundScreen } from './components/NotFoundScreen';
 import { BlogScreen } from './components/BlogScreen';
 import { EngagementLayer } from './components/interactive/EngagementLayer';
 import { routeForPath, pathForScreen } from './seo/routes';
+import { navigateTo } from './utils/navigate';
 import { applyHead } from './seo/head';
-import { setPendingTab } from './utils/deepLink';
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -59,7 +59,6 @@ export default function App() {
   React.useEffect(() => {
     const onPop = () => {
       const r = routeForPath(window.location.pathname);
-      if (r.tab) { setPendingTab(r.tab); window.dispatchEvent(new CustomEvent('sm:tab', { detail: r.tab })); }
       setActiveScreen(r.screen);
       applyHead(r);
     };
@@ -69,6 +68,9 @@ export default function App() {
 
   // Scroll to top when changing screens
   const handleNavigate = (screen: ActiveScreen) => {
+    // already on this screen but on a sub-page (a calculator, a blog post): go to the screen's main page
+    const target = pathForScreen(screen);
+    if (screen === activeScreen && window.location.pathname !== target) { navigateTo(target); return; }
     setActiveScreen(screen);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -435,12 +435,16 @@ export interface LoanVsSipResult {
   sipMaturityWealth: number;
   sipNetProfit: number;
 
-  // Comparative Verdict
-  netWealthAdvantage: number; // Positive means SIP generates more surplus
+  // Strategy 1 continued: after the loan closes, EMI + extra go into a SIP until the original end date
+  prepayThenInvestWealth: number;
+
+  // Comparative Verdict (both strategies spend the same cash every month and end debt-free on the same date)
+  netWealthAdvantage: number; // size of the winner's lead, always >= 0
   verdict: 'Invest in SIP' | 'Prepay Loan';
   comparisonChart: Array<{
     year: number;
     loanRemainingStrategy1: number;
+    sipCorpusStrategy1: number;
     sipCorpusStrategy2: number;
   }>;
 }
@@ -485,34 +489,38 @@ export function calculateLoanVsSip(
   const sipMaturityWealth = sipResult.totalValue;
   const sipNetProfit = sipResult.estimatedReturns;
 
-  // Net Wealth Advantage:
-  // Under Strategy 2, you pay full interest on loan but build an enormous SIP corpus.
-  // Surplus = SIP Maturity Wealth - (Total Regular Interest - Prepay Total Interest)
-  const netWealthAdvantage = Math.round(sipMaturityWealth - interestSaved - sipInvestedAmount);
-  const verdict = sipNetProfit > interestSaved ? 'Invest in SIP' : 'Prepay Loan';
-
-  // Build Year-by-Year Comparison Chart
-  const comparisonChart = [];
-  let s1Bal = loanAmount;
+  // Fair comparison: both strategies pay (EMI + extra) every month for the original tenure.
+  // Strategy 1 prepays until the loan closes, then invests the whole (EMI + extra) in a SIP.
+  // Strategy 2 pays the normal EMI and invests the extra from day one.
   const sipMonthlyRate = expectedMfReturn / (12 * 100);
+  const comparisonChart: LoanVsSipResult['comparisonChart'] = [];
+  let s1Bal = loanAmount;
+  let s1Sip = 0;
   let s2SipValue = 0;
-
   for (let yr = 1; yr <= tenureYears; yr++) {
     for (let m = 1; m <= 12; m++) {
       if (s1Bal > 0) {
         const intAmt = s1Bal * r;
         const princ = enhancedMonthlyPayment - intAmt;
-        s1Bal = Math.max(0, s1Bal - princ);
+        const left = s1Bal - princ;
+        s1Bal = Math.max(0, left);
+        // money left over in the closing month starts the SIP
+        if (left < 0) s1Sip = (s1Sip - left) * (1 + sipMonthlyRate);
+      } else {
+        s1Sip = (s1Sip + enhancedMonthlyPayment) * (1 + sipMonthlyRate);
       }
       s2SipValue = (s2SipValue + extraMonthlySavings) * (1 + sipMonthlyRate);
     }
-
     comparisonChart.push({
       year: yr,
       loanRemainingStrategy1: Math.round(s1Bal),
+      sipCorpusStrategy1: Math.round(s1Sip),
       sipCorpusStrategy2: Math.round(s2SipValue)
     });
   }
+  const prepayThenInvestWealth = s1Sip;
+  const verdict: LoanVsSipResult['verdict'] = sipMaturityWealth > prepayThenInvestWealth ? 'Invest in SIP' : 'Prepay Loan';
+  const netWealthAdvantage = Math.round(Math.abs(sipMaturityWealth - prepayThenInvestWealth));
 
   return {
     regularEMI: Math.round(regularEMI),
@@ -525,6 +533,7 @@ export function calculateLoanVsSip(
     sipInvestedAmount: Math.round(sipInvestedAmount),
     sipMaturityWealth: Math.round(sipMaturityWealth),
     sipNetProfit: Math.round(sipNetProfit),
+    prepayThenInvestWealth: Math.round(prepayThenInvestWealth),
     netWealthAdvantage,
     verdict,
     comparisonChart
