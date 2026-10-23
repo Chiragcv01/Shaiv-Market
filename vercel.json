@@ -58,6 +58,16 @@
   ],
   "redirects": [
     {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/:sub(post|page|category)-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
       "source": "/what-is-mutual-:slug*",
       "destination": "/#faq",
       "permanent": true
