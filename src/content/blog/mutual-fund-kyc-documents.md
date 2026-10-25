@@ -4,6 +4,10 @@ title: "Mutual Fund KYC in 2026: Documents, Steps and How to Fix \"On Hold\""
 description: The documents you need for mutual fund KYC, how to complete it on your phone in ten minutes, what Validated, Registered and On Hold mean, and how to fix a KYC that's stuck.
 date: 2026-10-21
 order: 9
+image: photo-1544725121-be3bf52e2dc8
+imageAlt: "A person holding a smartphone, ready to complete a form"
+imageBy: Luis Villasmil
+imageLink: https://unsplash.com/photos/person-holding-black-smartphone-4V8uMZx8FYA
 category: Getting started
 keywords: mutual fund KYC, KYC documents for mutual fund, KYC on hold mutual fund, KYC validated registered, check mutual fund KYC status, CVL KRA KYC
 answer: For mutual fund KYC you need your PAN, Aadhaar (linked to your PAN), a photo or live selfie, and a mobile number and email in your name. Most people finish it online with Aadhaar OTP or DigiLocker in about ten minutes. You can check your status on the CVL KRA or CAMS KRA website using your PAN; "Validated" means you can invest anywhere, "Registered" may need fresh documents for new investments, and "On Hold" blocks transactions until you re-submit valid documents.

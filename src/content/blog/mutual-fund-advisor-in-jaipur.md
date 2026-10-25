@@ -4,6 +4,10 @@ title: Looking for a Mutual Fund Advisor in Jaipur? RIA or MFD, Explained
 description: Searching for a mutual fund advisor in Jaipur? Know the difference between a SEBI registered investment adviser (RIA) and an AMFI registered mutual fund distributor (MFD), what each costs, and which one you need.
 date: 2026-10-21
 order: 2
+image: photo-1686771416282-3888ddaf249b
+imageAlt: "A man and a woman shaking hands in front of a laptop after a meeting"
+imageBy: Mina Rad
+imageLink: https://unsplash.com/photos/a-man-and-a-woman-shaking-hands-in-front-of-a-laptop-qFSQFSmfZkA
 category: Choosing help
 keywords: mutual fund advisor in Jaipur, financial advisor Jaipur, SEBI registered investment adviser Jaipur, RIA vs MFD, mutual fund distributor Jaipur
 answer: In India, only a SEBI registered investment adviser (RIA) can legally call themselves an investment "adviser" and charge you a fee for advice; they recommend direct plans and earn no commission. A mutual fund distributor (MFD) is registered with AMFI, earns commission through regular plans, charges you no fee, and also handles execution. Choose an RIA if you want paid, product-neutral advice; choose an MFD if you want hands-on help to invest and stay invested.

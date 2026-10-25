@@ -4,6 +4,10 @@ title: "Child Education Planning: How Much SIP for Your Child's College?"
 description: How to plan your child's higher education with a SIP. Estimate the future cost with education inflation, find the monthly amount, see the cost of starting late, and protect the money in the final years.
 date: 2026-10-21
 order: 8
+image: photo-1692269725827-699e04a11cdf
+imageAlt: "Two young boys sitting at a desk studying from a book"
+imageBy: Swastik Arora
+imageLink: https://unsplash.com/photos/two-young-boys-sitting-at-a-desk-with-a-book-xMYq46yAetM
 category: Goals
 keywords: child education planning, SIP for child education, child future plan mutual fund, education inflation India, how much to save for child education
 answer: A course that costs ₹20 lakh today could cost about ₹83.5 lakh in 15 years at 10% education inflation. To build that, you need roughly ₹16,600 a month at an assumed 12% return, or start at about ₹9,600 and raise it 10% every year. If you start when the child is 8 instead of 3, the monthly amount jumps to about ₹22,300 for a ₹51.9 lakh target.

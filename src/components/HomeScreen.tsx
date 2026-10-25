@@ -11,6 +11,7 @@ import { POSTS } from '../content/blog';
 import { navigateTo } from '../utils/navigate';
 import { motion } from 'motion/react';
 import { ArticleCover } from './visuals/ArticleCover';
+import { unsplash, unsplashSrcSet } from '../utils/unsplash';
 import { useApp } from '../context/AppContext';
 import {
   TrendingUp,
@@ -248,7 +249,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {POSTS.slice(0, 3).map((p) => (
               <motion.a key={p.slug} href={`/blog/${p.slug}`} onClick={(e) => { e.preventDefault(); navigateTo(`/blog/${p.slug}`); }}
                 whileHover={{ y: -4 }} className="group rounded-3xl bg-white ring-1 ring-[#D3DCE6] hover:ring-[#0F2740] overflow-hidden flex flex-col">
-                <div className="h-36"><ArticleCover seed={p.slug} /></div>
+                <div className="h-44 overflow-hidden bg-[#EEF3F8]">
+                  {p.image ? (
+                    <img src={unsplash(p.image.id, 640, 360)} srcSet={unsplashSrcSet(p.image.id, 640, 360)} sizes="(min-width: 768px) 33vw, 100vw"
+                      alt={p.image.alt} loading="lazy" decoding="async" width={640} height={360}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  ) : <ArticleCover seed={p.slug} />}
+                </div>
                 <div className="p-6">
                   <p className="text-xs font-semibold text-[#8A6420]">{p.category}</p>
                   <h3 className="font-display text-xl font-semibold text-[#0F2740] mt-1 leading-snug group-hover:underline decoration-[#E3B65C] decoration-2 underline-offset-4">{p.title}</h3>

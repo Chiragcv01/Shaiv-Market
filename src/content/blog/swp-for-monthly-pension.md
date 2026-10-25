@@ -4,6 +4,10 @@ title: "SWP for Retirement: How to Turn ₹50 Lakh into a Monthly Pension"
 description: How a systematic withdrawal plan (SWP) works, how long ₹50 lakh lasts at ₹25,000 to ₹40,000 a month, why you must plan for rising expenses, and how SWP income is taxed.
 date: 2026-10-21
 order: 7
+image: photo-1625690987114-86f5af994b49
+imageAlt: "An older couple with grey hair walking arm in arm down a road"
+imageBy: Hector Reyes
+imageLink: https://unsplash.com/photos/older-couple-walking-down-road-GrSfB6-OPoY
 category: Retirement
 keywords: SWP for retirement, systematic withdrawal plan, monthly pension from mutual fund, SWP calculator, SWP tax, how long will my corpus last
 answer: An SWP pays you a fixed amount every month from a mutual fund while the rest stays invested. ₹50 lakh earning an assumed 8% a year can pay ₹30,000 a month almost indefinitely, but if you raise the withdrawal 6% a year for inflation, ₹25,000 a month lasts about 21 years at 8% and about 30 years at 10%. Only the gain portion of each withdrawal is taxed.

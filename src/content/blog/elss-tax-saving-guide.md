@@ -4,6 +4,10 @@ title: "ELSS in 2026: Does It Still Save You Tax? (Old vs New Regime, Section 12
 description: 80C is now Section 123 under the Income-tax Act 2025. Find out if ELSS still saves you tax, who should use it, the 3-year lock-in, and a worked example for a ₹15 lakh salary.
 date: 2026-10-21
 order: 5
+image: photo-1554224155-6726b3ff858f
+imageAlt: "A person holding a tax form next to a pen and a calculator"
+imageBy: Kelly Sikkema
+imageLink: https://unsplash.com/photos/person-holding-paper-near-pen-and-calculator-xoU52jUVUXA
 category: Tax
 keywords: ELSS tax saving, ELSS 2026, section 80C ELSS, section 123 income tax act 2025, old vs new tax regime ELSS, tax saving mutual fund
 answer: ELSS still gives a deduction of up to ₹1.5 lakh a year, now under Section 123 of the Income-tax Act 2025 (the old 80C), but only if you choose the old tax regime. In the new regime, which taxes income up to ₹12 lakh at zero and has a ₹75,000 standard deduction, ELSS gives no tax benefit. At a ₹15 lakh salary, the old regime only wins if your total deductions beyond the standard deduction exceed roughly ₹5.5 lakh.

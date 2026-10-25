@@ -15,6 +15,7 @@ export interface BlogPost {
   toc: { id: string; text: string }[];
   html: string;
   faq: BlogFaq[];
+  image?: { id: string; alt: string; by: string; link: string };
 }
 
 // Each post is a markdown file with a simple front matter block and an optional
@@ -36,7 +37,8 @@ function parse(raw: string, file: string): BlogPost {
     order: Number(meta.order || 99),
     toc,
     html,
-    faq
+    faq,
+    image: meta.image ? { id: meta.image, alt: meta.imageAlt || '', by: meta.imageBy || '', link: meta.imageLink || 'https://unsplash.com' } : undefined
   };
 }
 

@@ -4,6 +4,10 @@ title: "How Much SIP Do You Need for ₹1 Crore? (10, 15, 20 and 25 Years)"
 description: The exact monthly SIP needed to reach ₹1 crore in 10, 15, 20 or 25 years at 10% and 12%, how a yearly step-up cuts the starting amount, and what ₹1 crore will really be worth.
 date: 2026-10-21
 order: 4
+image: photo-1565371767810-ef913a6c8315
+imageAlt: "Close-up of Indian rupee banknotes"
+imageBy: rupixen
+imageLink: https://unsplash.com/photos/indian-rupee-banknote-lot-close-up-photography-5lw6CLBZlCg
 category: SIP basics
 keywords: SIP for 1 crore, how much SIP for 1 crore, 1 crore in 15 years SIP, 1 crore in 10 years, step up SIP 1 crore
 answer: At an assumed 12% yearly return you need about ₹10,000 a month for 20 years, ₹19,800 a month for 15 years, or ₹43,000 a month for 10 years to reach ₹1 crore. With a 10% step-up every year, the starting SIP drops to about ₹5,000 a month for 20 years or ₹11,500 for 15 years. Returns are not guaranteed.

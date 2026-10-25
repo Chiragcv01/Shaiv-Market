@@ -5,6 +5,7 @@ import { POSTS, postBySlug, BlogPost } from '../content/blog';
 import { useApp } from '../context/AppContext';
 import { navigateTo, usePath } from '../utils/navigate';
 import { ArticleCover } from './visuals/ArticleCover';
+import { unsplash, unsplashSrcSet, unsplashCreditUrl } from '../utils/unsplash';
 
 const fmtDate = (iso: string) =>
   new Date(iso + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -39,8 +40,13 @@ const PostCard: React.FC<{ p: BlogPost; big?: boolean }> = ({ p, big }) => (
     transition={{ type: 'spring', stiffness: 400, damping: 28 }}
     className={`group flex flex-col rounded-3xl bg-white ring-1 ring-[#D3DCE6] hover:ring-[#0F2740] overflow-hidden ${big ? 'md:flex-row md:col-span-2' : ''}`}
   >
-    <div className={`${big ? 'md:w-1/2 h-48 md:h-auto' : 'h-36'} shrink-0`}>
-      <ArticleCover seed={p.slug} />
+    <div className={`${big ? 'md:w-1/2 h-56 md:h-auto' : 'h-44'} shrink-0 overflow-hidden bg-[#EEF3F8]`}>
+      {p.image ? (
+        <img src={unsplash(p.image.id, big ? 800 : 640, big ? 600 : 360)} srcSet={unsplashSrcSet(p.image.id, big ? 800 : 640, big ? 600 : 360)}
+          sizes={big ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 33vw, 100vw'}
+          alt={p.image.alt} loading="lazy" decoding="async" width={big ? 800 : 640} height={big ? 600 : 360}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+      ) : <ArticleCover seed={p.slug} />}
     </div>
     <div className={`flex-1 p-5 sm:p-6 ${big ? 'md:p-8' : ''}`}>
       <p className="text-xs text-[#8A6420] font-semibold">{p.category}</p>
@@ -129,6 +135,18 @@ const BlogPostView: React.FC<{ post: BlogPost }> = ({ post }) => {
           </div>
         </div>
       </header>
+
+      {post.image && (
+        <figure className="mt-8">
+          <img src={unsplash(post.image.id, 1400, 620)} srcSet={unsplashSrcSet(post.image.id, 1400, 620)} sizes="(min-width: 1280px) 1216px, 100vw"
+            alt={post.image.alt} width={1400} height={620} fetchPriority="high" decoding="async"
+            className="w-full aspect-[21/9] max-h-[460px] object-cover rounded-3xl bg-[#EEF3F8]" />
+          <figcaption className="mt-2 text-xs text-[#6B7C8F]">
+            Photo by <a href={unsplashCreditUrl(post.image.link)} target="_blank" rel="noopener noreferrer" className="underline hover:text-[#0F2740]">{post.image.by}</a> on{' '}
+            <a href="https://unsplash.com/?utm_source=shaiv_market&utm_medium=referral" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#0F2740]">Unsplash</a>
+          </figcaption>
+        </figure>
+      )}
 
       <div className="mt-10 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-8 min-w-0">

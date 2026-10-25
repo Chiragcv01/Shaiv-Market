@@ -1,5 +1,6 @@
 import { ActiveScreen } from '../types';
 import { POSTS } from '../content/blog';
+import { unsplash } from '../utils/unsplash';
 
 export const SITE_URL = 'https://shaivmarket.com';
 
@@ -14,6 +15,7 @@ export interface RouteMeta {
   index: boolean;         // include in sitemap + allow indexing
   priority?: number;
   changefreq?: 'weekly' | 'monthly';
+  image?: string;         // share image (og:image), 1200x630
 }
 
 export type CalcGroup = 'Grow your money' | 'Plan a goal' | 'Retirement' | 'Tax, loans and safe savings';
@@ -172,7 +174,8 @@ export const ROUTES: RouteMeta[] = [
   },
   ...POSTS.map((p) => ({
     path: `/blog/${p.slug}`, screen: 'blog' as ActiveScreen, slug: p.slug, name: p.title, index: true,
-    priority: 0.7, changefreq: 'monthly' as const, title: `${p.title} | Shaiv Market`, description: p.description
+    priority: 0.7, changefreq: 'monthly' as const, title: `${p.title} | Shaiv Market`, description: p.description,
+    image: p.image ? unsplash(p.image.id, 1200, 630, 'jpg') : undefined
   })),
   { path: '/reviews', screen: 'testimonials', name: 'Reviews', index: false, title: 'Client Reviews | Shaiv Market', description: 'Client reviews of Shaiv Market.' },
   { path: '/login', screen: 'auth', name: 'Login', index: false, title: 'Login | Shaiv Market', description: 'Login.' },

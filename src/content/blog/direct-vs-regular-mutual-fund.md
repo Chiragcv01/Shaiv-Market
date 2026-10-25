@@ -4,6 +4,10 @@ title: "Direct vs Regular Mutual Funds: An Honest Answer from a Distributor"
 description: What separates direct and regular mutual fund plans, how much the expense ratio gap costs over 20 years, and when paying for a distributor is worth it, written by an AMFI registered MFD.
 date: 2026-10-21
 order: 6
+image: photo-1591696205602-2f950c417cb9
+imageAlt: "A market chart displayed on a laptop screen"
+imageBy: Markus Winkler
+imageLink: https://unsplash.com/photos/stock-market-chart-displayed-on-laptop-screen-IrRbSND5EUc
 category: Choosing help
 keywords: direct vs regular mutual fund, direct plan vs regular plan, expense ratio difference, should I invest in direct mutual fund, regular plan distributor commission
 answer: Direct and regular plans hold the same portfolio; the regular plan costs more each year because it pays a distributor's commission. On a ₹10,000 monthly SIP over 20 years, a 1% higher yearly cost can mean about ₹12 lakh less at the end (roughly 12.5% of the final value). A regular plan is worth it only if the distributor's help keeps you invested and on plan; confident do-it-yourself investors are usually better off in direct plans.

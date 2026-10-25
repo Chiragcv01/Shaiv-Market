@@ -4,6 +4,10 @@ title: "How to Verify a Mutual Fund Distributor's ARN in 2 Minutes"
 description: Before you invest through anyone, check their ARN on the AMFI website. Here's exactly how, what to look for, the red flags, and how to confirm your money reached the fund house.
 date: 2026-10-21
 order: 10
+image: photo-1570414036784-f96df71770cb
+imageAlt: "A silver magnifying glass resting on an open book"
+imageBy: Gustavo Boaron
+imageLink: https://unsplash.com/photos/silver-magnifying-glass-on-book-07FPM-tbIEs
 category: Getting started
 keywords: verify mutual fund distributor, ARN check, AMFI ARN search, how to check ARN number, is my mutual fund agent genuine, EUIN
 answer: Open the "Locate Distributor" page on amfiindia.com, search by the ARN the person gives you, and confirm the name, city and validity date match. Then make sure your money goes only to the mutual fund's own account, never to the distributor, and that you get a confirmation SMS or email directly from the fund house or registrar after each transaction.

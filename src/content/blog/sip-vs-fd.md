@@ -4,6 +4,10 @@ title: "SIP vs FD: What ₹10,000 a Month Becomes in 10 Years (After Tax)"
 description: A side-by-side, after-tax comparison of a ₹10,000 monthly SIP and a recurring deposit over 10 years, with the real reasons to choose one, the other, or both.
 date: 2026-10-21
 order: 3
+image: photo-1633158829875-e5316a358c6f
+imageAlt: "A glass jar filled with coins and a small plant growing from it"
+imageBy: Towfiqu barbhuiya
+imageLink: https://unsplash.com/photos/a-glass-jar-filled-with-coins-and-a-plant-joqWSI9u_XM
 category: SIP basics
 keywords: SIP vs FD, SIP or FD which is better, SIP vs RD, mutual fund vs fixed deposit, SIP returns after tax
 answer: Over 10 years, ₹10,000 a month in a recurring deposit at 6.05% grows to about ₹16.5 lakh before tax and roughly ₹14.9 lakh after tax in the 30% slab. The same amount in an equity SIP grows to about ₹20.7 lakh at an assumed 10% return (₹19.7 lakh after tax). The SIP usually wins over long periods, but the FD wins on certainty, so use FDs for money you need within three years and SIPs for goals further away.

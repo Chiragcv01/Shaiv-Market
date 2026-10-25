@@ -192,7 +192,7 @@ export function schemaFor(route: RouteMeta) {
       dateModified: p.updated,
       inLanguage: 'en-IN',
       mainEntityOfPage: { '@id': `${url}#webpage` },
-      image: `${SITE_URL}/images/og-card.png`,
+      image: route.image || `${SITE_URL}/images/og-card.png`,
       author: { '@id': PERSON_ID },
       publisher: { '@id': ORG_ID },
       keywords: p.keywords.join(', '),
