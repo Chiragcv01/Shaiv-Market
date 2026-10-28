@@ -99,7 +99,7 @@ input[type=range]::-moz-range-track {
 .blog-body { color: #2A3D52; font-size: 1.0625rem; line-height: 1.8; }
 .blog-body > * + * { margin-top: 1.15em; }
 .blog-body h2 { font-family: 'Anek Latin Variable', 'Inter', sans-serif; font-weight: 600; color: #0F2740; font-size: 1.75rem; line-height: 1.2; margin-top: 2.2em; scroll-margin-top: 120px; }
-.blog-body h3 { font-family: 'Anek Latin Variable', 'Inter', sans-serif; font-weight: 600; color: #0F2740; font-size: 1.25rem; line-height: 1.3; margin-top: 1.8em; }
+.blog-body h3 { font-family: 'Anek Latin Variable', 'Inter', sans-serif; font-weight: 600; color: #0F2740; font-size: 1.25rem; line-height: 1.3; margin-top: 1.8em; scroll-margin-top: 120px; }
 .blog-body p, .blog-body li { max-width: 68ch; }
 .blog-body strong { color: #0F2740; font-weight: 600; }
 .blog-body a { color: #8A6420; font-weight: 500; text-decoration: underline; text-decoration-color: #E3B65C; text-decoration-thickness: 2px; text-underline-offset: 3px; }

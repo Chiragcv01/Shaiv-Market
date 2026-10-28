@@ -2,6 +2,7 @@ import { RouteMeta, SITE_URL, ROUTES, CALC_ROUTES } from './routes';
 import { CALC_GUIDES } from '../content/calculators';
 import { HOME_FAQ, CALC_FAQ, ABOUT_FAQ, Faq } from './faq';
 import { postBySlug, POSTS } from '../content/blog';
+import { resourceBySlug, termId } from '../content/resources';
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const PERSON_ID = `${SITE_URL}/#chirag-sharma`;
@@ -123,6 +124,7 @@ export function faqFor(route: RouteMeta): Faq[] {
   if (route.screen === 'calculators') return CALC_FAQ[route.tab || 'hub'] || [];
   if (route.screen === 'about') return ABOUT_FAQ;
   if (route.screen === 'blog' && route.slug) return postBySlug(route.slug)?.faq || [];
+  if (route.screen === 'resource' && route.slug) return resourceBySlug(route.slug)?.faq || [];
   return [];
 }
 
@@ -210,6 +212,36 @@ export function schemaFor(route: RouteMeta) {
       publisher: { '@id': ORG_ID },
       blogPost: POSTS.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: `${SITE_URL}/blog/${p.slug}`, datePublished: p.date, author: { '@id': PERSON_ID } }))
     });
+  }
+  if (route.screen === 'resource' && route.slug) {
+    const r = resourceBySlug(route.slug);
+    if (r) {
+      graph.push({
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: r.title,
+        description: r.description,
+        abstract: r.answer,
+        datePublished: r.updated,
+        dateModified: r.updated,
+        inLanguage: 'en-IN',
+        mainEntityOfPage: { '@id': `${url}#webpage` },
+        image: `${SITE_URL}/images/og-card.png`,
+        author: { '@id': PERSON_ID },
+        publisher: { '@id': ORG_ID },
+        ...(r.type === 'glossary' ? { about: { '@id': `${url}#terms` } } : {})
+      });
+      if (r.terms.length) graph.push({
+        '@type': 'DefinedTermSet',
+        '@id': `${url}#terms`,
+        name: r.h1,
+        url,
+        inLanguage: 'en-IN',
+        hasDefinedTerm: r.terms.map((t) => ({
+          '@type': 'DefinedTerm', '@id': `${url}#${termId(t.name)}`, name: t.name, description: t.definition, url: `${url}#${termId(t.name)}`, inDefinedTermSet: { '@id': `${url}#terms` }
+        }))
+      });
+    }
   }
   const faq = faqFor(route);
   if (faq.length) graph.push(faqPage(url, faq));

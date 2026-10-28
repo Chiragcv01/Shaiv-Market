@@ -33,7 +33,7 @@ Each instalment is assumed to go in at the start of the month, which is how most
 | 25 | ₹30 lakh | ₹1.90 crore | ₹1.60 crore |
 | 30 | ₹36 lakh | ₹3.53 crore | ₹3.17 crore |
 
-Look at the last two rows. Five more years of the same ₹10,000 adds ₹6 lakh of your money and about ₹1.6 crore of value. That is why starting early matters more than starting big. The [cost of delay calculator](/calculators/sip-delay-cost-calculator) puts a rupee figure on it.
+Look at the last two rows. Five more years of the same ₹10,000 adds ₹6 lakh of your money and about ₹1.6 crore of value. That is why starting early matters more than starting big. The [cost of delay calculator](/calculators/sip-delay-cost-calculator) puts a rupee figure on it, and the [SIP returns table](/sip-returns-table) shows ₹1,000 to ₹50,000 a month side by side.
 
 ## How sensitive is the answer to the return?
 
@@ -44,7 +44,7 @@ Very. The same ₹10,000 for 20 years is about ₹76.6 lakh at 10% and ₹99.9 l
 
 ## SIP returns are measured with XIRR, not CAGR
 
-Because each instalment is invested on a different date, the right way to measure the return on an actual SIP is XIRR. Your account statement shows it. Use the [CAGR calculator](/calculators/cagr-calculator) only for a single, one-time investment.
+Because each instalment is invested on a different date, the right way to measure the return on an actual SIP is XIRR. Your account statement shows it (see [XIRR in the glossary](/mutual-fund-glossary#term-xirr)). Use the [CAGR calculator](/calculators/cagr-calculator) only for a single, one-time investment.
 
 ## Questions people ask
 

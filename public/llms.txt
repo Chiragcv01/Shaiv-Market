@@ -32,6 +32,10 @@ Key facts:
 - [FIRE calculator](https://shaivmarket.com/calculators/fire-calculator): early retirement corpus
 - [Emergency fund calculator](https://shaivmarket.com/calculators/emergency-fund-calculator)
 
+## Reference
+- [SIP returns table](https://shaivmarket.com/sip-returns-table): what ₹1,000 to ₹50,000 a month becomes over 5 to 30 years at 10% and 12%, and the SIP needed for ₹10 lakh to ₹5 crore
+- [Mutual fund glossary](https://shaivmarket.com/mutual-fund-glossary): plain-English meanings of 36 mutual fund terms, from AMFI and ARN to XIRR
+
 ## Pages
 - [Home](https://shaivmarket.com/)
 - [About Chirag Sharma](https://shaivmarket.com/about)

@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 
 const dist = path.resolve('dist');
 const ssr = await import(pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href);
-const { render, ROUTES, SITE_URL, headHtml, HOME_FAQ, CALC_FAQ, CALC_ROUTES, CALC_GUIDES } = ssr;
+const { render, ROUTES, SITE_URL, headHtml, HOME_FAQ, CALC_FAQ, CALC_ROUTES, CALC_GUIDES, RESOURCES } = ssr;
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 // strip template's generic SEO tags; each page gets its own
@@ -70,6 +70,8 @@ const llmsFull = [
   ...ROUTES.filter((r) => r.index).map((r) => `- [${r.name}](${SITE_URL}${r.path === '/' ? '/' : r.path}): ${r.description}`),
   '\n## Frequently asked questions\n',
   faqText(HOME_FAQ),
+  '\n## Reference pages\n',
+  ...RESOURCES.map((r) => `### ${r.h1}\n${SITE_URL}/${r.slug}\n\n${r.answer}\n\n${r.terms.length ? r.terms.map((t) => `- ${t.name}: ${t.definition}`).join('\n') + '\n\n' : ''}${faqText(r.faq)}\n`),
   '\n## Calculators: short answers\n',
   ...CALC_ROUTES.map((c) => `### ${c.name}\n${SITE_URL}/calculators/${c.slug}\n\n${CALC_GUIDES[c.tab]?.answer || c.description}\n\n${faqText(CALC_FAQ[c.tab] || [])}\n`)
 ].join('\n');

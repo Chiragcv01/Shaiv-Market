@@ -19,6 +19,7 @@ import { AccountProfileModal } from './components/AccountProfileModal';
 import { CommandPalette } from './components/interactive/CommandPalette';
 import { NotFoundScreen } from './components/NotFoundScreen';
 import { BlogScreen } from './components/BlogScreen';
+import { ResourceScreen } from './components/ResourceScreen';
 import { EngagementLayer } from './components/interactive/EngagementLayer';
 import { routeForPath, pathForScreen } from './seo/routes';
 import { navigateTo } from './utils/navigate';
@@ -140,6 +141,8 @@ export default function App() {
             )}
 
             {activeScreen === 'blog' && <BlogScreen />}
+
+            {activeScreen === 'resource' && <ResourceScreen />}
 
             {activeScreen === 'not-found' && (
               <NotFoundScreen onNavigate={handleNavigate} onSearch={() => setPaletteOpen(true)} />

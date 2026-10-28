@@ -62,7 +62,7 @@ The right mix depends on your age, income stability and how you'd react to a 30%
 
 ## Try it
 
-Put in your own target and years in the [required SIP calculator](/calculators/required-sip-calculator), or drag the numbers in the sentence at the top of the [home page](/).
+Put in your own target and years in the [required SIP calculator](/calculators/required-sip-calculator), or drag the numbers in the sentence at the top of the [home page](/). For a quick look across amounts, the [SIP returns table](/sip-returns-table) lists the SIP needed for ₹10 lakh to ₹5 crore.
 
 Two more tools help here: the [step-up SIP calculator](/calculators/step-up-sip-calculator) shows how far a yearly increase takes you, and the [cost of delay calculator](/calculators/sip-delay-cost-calculator) shows what waiting even one year costs.
 

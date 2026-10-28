@@ -19,7 +19,7 @@ I am an AMFI registered mutual fund distributor (ARN-337289) based at Bhamashah 
 
 ## What a mutual fund distributor actually does
 
-A mutual fund distributor, often shortened to MFD, is registered with AMFI (the Association of Mutual Funds in India) and holds an ARN, the AMFI Registration Number. To get it, the person has to pass the NISM Series V-A certification exam and renew it every three years.
+A mutual fund distributor, often shortened to MFD, is registered with AMFI (the Association of Mutual Funds in India) and holds an ARN, the AMFI Registration Number. To get it, the person has to pass the NISM Series V-A certification exam and renew it every three years. (New to these terms? The [mutual fund glossary](/mutual-fund-glossary) explains ARN, EUIN, CAS and the rest in a line each.)
 
 In practice, a distributor:
 

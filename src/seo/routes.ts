@@ -1,6 +1,7 @@
 import { ActiveScreen } from '../types';
 import { POSTS } from '../content/blog';
 import { unsplash } from '../utils/unsplash';
+import { RESOURCES } from '../content/resources';
 
 export const SITE_URL = 'https://shaivmarket.com';
 
@@ -8,7 +9,7 @@ export interface RouteMeta {
   path: string;
   screen: ActiveScreen;
   tab?: string;           // calculator tab id for /calculators/*
-  slug?: string;          // blog post slug for /blog/*
+  slug?: string;          // blog post or resource slug
   title: string;
   description: string;
   name: string;           // breadcrumb name
@@ -176,6 +177,10 @@ export const ROUTES: RouteMeta[] = [
     path: `/blog/${p.slug}`, screen: 'blog' as ActiveScreen, slug: p.slug, name: p.title, index: true,
     priority: 0.7, changefreq: 'monthly' as const, title: `${p.title} | Shaiv Market`, description: p.description,
     image: p.image ? unsplash(p.image.id, 1200, 630, 'jpg') : undefined
+  })),
+  ...RESOURCES.map((r) => ({
+    path: `/${r.slug}`, screen: 'resource' as ActiveScreen, slug: r.slug, name: r.h1, index: true,
+    priority: 0.8, changefreq: 'monthly' as const, title: `${r.title} | Shaiv Market`, description: r.description
   })),
   { path: '/reviews', screen: 'testimonials', name: 'Reviews', index: false, title: 'Client Reviews | Shaiv Market', description: 'Client reviews of Shaiv Market.' },
   { path: '/login', screen: 'auth', name: 'Login', index: false, title: 'Login | Shaiv Market', description: 'Login.' },

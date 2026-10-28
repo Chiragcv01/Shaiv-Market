@@ -10,7 +10,8 @@ export type ActiveScreen =
   | 'admin'
   | 'auth'
   | 'not-found'
-  | 'blog';
+  | 'blog'
+  | 'resource';
 
 export type AuthMode = 'login' | 'signup' | 'forgot-password';
 
