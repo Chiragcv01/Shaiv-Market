@@ -2,6 +2,7 @@ import { sha256Hex } from '../utils/sha256';
 import { routeForPath } from '../seo/routes';
 import { currentPath } from '../seo/ssr';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { submitLead } from '../utils/submitLead';
 import {
   User,
   InsightArticle,
@@ -645,6 +646,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     setQuotes((prev) => [newQuote, ...prev]);
 
+    submitLead({
+      type: 'quote',
+      ref: quoteNumber,
+      name: newQuote.fullName,
+      phone: newQuote.phone,
+      email: newQuote.email,
+      details: {
+        City: newQuote.city,
+        'Investment type': newQuote.investmentType,
+        Amount: newQuote.investmentAmount,
+        Fund: newQuote.selectedFund,
+        Goal: newQuote.investmentGoal
+      }
+    });
+
     // Asynchronous Webhook / Google Sheet dispatch for real-time lead notification
     const payload = {
       leadId: quoteNumber,
@@ -717,6 +733,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
     setBookings((prev) => [newBooking, ...prev]);
 
+    submitLead({
+      type: 'booking',
+      ref: bookingId,
+      name: newBooking.clientName,
+      phone: newBooking.clientPhone,
+      email: newBooking.clientEmail,
+      details: {
+        Date: newBooking.date,
+        Time: newBooking.timeSlot,
+        Topic: newBooking.topic,
+        Notes: newBooking.notes
+      }
+    });
+
     // Dispatch booking to webhook
     if (siteSettings.leadWebhookUrl && siteSettings.leadWebhookUrl.startsWith('http')) {
       try {
@@ -777,6 +807,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       status: 'New'
     };
     setContactInquiries((prev) => [newInquiry, ...prev]);
+
+    submitLead({
+      type: 'contact',
+      ref: newInquiry.id,
+      name: newInquiry.name,
+      phone: newInquiry.phone === 'Not provided' ? '' : newInquiry.phone,
+      email: newInquiry.email,
+      details: { Subject: newInquiry.subject, Message: newInquiry.message }
+    });
 
     // Send notification webhook if set
     if (siteSettings.leadWebhookUrl && siteSettings.leadWebhookUrl.startsWith('http')) {
