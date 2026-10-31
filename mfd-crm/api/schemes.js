@@ -12,11 +12,12 @@ function parse(txt) {
     if (line.includes(';')) {
       const p = line.split(';');
       if (p.length < 6 || !/^\d+$/.test(p[0].trim()) || !open) continue;
-      const nav = parseFloat(p[4]);
-      const d = p[5].trim().split('-');
-      const date = d.length === 3 ? `${d[2]}-${MON[d[1]] || '01'}-${d[0].padStart(2, '0')}` : '';
-      if (date > asOf) asOf = date;
-      rows.push([+p[0], p[3].trim().replace(/\s+/g, ' '), cat, amc, isFinite(nav) ? nav : null, date]);
+      // name may itself contain ';' -> take NAV and date from the end
+      const ds = p[p.length - 1].trim(), nav = parseFloat(p[p.length - 2]);
+      const d = ds.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/);
+      const date = d ? `${d[3]}-${MON[d[2][0].toUpperCase() + d[2].slice(1).toLowerCase()] || '01'}-${d[1].padStart(2, '0')}` : '';
+      if (date && date > asOf) asOf = date;
+      rows.push([+p[0], p.slice(3, p.length - 2).join(';').trim().replace(/\s+/g, ' '), cat, amc, isFinite(nav) ? nav : null, date]);
       continue;
     }
     const m = line.match(/^(.*?Schemes?)\s*\((.+)\)\s*$/i);
