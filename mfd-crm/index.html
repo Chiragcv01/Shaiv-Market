@@ -904,6 +904,7 @@ const R = {
     stp: { label: 'STP', icon: 'flow', color: '#0284C7' },
     swp: { label: 'SWP', icon: 'cash', color: '#0284C7' },
     market: { label: 'Market move', icon: 'pulse', color: '#E11D48' },
+    manager: { label: 'Manager change', icon: 'user', color: '#EA580C' },
     review: { label: 'Review due', icon: 'cal', color: '#64748B' },
     birthday: { label: 'Birthday', icon: 'gift', color: '#DB2777' }
   },
@@ -911,7 +912,8 @@ const R = {
   plan() { return App.state.settings.plan || 'regular'; },
   best(catKey, excludeCode) {
     const lb = M.lbCached(catKey, R.plan()); if (!lb) return null;
-    return lb.funds.find(f => f.code !== String(excludeCode) && f.score != null && f.m.ageY >= 3) || null;
+    const ok = f => f.code !== String(excludeCode) && f.score != null && f.m.ageY >= 3;
+    return lb.funds.find(f => ok(f) && !FL.recent(f.code)) || lb.funds.find(ok) || null;
   },
   short: n => String(n || '').replace(/\s*-\s*(regular|direct)\s*plan.*$/i, '').replace(/\s*-\s*growth.*$/i, '').replace(/\s+fund$/i, ' Fund').trim(),
   sig() { const s = App.state.settings; return `\n\n– ${s.advisor || 'Your MFD'}${s.arn ? ', ' + s.arn : ''}${s.firm ? ' (' + s.firm + ')' : ''}\nMF investments market risk ke adheen hain, scheme documents dhyan se padhein.`; },
@@ -953,6 +955,7 @@ const R = {
           `1Y return ${U.pct(m.r1)} vs median ${U.pct(med1)}; peer rank ${st.rank}/${st.of} (${M.cat(x.catKey).label}, ${R.plan()} plans).`,
           m.roll && tgt.m.roll ? `Rolling ${m.roll.win}Y avg ${U.pct(m.roll.avg)} (worst ${U.pct(m.roll.min)}) vs ${U.pct(tgt.m.roll.avg)} (worst ${U.pct(tgt.m.roll.min)}) — consistency ka farak.` : null,
           tgt.m.sharpe != null && m.sharpe != null ? `Risk-adjusted: Sharpe ${m.sharpe.toFixed(2)} vs ${tgt.m.sharpe.toFixed(2)}; max drawdown ${U.pct(m.dd)} vs ${U.pct(tgt.m.dd)}.` : null,
+          FL.recent(x.hd.code) ? `Fund manager bhi ${U.fmtDate(U.parseISO(FL.get(x.hd.code).mgr))} me badla — switch ka case aur mazboot.` : null,
           'Same category me switch → client ka risk level same rehta hai, sirf fund quality improve hoti hai.'
         ].filter(Boolean);
         add({
@@ -971,6 +974,22 @@ const R = {
           reasons: [`3Y CAGR ${U.pct(m.r3)} vs median ${U.pct(med3)}.`, `Peer rank ${st.rank}/${st.of}.`], impact: 0
         });
       }
+    });
+
+    /* 1b. FUND MANAGER CHANGE (manual flag) */
+    A.hs.forEach(x => {
+      if (!x.h || !FL.recent(x.hd.code, 12)) return;
+      const fl = FL.get(x.hd.code), mo = Math.max(0, Math.round(FL.months(x.hd.code)));
+      const alt = R.best(x.catKey, x.hd.code);
+      add({
+        key: `mgr:${x.hd.id}:${fl.mgr}`, type: 'manager', pri: x.value > 100000 ? 2 : 1,
+        title: `${R.short(x.name)}: fund manager badla (${mo} mahine pehle)`,
+        why: 'Pichhla track record purane manager ka hai — naye manager ko parakhna padega.',
+        steps: ['Ghabra kar turant switch mat karo — exit load/tax ka kharcha aur naya manager achha bhi ho sakta hai.', `Naya lumpsum is fund me abhi mat daalo${alt ? `; naya paisa ${R.short(alt.name)} (same category) me` : ''}.`, x.sipNow ? `SIP ${U.inr(x.sipNow)} chalu rakh sakte ho, par ${U.fmtDate(U.parseISO(fl.mgr) + 270 * DAY)} tak review karo.` : 'Agle 2–3 quarter ka performance category median se compare karo.', 'Agar 2–3 quarter lagatar median se neeche ya style badla (jaise large cap me mid cap bharna) → switch (LTCG units pehle).'],
+        reasons: [fl.note ? `Note: ${fl.note}` : 'Manual flag (CRM).', x.st ? `Abhi peer rank #${x.st.rank}/${x.st.of} — ye rank purane manager ke daur ka hai.` : 'Peer ranking abhi load nahi.'],
+        impact: 0,
+        wa: `Namaste ${fname} ji,\n\n${R.short(x.name)} me fund manager badla hai. Abhi ghabrane ki baat nahi — main agle 2–3 mahine naye manager ka performance closely track karunga aur zaroorat hui to sahi time par switch suggest karunga. Tab tak naya extra paisa dusre fund me lagayenge.` + R.sig()
+      });
     });
 
     /* 2. TAX-GAIN HARVESTING (₹1.25L LTCG exemption per FY) */
@@ -1254,7 +1273,8 @@ const PL = {
   /* pick best fund in a category, preferring a new AMC when quality is close */
   pick(cat, usedAmc = new Set(), exclude = new Set()) {
     const lb = M.lbCached(cat, PL.plan()); if (!lb) return { fund: null, alts: [], lb: null };
-    const ok = lb.funds.filter(f => f.score != null && f.m.ageY >= 3 && !exclude.has(f.code));
+    let ok = lb.funds.filter(f => f.score != null && f.m.ageY >= 3 && !exclude.has(f.code));
+    const clean = ok.filter(f => !FL.recent(f.code)); if (clean.length) ok = clean;
     if (!ok.length) return { fund: null, alts: [], lb };
     let f = ok[0];
     const alt = ok.find(x => !usedAmc.has(x.amc));
@@ -1367,6 +1387,7 @@ const PL = {
   verdict(x, recs) {
     const sw = recs.find(r => r.type === 'switch' && r.key === 'switch:' + x.hd.id);
     if (sw) return { v: 'Switch', cls: 'p3', to: sw.to, toName: R.short((M.lbCached(x.catKey, PL.plan()) || { funds: [] }).funds.find(f => f.code === sw.to)?.name || ''), why: sw.why, rec: sw };
+    if (FL.recent(x.hd.code)) { const fl = FL.get(x.hd.code); return { v: 'Review', cls: 'p2', why: `Fund manager ${U.fmtDate(U.parseISO(fl.mgr))} me badla — pichhla record purane manager ka hai. Naye manager ke 2–4 quarter dekho; median se neeche gaya to switch.${fl.note ? ' (' + fl.note + ')' : ''}` }; }
     const wt = recs.find(r => r.type === 'watch' && r.key === 'watch:' + x.hd.id);
     if (wt) return { v: 'Watch', cls: 'p2', why: wt.why };
     if (!x.h) return { v: 'NAV pending', cls: 'p1', why: 'Live NAV load nahi hui.' };
@@ -1975,7 +1996,7 @@ const V = {
   ct_holdings(c, A) {
     return `<div class="row" style="margin-bottom:10px"><span class="small mute">NAV as of ${A.hs[0] && A.hs[0].navT ? U.fmtDate(A.hs[0].navT) : '—'} · units SIP dates ki actual NAV se calculate (CAS ke units daal kar exact kar sakte ho)</span><span class="sp"></span><button class="btn pri sm" data-act="addHolding" data-cid="${c.id}">${I('plus')} Fund add karo</button></div>
       ${A.hs.length ? `<div class="card" style="padding:0"><div class="tw"><table class="t"><thead><tr><th>Fund</th><th>Peer rank</th><th class="num">SIP</th><th class="num">Invested</th><th class="num">Value</th><th class="num">Gain</th><th class="num">XIRR</th><th class="num">1Y / 3Y</th><th></th></tr></thead><tbody>
-      ${A.hs.map(x => `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name || x.hd.code)}</a><small>${U.esc(x.cat.label)}${x.hd.folio ? ' · Folio ' + U.esc(x.hd.folio) : ''}${x.stale ? ' · <span class="neg">cached NAV</span>' : ''}${!x.h ? ' · <span class="neg">NAV load nahi hui</span>' : ''}</small></td>
+      ${A.hs.map(x => `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name || x.hd.code)}</a>${FL.badge(x.hd.code)}<small>${U.esc(x.cat.label)}${x.hd.folio ? ' · Folio ' + U.esc(x.hd.folio) : ''}${x.stale ? ' · <span class="neg">cached NAV</span>' : ''}${!x.h ? ' · <span class="neg">NAV load nahi hui</span>' : ''}</small></td>
         <td>${V.rankBadge(x.st, x.hd.code, x.catKey)}</td><td class="num">${x.sipNow ? U.inr(x.sipNow) + `<div class="tiny mute">${x.hd.sip.day ? 'on ' + x.hd.sip.day : ''}${+x.hd.sip.stepUp ? ' · +' + x.hd.sip.stepUp + '%/yr' : ''}</div>` : '—'}</td>
         <td class="num">${U.inr(x.invested)}</td><td class="num b">${U.inr(x.value)}<div class="tiny mute">${x.units.toFixed(3)} u</div></td><td class="num ${U.cls(x.gain)}">${U.inr(x.gain)}<div class="tiny">${U.pctS(x.abs)}</div></td><td class="num ${U.cls(x.xirr)}">${U.pct(x.xirr)}</td>
         <td class="num">${x.m ? `${U.pct(x.m.r1)} / ${U.pct(x.m.r3)}` : '—'}${x.lb ? `<div class="tiny mute">med ${U.pct(x.lb.med.r1)} / ${U.pct(x.lb.med.r3)}</div>` : ''}</td>
@@ -2066,7 +2087,7 @@ const V = {
   lbTable(lb) {
     const holders = {}; App.state.clients.forEach(c => c.holdings.forEach(h => { holders[h.code] = (holders[h.code] || 0) + 1; }));
     return `<div class="tw"><table class="t"><thead><tr><th>#</th><th>Fund</th><th>Score</th><th class="num">1Y</th><th class="num">3Y</th><th class="num">5Y</th><th class="num">Roll 3Y avg / min</th><th class="num">Sharpe</th><th class="num">Max DD</th><th class="num">Vol</th></tr></thead><tbody>
-      ${lb.funds.map(f => `<tr style="cursor:pointer" data-act="openFund" data-code="${f.code}"><td class="b">${f.score != null ? f.rank : '—'}</td><td class="fn">${U.esc(R.short(f.name))}${holders[f.code] ? ` <span class="pill p1">${holders[f.code]} client${holders[f.code] > 1 ? "s" : ""}</span>` : ''}<small>${U.esc(f.amc || '')}${f.m.ageY < 3 ? ' · new' : ''}</small></td>
+      ${lb.funds.map(f => `<tr style="cursor:pointer" data-act="openFund" data-code="${f.code}"><td class="b">${f.score != null ? f.rank : '—'}</td><td class="fn">${U.esc(R.short(f.name))} ${FL.badge(f.code)}${holders[f.code] ? ` <span class="pill p1">${holders[f.code]} client${holders[f.code] > 1 ? "s" : ""}</span>` : ''}<small>${U.esc(f.amc || '')}${f.m.ageY < 3 ? ' · new' : ''}</small></td>
       <td>${f.score != null ? `<div class="bar" style="width:80px"><i style="width:${Math.round(f.score * 100)}%"></i></div><span class="tiny mute">${Math.round(f.score * 100)}</span> <button class="btn sm ghost" style="padding:2px 6px" data-act="rankWhy" data-code="${f.code}" data-cat="${lb.key}" title="Ye rank kyun?">ⓘ</button>` : '<span class="tiny mute">&lt;3Y</span>'}</td>
       <td class="num ${U.cls(f.m.r1)}">${U.pct(f.m.r1)}</td><td class="num">${U.pct(f.m.r3)}</td><td class="num">${U.pct(f.m.r5)}</td><td class="num">${f.m.roll ? U.pct(f.m.roll.avg) + ' / ' + U.pct(f.m.roll.min) : '—'}</td><td class="num">${f.m.sharpe != null ? f.m.sharpe.toFixed(2) : '—'}</td><td class="num neg">${U.pct(f.m.dd)}</td><td class="num">${U.pct(f.m.vol)}</td></tr>`).join('')}
       <tr><td></td><td class="b">Category median</td><td></td><td class="num b">${U.pct(lb.med.r1)}</td><td class="num b">${U.pct(lb.med.r3)}</td><td class="num b">${U.pct(lb.med.r5)}</td><td></td><td></td><td class="num">${U.pct(lb.med.dd)}</td><td class="num">${U.pct(lb.med.vol)}</td></tr></tbody></table></div>`;
@@ -2088,7 +2109,7 @@ const V = {
       if (m.roll) App.chart('fRoll', { type: 'bar', data: { labels: m.roll.vals.map((_, i) => i).reverse(), datasets: [{ data: m.roll.vals.slice().reverse().map(v => +(v * 100).toFixed(2)), backgroundColor: m.roll.vals.slice().reverse().map(v => v >= 0 ? '#38BDF8' : '#F87171'), borderRadius: 3 }] }, options: { scales: { x: { display: false }, y: { ticks: { callback: v => v + '%' }, grid: { color: '#F1F5F9' } } }, plugins: { tooltip: { callbacks: { title: () => '', label: x => ` ${m.roll.win}Y CAGR: ${x.raw}%` } } } } });
     });
     const tiles = [['1M', m.r1m], ['3M', m.r3m], ['6M', m.r6m], ['1Y', m.r1], ['3Y CAGR', m.r3], ['5Y CAGR', m.r5]];
-    return V.top(U.esc(R.short(h.name)), `<a class="btn sm" href="#funds">${I('back')} Funds</a>`) +
+    return V.top(U.esc(R.short(h.name)), `${FL.badge(code)}<button class="btn sm" data-act="flagMgr" data-code="${code}" data-name="${U.esc(h.name)}">${I('user')} ${FL.get(code) ? 'Manager flag edit' : 'Manager change flag'}</button><a class="btn sm" href="#funds">${I('back')} Funds</a>`) +
       `<div class="row small mute" style="margin:-10px 0 12px;flex-wrap:wrap">${U.esc(h.amc)} · ${U.esc(h.cat)} · #${code} · NAV ₹${h.lastV.toFixed(4)} (${U.fmtDate(h.lastT)})${st ? ' · ' + V.rankBadge(st, code, ck) + ' in ' + M.cat(ck).label : ''}</div>
       <div class="grid g3"><div class="card span2"><h3>${I('chart')} NAV history<span class="sp"></span><div class="seg">${[[1, '1Y'], [3, '3Y'], [5, '5Y'], [10, '10Y'], [0, 'Max']].map(([v, l]) => `<button class="${rng === v ? 'on' : ''}" data-act="fundRange" data-v="${v}">${l}</button>`).join('')}</div></h3><div class="chart lg"><canvas id="fNav"></canvas></div></div>
       <div class="card"><h3>${I('spark')} Returns & risk</h3><div class="grid g3" style="gap:8px">${tiles.map(([l, v]) => `<div class="tile" style="padding:8px"><div class="l">${l}</div><div class="v ${U.cls(v)}" style="font-size:16px">${U.pct(v)}</div>${lb && { '1Y': 'r1', '3Y CAGR': 'r3', '5Y CAGR': 'r5' }[l] ? `<div class="tiny mute">med ${U.pct(lb.med[{ '1Y': 'r1', '3Y CAGR': 'r3', '5Y CAGR': 'r5' }[l]])}</div>` : ''}</div>`).join('')}</div>
@@ -2300,6 +2321,7 @@ V.rankWhy = function (code, cat) {
   if (m.dd != null && lb.med.dd != null && m.dd < lb.med.dd - .05) flags.push(`Girawat me zyada gira (max DD ${U.pct(m.dd)} vs median ${U.pct(lb.med.dd)}).`);
   if (own && next && f.score - next.score < .03) flags.push(`#${f.rank} aur #${next.rank} (${R.short(next.name)}) me sirf ${Math.round((f.score - next.score) * 100)} point ka fark — dono ko barabar maano.`);
   if (lb.n < 10) flags.push(`Category me sirf ${lb.n} funds compare hue — ranking utni mazboot nahi.`);
+  if (FL.get(code)) flags.unshift(`Fund manager ${U.fmtDate(U.parseISO(FL.get(code).mgr))} me badla (aapka flag) — upar ka record purane manager ka hai.${FL.get(code).note ? ' ' + FL.get(code).note : ''}`);
   const holders = []; App.state.clients.forEach(c => c.holdings.forEach(h => { if (String(h.code) === code) holders.push(c.name); }));
   V.modal(`Ye rank kyun? — ${U.esc(R.short(f.name))}`, `
     <div class="grid g3" style="margin-bottom:12px"><div class="tile"><div class="l">Rank</div><div class="v">${f.rank ? '#' + f.rank : '—'} <span class="small mute">/ ${ranked.length}${own ? '' : ' (+ ye fund)'}</span></div><div class="s">${M.cat(cat).label} · ${PL.plan()} plans</div></div>
@@ -2313,9 +2335,31 @@ V.rankWhy = function (code, cat) {
     ${flags.length ? `<div class="box small" style="background:#FFFBEB;border-color:#FDE68A"><h4 style="color:#92400E">Dhyan dene wali baatein</h4>${flags.map(x => '• ' + U.esc(x)).join('<br>')}</div>` : ''}
     <div class="box small" style="background:#FFF7F7;border-color:#FECACA"><h4 style="color:#B91C1C">Ye cheezein score me NAHI hain — khud check karo</h4>• Expense ratio (TER) aur exit load<br>• Fund manager change / AMC ki stability<br>• AUM size (bahut chhota ya bahut bada fund)<br>• Portfolio holdings, sector concentration, client ke dusre funds se overlap<br>• Fund ka style badalna (jaise large cap fund me mid cap bharna)<br>Ye data free AMFI NAV feed me nahi aata — AMC factsheet / Value Research / Morningstar par dekho.</div>
     ${holders.length ? `<div class="small mute" style="margin-top:8px">Aapke clients jo ye fund rakhte hain: ${holders.map(U.esc).join(', ')}</div>` : ''}`,
-    `<a class="btn" href="#f-${code}" onclick="V.close()">${I('chart')} Fund ka chart</a><button class="btn pri" data-act="closeModal">OK</button>`);
+    `<button class="btn" data-act="flagMgr" data-code="${code}" data-name="${U.esc(f.name)}">${I('user')} ${FL.get(code) ? 'Manager flag edit' : 'Manager change flag'}</button><a class="btn" href="#f-${code}" onclick="V.close()">${I('chart')} Fund ka chart</a><button class="btn pri" data-act="closeModal">OK</button>`);
 };
 ACT.rankWhy = d => V.rankWhy(d.code, d.cat);
+
+/* --- flags.js --- */
+/* ===== Manual fund flags: fund manager change ===== */
+const FL = {
+  all() { return (App.state && (App.state.fundFlags = App.state.fundFlags || {})) || {}; },
+  get(code) { const f = FL.all()[String(code)]; return f && f.mgr ? f : null; },
+  months(code) { const f = FL.get(code); if (!f) return null; const t = U.parseISO(f.mgr); return t ? (U.today() - t) / (30.44 * DAY) : null; },
+  recent(code, m = 24) { const x = FL.months(code); return x != null && x >= -1 && x <= m; },
+  badge(code) { const f = FL.get(code); if (!f || !FL.recent(code, 36)) return ''; return `<span class="pill p2" title="${U.esc(f.note || '')}">⚠ Manager badla ${U.fmtMon(U.parseISO(f.mgr))}</span>`; },
+  edit(code, name) {
+    code = String(code); const f = FL.all()[code] || {};
+    V.modal('Fund manager change — ' + U.esc(R.short(name || code)), `<div class="f">
+      <label class="l">Manager kab badla<input class="in" id="flD" type="date" value="${U.esc(f.mgr || U.todayKey())}"></label>
+      <label class="l">Note <small>(naya manager kaun, kahan se aaye, source)</small><textarea class="in" id="flN" rows="3" placeholder="e.g. X ki jagah Y aaye, pehle Z AMC me the. Source: AMC notice 12 Oct">${U.esc(f.note || '')}</textarea></label>
+      <div class="note">Flag lagne par: (1) is fund ka verdict "Review" ho jayega, (2) naye clients ke plan aur switch target me ye fund 24 mahine tak suggest nahi hoga (agar dusra achha option ho), (3) jin clients ke paas hai unke Actions me "Manager change" alert aayega. Pichhla record purane manager ka hai — isliye.</div></div>`,
+      `${f.mgr ? '<button class="btn danger" id="flRm">Flag hatao</button><span style="flex:1"></span>' : ''}<button class="btn" data-act="closeModal">Cancel</button><button class="btn pri" id="flOk">Save</button>`, m => {
+        if (f.mgr) U.$('#flRm', m).onclick = () => { delete FL.all()[code]; App.save(); V.close(); App.recompute(); App.render(); U.toast('Flag hata diya'); };
+        U.$('#flOk', m).onclick = () => { const d = U.$('#flD', m).value; if (!d) return U.toast('Date daalo'); FL.all()[code] = { mgr: d, note: U.$('#flN', m).value.trim(), at: U.todayKey() }; App.save(); V.close(); App.recompute(); App.render(); U.toast('Manager change flag saved ✓'); };
+      });
+  }
+};
+ACT.flagMgr = d => FL.edit(d.code, d.name);
 
 /* --- forms.js --- */
 /* ===== Forms, import, demo, calculators, report ===== */
