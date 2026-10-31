@@ -1786,7 +1786,7 @@ const V = {
   top(title, right = '') { return `<div class="topbar"><h1>${title}</h1><span class="sp"></span>${right}</div>`; },
   empty(icon, title, sub, btn = '') { return `<div class="empty"><div class="ill">${I(icon)}</div><h3 style="margin:0 0 4px;color:var(--ink)">${title}</h3><p>${sub}</p>${btn}</div>`; },
   profPill(p) { return `<span class="pill prof" style="background:${p.color}22;color:${p.key === 'A' || p.key === 'MA' ? '#075985' : p.color}">${I('shield')} ${p.name}</span>`; },
-  rankBadge(st) { if (!st) return '<span class="tiny mute">—</span>'; const q = st.score; const c = q >= .75 ? 'background:#DCFCE7;color:#166534' : q >= .5 ? 'background:var(--sky-100);color:var(--sky-800)' : q >= .35 ? 'background:#FEF3C7;color:#92400E' : 'background:#FFE4E6;color:#BE123C'; return `<span class="pill" style="${c}">#${st.rank}/${st.of}</span>`; },
+  rankBadge(st, code, cat) { if (!st) return '<span class="tiny mute">—</span>'; const q = st.score; const c = q >= .75 ? 'background:#DCFCE7;color:#166534' : q >= .5 ? 'background:var(--sky-100);color:var(--sky-800)' : q >= .35 ? 'background:#FEF3C7;color:#92400E' : 'background:#FFE4E6;color:#BE123C'; return code ? `<button class="pill" style="${c};border:0;cursor:pointer" data-act="rankWhy" data-code="${code}" data-cat="${cat}" title="Ye rank kyun?">#${st.rank}/${st.of} ⓘ</button>` : `<span class="pill" style="${c}">#${st.rank}/${st.of}</span>`; },
   rec(r, showClient = false) {
     const t = r.t, c = r.client;
     return `<div class="rec ${r.status !== 'open' ? 'dim' : ''}">
@@ -1797,7 +1797,7 @@ const V = {
       <details><summary>Steps &amp; reasoning ▾</summary>
         <div class="box"><h4>Kya karna hai</h4><ol>${r.steps.map(s => `<li>${U.esc(s)}</li>`).join('')}</ol></div>
         ${r.reasons && r.reasons.length ? `<div class="box"><h4>Kyun — reasoning</h4><ul>${r.reasons.map(s => `<li>${U.esc(s)}</li>`).join('')}</ul></div>` : ''}
-        ${r.from && r.to ? `<div class="acts"><a class="btn sm" href="#f-${r.from}">${I('chart')} Current fund</a><a class="btn sm" href="#f-${r.to}">${I('chart')} Suggested fund</a></div>` : ''}
+        ${r.from && r.to ? `<div class="acts"><button class="btn sm" data-act="rankWhy" data-code="${r.from}" data-cat="${(r.client.holdings.find(h => String(h.code) === String(r.from)) && App.A(r.client.id) ? (App.A(r.client.id).hs.find(x => String(x.hd.code) === String(r.from)) || {}).catKey : '')}">ⓘ Current fund ka rank kyun</button><button class="btn sm" data-act="rankWhy" data-code="${r.to}" data-cat="${(App.A(r.client.id).hs.find(x => String(x.hd.code) === String(r.from)) || {}).catKey}">ⓘ Suggested fund ka rank kyun</button><a class="btn sm" href="#f-${r.to}">${I('chart')} Chart</a></div>` : ''}
         <div class="acts">
           ${r.wa ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, r.wa)}">${I('wa')} WhatsApp</a>` : ''}
           <button class="btn sm" data-act="copyRec" data-cid="${c.id}" data-key="${U.esc(r.key)}">${I('copy')} Copy</button>
@@ -1976,7 +1976,7 @@ const V = {
     return `<div class="row" style="margin-bottom:10px"><span class="small mute">NAV as of ${A.hs[0] && A.hs[0].navT ? U.fmtDate(A.hs[0].navT) : '—'} · units SIP dates ki actual NAV se calculate (CAS ke units daal kar exact kar sakte ho)</span><span class="sp"></span><button class="btn pri sm" data-act="addHolding" data-cid="${c.id}">${I('plus')} Fund add karo</button></div>
       ${A.hs.length ? `<div class="card" style="padding:0"><div class="tw"><table class="t"><thead><tr><th>Fund</th><th>Peer rank</th><th class="num">SIP</th><th class="num">Invested</th><th class="num">Value</th><th class="num">Gain</th><th class="num">XIRR</th><th class="num">1Y / 3Y</th><th></th></tr></thead><tbody>
       ${A.hs.map(x => `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name || x.hd.code)}</a><small>${U.esc(x.cat.label)}${x.hd.folio ? ' · Folio ' + U.esc(x.hd.folio) : ''}${x.stale ? ' · <span class="neg">cached NAV</span>' : ''}${!x.h ? ' · <span class="neg">NAV load nahi hui</span>' : ''}</small></td>
-        <td>${V.rankBadge(x.st)}</td><td class="num">${x.sipNow ? U.inr(x.sipNow) + `<div class="tiny mute">${x.hd.sip.day ? 'on ' + x.hd.sip.day : ''}${+x.hd.sip.stepUp ? ' · +' + x.hd.sip.stepUp + '%/yr' : ''}</div>` : '—'}</td>
+        <td>${V.rankBadge(x.st, x.hd.code, x.catKey)}</td><td class="num">${x.sipNow ? U.inr(x.sipNow) + `<div class="tiny mute">${x.hd.sip.day ? 'on ' + x.hd.sip.day : ''}${+x.hd.sip.stepUp ? ' · +' + x.hd.sip.stepUp + '%/yr' : ''}</div>` : '—'}</td>
         <td class="num">${U.inr(x.invested)}</td><td class="num b">${U.inr(x.value)}<div class="tiny mute">${x.units.toFixed(3)} u</div></td><td class="num ${U.cls(x.gain)}">${U.inr(x.gain)}<div class="tiny">${U.pctS(x.abs)}</div></td><td class="num ${U.cls(x.xirr)}">${U.pct(x.xirr)}</td>
         <td class="num">${x.m ? `${U.pct(x.m.r1)} / ${U.pct(x.m.r3)}` : '—'}${x.lb ? `<div class="tiny mute">med ${U.pct(x.lb.med.r1)} / ${U.pct(x.lb.med.r3)}</div>` : ''}</td>
         <td><button class="btn sm ghost" data-act="editHolding" data-cid="${c.id}" data-hid="${x.hd.id}">${I('edit')}</button></td></tr>`).join('')}
@@ -2067,7 +2067,7 @@ const V = {
     const holders = {}; App.state.clients.forEach(c => c.holdings.forEach(h => { holders[h.code] = (holders[h.code] || 0) + 1; }));
     return `<div class="tw"><table class="t"><thead><tr><th>#</th><th>Fund</th><th>Score</th><th class="num">1Y</th><th class="num">3Y</th><th class="num">5Y</th><th class="num">Roll 3Y avg / min</th><th class="num">Sharpe</th><th class="num">Max DD</th><th class="num">Vol</th></tr></thead><tbody>
       ${lb.funds.map(f => `<tr style="cursor:pointer" data-act="openFund" data-code="${f.code}"><td class="b">${f.score != null ? f.rank : '—'}</td><td class="fn">${U.esc(R.short(f.name))}${holders[f.code] ? ` <span class="pill p1">${holders[f.code]} client${holders[f.code] > 1 ? "s" : ""}</span>` : ''}<small>${U.esc(f.amc || '')}${f.m.ageY < 3 ? ' · new' : ''}</small></td>
-      <td>${f.score != null ? `<div class="bar" style="width:80px"><i style="width:${Math.round(f.score * 100)}%"></i></div><span class="tiny mute">${Math.round(f.score * 100)}</span>` : '<span class="tiny mute">&lt;3Y</span>'}</td>
+      <td>${f.score != null ? `<div class="bar" style="width:80px"><i style="width:${Math.round(f.score * 100)}%"></i></div><span class="tiny mute">${Math.round(f.score * 100)}</span> <button class="btn sm ghost" style="padding:2px 6px" data-act="rankWhy" data-code="${f.code}" data-cat="${lb.key}" title="Ye rank kyun?">ⓘ</button>` : '<span class="tiny mute">&lt;3Y</span>'}</td>
       <td class="num ${U.cls(f.m.r1)}">${U.pct(f.m.r1)}</td><td class="num">${U.pct(f.m.r3)}</td><td class="num">${U.pct(f.m.r5)}</td><td class="num">${f.m.roll ? U.pct(f.m.roll.avg) + ' / ' + U.pct(f.m.roll.min) : '—'}</td><td class="num">${f.m.sharpe != null ? f.m.sharpe.toFixed(2) : '—'}</td><td class="num neg">${U.pct(f.m.dd)}</td><td class="num">${U.pct(f.m.vol)}</td></tr>`).join('')}
       <tr><td></td><td class="b">Category median</td><td></td><td class="num b">${U.pct(lb.med.r1)}</td><td class="num b">${U.pct(lb.med.r3)}</td><td class="num b">${U.pct(lb.med.r5)}</td><td></td><td></td><td class="num">${U.pct(lb.med.dd)}</td><td class="num">${U.pct(lb.med.vol)}</td></tr></tbody></table></div>`;
   },
@@ -2089,7 +2089,7 @@ const V = {
     });
     const tiles = [['1M', m.r1m], ['3M', m.r3m], ['6M', m.r6m], ['1Y', m.r1], ['3Y CAGR', m.r3], ['5Y CAGR', m.r5]];
     return V.top(U.esc(R.short(h.name)), `<a class="btn sm" href="#funds">${I('back')} Funds</a>`) +
-      `<div class="row small mute" style="margin:-10px 0 12px;flex-wrap:wrap">${U.esc(h.amc)} · ${U.esc(h.cat)} · #${code} · NAV ₹${h.lastV.toFixed(4)} (${U.fmtDate(h.lastT)})${st ? ' · ' + V.rankBadge(st) + ' in ' + M.cat(ck).label : ''}</div>
+      `<div class="row small mute" style="margin:-10px 0 12px;flex-wrap:wrap">${U.esc(h.amc)} · ${U.esc(h.cat)} · #${code} · NAV ₹${h.lastV.toFixed(4)} (${U.fmtDate(h.lastT)})${st ? ' · ' + V.rankBadge(st, code, ck) + ' in ' + M.cat(ck).label : ''}</div>
       <div class="grid g3"><div class="card span2"><h3>${I('chart')} NAV history<span class="sp"></span><div class="seg">${[[1, '1Y'], [3, '3Y'], [5, '5Y'], [10, '10Y'], [0, 'Max']].map(([v, l]) => `<button class="${rng === v ? 'on' : ''}" data-act="fundRange" data-v="${v}">${l}</button>`).join('')}</div></h3><div class="chart lg"><canvas id="fNav"></canvas></div></div>
       <div class="card"><h3>${I('spark')} Returns & risk</h3><div class="grid g3" style="gap:8px">${tiles.map(([l, v]) => `<div class="tile" style="padding:8px"><div class="l">${l}</div><div class="v ${U.cls(v)}" style="font-size:16px">${U.pct(v)}</div>${lb && { '1Y': 'r1', '3Y CAGR': 'r3', '5Y CAGR': 'r5' }[l] ? `<div class="tiny mute">med ${U.pct(lb.med[{ '1Y': 'r1', '3Y CAGR': 'r3', '5Y CAGR': 'r5' }[l]])}</div>` : ''}</div>`).join('')}</div>
         <div class="kv" style="margin-top:12px"><span>Volatility (3Y, ann.)</span><b>${U.pct(m.vol)}</b><span>Max drawdown (3Y)</span><b class="neg">${U.pct(m.dd)}</b><span>From 52W high</span><b>${U.pct(m.hi)}</b><span>Sharpe / Sortino</span><b>${m.sharpe != null ? m.sharpe.toFixed(2) : '—'} / ${m.sortino != null ? m.sortino.toFixed(2) : '—'}</b><span>Rolling ${m.roll ? m.roll.win : ''}Y avg / worst</span><b>${m.roll ? U.pct(m.roll.avg) + ' / ' + U.pct(m.roll.min) : '—'}</b><span>History</span><b>${m.ageY.toFixed(1)} yrs</b></div>
@@ -2184,7 +2184,7 @@ V.planOut = function () {
           <div class="ic" style="background:${PALETTE[i % PALETTE.length]}">${I(M.cat(l.cat).tax === 'debt' ? 'shield' : l.cat === 'gold' ? 'coins' : 'trend')}</div>
           <div><div class="ttl">${l.fund ? `<a href="#f-${l.fund.code}">${U.esc(R.short(l.fund.name))}</a>` : `<span class="mute">${M.cat(l.cat).label} — ranking load karo</span>`}</div>
             <div class="why">${M.cat(l.cat).label} · ${U.pct(l.w, 0)} — ${U.esc(l.why || '')}</div>
-            <div class="meta"><span class="pill tp">${M.cat(l.cat).label}</span>${l.fund ? `<span class="pill p1">#${l.fund.rank} rank</span>` : ''}${l.stp ? `<span class="pill p2">Lumpsum via STP ${l.stp} mo</span>` : ''}</div></div>
+            <div class="meta"><span class="pill tp">${M.cat(l.cat).label}</span>${l.fund ? `<button class="pill p1" style="border:0;cursor:pointer" data-act="rankWhy" data-code="${l.fund.code}" data-cat="${l.cat}">#${l.fund.rank} rank ⓘ</button>` : ''}${l.stp ? `<span class="pill p2">Lumpsum via STP ${l.stp} mo</span>` : ''}</div></div>
           <div class="imp">${l.sip ? U.inr(l.sip) + '<small>per month</small>' : ''}${l.lump ? `<div style="font-size:13px">${U.inrS(l.lump)}</div><small>lumpsum</small>` : ''}</div>
           <details><summary>Kyun ye fund ▾</summary>${l.reasons.length ? `<div class="box"><h4>Reasoning</h4><ul>${l.reasons.map(r => `<li>${U.esc(r)}</li>`).join('')}</ul></div>` : ''}${l.alts.length ? `<div class="box"><h4>Alternatives</h4><ul>${l.alts.map(a => `<li><a href="#f-${a.code}">${U.esc(R.short(a.name))}</a> — rank #${a.rank}, 3Y ${U.pct(a.m.r3)}</li>`).join('')}</ul></div>` : ''}</details></div>`).join('')}
         <div class="box small">${[
@@ -2242,7 +2242,7 @@ V.ct_plan = function (c, A, recs) {
   return V.planBanner([...need]) + `<div class="grid g2">
     <div class="card" style="grid-column:1/-1"><h3>${I('swap')} Har fund ka verdict — continue, hold ya switch?</h3>
       <div class="tw"><table class="t"><thead><tr><th>Fund</th><th>Verdict</th><th>Kyun</th><th>Action</th></tr></thead><tbody>
-      ${A.hs.map(x => { const v = PL.verdict(x, recs); return `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name)}</a><small>${x.cat.label} · ${U.inrS(x.value)}${x.sipNow ? ' · SIP ' + U.inr(x.sipNow) : ''}</small></td><td><span class="pill ${v.cls}">${v.v}</span></td><td class="small" style="min-width:220px">${U.esc(v.why)}</td><td class="small" style="min-width:160px">${v.v === 'Switch' ? `→ <a href="#f-${v.to}">${U.esc(v.toName || 'suggested fund')}</a><br><a href="#" onclick="App.ctab='actions';App.render();return false">Tax-wise steps ›</a>` : v.v === 'Continue' ? 'SIP chalu rakho; top-up ke liye accha' : v.v === 'Watch' ? 'Next review me dekho' : '—'}</td></tr>`; }).join('')}
+      ${A.hs.map(x => { const v = PL.verdict(x, recs); return `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name)}</a><small>${x.cat.label} · ${U.inrS(x.value)}${x.sipNow ? ' · SIP ' + U.inr(x.sipNow) : ''}</small></td><td><span class="pill ${v.cls}">${v.v}</span>${x.st ? `<br>${V.rankBadge(x.st, x.hd.code, x.catKey)}` : ''}</td><td class="small" style="min-width:220px">${U.esc(v.why)}</td><td class="small" style="min-width:160px">${v.v === 'Switch' ? `→ <a href="#f-${v.to}">${U.esc(v.toName || 'suggested fund')}</a><br><a href="#" onclick="App.ctab='actions';App.render();return false">Tax-wise steps ›</a>` : v.v === 'Continue' ? 'SIP chalu rakho; top-up ke liye accha' : v.v === 'Watch' ? 'Next review me dekho' : '—'}</td></tr>`; }).join('')}
       </tbody></table></div></div>
     <div class="card"><h3>${I('plus')} SIP badhani hai? Kis fund me kitna</h3>
       <label class="l">Extra SIP ₹/month<input class="in" id="tuIn" type="number" value="${def}"></label>
@@ -2277,6 +2277,45 @@ V.planReport = function (f, pl) {
   <div class="pr-disc">Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Projections assume ${U.pct(pl.r)} annual return and are illustrative, not guaranteed. Fund selection uses peer rankings computed from AMFI NAV data (past performance may or may not be sustained). Prepared by ${U.esc(s.advisor)} (${U.esc(s.arn)}), AMFI-registered Mutual Fund Distributor.</div>`;
   setTimeout(() => { try { window.print(); } catch (e) { U.toast('Browser menu → Print → Save as PDF'); } }, 300);
 };
+
+/* ---- "Ye rank kyun?" — full, transparent score breakdown ---- */
+V.rankWhy = function (code, cat) {
+  code = String(code);
+  const lb = M.lbCached(cat, PL.plan());
+  if (!lb) return V.modal('Rank breakdown', `<p>${M.cat(cat).label} ki ranking abhi load nahi hai.</p>`, `<button class="btn pri" data-act="peerOne" data-key="${cat}" onclick="V.close()">Load ranking</button>`);
+  let f = lb.funds.find(x => x.code === code), own = !!f;
+  if (!f) { const h = API.mem.get('hf:' + code) || API.mem.get('h6:' + code); const m = h && M.compute(h, (App.state.settings.rf || 6.5) / 100); if (!m) return U.toast('Fund ka data load nahi hua'); const st = M.standing(m, lb, code); f = { code, name: h.name, amc: h.amc, m, score: st ? st.score : null, rank: st ? st.rank : null }; }
+  const peers = lb.funds.map(x => x.m), m = f.m, sc = M.score(m, peers);
+  const LBL = { r1: ['1Y return', x => x.r1, 'pct'], r3: ['3Y CAGR', x => x.r3, 'pct'], r5: ['5Y CAGR', x => x.r5, 'pct'], roll: ['Rolling 3Y avg (consistency)', x => x.roll && x.roll.win === 3 ? x.roll.avg : null, 'pct'], rollMin: ['Worst rolling 3Y (bura daur)', x => x.roll && x.roll.win === 3 ? x.roll.min : null, 'pct'], sharpe: ['Sharpe (risk-adjusted)', x => x.sharpe, 'num'], dd: ['Max drawdown 3Y (girawat)', x => x.dd, 'pct'] };
+  const wsum = sc ? Object.keys(M.W).filter(k => sc.p[k] != null).reduce((a, k) => a + M.W[k], 0) : 1;
+  const fmt = (v, t) => v == null ? '—' : t === 'pct' ? U.pct(v) : v.toFixed(2);
+  const rows = Object.keys(M.W).map(k => { const [l, g, t] = LBL[k]; const v = g(m), med = U.median(peers.map(g)), p = sc ? sc.p[k] : null; return { k, l, v: fmt(v, t), med: fmt(med, t), p, w: M.W[k], pts: p != null ? p * M.W[k] / wsum * 100 : null }; });
+  const ranked = lb.funds.filter(x => x.score != null);
+  const idx = ranked.findIndex(x => x.code === code), next = ranked[own ? idx + 1 : 0], prev = own && idx > 0 ? ranked[idx - 1] : null;
+  const flags = [];
+  if (m.ageY < 5) flags.push(`Sirf ${m.ageY.toFixed(1)} saal ka data ${m.ageY < 3 ? '— 3 saal se kam, score nahi diya' : '— 5Y return nahi, record chhota hai'}.`);
+  if (sc && sc.p.r1 != null && sc.p.r3 != null && sc.p.r1 - sc.p.r3 > .35) flags.push('1 saal ka performance 3 saal se kaafi better — ho sakta hai haal ki rally ho; consistency par dhyan do.');
+  if (sc && sc.p.r3 != null && sc.p.r1 != null && sc.p.r3 - sc.p.r1 > .4) flags.push('Long-term achha, par pichhla 1 saal kamzor — strategy/manager change to nahi hua, factsheet me dekho.');
+  if (m.vol && lb.med.vol && m.vol > lb.med.vol * 1.2) flags.push(`Volatility ${U.pct(m.vol)} — category median ${U.pct(lb.med.vol)} se kaafi zyada.`);
+  if (m.dd != null && lb.med.dd != null && m.dd < lb.med.dd - .05) flags.push(`Girawat me zyada gira (max DD ${U.pct(m.dd)} vs median ${U.pct(lb.med.dd)}).`);
+  if (own && next && f.score - next.score < .03) flags.push(`#${f.rank} aur #${next.rank} (${R.short(next.name)}) me sirf ${Math.round((f.score - next.score) * 100)} point ka fark — dono ko barabar maano.`);
+  if (lb.n < 10) flags.push(`Category me sirf ${lb.n} funds compare hue — ranking utni mazboot nahi.`);
+  const holders = []; App.state.clients.forEach(c => c.holdings.forEach(h => { if (String(h.code) === code) holders.push(c.name); }));
+  V.modal(`Ye rank kyun? — ${U.esc(R.short(f.name))}`, `
+    <div class="grid g3" style="margin-bottom:12px"><div class="tile"><div class="l">Rank</div><div class="v">${f.rank ? '#' + f.rank : '—'} <span class="small mute">/ ${ranked.length}${own ? '' : ' (+ ye fund)'}</span></div><div class="s">${M.cat(cat).label} · ${PL.plan()} plans</div></div>
+      <div class="tile"><div class="l">Total score</div><div class="v">${f.score != null ? Math.round(f.score * 100) : '—'}/100</div><div class="s">peers ke muqable percentile</div></div>
+      <div class="tile"><div class="l">Data</div><div class="v" style="font-size:15px">${m.ageY.toFixed(1)} saal</div><div class="s">NAV ${U.fmtDate(m.lastT)} · ranking ${U.fmtDate(U.parseISO(lb.day))}</div></div></div>
+    <div class="tw"><table class="t"><thead><tr><th>Parameter</th><th class="num">Ye fund</th><th class="num">Category median</th><th>Peers me position</th><th class="num">Weight</th><th class="num">Points</th></tr></thead><tbody>
+    ${rows.map(r => `<tr><td>${r.l}</td><td class="num b">${r.v}</td><td class="num mute">${r.med}</td><td>${r.p != null ? `<div class="bar" style="width:90px;display:inline-block;vertical-align:middle"><i style="width:${Math.round(r.p * 100)}%"></i></div> <span class="tiny">${Math.round(r.p * 100)}% se behtar</span>` : '<span class="tiny mute">data nahi</span>'}</td><td class="num">${Math.round(r.w * 100)}%</td><td class="num b">${r.pts != null ? r.pts.toFixed(1) : '—'}</td></tr>`).join('')}
+    <tr><td class="b">Total</td><td></td><td></td><td></td><td></td><td class="num b">${f.score != null ? Math.round(f.score * 100) : '—'}</td></tr></tbody></table></div>
+    <div class="box small"><h4>Score kaise banta hai</h4>Har parameter par fund ko category ke saare ${PL.plan()} funds se compare kiya jaata hai. "70% se behtar" ka matlab hai 70% peers se achha. Phir upar ke weight se jod kar 0–100 score banta hai. Drawdown me kam girawat = behtar. Jis parameter ka data nahi hota, uska weight baaki parameters me baant diya jaata hai.</div>
+    ${prev || next ? `<div class="box small"><h4>Aas-paas ke funds</h4>${prev ? `#${prev.rank} ${U.esc(R.short(prev.name))} — score ${Math.round(prev.score * 100)}, 3Y ${U.pct(prev.m.r3)}<br>` : ''}${next ? `#${next.rank} ${U.esc(R.short(next.name))} — score ${Math.round(next.score * 100)}, 3Y ${U.pct(next.m.r3)}` : ''}</div>` : ''}
+    ${flags.length ? `<div class="box small" style="background:#FFFBEB;border-color:#FDE68A"><h4 style="color:#92400E">Dhyan dene wali baatein</h4>${flags.map(x => '• ' + U.esc(x)).join('<br>')}</div>` : ''}
+    <div class="box small" style="background:#FFF7F7;border-color:#FECACA"><h4 style="color:#B91C1C">Ye cheezein score me NAHI hain — khud check karo</h4>• Expense ratio (TER) aur exit load<br>• Fund manager change / AMC ki stability<br>• AUM size (bahut chhota ya bahut bada fund)<br>• Portfolio holdings, sector concentration, client ke dusre funds se overlap<br>• Fund ka style badalna (jaise large cap fund me mid cap bharna)<br>Ye data free AMFI NAV feed me nahi aata — AMC factsheet / Value Research / Morningstar par dekho.</div>
+    ${holders.length ? `<div class="small mute" style="margin-top:8px">Aapke clients jo ye fund rakhte hain: ${holders.map(U.esc).join(', ')}</div>` : ''}`,
+    `<a class="btn" href="#f-${code}" onclick="V.close()">${I('chart')} Fund ka chart</a><button class="btn pri" data-act="closeModal">OK</button>`);
+};
+ACT.rankWhy = d => V.rankWhy(d.code, d.cat);
 
 /* --- forms.js --- */
 /* ===== Forms, import, demo, calculators, report ===== */
