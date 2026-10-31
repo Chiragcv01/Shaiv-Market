@@ -362,7 +362,8 @@ const API = {
   base: 'https://api.mfapi.in',
   mem: new Map(),        // key -> parsed history
   inflight: new Map(),
-  q: [], active: 0, max: 6,
+  q: [], active: 0, max: 4,
+  proxy: /^https?:$/.test(location.protocol) && !/^(localhost|127\.)/.test(location.hostname) || /[?&]proxy=1/.test(location.search),
   online: true,
   stats: { fetched: 0, cached: 0, failed: 0 },
 
@@ -396,8 +397,19 @@ const API = {
     if (this._list && !force) return this._list;
     if (this._listP && !force) return this._listP;
     this._listP = (async () => {
-      const c = await U.idb.get('schemes');
-      if (c && !force && c.rows && c.rows.length > 5000 && U.today() - U.parseISO(c.day) < 7 * DAY) { this._list = c.rows; return c.rows; }
+      const c = await U.idb.get('schemes2');
+      if (c && !force && c.rows && c.rows.length > 100 && U.today() - U.parseISO(c.day) < (c.src === 'amfi' ? 1 : 7) * DAY) { this._list = c.rows; this.listSrc = c.src; return c.rows; }
+      if (this.proxy) {
+        try {
+          const j = await this._json('/api/schemes', 1);
+          if (j && j.rows && j.rows.length > 100) {
+            const rows = j.rows.map(r => [r[0], r[1], j.cats[r[2]] || '', j.amcs[r[3]] || '', r[4], r[5]]);
+            this._list = rows; this.listSrc = j.source; this.listAsOf = j.asOf; this.listErr = null;
+            U.idb.set('schemes2', { day: U.todayKey(), rows, src: j.source });
+            return rows;
+          }
+        } catch (e) { this.listErr = 'proxy: ' + e.message; }
+      }
       try {
         let arr = await this._json(`${this.base}/mf`);
         if (!Array.isArray(arr)) arr = [];
@@ -406,7 +418,7 @@ const API = {
         }
         const rows = arr.filter(s => s && s.schemeCode && s.schemeName).map(s => [+s.schemeCode, String(s.schemeName).trim()]);
         if (rows.length < 1000) throw new Error('Scheme list incomplete (' + rows.length + ')');
-        this._list = rows; this.listErr = null; U.idb.set('schemes', { day: U.todayKey(), rows });
+        this._list = rows; this.listErr = null; this.listSrc = 'mfapi'; U.idb.set('schemes2', { day: U.todayKey(), rows, src: 'mfapi' });
         return rows;
       } catch (e) {
         this.listErr = e.message;
@@ -460,9 +472,12 @@ const API = {
       const cached = await U.idb.get(key) || (mode === '6y' ? await U.idb.get('hf:' + code) : null);
       if (cached && cached.day === day && !force) { this.stats.cached++; this.mem.set(key, cached.h); return cached.h; }
       try {
+        const st = U.iso(U.today() - 6.2 * YEAR);
         let url = `${this.base}/mf/${code}`;
-        if (mode === '6y') url += `?startDate=${U.iso(U.today() - 6.2 * YEAR)}&endDate=${day}`;
-        const j = await this._run(() => this._json(url));
+        if (mode === '6y') url += `?startDate=${st}&endDate=${day}`;
+        let j = null;
+        if (this.proxy) { try { j = await this._run(() => this._json(`/api/nav?code=${code}${mode === '6y' ? '&start=' + st : ''}`, 1)); } catch (e) { j = null; } }
+        if (!j || !j.data || !j.data.length) j = await this._run(() => this._json(url));
         if (!j || !j.data || !j.data.length) throw new Error('No NAV data');
         const h = this.parse(code, j);
         this.stats.fetched++;
@@ -646,8 +661,11 @@ const M = {
     const cat = M.cat(key);
     onProg(`Searching ${cat.label} funds…`, 0);
     const seen = new Map();
-    for (const q of cat.q) {
-      try { (await API.search(q)).forEach(s => seen.set(s.schemeCode, s.schemeName)); } catch (e) { }
+    let rows = null; try { rows = await API.list(); } catch (e) { }
+    if (rows && rows.length && typeof rows[0][2] === 'string' && rows.some(r => r[2])) {
+      rows.forEach(r => { if (M.catOf(r[2], r[1]) === key) seen.set(r[0], r[1]); });   // exact AMFI category
+    } else {
+      for (const q of cat.q) { try { (await API.search(q)).forEach(s => seen.set(s.schemeCode, s.schemeName)); } catch (e) { } }
     }
     let cands = [...seen].map(([code, name]) => ({ code, name }))
       .filter(s => /growth/i.test(s.name) && !M.BAD_NAME.test(s.name) && (plan === 'direct' ? /direct/i.test(s.name) : !/direct/i.test(s.name)));
@@ -1547,7 +1565,7 @@ const ACT = {
     out.push(row(/^https?:$/.test(proto) ? true : null, 'Page kahan se khula', /^https?:$/.test(proto) ? location.host : `${proto} — phone ke file manager se khula hai. Kuch phones me data save/fetch nahi hota; hosted link (https) best hai.`)); put();
     let st = false; try { localStorage.setItem('_t', '1'); st = localStorage.getItem('_t') === '1'; localStorage.removeItem('_t'); } catch (e) { }
     out.push(row(st, 'Data save (browser storage)', st ? 'Client data is browser me save ho raha hai.' : 'Storage block hai — app band karte hi data chala jayega. Hosted link se kholo.')); put();
-    try { const t0 = Date.now(); const rows = await API.list(true); out.push(row(true, 'AMFI scheme list', `${rows.length.toLocaleString('en-IN')} schemes · ${((Date.now() - t0) / 1000).toFixed(1)}s`)); }
+    try { const t0 = Date.now(); const rows = await API.list(true); out.push(row(true, 'AMFI scheme list', `${rows.length.toLocaleString('en-IN')} schemes · source: ${API.listSrc === 'amfi' ? 'AMFI official (via proxy)' : API.listSrc || '—'}${API.listAsOf ? ' · NAV date ' + API.listAsOf : ''} · ${((Date.now() - t0) / 1000).toFixed(1)}s`)); }
     catch (e) { out.push(row(false, 'AMFI scheme list', U.esc(e.message) + ' — internet / browser fetch block.')); } put();
     try { const h = await API.history(122640, 'full', true); const age = Math.round((U.today() - h.lastT) / DAY); out.push(row(age <= 4, 'Live NAV test (PPFAS Flexi Cap Regular)', `NAV ₹${h.lastV.toFixed(4)} · ${U.fmtDate(h.lastT)}${age > 4 ? ` — ${age} din purani!` : ''}`)); }
     catch (e) { out.push(row(false, 'Live NAV test', U.esc(e.message))); } put();

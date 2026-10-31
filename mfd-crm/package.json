@@ -1,0 +1,6 @@
+{
+  "name": "shaiv-mfd-crm",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=20" }
+}
