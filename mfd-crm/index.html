@@ -221,6 +221,7 @@ label.l small{font-weight:400;color:var(--mute)}
       <a href="#dashboard" data-nav="dashboard"><svg class="i" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Dashboard</a>
       <a href="#clients" data-nav="clients"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/></svg>Clients</a>
       <a href="#opps" data-nav="opps"><svg class="i" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Opportunities<span class="cnt hide">0</span></a>
+      <a href="#plan" data-nav="plan"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Naya client plan</a>
       <a href="#funds" data-nav="funds"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg>Fund research</a>
       <a href="#tools" data-nav="tools"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6.5h8M8 11h8M8 15h8"/></svg>Calculators</a>
       <a href="#settings" data-nav="settings"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Settings</a>
@@ -1099,7 +1100,7 @@ const R = {
           key: `step:${new Date(today).getUTCFullYear()}`, type: 'stepup', pri: anniv.length ? 3 : 2,
           title: `10% annual step-up: 15Y corpus ${U.inrS(a0)} → ${U.inrS(a1)}`,
           why: `${noStep.length} SIP (${U.inr(s)}/mahina) bina step-up ke chal rahi hai.`,
-          steps: [`Is saal SIP ${U.inr(s)} → ${U.inr(s * 1.1)} (+${U.inr(s * .1)}/mahina).`, 'Har saal salary hike ke saath auto top-up (SIP top-up facility) on karo.', anniv.length ? `Is mahine SIP anniversary: ${anniv.map(x => R.short(x.name)).join(', ')}.` : 'Client ke appraisal month me yaad dilao.'],
+          steps: [`Is saal SIP ${U.inr(s)} → ${U.inr(s * 1.1)} (+${U.inr(s * .1)}/mahina).`, ...PL.topUp(A, Math.max(500, s * .1)).lines.map(l => `  ${U.inr(l.amt)} → ${l.name ? R.short(l.name) : M.cat(l.cat).label} (${l.existing ? 'existing' : 'nayi SIP'}).`), 'Har saal salary hike ke saath auto top-up (SIP top-up facility) on karo.', anniv.length ? `Is mahine SIP anniversary: ${anniv.map(x => R.short(x.name)).join(', ')}.` : 'Client ke appraisal month me yaad dilao.'],
           reasons: [`${U.pct(r)} assumed return (${prof.name}).`, `Extra ≈ ${U.inrS(a1 - a0)} sirf 10% saalana badhane se — income ke saath investment badhna chahiye.`],
           impact: a1 - a0, impactLabel: '15Y extra corpus',
           wa: `Namaste ${fname} ji,\n\nAapki SIP ${U.inr(s)} ko har saal sirf 10% badhaayen to 15 saal me corpus ${U.inrS(a0)} ki jagah ≈ ${U.inrS(a1)} ban sakta hai. Is saal ${U.inr(s * .1)}/mahina ka top-up karein?` + R.sig()
@@ -1116,7 +1117,7 @@ const R = {
         if (add_ >= 500) add({
           key: `upsell:${U.todayKey().slice(0, 7)}`, type: 'upsell', pri: 2, title: `SIP ${U.inr(add_)}/mahina badhane ki capacity`,
           why: `SIP income ka ${U.pct(A.sip / inc, 0)} hai — 20% healthy benchmark.`,
-          steps: [`Nayi SIP ${U.inr(add_)} — ${R.best(upKey) ? R.short(R.best(upKey).name) : M.cat(upKey).label + ' fund'}${upKey !== 'flexi' && upKey !== 'aggr' ? ' (equity already target se upar hai)' : ''}.`, 'Goal se link karo taaki client motivated rahe.'],
+          steps: [...PL.topUp(A, add_).lines.map(l => `${U.inr(l.amt)}/mo → ${l.name ? R.short(l.name) : M.cat(l.cat).label + ' fund'} (${l.existing ? 'existing fund me top-up' : 'nayi SIP, ' + M.cat(l.cat).label}).`), 'Detail aur reasoning: client ka "Plan / SIP" tab.', 'Goal se link karo taaki client motivated rahe.'],
           reasons: [`Monthly surplus ≈ ${U.inr(surplus)} (income ${U.inr(inc)} − kharcha ${U.inr(expn)} − EMI ${U.inr(U.num(c.emi))} − SIP ${U.inr(A.sip)}).`, 'Sirf aadha surplus suggest kiya — buffer bacha rahe.'],
           impact: P.fvSip(add_, prof.ret, 120), impactLabel: '10Y value of extra SIP'
         });
@@ -1211,6 +1212,167 @@ const R = {
     const st = c.recs || {};
     out.forEach(r => { const s = st[r.key]; r.status = s ? (s.s === 'snooze' && s.until && U.parseISO(s.until) <= today ? 'open' : s.s) : 'open'; r.t = R.TYPES[r.type]; });
     return out.sort((a, b) => b.pri - a.pri || (b.impact || 0) - (a.impact || 0));
+  }
+};
+
+/* --- planner.js --- */
+/* ===== Portfolio planner: new-client model portfolio, SIP top-up allocator, holding verdicts ===== */
+const PL = {
+  /* model portfolios (% of total) — effective equity ≈ profile target, small+mid within cap */
+  MODELS: {
+    C: { baf: 25, large: 5, corpbond: 35, shortdur: 30, gold: 5 },
+    MC: { baf: 25, large: 10, flexi: 15, corpbond: 25, shortdur: 18, gold: 7 },
+    M: { flexi: 25, large: 15, aggr: 15, largemid: 10, corpbond: 17, shortdur: 10, gold: 8 },
+    MA: { flexi: 25, large: 15, largemid: 15, mid: 10, aggr: 10, small: 5, corpbond: 13, gold: 7 },
+    A: { flexi: 30, large: 17, largemid: 15, mid: 12, small: 8, multi: 8, corpbond: 5, gold: 5 },
+    SHORT: { arbitrage: 40, liquid: 30, shortdur: 30 },
+    SHORT2: { baf: 35, arbitrage: 30, shortdur: 35 }
+  },
+  WHY: {
+    flexi: 'Core holding — fund manager large/mid/small me freely shift kar sakta hai.',
+    large: 'Stability — top 100 companies, girawat me kam nuksaan.',
+    largemid: 'Growth booster — large ki stability + mid cap ki growth.',
+    mid: 'Higher growth, zyada volatility — long horizon ke liye.',
+    small: 'Sabse zyada growth potential aur risk — chhota hissa, 7+ saal.',
+    multi: 'Large, mid, small me minimum 25-25% — built-in diversification.',
+    aggr: '65–80% equity + debt cushion — smooth ride.',
+    baf: 'Market valuation ke hisaab se equity auto adjust — low drawdown.',
+    corpbond: 'High-quality corporate debt — stable 7–8% type returns.',
+    shortdur: '1–3 saal ki debt — interest rate risk kam.',
+    liquid: 'Emergency / parking — T+1 liquidity.',
+    arbitrage: 'Low risk, equity taxation — short-term parking ke liye tax-efficient.',
+    gold: 'Hedge — equity crash me portfolio ko sahara.',
+    elss: '80C tax benefit + equity growth, 3 saal lock-in.'
+  },
+  BUCKET: { idx50: 'large', idxeq: 'large', elss: 'flexi', focused: 'flexi', value: 'flexi', contra: 'flexi', divyield: 'flexi', intl: 'flexi', idxmid: 'mid', idxsmall: 'small', conshyb: 'shortdur', eqsav: 'baf', multiasset: 'baf', solution: 'aggr', debt: 'corpbond', idxdebt: 'corpbond' },
+  bucket: k => PL.BUCKET[k] || k,
+  modelKey(profKey, years) { if (years != null && years < 3) return years < 2 ? 'SHORT' : 'SHORT2'; if (years != null && years < 5 && ['MA', 'A'].includes(profKey)) return 'M'; return profKey; },
+  maxFunds: sip => sip < 3000 ? 2 : sip < 8000 ? 3 : sip < 15000 ? 4 : sip < 30000 ? 5 : sip < 60000 ? 6 : 7,
+  round(x) { return Math.max(0, Math.round(x / 500) * 500); },
+  plan() { return App.state.settings.plan || 'regular'; },
+
+  /* pick best fund in a category, preferring a new AMC when quality is close */
+  pick(cat, usedAmc = new Set(), exclude = new Set()) {
+    const lb = M.lbCached(cat, PL.plan()); if (!lb) return { fund: null, alts: [], lb: null };
+    const ok = lb.funds.filter(f => f.score != null && f.m.ageY >= 3 && !exclude.has(f.code));
+    if (!ok.length) return { fund: null, alts: [], lb };
+    let f = ok[0];
+    const alt = ok.find(x => !usedAmc.has(x.amc));
+    if (usedAmc.has(f.amc) && alt && alt.score >= f.score - 0.08) f = alt;
+    return { fund: f, alts: ok.filter(x => x !== f).slice(0, 2), lb };
+  },
+  fundWhy(f, lb, cat) {
+    if (!f) return [];
+    const m = f.m;
+    return [
+      `Peer rank #${f.rank}/${lb.n} (${M.cat(cat).label}, ${PL.plan()} plans) — score ${Math.round(f.score * 100)}/100.`,
+      `3Y ${U.pct(m.r3)}${m.r5 != null ? ` · 5Y ${U.pct(m.r5)}` : ''} vs median ${U.pct(lb.med.r3)}${lb.med.r5 != null ? ' / ' + U.pct(lb.med.r5) : ''}.`,
+      m.roll ? `Consistency: rolling ${m.roll.win}Y avg ${U.pct(m.roll.avg)}, sabse bura ${U.pct(m.roll.min)}.` : null,
+      `Risk: max drawdown ${U.pct(m.dd)} (median ${U.pct(lb.med.dd)})${m.sharpe != null ? `, Sharpe ${m.sharpe.toFixed(2)}` : ''}.`
+    ].filter(Boolean);
+  },
+  neededCats(modelKey, withElss) { const k = Object.keys(PL.MODELS[modelKey]); if (withElss) k.push('elss'); return [...new Set(k)]; },
+
+  /* ---- NEW CLIENT PLAN ---- */
+  build(o) {
+    const prof = P.PROFILES.find(p => p.key === o.prof) || P.PROFILES[2];
+    const mk = PL.modelKey(prof.key, o.years);
+    let w = Object.entries(PL.MODELS[mk]).sort((a, b) => b[1] - a[1]);
+    const sip = U.num(o.sip), lump = U.num(o.lump);
+    const total = sip + lump / 12;
+    const n = Math.max(2, PL.maxFunds(total));
+    if (w.length > n) { // keep biggest weights, push the rest into nearest kept bucket
+      const keep = w.slice(0, n), drop = w.slice(n), near = { large: 'flexi', largemid: 'flexi', mid: 'largemid', small: 'mid', multi: 'flexi', aggr: 'flexi', gold: 'corpbond', shortdur: 'corpbond', corpbond: 'shortdur', baf: 'aggr', liquid: 'arbitrage', arbitrage: 'liquid' };
+      drop.forEach(([k, v]) => { let t = keep.find(x => x[0] === near[k]) || keep.find(x => M.cat(x[0]).tax === M.cat(k).tax) || keep[0]; t[1] += v; });
+      w = keep;
+    }
+    // ELSS for old-regime 80C gap — carved out of the equity core
+    const elssGap = o.regime === 'old' ? Math.max(0, 150000 - U.num(o.c80)) : 0;
+    const lines = []; const used = new Set();
+    const tw = w.reduce((a, x) => a + x[1], 0);
+    let elssSip = 0;
+    if (elssGap > 0 && mk !== 'SHORT' && mk !== 'SHORT2') {
+      const core = w.find(x => x[0] === 'flexi') || w.find(x => M.cat(x[0]).tax === 'equity' && (M.cat(x[0]).exp.eq || 0) > .9);
+      elssSip = core ? Math.min(PL.round(elssGap / 12), Math.floor(sip * core[1] / tw / 500) * 500) : 0;
+      if (elssSip >= 500 && sip >= 3000) {
+        core[1] -= tw * elssSip / sip;
+        if (core[1] * sip / tw < 1000) { elssSip += PL.round(core[1] * sip / tw); core[1] = 0; } // ELSS becomes the core
+      } else elssSip = 0;
+    }
+    const items = w.map(([k, v]) => [k, v / tw]).filter(x => x[1] > 0.004);
+    if (elssSip >= 500) items.push(['elss', elssSip / Math.max(1, sip)]);
+    const fast = App.market && App.market.hi <= -.10 ? 3 : App.market && App.market.hi <= -.05 ? 6 : 12;
+    items.forEach(([cat, wt]) => {
+      const p = PL.pick(cat, used); if (p.fund) used.add(p.fund.amc);
+      const eq = (M.cat(cat).exp.eq || 0) > .5;
+      lines.push({ cat, w: wt, fund: p.fund, alts: p.alts, lb: p.lb, sip: cat === 'elss' ? elssSip : PL.round(sip * wt), lump: Math.round(lump * wt / 1000) * 1000, stp: eq && lump * wt >= 20000 ? fast : 0, why: PL.WHY[cat], reasons: PL.fundWhy(p.fund, p.lb, cat) });
+    });
+    // ELSS lumpsum is not needed for 80C beyond the SIP — move it to the biggest other equity line
+    const el = lines.find(l => l.cat === 'elss');
+    if (el && el.lump) { const t = lines.filter(l => l !== el && (M.cat(l.cat).exp.eq || 0) > .5).sort((a, b) => b.lump - a.lump)[0]; if (t) { t.lump += el.lump; t.stp = t.stp || el.stp; el.lump = 0; } }
+    // fix rounding so SIP total matches
+    const diff = sip - lines.reduce((a, l) => a + l.sip, 0);
+    if (lines.length && Math.abs(diff) >= 1) { const big = lines.filter(l => l.cat !== 'elss').sort((a, b) => b.sip - a.sip)[0] || lines[0]; big.sip = Math.max(0, big.sip + diff); }
+    lines.forEach(l => { if (l.sip > 0 && l.sip < 500) l.sip = 500; });
+    for (let i = lines.length - 1; i >= 0; i--) if (!lines[i].sip && !lines[i].lump) lines.splice(i, 1);
+    const exp = { eq: 0, debt: 0, gold: 0, smid: 0 };
+    lines.forEach(l => { const e = M.cat(l.cat).exp; exp.eq += (e.eq || 0) * l.w; exp.debt += (e.debt || 0) * l.w; exp.gold += (e.gold || 0) * l.w; exp.smid += ((e.mid || 0) + (e.small || 0)) * l.w; });
+    const yrs = Math.max(1, U.num(o.years) || 10), r = mk.startsWith('SHORT') ? .07 : prof.ret;
+    const proj = lump * Math.pow(1 + r, yrs) + P.fvSip(sip, r, yrs * 12, 0);
+    const projUp = lump * Math.pow(1 + r, yrs) + P.fvSip(sip, r, yrs * 12, .10);
+    const invested = lump + sip * 12 * yrs;
+    return { prof, mk, lines, exp, yrs, r, proj, projUp, invested, sip, lump, fast, elssGap, missing: PL.neededCats(mk, elssSip >= 500).filter(k => !M.lbCached(k, PL.plan())) };
+  },
+
+  /* ---- SIP TOP-UP ALLOCATOR for an existing client ---- */
+  topUp(A, extra, recs = []) {
+    extra = PL.round(extra); if (extra < 500) return { lines: [], extra };
+    const prof = A.profile, model = PL.MODELS[prof.key];
+    const switchFrom = new Set(recs.filter(r => r.type === 'switch' && r.status === 'open').map(r => String(r.from)));
+    const curSip = {}; A.hs.forEach(x => { if (x.sipNow && !switchFrom.has(String(x.hd.code))) { const b = PL.bucket(x.catKey); curSip[b] = (curSip[b] || 0) + x.sipNow; } });
+    const tot = Object.values(curSip).reduce((a, b) => a + b, 0) + extra;
+    const smidFull = A.smid > prof.smid; const eqOver = A.exp.eq > prof.eq + .07, eqUnder = A.exp.eq < prof.eq - .07;
+    let gaps = Object.entries(model).map(([k, v]) => {
+      let g = tot * v / 100 - (curSip[k] || 0);
+      const e = M.cat(k).exp;
+      if (smidFull && ['mid', 'small', 'largemid'].includes(k)) g = 0;
+      if (eqOver && (e.eq || 0) > .5) g *= .3;
+      if (eqUnder && (e.eq || 0) < .5) g *= .3;
+      return [k, Math.max(0, g)];
+    }).filter(x => x[1] > 0);
+    if (!gaps.length) gaps = [['flexi', 1]];
+    gaps.sort((a, b) => b[1] - a[1]);
+    const maxLines = extra < 3000 ? 1 : extra < 8000 ? 2 : 3;
+    gaps = gaps.slice(0, maxLines);
+    const gsum = gaps.reduce((a, x) => a + x[1], 0);
+    const used = new Set(A.hs.map(x => x.amc));
+    const lines = gaps.map(([cat, g]) => {
+      const amt = PL.round(extra * g / gsum);
+      // prefer topping-up an existing good fund in the same bucket
+      const own = A.hs.filter(x => x.h && PL.bucket(x.catKey) === cat && !switchFrom.has(String(x.hd.code)) && (!x.st || x.st.score >= .5)).sort((a, b) => (b.st ? b.st.score : .5) - (a.st ? a.st.score : .5))[0];
+      if (own) return { cat, amt, existing: true, x: own, name: own.name, code: own.hd.code, reasons: [`Client ke paas pehle se hai — naya folio nahi, tracking simple.`, own.st ? `Peer rank #${own.st.rank}/${own.st.of} — category ke top half me.` : 'Peer ranking load nahi — fund ka record Fund research me check karo.', `${M.cat(cat).label} bucket me kami: target ${U.inr(tot * model[cat] / 100)}/mo vs abhi ${U.inr(curSip[cat] || 0)}/mo.`] };
+      const p = PL.pick(cat, used); if (p.fund) used.add(p.fund.amc);
+      return { cat, amt, existing: false, fund: p.fund, name: p.fund ? p.fund.name : null, code: p.fund ? p.fund.code : null, reasons: [`${M.cat(cat).label} portfolio me ${curSip[cat] ? 'kam' : 'nahi'} hai — target ${U.inr(tot * model[cat] / 100)}/mo vs abhi ${U.inr(curSip[cat] || 0)}/mo (${prof.name} model).`, ...PL.fundWhy(p.fund, p.lb, cat).slice(0, 2)] };
+    });
+    const diff = extra - lines.reduce((a, l) => a + l.amt, 0); if (lines.length) lines[0].amt += diff;
+    const notes = [];
+    if (switchFrom.size) notes.push('Jin funds par Switch suggestion hai unme SIP nahi badhayi — wo pehle redirect honi chahiye.');
+    if (smidFull) notes.push(`Small+Mid pehle se ${U.pct(A.smid, 0)} (limit ${U.pct(prof.smid, 0)}) — mid/small me top-up nahi.`);
+    if (eqOver) notes.push(`Equity target se upar (${U.pct(A.exp.eq, 0)} vs ${U.pct(prof.eq, 0)}) — top-up debt/hybrid ki taraf jhuka.`);
+    if (eqUnder) notes.push(`Equity target se kam (${U.pct(A.exp.eq, 0)} vs ${U.pct(prof.eq, 0)}) — top-up equity ki taraf jhuka.`);
+    return { lines: lines.filter(l => l.amt >= 500), extra, notes, missing: [...new Set(gaps.map(g => g[0]))].filter(k => !M.lbCached(k, PL.plan())) };
+  },
+
+  /* ---- per-holding verdict ---- */
+  verdict(x, recs) {
+    const sw = recs.find(r => r.type === 'switch' && r.key === 'switch:' + x.hd.id);
+    if (sw) return { v: 'Switch', cls: 'p3', to: sw.to, toName: R.short((M.lbCached(x.catKey, PL.plan()) || { funds: [] }).funds.find(f => f.code === sw.to)?.name || ''), why: sw.why, rec: sw };
+    const wt = recs.find(r => r.type === 'watch' && r.key === 'watch:' + x.hd.id);
+    if (wt) return { v: 'Watch', cls: 'p2', why: wt.why };
+    if (!x.h) return { v: 'NAV pending', cls: 'p1', why: 'Live NAV load nahi hui.' };
+    if (!x.st) return { v: M.SCREEN.includes(x.catKey) ? 'Rank pending' : 'Hold', cls: 'p1', why: M.SCREEN.includes(x.catKey) ? 'Peer ranking load karo.' : `${x.cat.label} ki peer ranking available nahi — manually review karo.` };
+    if (x.st.score >= .5) return { v: 'Continue', cls: 'st-done', why: `Peer rank #${x.st.rank}/${x.st.of} — top half. 3Y ${U.pct(x.m && x.m.r3)} vs median ${U.pct(x.lb && x.lb.med.r3)}.` };
+    return { v: 'Hold', cls: 'p1', why: `Rank #${x.st.rank}/${x.st.of} — average; switch ka strong case nahi (tax/exit load ka kharcha zyada).` };
   }
 };
 
@@ -1417,7 +1579,7 @@ const App = {
     const h = String(hash || '').replace('#', '') || 'dashboard';
     if (h.startsWith('c-')) { App.route = 'client'; App.param = h.slice(2); }
     else if (h.startsWith('f-')) { App.route = 'fund'; App.param = h.slice(2); }
-    else { App.route = ['dashboard', 'clients', 'opps', 'funds', 'tools', 'settings'].includes(h) ? h : 'dashboard'; App.param = null; }
+    else { App.route = ['dashboard', 'clients', 'opps', 'funds', 'tools', 'settings', 'plan'].includes(h) ? h : 'dashboard'; App.param = null; }
     App.render(); window.scrollTo(0, 0);
   },
   nav(h) { if (location.hash === '#' + h) App.go('#' + h); else location.hash = h; },
@@ -1529,6 +1691,8 @@ const ACT = {
   refresh: () => { U.toast('Live NAV refresh…'); App.refreshData(true); },
   peers: d => { const p = App.peerNeeded(); App.loadPeers(d.all ? p.all : (p.missing.length ? p.missing : p.all), !!d.force); },
   peerOne: d => App.loadPeers([d.key], !!d.force),
+  peerList: d => App.loadPeers(String(d.keys || '').split(',').filter(Boolean)),
+  newPlan: () => App.nav('plan'),
   ctab: d => { App.ctab = d.tab; App.render(); },
   rec: d => App.setRec(d.cid, d.key, d.op, d.op === 'snooze' ? 30 : 0),
   copyRec: async d => { const r = App.recIdx.get(d.cid + '|' + d.key); if (!r) return; await ACT._copy(r.wa || [r.title, ...r.steps].join('\n')); },
@@ -1665,7 +1829,7 @@ const V = {
     if (!App.state.clients.length) {
       V.post(V.status);
       return V.top('Dashboard', status) + V.envWarn() + `<div class="hero"><div class="hi">${greet}, ${U.esc((s.advisor || '').split(' ')[0])} 👋</div><div class="big">Aapka MFD Command Centre</div><div style="max-width:620px;opacity:.95">Live AMFI NAV, client-wise portfolio, risk profiling, aur switch / STP / SWP / tax harvesting / SIP step-up suggestions — har suggestion ke saath reasoning aur WhatsApp message.</div></div>
-      <div class="card" style="margin-top:14px">${V.empty('users', 'Abhi koi client nahi hai', 'Demo clients load karke dekho ye kaise kaam karta hai, ya apna pehla client add karo.', `<div class="row" style="justify-content:center;gap:8px"><button class="btn pri" data-act="demo">${I('spark')} Demo data load karo</button><button class="btn" data-act="addClient">${I('plus')} Client add karo</button><button class="btn" data-act="importCsv">${I('upload')} CSV import</button></div>`)}</div>${IMP.inputs()}`;
+      <div class="card" style="margin-top:14px">${V.empty('users', 'Abhi koi client nahi hai', 'Demo clients load karke dekho ye kaise kaam karta hai, ya apna pehla client add karo.', `<div class="row" style="justify-content:center;gap:8px"><button class="btn pri" data-act="demo">${I('spark')} Demo data load karo</button><button class="btn" data-act="newPlan">${I('target')} Naya client plan</button><button class="btn" data-act="addClient">${I('plus')} Client add karo</button><button class="btn" data-act="importCsv">${I('upload')} CSV import</button></div>`)}</div>${IMP.inputs()}`;
     }
     const byType = {}; open.forEach(r => byType[r.t.label] = (byType[r.t.label] || 0) + 1);
     const top = open.slice().sort((a, b) => b.pri - a.pri || (b.impact || 0) - (a.impact || 0)).slice(0, 6);
@@ -1730,7 +1894,7 @@ const V = {
       .map(c => ({ c, A: App.A(c.id), recs: (App.analysis.get(c.id) || {}).recs || [] }))
       .sort((a, b) => (b.A ? b.A.value : 0) - (a.A ? a.A.value : 0));
     V.post(() => { const i = U.$('#cq'); if (i) { i.oninput = U.debounce(() => { App.cq = i.value; App.render(); setTimeout(() => { const j = U.$('#cq'); j.focus(); j.setSelectionRange(j.value.length, j.value.length); }, 0); }, 250); } });
-    return V.top('Clients', `<button class="btn" data-act="importCsv">${I('upload')}<span class="hidem">CSV import</span></button><button class="btn pri" data-act="addClient">${I('plus')} Client</button>`) +
+    return V.top('Clients', `<button class="btn" data-act="importCsv">${I('upload')}<span class="hidem">CSV import</span></button><button class="btn" data-act="newPlan">${I('target')} Naya client plan</button><button class="btn pri" data-act="addClient">${I('plus')} Client</button>`) +
       `<div class="filters"><input class="in" id="cq" placeholder="Search name / phone / city" value="${U.esc(App.cq || '')}" style="flex:1;min-width:200px"></div>` +
       (list.length ? `<div class="grid g3">${list.map(({ c, A, recs }) => {
         const o = recs.filter(r => r.status === 'open'), h = o.filter(r => r.pri === 3).length;
@@ -1746,7 +1910,7 @@ const V = {
     const { A, recs = [] } = App.analysis.get(c.id) || {};
     if (!A) return V.top(U.esc(c.name)) + '<div class="card">Analysing…</div>';
     const open = recs.filter(r => r.status === 'open');
-    const tabs = [['overview', 'Overview', 'home'], ['actions', 'Actions', 'bolt'], ['holdings', 'Holdings', 'layers'], ['goals', 'Goals', 'target'], ['tax', 'Tax', 'receipt'], ['profile', 'Profile', 'user'], ['notes', 'Notes', 'file']];
+    const tabs = [['overview', 'Overview', 'home'], ['actions', 'Actions', 'bolt'], ['holdings', 'Holdings', 'layers'], ['goals', 'Goals', 'target'], ['plan', 'Plan / SIP', 'target'], ['tax', 'Tax', 'receipt'], ['profile', 'Profile', 'user'], ['notes', 'Notes', 'file']];
     const t = App.ctab;
     const head = `<div class="topbar"><a class="btn sm" href="#clients">${I('back')}</a><div class="av">${U.esc(c.name.split(' ').map(x => x[0]).join('').slice(0, 2).toUpperCase())}</div><div><h1>${U.esc(c.name)}</h1><div class="small mute">${U.esc([A.age ? A.age + ' yrs' : '', c.occupation, c.city, c.phone].filter(Boolean).join(' · '))}</div></div><span class="sp"></span>${V.profPill(A.profile)}
       ${c.phone ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, `Namaste ${c.name.split(' ')[0]} ji, `)}">${I('wa')}<span class="hidem">WhatsApp</span></a><a class="btn sm hidem" href="tel:${U.phone10(c.phone)}">${I('phone')} ${U.esc(c.phone)}</a>` : ''}
@@ -1937,7 +2101,7 @@ const V = {
   /* ---------- TOOLS ---------- */
   tools() {
     V.post(TOOLS.bind);
-    return V.top('Calculators') + `<div class="grid g3">
+    return V.top('Calculators', `<button class="btn pri" data-act="newPlan">${I('target')} Naya client fund plan</button>`) + `<div class="grid g3">
       <div class="card"><h3>${I('trend')} Step-up SIP</h3><div class="f c2"><label class="l">SIP / mahina<input class="in" data-t="s_sip" type="number" value="10000"></label><label class="l">Saal<input class="in" data-t="s_y" type="number" value="15"></label><label class="l">Return % p.a.<input class="in" data-t="s_r" type="number" value="12"></label><label class="l">Step-up % / yr<input class="in" data-t="s_s" type="number" value="10"></label></div><div id="s_out" class="box"></div><div class="chart sm"><canvas id="tStep"></canvas></div></div>
       <div class="card"><h3>${I('target')} Goal planner</h3><div class="f c2"><label class="l">Goal (aaj ki value)<input class="in" data-t="g_t" type="number" value="5000000"></label><label class="l">Saal<input class="in" data-t="g_y" type="number" value="12"></label><label class="l">Inflation %<input class="in" data-t="g_i" type="number" value="6"></label><label class="l">Return %<input class="in" data-t="g_r" type="number" value="12"></label><label class="l">Existing corpus<input class="in" data-t="g_c" type="number" value="300000"></label><label class="l">Step-up %<input class="in" data-t="g_s" type="number" value="0"></label></div><div id="g_out" class="box"></div></div>
       <div class="card"><h3>${I('cash')} SWP planner</h3><div class="f c2"><label class="l">Corpus<input class="in" data-t="w_c" type="number" value="5000000"></label><label class="l">Withdrawal / mahina<input class="in" data-t="w_w" type="number" value="30000"></label><label class="l">Return %<input class="in" data-t="w_r" type="number" value="9"></label><label class="l">Annual increase %<input class="in" data-t="w_i" type="number" value="5"></label></div><div id="w_out" class="box"></div><div class="chart sm"><canvas id="tSwp"></canvas></div></div>
@@ -1965,6 +2129,153 @@ const V = {
         • Suggestions distributor ke "incidental advice" ke liye decision-support hain; client ko communicate karte waqt standard MF risk disclaimer use karein.</div></div>
     </div>` + IMP.inputs();
   }
+};
+
+/* --- views2.js --- */
+/* ===== Planner views: new-client plan, client Plan tab, plan PDF ===== */
+App.pf = App.pf || { name: '', phone: '', age: 32, prof: 'M', years: 10, sip: 10000, lump: 0, regime: 'new', slab: 20, c80: 0 };
+
+V.planBanner = function (missing) {
+  if (!missing || !missing.length || App.peerProg) return '';
+  return `<div class="banner">${I('chart')}<div><b>Fund choose karne ke liye ${missing.length} ${missing.length > 1 ? "categories" : "category"} ki ranking chahiye</b><div class="small mute">${missing.map(k => M.cat(k).label).join(', ')} — ek baar load, 3 din cache.</div></div><span class="sp"></span><button class="btn pri sm" data-act="peerList" data-keys="${missing.join(',')}">${I('refresh')} Load</button></div>`;
+};
+
+V.plan = function () {
+  const f = App.pf;
+  const opt = (v, l, cur) => `<option value="${v}" ${String(cur) === String(v) ? 'selected' : ''}>${l}</option>`;
+  V.post(() => {
+    V.peerBar();
+    const upd = U.debounce(() => { U.$$('[data-pf]').forEach(i => { f[i.dataset.pf] = i.type === 'number' ? U.num(i.value) : i.value; }); V.planOut(); }, 250);
+    U.$$('[data-pf]').forEach(i => { i.oninput = upd; i.onchange = upd; });
+    V.planOut();
+  });
+  return V.top('Naya client — fund plan', `<a class="btn sm" href="#clients">${I('back')}</a>`) + `<div id="peerbar"></div>
+    <div class="card"><h3>${I('user')} Client ki basic details</h3>
+      <div class="f c3">
+        <label class="l">Naam<input class="in" data-pf="name" value="${U.esc(f.name)}" placeholder="optional"></label>
+        <label class="l">Mobile<input class="in" data-pf="phone" type="tel" value="${U.esc(f.phone)}" placeholder="WhatsApp ke liye"></label>
+        <label class="l">Age<input class="in" data-pf="age" type="number" value="${f.age}"></label>
+        <label class="l">Risk profile<select class="in" data-pf="prof">${P.PROFILES.map(p => opt(p.key, p.name, f.prof)).join('')}</select></label>
+        <label class="l">Horizon (saal)<input class="in" data-pf="years" type="number" value="${f.years}"></label>
+        <label class="l">Monthly SIP ₹<input class="in" data-pf="sip" type="number" value="${f.sip}"></label>
+        <label class="l">Lumpsum ₹<input class="in" data-pf="lump" type="number" value="${f.lump}"></label>
+        <label class="l">Tax regime<select class="in" data-pf="regime">${opt('new', 'New', f.regime)}${opt('old', 'Old', f.regime)}</select></label>
+        <label class="l">80C already used ₹<input class="in" data-pf="c80" type="number" value="${f.c80}"></label>
+      </div>
+      <div class="tiny mute" style="margin-top:8px">Risk profile pakka nahi? Client add karke 8-question risk profiling karo (Clients → + Client). Horizon 3 saal se kam = debt/arbitrage plan; 3–5 saal = max Moderate.</div></div>
+    <div id="planOut" style="margin-top:14px"></div>`;
+};
+
+V.planOut = function () {
+  const el = U.$('#planOut'); if (!el) return;
+  const f = App.pf, pl = PL.build(f); App._lastPlan = pl;
+  const cats = pl.lines.map(l => [M.cat(l.cat).label, l.w]);
+  el.innerHTML = V.planBanner(pl.missing) + `
+    <div class="grid g4">
+      <div class="tile"><div class="l">${I('shield')} Model</div><div class="v" style="font-size:16px">${pl.mk.startsWith('SHORT') ? 'Short-term (<3Y)' : P.PROFILES.find(p => p.key === pl.mk).name}</div><div class="s">${pl.lines.length} funds</div></div>
+      <div class="tile"><div class="l">${I('scale')} Equity · Debt · Gold</div><div class="v" style="font-size:16px">${U.pct(pl.exp.eq, 0)} · ${U.pct(pl.exp.debt, 0)} · ${U.pct(pl.exp.gold, 0)}</div><div class="s">small+mid ${U.pct(pl.exp.smid, 0)}</div></div>
+      <div class="tile"><div class="l">${I('trend')} ${pl.yrs} saal me (est.)</div><div class="v">${U.inrS(pl.proj)}</div><div class="s">invested ${U.inrS(pl.invested)} @ ${U.pct(pl.r)}</div></div>
+      <div class="tile"><div class="l">${I('spark')} 10% step-up ke saath</div><div class="v pos">${U.inrS(pl.projUp)}</div><div class="s">+${U.inrS(pl.projUp - pl.proj)}</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:14px">
+      <div class="card"><h3>${I('layers')} Allocation</h3><div class="chart sm" id="plDonut"></div><div class="legend">${cats.map((c, i) => `<span><i style="background:${PALETTE[i % PALETTE.length]}"></i>${c[0]} ${U.pct(c[1], 0)}</span>`).join('')}</div></div>
+      <div class="card span2"><h3>${I('target')} Suggested funds (${PL.plan()} plans)<span class="sp"></span><span class="chip">SIP ${U.inr(pl.sip)}/mo${pl.lump ? ' · Lumpsum ' + U.inrS(pl.lump) : ''}</span></h3>
+        ${pl.lines.map((l, i) => `<div class="rec" style="grid-template-columns:38px 1fr auto">
+          <div class="ic" style="background:${PALETTE[i % PALETTE.length]}">${I(M.cat(l.cat).tax === 'debt' ? 'shield' : l.cat === 'gold' ? 'coins' : 'trend')}</div>
+          <div><div class="ttl">${l.fund ? `<a href="#f-${l.fund.code}">${U.esc(R.short(l.fund.name))}</a>` : `<span class="mute">${M.cat(l.cat).label} — ranking load karo</span>`}</div>
+            <div class="why">${M.cat(l.cat).label} · ${U.pct(l.w, 0)} — ${U.esc(l.why || '')}</div>
+            <div class="meta"><span class="pill tp">${M.cat(l.cat).label}</span>${l.fund ? `<span class="pill p1">#${l.fund.rank} rank</span>` : ''}${l.stp ? `<span class="pill p2">Lumpsum via STP ${l.stp} mo</span>` : ''}</div></div>
+          <div class="imp">${l.sip ? U.inr(l.sip) + '<small>per month</small>' : ''}${l.lump ? `<div style="font-size:13px">${U.inrS(l.lump)}</div><small>lumpsum</small>` : ''}</div>
+          <details><summary>Kyun ye fund ▾</summary>${l.reasons.length ? `<div class="box"><h4>Reasoning</h4><ul>${l.reasons.map(r => `<li>${U.esc(r)}</li>`).join('')}</ul></div>` : ''}${l.alts.length ? `<div class="box"><h4>Alternatives</h4><ul>${l.alts.map(a => `<li><a href="#f-${a.code}">${U.esc(R.short(a.name))}</a> — rank #${a.rank}, 3Y ${U.pct(a.m.r3)}</li>`).join('')}</ul></div>` : ''}</details></div>`).join('')}
+        <div class="box small">${[
+          pl.lump && pl.lines.some(l => l.stp) ? `Lumpsum ka equity hissa pehle liquid/arbitrage fund me, phir ${pl.fast} mahine STP (market ${App.market ? U.pct(App.market.hi) + ' from 52W high' : 'data pending'}).` : '',
+          pl.elssGap && pl.lines.some(l => l.cat === 'elss') ? `Old regime: 80C gap ${U.inr(pl.elssGap)} — ELSS SIP se tax bachega (3 saal lock-in).` : '',
+          pl.mk.startsWith('SHORT') ? 'Horizon chhota hai — equity risk nahi liya; arbitrage (equity taxation) + liquid/short duration.' : '',
+          'Har saal SIP 10% badhao (step-up) aur 6 mahine me review.'
+        ].filter(Boolean).map(x => '• ' + x).join('<br>')}</div>
+        <div class="acts" style="margin-top:10px">
+          ${f.phone ? `<a class="btn wa" target="_blank" rel="noopener" href="${U.wa(f.phone, V.planMsg(f, pl))}">${I('wa')} WhatsApp proposal</a>` : ''}
+          <button class="btn" onclick="ACT._copy(V.planMsg(App.pf, App._lastPlan))">${I('copy')} Copy proposal</button>
+          <button class="btn" onclick="V.planReport(App.pf, App._lastPlan)">${I('print')} Proposal PDF</button>
+          <button class="btn pri" onclick="V.planToClient()">${I('plus')} Is plan se client banao</button>
+        </div></div></div>
+    <div class="note" style="margin-top:12px">${I('info')} Model portfolio + live peer ranking (rules-based). Final karne se pehle client se goal/risk confirm karo aur SID/KIM, exit load, TER check karo. MF investments market risk ke adheen hain.</div>`;
+  SC.render(U.$('#plDonut'), { type: 'doughnut', data: { labels: cats.map(c => c[0]), datasets: [{ data: cats.map(c => c[1]), backgroundColor: PALETTE }] }, options: { cutout: '62%', plugins: { tooltip: { callbacks: { label: x => `${x.label}: ${U.pct(x.raw, 0)}` } } } } });
+};
+
+V.planMsg = function (f, pl) {
+  const s = App.state.settings, nm = (f.name || '').split(' ')[0];
+  return `Namaste${nm ? ' ' + nm + ' ji' : ''},\n\nAapke ${pl.yrs} saal ke goal aur ${pl.prof.name} risk profile ke hisaab se suggested plan:\n\n` +
+    pl.lines.filter(l => l.fund).map(l => `• ${R.short(l.fund.name)} (${M.cat(l.cat).label}) — ${l.sip ? U.inr(l.sip) + '/mahina' : ''}${l.lump ? (l.sip ? ' + ' : '') + U.inr(l.lump) + ' lumpsum' : ''}`).join('\n') +
+    `\n\nTotal SIP ${U.inr(pl.sip)}/mahina${pl.lump ? ', lumpsum ' + U.inr(pl.lump) : ''}. Andaazan ${pl.yrs} saal me ≈ ${U.inrS(pl.proj)} (10% annual step-up ke saath ≈ ${U.inrS(pl.projUp)}) — guaranteed nahi.\nEquity ${U.pct(pl.exp.eq, 0)} / Debt ${U.pct(pl.exp.debt, 0)} / Gold ${U.pct(pl.exp.gold, 0)}.\n\nKab baat karke start karein?` + R.sig();
+};
+
+V.planToClient = function () {
+  const f = App.pf, pl = App._lastPlan; if (!pl) return;
+  const lines = pl.lines.filter(l => l.fund);
+  if (!lines.length) return U.toast('Pehle category rankings load karo');
+  const d = new Date(), y = d.getFullYear(), m = d.getMonth() + 1;
+  const start = `${m === 12 ? y + 1 : y}-${String(m === 12 ? 1 : m + 1).padStart(2, '0')}-05`;
+  const c = { id: U.uid(), name: f.name || 'Naya client', phone: f.phone || '', dob: f.age ? `${y - U.num(f.age)}-01-01` : '', regime: f.regime, slab: U.num(f.slab) || 20, c80: U.num(f.c80), riskOverride: pl.prof.key, risk: {}, holdings: [], goals: [], createdAt: U.todayKey(), log: [] };
+  lines.forEach(l => c.holdings.push({ id: U.uid(), code: String(l.fund.code), name: l.fund.name, folio: '', sip: l.sip ? { amount: l.sip, day: 5, start, stepUp: 10, active: true } : { amount: 0 }, lumps: l.lump && !l.stp ? [{ date: U.todayKey(), amount: l.lump }] : [], reds: [] }));
+  const stp = lines.filter(l => l.stp && l.lump);
+  App.log(c, `📝 Plan se bana: SIP ${U.inr(pl.sip)}/mo, ${lines.length} funds. SIP start ${start} (dates execution ke baad confirm karo).${stp.length ? ' STP pending: ' + stp.map(l => U.inr(l.lump) + ' → ' + R.short(l.fund.name)).join(', ') : ''}`);
+  if (f.years) c.goals.push({ id: U.uid(), name: 'Main goal', target: Math.round(pl.proj / Math.pow(1.06, pl.yrs) / 100000) * 100000, year: y + U.num(f.years), inflation: 6, links: c.holdings.map(h => h.id) });
+  App.upsertClient(c); App.recompute(); App.ctab = 'profile'; App.nav('c-' + c.id);
+  U.toast('Client bana — Profile me details aur risk questionnaire poora karo');
+  App.refreshData();
+};
+
+/* ---- Client Plan tab ---- */
+V.ct_plan = function (c, A, recs) {
+  const up = recs.find(r => r.type === 'upsell');
+  const def = App.tuAmt && App.tuCid === c.id ? App.tuAmt : (up ? (up.title.match(/₹([\d,]+)/) || [0, '0'])[1].replace(/,/g, '') : Math.max(1000, PL.round(A.sip * .1)));
+  const model = PL.MODELS[A.profile.key];
+  const cur = {}; A.hs.forEach(x => { if (x.h) { const b = PL.bucket(x.catKey); cur[b] = (cur[b] || 0) + x.value; } });
+  const buckets = [...new Set([...Object.keys(model), ...Object.keys(cur)])];
+  V.post(() => {
+    const i = U.$('#tuIn'); if (!i) return;
+    const run = () => { App.tuAmt = U.num(i.value); App.tuCid = c.id; V.tuOut(c, A, recs); };
+    i.oninput = U.debounce(run, 300); run();
+  });
+  const need = new Set(); A.hs.forEach(x => { if (x.h && M.SCREEN.includes(x.catKey) && !M.lbCached(x.catKey, PL.plan())) need.add(x.catKey); });
+  return V.planBanner([...need]) + `<div class="grid g2">
+    <div class="card" style="grid-column:1/-1"><h3>${I('swap')} Har fund ka verdict — continue, hold ya switch?</h3>
+      <div class="tw"><table class="t"><thead><tr><th>Fund</th><th>Verdict</th><th>Kyun</th><th>Action</th></tr></thead><tbody>
+      ${A.hs.map(x => { const v = PL.verdict(x, recs); return `<tr><td class="fn"><a href="#f-${x.hd.code}">${U.esc(R.short(x.name) || x.hd.name)}</a><small>${x.cat.label} · ${U.inrS(x.value)}${x.sipNow ? ' · SIP ' + U.inr(x.sipNow) : ''}</small></td><td><span class="pill ${v.cls}">${v.v}</span></td><td class="small" style="min-width:220px">${U.esc(v.why)}</td><td class="small" style="min-width:160px">${v.v === 'Switch' ? `→ <a href="#f-${v.to}">${U.esc(v.toName || 'suggested fund')}</a><br><a href="#" onclick="App.ctab='actions';App.render();return false">Tax-wise steps ›</a>` : v.v === 'Continue' ? 'SIP chalu rakho; top-up ke liye accha' : v.v === 'Watch' ? 'Next review me dekho' : '—'}</td></tr>`; }).join('')}
+      </tbody></table></div></div>
+    <div class="card"><h3>${I('plus')} SIP badhani hai? Kis fund me kitna</h3>
+      <label class="l">Extra SIP ₹/month<input class="in" id="tuIn" type="number" value="${def}"></label>
+      <div id="tuOut" style="margin-top:10px"></div></div>
+    <div class="card"><h3>${I('scale')} Current vs ideal mix (${A.profile.name})</h3>
+      ${buckets.map(b => { const a = A.value ? (cur[b] || 0) / A.value : 0, t = (model[b] || 0) / 100; return `<div class="alloc" style="grid-template-columns:110px 1fr 44px 44px"><span>${M.cat(b).label}</span><div class="tr"><i style="width:${Math.min(100, a * 100)}%;background:#0284C7"></i>${t ? `<b style="left:${Math.min(99, t * 100)}%"></b>` : ''}</div><b class="right">${U.pct(a, 0)}</b><span class="right mute">${t ? U.pct(t, 0) : '—'}</span></div>`; }).join('')}
+      <div class="tiny mute">Blue = abhi (value), black line = model target. Naya paisa kami wali categories me jaata hai.</div>
+      <button class="btn sm" style="margin-top:10px" onclick="App.pf=Object.assign({},App.pf,{name:${JSON.stringify(c.name).replace(/"/g, '&quot;')},phone:'${U.phone10(c.phone)}',age:${A.age || 35},prof:'${A.profile.key}',regime:'${c.regime || 'new'}',slab:${c.slab ?? 20},c80:${U.num(c.c80)},sip:${def},lump:${U.num(c.idle)}});App.nav('plan')">${I('target')} Naye paise ka full plan</button></div>
+  </div>`;
+};
+
+V.tuOut = function (c, A, recs) {
+  const el = U.$('#tuOut'); if (!el) return;
+  const t = PL.topUp(A, App.tuAmt, recs);
+  if (!t.lines.length) { el.innerHTML = '<div class="small mute">Kam se kam ₹500 daalo.</div>'; return; }
+  const msg = `Namaste ${(c.name || '').split(' ')[0]} ji,\n\nAapki SIP ${U.inr(t.extra)}/mahina badhane ka suggestion:\n` + t.lines.map(l => `• ${U.inr(l.amt)} → ${R.short(l.name || M.cat(l.cat).label)}${l.existing ? ' (existing fund me top-up)' : ' (nayi SIP)'}`).join('\n') + `\n\nIsse aapka portfolio aapke risk profile ke hisaab se balanced rahega. Shuru karein?` + R.sig();
+  el.innerHTML = V.planBanner(t.missing) + t.lines.map(l => `<div class="rec" style="grid-template-columns:1fr auto"><div><div class="ttl">${l.name ? `<a href="#f-${l.code}">${U.esc(R.short(l.name))}</a>` : `${M.cat(l.cat).label} — ranking load karo`}</div><div class="meta"><span class="pill ${l.existing ? 'st-done' : 'p1'}">${l.existing ? 'Existing fund — top-up' : 'Nayi SIP'}</span><span class="pill tp">${M.cat(l.cat).label}</span></div></div><div class="imp">${U.inr(l.amt)}<small>per month</small></div><details style="grid-column:1/3"><summary>Kyun ▾</summary><ul>${l.reasons.map(r => `<li>${U.esc(r)}</li>`).join('')}</ul></details></div>`).join('') +
+    (t.notes.length ? `<div class="box small">${t.notes.map(n => '• ' + U.esc(n)).join('<br>')}</div>` : '') +
+    `<div class="acts" style="margin-top:8px">${c.phone ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, msg)}">${I('wa')} WhatsApp</a>` : ''}<button class="btn sm" onclick='ACT._copy(${JSON.stringify(msg).replace(/'/g, "&#39;")})'>${I('copy')} Copy</button></div>`;
+};
+
+/* ---- Plan proposal PDF ---- */
+V.planReport = function (f, pl) {
+  if (!pl) return;
+  const s = App.state.settings;
+  const cats = pl.lines.map(l => [M.cat(l.cat).label, l.w]);
+  const pie = SC.svg({ type: 'doughnut', data: { labels: cats.map(c => `${c[0]} ${U.pct(c[1], 0)}`), datasets: [{ data: cats.map(c => c[1]), backgroundColor: PALETTE }] }, options: { cutout: '58%', plugins: { legend: { position: 'right' } } } }, 420, 200);
+  U.$('#print').innerHTML = `<div class="pr-h"><div class="logo">${U.esc((s.firm || 'S')[0])}</div><div style="flex:1"><div style="font-size:17px;font-weight:800">${U.esc(s.firm)}</div><div style="font-size:11px">${U.esc(s.advisor)} · Mutual Fund Distributor · ${U.esc(s.arn)} · ${U.esc(s.phone)} · ${U.esc(s.city)}</div></div><div style="text-align:right"><div style="font-size:15px;font-weight:800">Investment Proposal</div><div style="font-size:11px">${U.fmtDate(U.today())}</div></div></div>
+  <div class="pr-sec"><h2>${U.esc(f.name || 'Client')} — ${pl.prof.name} · ${pl.yrs} saal</h2><div class="pr-k"><div>Monthly SIP<b>${U.inr(pl.sip)}</b></div><div>Lumpsum<b>${U.inr(pl.lump)}</b></div><div>Equity / Debt / Gold<b>${U.pct(pl.exp.eq, 0)} / ${U.pct(pl.exp.debt, 0)} / ${U.pct(pl.exp.gold, 0)}</b></div><div>Est. value (${pl.yrs}Y)<b>${U.inrS(pl.proj)}</b></div><div>With 10% step-up<b>${U.inrS(pl.projUp)}</b></div></div></div>
+  <div class="pr-sec" style="display:grid;grid-template-columns:1fr 1.4fr;gap:12px"><div><h2>Allocation</h2>${pie}</div><div><h2>Funds</h2><table><tr><th>Fund</th><th>Category</th><th>SIP/mo</th><th>Lumpsum</th><th>Rank</th></tr>${pl.lines.map(l => `<tr><td>${l.fund ? U.esc(R.short(l.fund.name)) : '—'}</td><td>${M.cat(l.cat).label}</td><td>${l.sip ? U.inr(l.sip) : '—'}</td><td>${l.lump ? U.inr(l.lump) + (l.stp ? ' (STP)' : '') : '—'}</td><td>${l.fund ? '#' + l.fund.rank : '—'}</td></tr>`).join('')}</table></div></div>
+  <div class="pr-sec"><h2>Kyun ye funds</h2>${pl.lines.filter(l => l.fund).map(l => `<div class="pr-rec"><b>${U.esc(R.short(l.fund.name))}</b> <span style="color:#64748B">· ${M.cat(l.cat).label} · ${U.pct(l.w, 0)}</span><div>${U.esc(l.why || '')}</div><div style="color:#475569">${l.reasons.map(U.esc).join(' ')}</div></div>`).join('')}</div>
+  <div class="pr-disc">Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Projections assume ${U.pct(pl.r)} annual return and are illustrative, not guaranteed. Fund selection uses peer rankings computed from AMFI NAV data (past performance may or may not be sustained). Prepared by ${U.esc(s.advisor)} (${U.esc(s.arn)}), AMFI-registered Mutual Fund Distributor.</div>`;
+  setTimeout(() => { try { window.print(); } catch (e) { U.toast('Browser menu → Print → Save as PDF'); } }, 300);
 };
 
 /* --- forms.js --- */
