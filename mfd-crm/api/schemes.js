@@ -5,7 +5,7 @@ const MON = { Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', 
 
 function parse(txt) {
   const cats = [], amcs = [], rows = [], ci = new Map(), ai = new Map();
-  let cat = -1, amc = -1, open = false, asOf = '';
+  let cat = -1, amc = -1, open = false, asOf = ''; const dc = {};
   for (const raw of txt.split(/\r?\n/)) {
     const line = raw.trim();
     if (!line) continue;
@@ -16,7 +16,7 @@ function parse(txt) {
       const ds = p[p.length - 1].trim(), nav = parseFloat(p[p.length - 2]);
       const d = ds.match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/);
       const date = d ? `${d[3]}-${MON[d[2][0].toUpperCase() + d[2].slice(1).toLowerCase()] || '01'}-${d[1].padStart(2, '0')}` : '';
-      if (date && date > asOf) asOf = date;
+      if (date) dc[date] = (dc[date] || 0) + 1;
       rows.push([+p[0], p.slice(3, p.length - 2).join(';').trim().replace(/\s+/g, ' '), cat, amc, isFinite(nav) ? nav : null, date]);
       continue;
     }
@@ -30,6 +30,7 @@ function parse(txt) {
     if (!ai.has(line)) { ai.set(line, amcs.length); amcs.push(line); }
     amc = ai.get(line);
   }
+  asOf = Object.keys(dc).sort((a, b) => dc[b] - dc[a])[0] || ''; // most common NAV date
   return { source: 'amfi', asOf, cats, amcs, rows };
 }
 
