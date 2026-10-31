@@ -156,12 +156,12 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
               value={expectedReturn}
               onChange={(val) => setExpectedReturn(val)}
               min={5}
-              max={16}
+              max={12}
               step={0.5}
               suffix="%"
               icon={<TrendingUp className="w-4 h-4 text-[#0F2740]" />}
               minLabel="5% (Conservative)"
-              maxLabel="16% (Aggressive)"
+              maxLabel="12%"
               themeColor="blue"
               presets={[
                 { label: '7% Debt', value: 7 },

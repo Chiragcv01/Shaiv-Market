@@ -7,7 +7,7 @@ const LINKS: { label: string; hint: string; screen: ActiveScreen; Icon: React.El
   { label: 'SIP and goal calculators', hint: 'Required SIP, SWP, FIRE and more', screen: 'calculators', Icon: Calculator },
   { label: 'Goal planner and guides', hint: 'Plan a goal, read the basics of mutual funds', screen: 'insights', Icon: Target },
   { label: 'About Chirag Sharma', hint: 'AMFI ARN-337289, NISM certified', screen: 'about', Icon: User },
-  { label: 'Book a free call', hint: 'Portfolio review, no charges', screen: 'booking', Icon: CalendarCheck }
+  { label: 'Book an intro call', hint: '20 minutes, SIP set up in one call', screen: 'booking', Icon: CalendarCheck }
 ];
 
 export const NotFoundScreen: React.FC<{ onNavigate: (s: ActiveScreen) => void; onSearch: () => void }> = ({ onNavigate, onSearch }) => (

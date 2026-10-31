@@ -59,9 +59,9 @@ export const CALC_ROUTES: CalcRoute[] = [
     description: 'Find the future value of a one-time investment, how long it takes to double, and what it is worth in today\'s money after inflation. Free lumpsum calculator.'
   },
   {
-    tab: 'goal', slug: 'goal-planner', name: 'Goal planner', short: 'Goal planner', group: 'Plan a goal',
+    tab: 'goal', slug: 'goal-planner', name: 'Goal SIP calculator', short: 'Goal SIP', group: 'Plan a goal',
     blurb: 'Child education, a home, a car: the SIP each goal needs.',
-    title: 'Goal Planner: SIP for Child Education, Home and Any Life Goal | Shaiv Market',
+    title: 'Goal SIP Calculator: SIP for Child Education, Home and Any Life Goal | Shaiv Market',
     description: "Plan your child's education, a home down payment or any goal. Adjust for inflation, count what you have saved, and get the monthly SIP each goal needs."
   },
   {
@@ -132,7 +132,7 @@ export const ROUTES: RouteMeta[] = [
   {
     path: '/', screen: 'home', name: 'Home', index: true, priority: 1, changefreq: 'weekly',
     title: 'Shaiv Market | Mutual Fund Distributor in Jaipur, Chirag Sharma (ARN-337289)',
-    description: 'Plan SIPs and life goals with Chirag Sharma, AMFI registered mutual fund distributor in Jaipur (ARN-337289). Free portfolio review, SIP and goal calculators.'
+    description: 'Plan SIPs and life goals with Chirag Sharma, AMFI registered mutual fund distributor in Jaipur (ARN-337289). SIP set up in one call, paperless KYC and 15 SIP and goal calculators.'
   },
   {
     path: '/calculators', screen: 'calculators', name: 'Calculators', index: true, priority: 0.9, changefreq: 'monthly',
@@ -144,9 +144,9 @@ export const ROUTES: RouteMeta[] = [
     priority: 0.8, changefreq: 'monthly' as const, title: c.title, description: c.description
   })),
   {
-    path: '/goal-planner', screen: 'insights', name: 'Goal planner', index: true, priority: 0.8, changefreq: 'monthly',
-    title: 'Goal-Based Investment Planner and Guides | Shaiv Market',
-    description: 'Plan every life goal with the exact monthly SIP it needs, and read plain-language guides on SIPs, tax on mutual funds and more.'
+    path: '/goal-planner', screen: 'insights', name: 'Goal SIP calculator', index: true, priority: 0.8, changefreq: 'monthly',
+    title: 'Goal SIP Calculator and Guides | Shaiv Market',
+    description: 'Work out the monthly SIP each life goal needs at an assumed rate, and read plain-language guides on SIPs, tax on mutual funds and more.'
   },
   {
     path: '/about', screen: 'about', name: 'About Chirag Sharma', index: true, priority: 0.8, changefreq: 'monthly',
@@ -154,9 +154,9 @@ export const ROUTES: RouteMeta[] = [
     description: 'Chirag Sharma is an AMFI registered mutual fund distributor (ARN-337289, EUIN E641362) and NISM Series V-A certified, based in Jaipur. See credentials and how he works.'
   },
   {
-    path: '/book-free-consultation', screen: 'booking', name: 'Book a free consultation', index: true, priority: 0.9, changefreq: 'monthly',
-    title: 'Book a Free Mutual Fund Consultation in Jaipur or Online | Shaiv Market',
-    description: 'Book a free 30-minute call with Chirag Sharma to review your portfolio and plan your SIPs. Video, phone or WhatsApp. No charges.'
+    path: '/book-intro-call', screen: 'booking', name: 'Book an intro call', index: true, priority: 0.9, changefreq: 'monthly',
+    title: 'Book an Intro Call with a Mutual Fund Distributor in Jaipur | Shaiv Market',
+    description: 'Book a 20-minute intro call with Chirag Sharma, AMFI registered mutual fund distributor (ARN-337289). SIP set up in one call. Video, phone, WhatsApp or the Jaipur office.'
   },
   {
     path: '/contact', screen: 'contact', name: 'Contact', index: true, priority: 0.7, changefreq: 'monthly',

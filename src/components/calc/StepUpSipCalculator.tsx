@@ -20,7 +20,7 @@ export const StepUpSipCalculator: React.FC = () => {
           presets={[{ label: '₹5,000', value: 5000 }, { label: '₹10,000', value: 10000 }, { label: '₹25,000', value: 25000 }]} />
         <SmartNumberInput id="su-step" label="Yearly step-up" value={step} onChange={setStep} min={0} max={50} step={1} suffix="%"
           presets={[{ label: '5%', value: 5 }, { label: '10%', value: 10 }, { label: '15%', value: 15 }]} helperText="How much you raise the SIP each year, usually in line with your salary hike." />
-        <SmartNumberInput id="su-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={30} step={0.5} suffix="%" />
+        <SmartNumberInput id="su-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={15} step={0.5} suffix="%" />
         <SmartNumberInput id="su-years" label="Investment period" value={years} onChange={setYears} min={1} max={40} step={1} suffix=" yrs" />
       </>}
       results={<>

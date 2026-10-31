@@ -160,9 +160,9 @@ const BlogPostView: React.FC<{ post: BlogPost }> = ({ post }) => {
 
           <div className="mt-12 rounded-3xl bg-[#FBF6EA] ring-1 ring-[#F3D58E] p-6 sm:p-8">
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#0F2740]">Want this worked out for your own numbers?</h2>
-            <p className="mt-2 text-[#43566B]">A free 30-minute call with Chirag. Bring your current investments; leave with a plan.</p>
+            <p className="mt-2 text-[#43566B]">A 20-minute intro call with Chirag: your goal, a risk-profile check and paperless KYC. SIP set up in one call.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <button onClick={() => navigateTo('/book-free-consultation')} className="rounded-xl bg-[#0F2740] hover:bg-[#1D4268] text-white font-semibold px-5 py-3 cursor-pointer">Book a free call</button>
+              <button onClick={() => navigateTo('/book-intro-call')} className="rounded-xl bg-[#0F2740] hover:bg-[#1D4268] text-white font-semibold px-5 py-3 cursor-pointer">Book an intro call</button>
               <a href={`https://wa.me/919950653247?text=${encodeURIComponent(`Hi Chirag, I read "${post.title}" on your website and have a question.`)}`} target="_blank" rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-semibold px-5 py-3">
                 <MessageCircle className="w-4 h-4" /> Ask on WhatsApp

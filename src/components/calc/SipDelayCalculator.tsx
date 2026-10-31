@@ -23,7 +23,7 @@ export const SipDelayCalculator: React.FC = () => {
           helperText="Counted from today, e.g. the years left to retirement." />
         <SmartNumberInput id="dl-delay" label="If you wait for" value={delay} onChange={setDelay} min={1} max={20} step={1} suffix=" yrs"
           presets={[{ label: '1 yr', value: 1 }, { label: '3 yrs', value: 3 }, { label: '5 yrs', value: 5 }, { label: '10 yrs', value: 10 }]} />
-        <SmartNumberInput id="dl-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={30} step={0.5} suffix="%" />
+        <SmartNumberInput id="dl-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={15} step={0.5} suffix="%" />
       </>}
       results={<>
         <Hero label={`Waiting ${d} ${d === 1 ? 'year' : 'years'} to start costs you`} value={res.cost}

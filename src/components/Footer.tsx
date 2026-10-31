@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               whileTap={{ scale: 0.97 }}
               className="rounded-xl bg-[#E3B65C] text-[#0F2740] font-semibold px-7 py-4 text-base cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Book a free call
+              Book an intro call
             </motion.button>
             {wa && (
               <motion.a whileHover={{ y: -3 }} href={`https://wa.me/${wa}?text=${encodeURIComponent('Hi Chirag, I would like to start a SIP.')}`}
@@ -103,12 +103,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
               {[
-                ['/book-free-consultation', 'Book a free consultation'],
+                ['/book-intro-call', 'Book an intro call'],
                 ['/about', 'About Chirag Sharma'],
                 ['/blog', 'Blog: SIP, tax and goal guides'],
                 ['/sip-returns-table', 'SIP returns table'],
                 ['/mutual-fund-glossary', 'Mutual fund glossary'],
-                ['/goal-planner', 'Goal planner and guides'],
+                ['/goal-planner', 'Goal SIP calculator and guides'],
                 ['/start-sip', 'Start a SIP'],
                 ['/contact', 'Contact us']
               ].map(([href, label], i) => (
@@ -133,7 +133,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#F3D58E] shrink-0" />
-                <span>{siteSettings.supportPhone} (Mon - Fri)</span>
+                <span>{siteSettings.supportPhone} (Mon–Fri, Sat 10–2)</span>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#F3D58E] shrink-0 mt-0.5" />

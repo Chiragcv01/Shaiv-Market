@@ -199,13 +199,13 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
             value={expectedReturnRate}
             onChange={(val) => setExpectedReturnRate(val)}
             min={6}
-            max={20}
+            max={15}
             step={0.5}
             suffix="%"
             icon={<Percent className="w-4 h-4 text-[#0F2740]" />}
             minLabel="6% (Debt/FD)"
-            midLabel="13% (Equity Average)"
-            maxLabel="20% (High Growth)"
+            midLabel="12% (Equity, assumed)"
+            maxLabel="15%"
             themeColor="blue"
             presets={[
               { label: 'Conservative (10%)', value: 10 },
@@ -449,7 +449,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
                   className="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <Calendar className="w-3.5 h-3.5 text-[#F3D58E]" />
-                  <span>Book Free Consultation</span>
+                  <span>Book an intro call</span>
                 </button>
               </div>
             </div>

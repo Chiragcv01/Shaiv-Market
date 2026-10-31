@@ -62,9 +62,9 @@ So if you meet a "financial advisor" in Jaipur, ask one question: **"Are you a S
 
 ## How I work in Jaipur
 
-At Shaiv Market I distribute mutual funds, plan SIPs around goals, and review portfolios. I meet investors at Bhamashah Techno Hub in Jhalana Doongari and over video or WhatsApp for anyone outside Jaipur. The first portfolio review is free and there is no obligation.
+At Shaiv Market I distribute mutual funds and set up SIPs around your goals. I meet investors at Bhamashah Techno Hub in Jhalana Doongari and over video or WhatsApp for anyone outside Jaipur. The intro call is 20 minutes and there is no obligation.
 
-[Book a free call](/book-free-consultation) or read more [about my credentials](/about).
+[Book an intro call](/book-intro-call) or read more [about my credentials](/about).
 
 ## Questions people ask
 

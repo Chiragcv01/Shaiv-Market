@@ -64,7 +64,7 @@ If that help keeps you invested through a 2020-style crash, the regular plan can
 
 If you pay for help, expect actual help: a goal-based plan, a written reason for each fund, a yearly review, quick answers on WhatsApp, and someone who tells you **not** to switch funds every few months. If you aren't getting that, you're paying for nothing.
 
-That's the standard I hold myself to at Shaiv Market. If you'd like a second look at a portfolio, direct or regular, the first review is free: [book a call](/book-free-consultation).
+That's the standard I hold myself to at Shaiv Market. If you'd like to talk through what you hold, direct or regular, [book an intro call](/book-intro-call).
 
 ## Questions people ask
 

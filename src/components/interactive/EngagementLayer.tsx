@@ -15,7 +15,7 @@ const safeSession = {
   set(k: string, v: string) { try { sessionStorage.setItem(k, v); } catch { /* ignore */ } }
 };
 
-/** Floating WhatsApp launcher + a one-time "before you go" free review offer. */
+/** Floating WhatsApp launcher + a one-time "before you go" intro call nudge. */
 export const EngagementLayer: React.FC<{
   whatsapp: string;
   founder: string;
@@ -133,7 +133,7 @@ export const EngagementLayer: React.FC<{
         </div>
       )}
 
-      {/* one-time free review offer */}
+      {/* one-time intro call nudge */}
       <AnimatePresence>
         {offer && (
           <motion.aside
@@ -142,19 +142,19 @@ export const EngagementLayer: React.FC<{
             exit={{ opacity: 0, x: -30 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
             className="fixed left-4 bottom-4 sm:left-6 sm:bottom-6 z-[60] w-[min(360px,calc(100vw-6rem))] rounded-2xl bg-[#0F2740] text-white p-5 shadow-[0_30px_80px_-20px_rgba(10,29,48,0.7)]"
-            aria-label="Free portfolio review offer"
+            aria-label="Intro call"
           >
             <button onClick={() => setOffer(false)} aria-label="Dismiss"
               className="absolute top-3 right-3 p-1 text-white/60 hover:text-white cursor-pointer"><X className="w-4 h-4" /></button>
-            <p className="font-display text-2xl font-semibold leading-tight pr-6">Before you go: a free 15-minute portfolio review.</p>
-            <p className="mt-2 text-sm text-white/75">{firstName} will look at your current funds and goals. No charges, no obligation.</p>
+            <p className="font-display text-2xl font-semibold leading-tight pr-6">Before you go: your SIP, set up in one call.</p>
+            <p className="mt-2 text-sm text-white/75">A 20-minute intro call with {firstName} in Jaipur: your goal, a risk-profile check and paperless KYC. No obligation.</p>
             <div className="mt-4 flex gap-2">
               <button onClick={() => { setOffer(false); onNavigate('booking'); }}
                 className="inline-flex items-center gap-2 rounded-xl bg-[#E3B65C] hover:bg-[#EDC77A] text-[#0F2740] font-semibold px-4 py-2.5 text-sm cursor-pointer">
-                <CalendarCheck className="w-4 h-4" /> Book my review
+                <CalendarCheck className="w-4 h-4" /> Book an intro call
               </button>
               {whatsapp && (
-                <a href={waLink('I would like a free portfolio review')} target="_blank" rel="noreferrer" onClick={() => setOffer(false)}
+                <a href={waLink('Hi Chirag, I would like to set up a SIP.')} target="_blank" rel="noreferrer" onClick={() => setOffer(false)}
                   className="rounded-xl ring-1 ring-white/25 hover:ring-white/60 px-4 py-2.5 text-sm">WhatsApp</a>
               )}
             </div>

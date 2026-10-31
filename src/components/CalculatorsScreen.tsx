@@ -246,9 +246,9 @@ const CalcPage: React.FC<{ c: CalcRoute; onNavigate: (s: ActiveScreen) => void }
               )}
               <div className="rounded-2xl bg-[#0F2740] text-white p-5">
                 <p className="font-display text-xl font-semibold">Want a second pair of eyes on your numbers?</p>
-                <p className="mt-1 text-sm text-white/75">A free 30-minute call with Chirag Sharma, AMFI registered MFD in Jaipur.</p>
+                <p className="mt-1 text-sm text-white/75">A 20-minute intro call with Chirag Sharma, AMFI registered MFD in Jaipur. SIP set up in one call.</p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <a href="/book-free-consultation" onClick={linkClick('/book-free-consultation')} className="inline-flex items-center gap-1.5 rounded-xl bg-[#E3B65C] text-[#0F2740] text-sm font-semibold px-4 py-2.5">Book a call <ArrowRight className="w-4 h-4" /></a>
+                  <a href="/book-intro-call" onClick={linkClick('/book-intro-call')} className="inline-flex items-center gap-1.5 rounded-xl bg-[#E3B65C] text-[#0F2740] text-sm font-semibold px-4 py-2.5">Book a call <ArrowRight className="w-4 h-4" /></a>
                   <a href={`https://wa.me/919950653247?text=${encodeURIComponent(`Hi Chirag, I was using the ${c.name} on shaivmarket.com and have a question.`)}`} target="_blank" rel="noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-xl ring-1 ring-white/30 text-sm font-semibold px-4 py-2.5"><MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp</a>
                 </div>

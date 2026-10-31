@@ -65,7 +65,7 @@ A simple rule that works:
 
 ## Try your own numbers
 
-Change the monthly amount, the years or the return in the [SIP calculator](/calculators/sip-calculator) and compare it with your FD rate. If you want someone to map your FDs and SIPs to actual goals, I do a free portfolio review for investors in Jaipur and across India: [book a call](/book-free-consultation).
+Change the monthly amount, the years or the return in the [SIP calculator](/calculators/sip-calculator) and compare it with your FD rate. If you want to talk through your FDs and SIPs against actual goals, I work with investors in Jaipur and across India: [book an intro call](/book-intro-call).
 
 If your FD is maturing and you are thinking of moving it, the [lumpsum calculator](/calculators/lumpsum-calculator) shows what a one-time investment could grow to.
 

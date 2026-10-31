@@ -159,7 +159,7 @@ export const RiskQuiz: React.FC<{ onBook: () => void }> = ({ onBook }) => {
                   <div className="mt-7 flex flex-wrap gap-3">
                     <button onClick={onBook}
                       className="rounded-xl bg-[#E3B65C] hover:bg-[#EDC77A] text-[#0F2740] font-semibold px-6 py-3.5 transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                      Discuss this mix on a free call
+                      Talk this through on an intro call
                     </button>
                     <button onClick={restart}
                       className="inline-flex items-center gap-2 rounded-xl border border-white/25 hover:border-white/60 px-5 py-3.5 font-semibold cursor-pointer">

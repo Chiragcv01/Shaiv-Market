@@ -61,7 +61,7 @@ Most cases come down to one of these:
 
 ## Need a hand?
 
-If your KYC is stuck, or you're starting fresh and want it done in one sitting, I can walk you through it over video or at the office in Jaipur: [book a free call](/book-free-consultation). And if you want to know how much to invest once you're set up, start with the [required SIP calculator](/calculators/required-sip-calculator).
+If your KYC is stuck, or you're starting fresh and want it done in one sitting, I can walk you through it over video or at the office in Jaipur: [book an intro call](/book-intro-call). And if you want to know how much to invest once you're set up, start with the [required SIP calculator](/calculators/required-sip-calculator).
 
 ## Questions people ask
 

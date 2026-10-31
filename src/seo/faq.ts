@@ -12,8 +12,8 @@ export const HOME_FAQ: Faq[] = [
     a: 'Yes. Chirag Sharma holds AMFI Registration Number ARN-337289, valid until 13 August 2028. You can verify it on the official AMFI website (amfiindia.com) using the "Locate Distributor" search with the ARN.'
   },
   {
-    q: 'Do you charge a fee for the consultation?',
-    a: 'No. The first portfolio review call is free. As a mutual fund distributor, Shaiv Market is paid a commission by fund houses on regular plans; investors are not charged a separate advisory fee.'
+    q: 'Do you charge a fee?',
+    a: 'No. As a mutual fund distributor, Shaiv Market is paid a commission by fund houses on regular plans, which is included in the scheme expense ratio. Investors do not pay Shaiv Market any separate fee.'
   },
   {
     q: 'What is the difference between direct and regular mutual fund plans?',

@@ -74,7 +74,7 @@ Many retirees use two of the three together.
 
 ## Run your own numbers
 
-Try different corpus sizes and withdrawals in the [SWP calculator](/calculators/swp-calculator). If you're within a few years of retirement and want the buckets set up properly, I can help you plan it: [book a free call](/book-free-consultation).
+Try different corpus sizes and withdrawals in the [SWP calculator](/calculators/swp-calculator). If you're within a few years of retirement and want the buckets set up properly, I can help you plan it: [book an intro call](/book-intro-call).
 
 Before you set up the SWP, the [retirement calculator](/calculators/retirement-calculator) shows whether your corpus is big enough for the years ahead, and the [mutual fund tax calculator](/calculators/mutual-fund-tax-calculator) estimates the tax on each withdrawal.
 

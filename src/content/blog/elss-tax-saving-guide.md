@@ -59,7 +59,7 @@ If you are in the old regime and ELSS fits, start a monthly SIP in April instead
 
 ## Not sure which regime suits you?
 
-The choice depends on your full salary structure, rent, loans and insurance. Get your CA to run both regimes on your actual numbers. If you want help fitting ELSS or other funds into a goal plan once you've decided, I'm happy to look at it with you: [book a free call](/book-free-consultation).
+The choice depends on your full salary structure, rent, loans and insurance. Get your CA to run both regimes on your actual numbers. If you want help fitting ELSS or other funds into a goal plan once you've decided, I'm happy to look at it with you: [book an intro call](/book-intro-call).
 
 Want to compare the options with your own numbers? The [PPF calculator](/calculators/ppf-calculator) shows what the safe, tax-free route builds, and the [mutual fund tax calculator](/calculators/mutual-fund-tax-calculator) shows the tax when you eventually redeem ELSS units.
 

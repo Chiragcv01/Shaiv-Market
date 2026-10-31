@@ -41,6 +41,11 @@
   ],
   "redirects": [
     {
+      "source": "/book-free-consultation",
+      "destination": "/book-intro-call",
+      "permanent": true
+    },
+    {
       "source": "/embed/:slug",
       "destination": "/calculators/:slug",
       "permanent": true

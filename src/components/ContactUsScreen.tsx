@@ -127,7 +127,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                 )}
                 <button onClick={() => onNavigate('booking')}
                   className="rounded-xl bg-[#0F2740] hover:bg-[#1D4268] text-white font-semibold px-5 py-3 cursor-pointer">
-                  Book a free call instead
+                  Book an intro call instead
                 </button>
               </div>
               <button onClick={handleResetForm} className="text-sm text-[#43566B] underline underline-offset-4 cursor-pointer">Write another message</button>
@@ -293,7 +293,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                     Phone
                   </div>
                   <div className="text-base font-bold text-white mt-0.5">{siteSettings.supportPhone}</div>
-                  <div className="text-[11px] text-[#E4EAF0]">Mon to Fri, 8:30 AM – 6:30 PM IST</div>
+                  <div className="text-[11px] text-[#E4EAF0]">Mon–Fri 9 AM – 7 PM, Sat 10 AM – 2 PM IST</div>
                 </div>
               </div>
 

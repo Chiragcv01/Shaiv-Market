@@ -17,7 +17,7 @@ export const LumpsumCalculator: React.FC = () => {
       inputs={<>
         <SmartNumberInput id="ls-amount" label="One-time investment" value={amount} onChange={setAmount} min={1000} max={50000000} step={1000} isCurrency
           presets={[{ label: '₹1 L', value: 100000 }, { label: '₹5 L', value: 500000 }, { label: '₹25 L', value: 2500000 }]} />
-        <SmartNumberInput id="ls-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={30} step={0.5} suffix="%" />
+        <SmartNumberInput id="ls-ret" label="Expected return (yearly)" value={ret} onChange={setRet} min={1} max={15} step={0.5} suffix="%" />
         <SmartNumberInput id="ls-years" label="Investment period" value={years} onChange={setYears} min={1} max={40} step={1} suffix=" yrs" />
         <SmartNumberInput id="ls-infl" label="Inflation (to see real value)" value={infl} onChange={setInfl} min={0} max={12} step={0.5} suffix="%"
           helperText="Used only for the 'in today's money' figure." />

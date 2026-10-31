@@ -49,7 +49,7 @@ If your money earns less than inflation after tax, it is shrinking in real terms
 ### What will ₹1 lakh be worth in 10 years?
 At 6% inflation, ₹1 lakh in 10 years will buy what about ₹55,800 buys today. Put the other way, what costs ₹1 lakh today will cost about ₹1.79 lakh.
 
-### What inflation rate should I assume for financial planning in India?
+### What inflation rate should I assume for goal planning in India?
 5 to 6% for general expenses, and 8 to 10% for education and healthcare, which have tended to rise faster. Use the higher end when in doubt.
 
 ### How do I calculate the future value of money with inflation?

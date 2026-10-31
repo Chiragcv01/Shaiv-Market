@@ -52,13 +52,13 @@ Five years of delay costs roughly half the final amount. You can see this on the
 
 Be honest with yourself here. At 6% inflation, ₹1 crore in 20 years buys what about **₹31 lakh** buys today. Still a lot of money, but maybe not "never work again" money.
 
-So pick the number from the goal, not the other way round. Retirement, a child's education and a house each need their own target. The [goal planner](/calculators/goal-planner) adjusts for inflation for you.
+So pick the number from the goal, not the other way round. Retirement, a child's education and a house each need their own target. The [goal SIP calculator](/calculators/goal-planner) adjusts for inflation for you.
 
 ## Which funds?
 
 For a goal 15 to 20 years away, most people use a mix of diversified equity funds such as flexi-cap, large-and-mid-cap or index funds. Closer to the goal, the money gradually moves to safer debt or hybrid funds so a market fall in the final year doesn't wreck the plan.
 
-The right mix depends on your age, income stability and how you'd react to a 30% fall. That is a conversation, not a table, and I'm happy to have it with you: [book a free call](/book-free-consultation).
+The right mix depends on your age, income stability and how you'd react to a 30% fall. That is a conversation, not a table, and I'm happy to have it with you: [book an intro call](/book-intro-call).
 
 ## Try it
 

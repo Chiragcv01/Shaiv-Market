@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               whileTap={{ scale: 0.97 }}
               className="hidden sm:inline-flex items-center rounded-lg bg-[#E3B65C] hover:bg-[#EDC77A] text-[#0F2740] font-semibold text-sm px-4 py-2.5 cursor-pointer whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F2740]"
             >
-              Get a free quote
+              Start a SIP
             </motion.button>
 
             <button id="nav-mobile-menu-toggle" onClick={() => setMobileMenuOpen((v) => !v)}
@@ -258,7 +258,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <motion.div className="px-6 py-8 grid grid-cols-2 gap-3"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
               <button onClick={() => go('open-account')}
-                className="col-span-2 rounded-xl bg-[#E3B65C] text-[#0F2740] font-semibold py-3.5 cursor-pointer">Get a free quote</button>
+                className="col-span-2 rounded-xl bg-[#E3B65C] text-[#0F2740] font-semibold py-3.5 cursor-pointer">Start a SIP</button>
               {wa && (
                 <a href={`https://wa.me/${wa}?text=${encodeURIComponent('Hi Chirag, I would like to know more about investing with Shaiv Market.')}`}
                   target="_blank" rel="noreferrer"

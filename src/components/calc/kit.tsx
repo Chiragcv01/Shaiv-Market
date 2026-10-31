@@ -169,9 +169,9 @@ export const CalcCta: React.FC<{ text: string; whatsappText: string }> = ({ text
   <div className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl bg-[#FBF6EA] ring-1 ring-[#F3D58E] p-4">
     <p className="flex-1 text-sm text-[#43566B]">{text}</p>
     <div className="flex gap-2 shrink-0">
-      <a href="/book-free-consultation" onClick={(e) => { e.preventDefault(); navigateTo('/book-free-consultation'); }}
+      <a href="/book-intro-call" onClick={(e) => { e.preventDefault(); navigateTo('/book-intro-call'); }}
         className="inline-flex items-center gap-1.5 rounded-xl bg-[#0F2740] hover:bg-[#1D4268] text-white text-sm font-semibold px-4 py-2.5">
-        Free call <ArrowRight className="w-4 h-4" />
+        Book an intro call <ArrowRight className="w-4 h-4" />
       </a>
       <a href={`https://wa.me/919950653247?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noreferrer"
         className="inline-flex items-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-semibold px-4 py-2.5">

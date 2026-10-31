@@ -14,13 +14,13 @@ export const organization = {
   name: 'Shaiv Market',
   alternateName: 'Shaiv Market Financial Management',
   description:
-    'AMFI registered mutual fund distributor in Jaipur offering SIP planning, goal-based investing, portfolio reviews and paperless mutual fund onboarding across India.',
+    'AMFI registered mutual fund distributor in Jaipur offering SIP setup, goal-based SIPs and paperless mutual fund onboarding across India.',
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo-full.png`,
   image: `${SITE_URL}/images/chirag-sharma.jpg`,
   telephone: '+91-9950653247',
   email: 'marketlive45@gmail.com',
-  priceRange: 'Free consultation',
+  priceRange: 'No fee to investors (distributor commission on regular plans)',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '6th Floor, Bhamashah Techno Hub, Jhalana Doongari',
@@ -32,18 +32,17 @@ export const organization = {
   areaServed: [{ '@type': 'City', name: 'Jaipur' }, { '@type': 'State', name: 'Rajasthan' }, { '@type': 'Country', name: 'India' }],
   founder: { '@id': PERSON_ID },
   identifier: { '@type': 'PropertyValue', propertyID: 'AMFI Registration Number (ARN)', value: 'ARN-337289' },
-  knowsAbout: ['Mutual funds', 'Systematic Investment Plan (SIP)', 'Systematic Withdrawal Plan (SWP)', 'Goal-based financial planning', 'Retirement planning', 'ELSS tax saving funds'],
+  knowsAbout: ['Mutual funds', 'Systematic Investment Plan (SIP)', 'Systematic Withdrawal Plan (SWP)', 'Goal-based SIPs', 'Retirement planning', 'ELSS tax saving funds'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Mutual fund distribution services',
     itemListElement: [
-      'Free portfolio review',
-      'SIP planning and setup',
-      'Goal-based investment planning',
-      'Retirement and SWP planning',
+      'SIP setup, including step-up SIPs',
+      'Goal-based SIPs',
+      'Retirement income through SWP',
       'Paperless KYC and mutual fund account opening',
-      'Annual portfolio review and rebalancing'
-    ].map((name) => ({ '@type': 'Offer', price: '0', priceCurrency: 'INR', itemOffered: { '@type': 'Service', name } }))
+      'Yearly check-in for existing investors'
+    ].map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } }))
   },
   contactPoint: {
     '@type': 'ContactPoint',

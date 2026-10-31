@@ -96,7 +96,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </h2>
 
                 <p className="text-sm text-[#43566B] leading-relaxed">
-                  {siteSettings.founderSectionSubheading || siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.`}
+                  {siteSettings.founderSectionSubheading || siteSettings.founderBio || `${siteSettings.companyName} is led by certified professionals registered with AMFI. We provide SIP setup, paperless KYC and ongoing service for families and professionals across India.`}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -281,7 +281,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               {siteSettings.consultationHeading || 'Unsure which portfolio matches your risk profile?'}
             </h2>
             <p className="text-sm sm:text-base text-[#E3ECF5] leading-relaxed">
-              {siteSettings.consultationSubheading || 'Book a free 1-on-1 call with our AMFI registered distributor. We will review your retirement goals and portfolio allocation.'}
+              {siteSettings.consultationSubheading || 'Book a 20-minute intro call with our AMFI registered distributor. Your goal, a risk-profile check and paperless KYC.'}
             </p>
           </div>
 

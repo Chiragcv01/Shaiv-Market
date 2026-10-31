@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 
 const STEPS = [
-  { title: 'A free 15-minute call', text: 'We talk about your goals, income, existing investments and what keeps you up at night about money.' },
+  { title: 'A 20-minute intro call', text: 'We talk about your goal, timeline, monthly amount, existing investments and emergency reserve.' },
   { title: 'Your risk profile and goal map', text: 'Each goal gets a target, a date and a monthly amount. You see the numbers before you commit to anything.' },
   { title: 'Paperless KYC and account', text: 'Aadhaar and PAN based KYC, done on your phone. Money goes straight from your bank to the fund house.' },
   { title: 'SIPs start, reviews every year', text: 'Your SIPs run on autopilot. Once a year, or whenever life changes, we review and rebalance together.' }

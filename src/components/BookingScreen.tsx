@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActiveScreen } from '../types';
 import { useApp } from '../context/AppContext';
 import {
@@ -43,9 +43,12 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
       startingDayOffset: first.getDay()
     };
   });
-  const tomorrowInMonth0 = today.getDate() + 1 <= months[0].daysInMonth;
-  const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(tomorrowInMonth0 ? 0 : 1);
-  const [selectedDate, setSelectedDate] = useState<number>(tomorrowInMonth0 ? today.getDate() + 1 : 1);
+  // Calls run Mon–Sat; Sunday is closed. First bookable day is tomorrow (or Monday if that is a Sunday).
+  const firstSlotDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+  if (firstSlotDay.getDay() === 0) firstSlotDay.setDate(firstSlotDay.getDate() + 1);
+  const firstInMonth0 = firstSlotDay.getMonth() === today.getMonth();
+  const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(firstInMonth0 ? 0 : 1);
+  const [selectedDate, setSelectedDate] = useState<number>(firstSlotDay.getDate());
   const [slideDir, setSlideDir] = useState(1);
   const [selectedTime, setSelectedTime] = useState<string>('11:30 AM');
   const [preferredMode, setPreferredMode] = useState<'video' | 'phone' | 'whatsapp'>('video');
@@ -63,7 +66,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
 
   const currentMonth = months[currentMonthIndex];
 
-  const timeSlots = [
+  const weekdaySlots = [
     '09:00 AM',
     '10:00 AM',
     '11:30 AM',
@@ -73,12 +76,20 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
     '05:30 PM',
     '07:00 PM'
   ];
+  // Saturdays: 10 AM – 2 PM, for owners and salaried investors who are busy on weekdays
+  const saturdaySlots = ['10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM'];
+  const weekdayOf = (day: number) => new Date(currentMonth.year, currentMonth.month, day).getDay();
+  const isSaturday = weekdayOf(selectedDate) === 6;
+  const timeSlots = isSaturday ? saturdaySlots : weekdaySlots;
+  useEffect(() => {
+    if (!timeSlots.includes(selectedTime)) setSelectedTime(timeSlots[0]);
+  }, [isSaturday]);
 
   const handleNextMonth = () => {
     if (currentMonthIndex < months.length - 1) {
       setSlideDir(1);
       setCurrentMonthIndex(currentMonthIndex + 1);
-      setSelectedDate(1);
+      setSelectedDate(new Date(months[currentMonthIndex + 1].year, months[currentMonthIndex + 1].month, 1).getDay() === 0 ? 2 : 1);
     }
   };
 
@@ -86,7 +97,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
     if (currentMonthIndex > 0) {
       setSlideDir(-1);
       setCurrentMonthIndex(currentMonthIndex - 1);
-      setSelectedDate(currentMonthIndex - 1 === 0 ? Math.min(today.getDate() + 1, months[0].daysInMonth) : 1);
+      setSelectedDate(currentMonthIndex - 1 === 0 && firstInMonth0 ? firstSlotDay.getDate() : 1);
     }
   };
 
@@ -124,12 +135,12 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
     if (!m) return '';
     let h = parseInt(m[1], 10) % 12; if (/pm/i.test(m[3])) h += 12;
     const start = new Date(Date.UTC(currentMonth.year, currentMonth.month, selectedDate, h, parseInt(m[2], 10)) - 330 * 60000);
-    const end = new Date(start.getTime() + 30 * 60000);
+    const end = new Date(start.getTime() + 20 * 60000);
     const f = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Free portfolio call with Chirag Sharma (Shaiv Market)')}&dates=${f(start)}/${f(end)}&details=${encodeURIComponent(`Topic: ${topic}\nMode: ${preferredMode}\nRef: ${bookingRef}`)}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Intro call with Chirag Sharma (Shaiv Market)')}&dates=${f(start)}/${f(end)}&details=${encodeURIComponent(`Topic: ${topic}\nMode: ${preferredMode}\nRef: ${bookingRef}`)}`;
   })();
   const waNumber = (siteSettings.whatsappSupportNumber || '').replace(/[^0-9]/g, '');
-  const waConfirm = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hi Chirag, I booked a free call on shaivmarket.com.\nName: ${clientName}\nDate: ${dateLabel}, ${selectedTime}\nMode: ${preferredMode}\nTopic: ${topic}\nRef: ${bookingRef}`)}`;
+  const waConfirm = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hi Chirag, I booked an intro call on shaivmarket.com.\nName: ${clientName}\nDate: ${dateLabel}, ${selectedTime}\nMode: ${preferredMode}\nTopic: ${topic}\nRef: ${bookingRef}`)}`;
 
   return (
     <div id="booking-screen" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 md:py-16">
@@ -145,7 +156,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
         </h1>
         <p className="font-display text-2xl text-[#3F6E96] mb-2">Pick a time. Chirag calls you.</p>
         <p className="text-base sm:text-lg text-[#43566B] max-w-2xl mx-auto leading-relaxed">
-          A free 30-minute call to review your portfolio, set your SIP goals and check your asset mix. No charges, no obligation.
+          A 20-minute intro call: your goal, a risk-profile check, category options and paperless KYC. SIP set up in one call, no obligation.
         </p>
 
         {/* Direct Calendly Integration Option (Configured by Admin) */}
@@ -169,7 +180,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
       {/* Main Booking Interface Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Column: Advisory Desk Highlights & Inclusions */}
+        {/* Left Column: Highlights & Inclusions */}
         <div className="lg:col-span-4 flex flex-col gap-5">
           <div className="bg-white border border-[#D3DCE6] rounded-2xl p-6 institutional-shadow space-y-5">
             <div className="flex items-center gap-3 pb-4 border-b border-[#E4EAF0]">
@@ -352,7 +363,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     {Array.from({ length: currentMonth.startingDayOffset }, (_, i) => <span key={`b-${i}`} />)}
                     {Array.from({ length: currentMonth.daysInMonth }, (_, i) => i + 1).map((dayNumber) => {
                       const isSelected = selectedDate === dayNumber;
-                      const isPast = currentMonthIndex === 0 && dayNumber <= today.getDate();
+                      const isPast = (currentMonthIndex === 0 && dayNumber <= today.getDate()) || weekdayOf(dayNumber) === 0;
                       return (
                         <motion.button
                           key={dayNumber}
@@ -385,6 +396,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <Clock className="w-4 h-4 text-[#8A6420]" />
                     <span>2. Select Time Slot</span>
                   </h3>
+                  <p className="-mt-2 mb-3 text-xs text-[#6B7C8F]">Mon–Fri 9 AM – 7 PM · Sat 10 AM – 2 PM · Sunday closed</p>
 
                   <div className="grid grid-cols-2 gap-2">
                     {timeSlots.map((slot) => {

@@ -313,17 +313,17 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                   value={targetReturnRate}
                   onChange={(val) => setTargetReturnRate(val)}
                   min={8}
-                  max={22}
+                  max={15}
                   step={0.5}
                   suffix="%"
                   icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
                   minLabel="8% (Debt)"
-                  maxLabel="22% (High Alpha)"
+                  maxLabel="15%"
                   themeColor="green"
                   presets={[
+                    { label: '10%', value: 10 },
                     { label: '12%', value: 12 },
-                    { label: '14%', value: 14 },
-                    { label: '16%', value: 16 }
+                    { label: '15%', value: 15 }
                   ]}
                 />
               </div>
@@ -437,18 +437,18 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
                 value={expectedReturnRate}
                 onChange={(val) => setExpectedReturnRate(val)}
                 min={6}
-                max={24}
+                max={15}
                 step={0.5}
                 suffix="%"
                 icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
                 minLabel="6% (FD/Debt)"
-                midLabel="14% (Equity MF)"
-                maxLabel="24% (Alpha)"
+                midLabel="12% (Equity, assumed)"
+                maxLabel="15%"
                 themeColor="green"
                 presets={[
-                  { label: '10% Conservative', value: 10 },
-                  { label: '13% Moderate', value: 13 },
-                  { label: '15% Aggressive', value: 15 }
+                  { label: '10%', value: 10 },
+                  { label: '12%', value: 12 },
+                  { label: '15%', value: 15 }
                 ]}
               />
 

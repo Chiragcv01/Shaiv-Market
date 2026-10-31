@@ -18,8 +18,8 @@ export const NotificationModal: React.FC<NotificationModalProps> = ({
   const notifications = [
     {
       id: '1',
-      title: 'Free Portfolio Review',
-      desc: 'Book a free 1-on-1 call to review your goals and existing mutual fund portfolio.',
+      title: 'Book an Intro Call',
+      desc: 'A 20-minute call to set up your SIP: goal, risk profile, category options and paperless KYC.',
       time: 'Now open',
       icon: Calendar,
       action: 'booking' as ActiveScreen
@@ -27,7 +27,7 @@ export const NotificationModal: React.FC<NotificationModalProps> = ({
     {
       id: '2',
       title: 'Plan Your Goals',
-      desc: 'Use the SIP, SWP, FIRE and goal planner calculators to see what you need to invest.',
+      desc: 'Use the SIP, SWP, FIRE and goal SIP calculators to see what you need to invest.',
       time: 'Tools',
       icon: TrendingUp,
       action: 'calculators' as ActiveScreen

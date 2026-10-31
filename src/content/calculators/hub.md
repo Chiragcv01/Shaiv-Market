@@ -12,7 +12,7 @@ updated: 2026-10-23
 | What if I raise my SIP every year? | [Step-up SIP calculator](/calculators/step-up-sip-calculator) |
 | I have a bonus or FD maturity to invest once | [Lumpsum calculator](/calculators/lumpsum-calculator) |
 | What does starting next year really cost me? | [Cost of delay calculator](/calculators/sip-delay-cost-calculator) |
-| My child's college, a house, a car | [Goal planner](/calculators/goal-planner) |
+| My child's college, a house, a car | [Goal SIP calculator](/calculators/goal-planner) |
 | What will this cost in 15 years? | [Inflation calculator](/calculators/inflation-calculator) |
 | How much do I need to retire? | [Retirement calculator](/calculators/retirement-calculator) |
 | Can I retire at 45? | [FIRE calculator](/calculators/fire-calculator) |

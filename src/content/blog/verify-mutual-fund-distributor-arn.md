@@ -54,7 +54,7 @@ Raise it first with the fund house. If it isn't resolved, you can complain to SE
 
 ## Check mine
 
-I'm Chirag Sharma, AMFI registered mutual fund distributor, **ARN-337289**, valid until 13 August 2028, based in Jaipur. Please look it up on the AMFI website before you invest with me. You'll find my NISM certificate and ARN card on the [about page](/about). If you want help reading your CAS or checking an existing distributor, [book a free call](/book-free-consultation).
+I'm Chirag Sharma, AMFI registered mutual fund distributor, **ARN-337289**, valid until 13 August 2028, based in Jaipur. Please look it up on the AMFI website before you invest with me. You'll find my NISM certificate and ARN card on the [about page](/about). If you want help reading your CAS or checking an existing distributor, [book an intro call](/book-intro-call).
 
 ## Questions people ask
 

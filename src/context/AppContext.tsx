@@ -80,10 +80,10 @@ interface AppContextType {
 
 const DEFAULT_BANNER: SiteBanner = {
   enabled: true,
-  badgeText: 'AMFI Certified MFD',
-  text: 'Goal-Based Mutual Fund Portfolio Construction & Paperless Onboarding — Free Portfolio Review Available.',
-  linkText: 'Explore Schemes',
-  linkTarget: 'invest',
+  badgeText: 'ARN-337289',
+  text: 'Chirag Sharma · AMFI-registered Mutual Fund Distributor · Jhalana, Jaipur',
+  linkText: 'Book an intro call',
+  linkTarget: 'booking',
   isExternalLink: false,
   themeColor: 'blue'
 };
@@ -121,30 +121,30 @@ const DEFAULT_SETTINGS: SiteSettings = {
   // Homepage Content & Headings CMS Defaults
   heroBadgeText: 'AMFI Registered Mutual Fund Distributor',
   heroHeading: 'Goal-based mutual fund investing, made simple.',
-  heroSubheading: 'Plan every goal with clear numbers. Shaiv Market helps you choose the right mutual fund schemes, start disciplined SIPs, and stay on track with regular portfolio reviews.',
+  heroSubheading: 'Plan every goal with clear numbers. Shaiv Market helps you choose the right mutual fund schemes, start disciplined SIPs, and stay on track with a person in Jaipur you can actually meet.',
   heroPrimaryCtaText: 'Start Investing Now',
   heroSecondaryCtaText: 'Explore Calculators',
   heroFloatingCardTitle: 'AMFI Registered MFD',
   heroFloatingCardValue: 'ARN-337289',
   heroTrustText: 'Personal guidance from Jaipur for investors across India.',
   founderSectionHeading: 'Personal, Goal-Based Mutual Fund Guidance',
-  founderSectionSubheading: 'Shaiv Market is led by Chirag Sharma, an AMFI Registered Mutual Fund Distributor (ARN-337289). We provide personalized mutual fund distribution, portfolio review, and disciplined SIP asset allocation for families and professionals across India.',
+  founderSectionSubheading: 'Shaiv Market is led by Chirag Sharma, an AMFI Registered Mutual Fund Distributor (ARN-337289). We set up SIPs in one call, handle paperless KYC, and stay with families and professionals across India through every market phase.',
   calcHeading: 'Calculate Your Investment Potential',
   calcSubheading: 'Estimate how your SIP or lumpsum investment could grow over time. Illustrative only, not a guarantee of returns.',
   testimonialBadge: 'Client Reviews',
   testimonialHeading: 'What Our Clients Say About Shaiv Market',
   insightsBadge: 'Investor Education',
   insightsHeading: 'Recent Wealth Strategies & Dispatches',
-  consultationBadge: 'Free Portfolio Review',
-  consultationHeading: 'Unsure which portfolio matches your risk profile?',
-  consultationSubheading: 'Book a free 1-on-1 call with Chirag Sharma, AMFI Registered Mutual Fund Distributor. We will review your goals and current mutual fund portfolio.',
-  consultationCtaText: 'Book Free Call',
-  footerAboutText: 'AMFI Registered Mutual Fund Distributor (ARN-337289) dedicated to disciplined asset allocation, goal-based financial planning, and curated fund portfolios.',
+  consultationBadge: 'SIP setup in one call',
+  consultationHeading: 'Your SIP, set up in one call, by someone in Jaipur you can actually meet.',
+  consultationSubheading: 'Book a 20-minute intro call with Chirag Sharma, AMFI Registered Mutual Fund Distributor (ARN-337289). Your goal, a risk-profile check, category options and paperless KYC.',
+  consultationCtaText: 'Book an intro call',
+  footerAboutText: 'AMFI Registered Mutual Fund Distributor (ARN-337289) in Jaipur. SIP setup, paperless KYC and goal-based SIPs for investors across India.',
   footerCopyrightText: '© 2026 Shaiv Market. All rights reserved. Mutual fund investments are subject to market risks.',
   // About Us, Founder & AMFI Certification Profile
   founderName: 'Chirag Sharma',
   founderTitle: 'Founder & AMFI Registered Mutual Fund Distributor',
-  founderBio: 'Chirag Sharma is an AMFI Registered Mutual Fund Distributor (ARN-337289) based in Jaipur. He helps individuals and families plan goals such as retirement, children\'s education and wealth creation through disciplined SIPs, suitable scheme selection and regular portfolio reviews.',
+  founderBio: 'Chirag Sharma is an AMFI Registered Mutual Fund Distributor (ARN-337289) based in Jaipur. He helps individuals and families plan goals such as retirement, children\'s education and wealth creation through disciplined SIPs, paperless onboarding and a yearly check-in.',
   founderExperience: 'Based in Jaipur',
   founderQualification: 'NISM Series V-A Certified Mutual Fund Distributor',
   founderPhotoUrl: '/images/chirag-sharma.jpg',
@@ -197,7 +197,7 @@ Submitting an investment interest form connects you directly with our mutual fun
 
 const DEFAULT_NAV_ITEMS: CustomNavItem[] = [
   { id: 'nav-calc', label: 'SIP Calculators', screenId: 'calculators', isVisible: true, order: 1 },
-  { id: 'nav-insights', label: 'Goal Planner', screenId: 'insights', isVisible: true, order: 2 },
+  { id: 'nav-insights', label: 'Goal SIP Calculator', screenId: 'insights', isVisible: true, order: 2 },
   { id: 'nav-about', label: 'About Us', screenId: 'about', isVisible: true, order: 3 },
   { id: 'nav-testimonials', label: 'Client Reviews', screenId: 'testimonials', isVisible: false, order: 4 },
   { id: 'nav-booking', label: 'Book a Call', screenId: 'booking', isVisible: true, order: 5 },
@@ -306,7 +306,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Nav items state
   const [navItems, setNavItems] = useState<CustomNavItem[]>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v3_nav_items');
+      const saved = localStorage.getItem('shaivmarket_v4_nav_items');
       if (saved) {
         const parsed: CustomNavItem[] = JSON.parse(saved);
         const filtered = parsed.filter(item => (item.screenId as string) !== 'invest' && item.id !== 'nav-invest');
@@ -328,7 +328,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Banner state
   const [banner, setBanner] = useState<SiteBanner>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v3_banner');
+      const saved = localStorage.getItem('shaivmarket_v4_banner');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_BANNER;
@@ -337,7 +337,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Site Settings
   const [siteSettings, setSiteSettings] = useState<SiteSettings>(() => {
     try {
-      const saved = localStorage.getItem('shaivmarket_v3_settings');
+      const saved = localStorage.getItem('shaivmarket_v4_settings');
       if (saved) return JSON.parse(saved);
     } catch {}
     return DEFAULT_SETTINGS;
@@ -406,19 +406,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v4_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v4_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v4_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
@@ -446,7 +446,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_nav_items', JSON.stringify(navItems));
+      localStorage.setItem('shaivmarket_v4_nav_items', JSON.stringify(navItems));
     } catch {}
   }, [navItems]);
 
@@ -458,13 +458,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_banner', JSON.stringify(banner));
+      localStorage.setItem('shaivmarket_v4_banner', JSON.stringify(banner));
     } catch {}
   }, [banner]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('shaivmarket_v3_settings', JSON.stringify(siteSettings));
+      localStorage.setItem('shaivmarket_v4_settings', JSON.stringify(siteSettings));
     } catch {}
   }, [siteSettings]);
 

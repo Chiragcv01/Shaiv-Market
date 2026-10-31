@@ -255,7 +255,7 @@ export const CompoundingPlayground: React.FC<{
         <div className="flex flex-wrap gap-3">
           <button onClick={onBook}
             className="rounded-xl bg-[#E3B65C] hover:bg-[#EDC77A] active:scale-[0.98] text-[#0F2740] font-semibold px-6 py-3.5 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-            Book a free call
+            Book an intro call
           </button>
           <button onClick={onPlan}
             className="rounded-xl border border-white/25 hover:border-white/60 hover:bg-white/5 text-white font-semibold px-6 py-3.5 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">

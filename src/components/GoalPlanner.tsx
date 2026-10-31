@@ -290,17 +290,17 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
               value={expectedReturn}
               onChange={(val) => setExpectedReturn(val)}
               min={6}
-              max={22}
+              max={15}
               step={0.5}
               suffix="%"
               icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
               minLabel="6% (Debt)"
-              maxLabel="22% (Equity)"
+              maxLabel="15%"
               themeColor="green"
               presets={[
                 { label: '10% (Hybrid)', value: 10 },
                 { label: '13% (Equity)', value: 13 },
-                { label: '15% (Midcap)', value: 15 }
+                { label: '15%', value: 15 }
               ]}
             />
 

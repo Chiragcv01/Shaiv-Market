@@ -35,7 +35,7 @@ export const RetirementCalculator: React.FC = () => {
           helperText="Mutual funds, EPF, PPF and NPS you will use for retirement." />
         <SmartNumberInput id="rt-infl" label="Inflation" value={inflation} onChange={setInflation} min={2} max={12} step={0.5} suffix="%" />
         <div className="grid grid-cols-1 gap-4">
-          <SmartNumberInput id="rt-pre" label="Return till retirement" value={preRet} onChange={setPreRet} min={4} max={18} step={0.5} suffix="%" />
+          <SmartNumberInput id="rt-pre" label="Return till retirement" value={preRet} onChange={setPreRet} min={4} max={15} step={0.5} suffix="%" />
           <SmartNumberInput id="rt-post" label="Return after retirement" value={postRet} onChange={setPostRet} min={3} max={12} step={0.5} suffix="%" />
         </div>
         <SmartNumberInput id="rt-step" label="Yearly SIP step-up" value={stepUp} onChange={setStepUp} min={0} max={20} step={1} suffix="%"

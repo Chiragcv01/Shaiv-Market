@@ -61,7 +61,7 @@ So the right question is not "is a distributor free?" It is "is the help worth t
 
 Shaiv Market is my practice. I meet investors at our office at 6th Floor, Bhamashah Techno Hub, Jhalana Doongari, and I work with people across Jaipur, from Malviya Nagar and Mansarovar to Vaishali Nagar, Jagatpura and Sanganer. Because KYC is paperless, I also work with investors in other cities over video and WhatsApp.
 
-The first call is a free portfolio review. Bring whatever you hold today, even if it is one ELSS fund from three years ago, and we will map it against your goals. You can [book a slot here](/book-free-consultation) or check my credentials on the [about page](/about).
+The first step is a 20-minute intro call. Bring whatever you hold today, even if it is one ELSS fund from three years ago, and we will talk through your goals. You can [book a slot here](/book-intro-call) or check my credentials on the [about page](/about).
 
 If you just want to see the numbers first, try the [required SIP calculator](/calculators/required-sip-calculator). Most people are surprised how small the monthly amount is when they start early.
 

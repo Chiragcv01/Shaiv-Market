@@ -4,7 +4,7 @@ answer: "A goal that costs ₹20 lakh today, like a child's college degree, will
 related: child-education-sip-plan, sip-for-1-crore, sip-vs-fd
 updated: 2026-10-23
 ---
-## How to use the goal planner
+## How to use the goal SIP calculator
 
 1. **Goal cost in today's money**: what the goal would cost if you bought it today. A four-year engineering degree, a home down payment, a wedding budget.
 2. **Years to the goal**.

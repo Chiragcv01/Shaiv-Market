@@ -347,18 +347,18 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                 value={expectedMfReturn}
                 onChange={(val) => setExpectedMfReturn(val)}
                 min={9.0}
-                max={16.0}
+                max={15.0}
                 step={0.5}
                 suffix="%"
                 icon={<TrendingUp className="w-4 h-4 text-[#8A6420]" />}
-                minLabel="9% (Conservative)"
-                midLabel="13% (Equity Average)"
-                maxLabel="16% (High Alpha)"
+                minLabel="9%"
+                midLabel="12% (Equity, assumed)"
+                maxLabel="15%"
                 themeColor="green"
                 presets={[
                   { label: '11% (Balanced)', value: 11 },
                   { label: '13% (Flexicap)', value: 13 },
-                  { label: '15% (Midcap)', value: 15 }
+                  { label: '15%', value: 15 }
                 ]}
               />
 
