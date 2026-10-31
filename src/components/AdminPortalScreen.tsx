@@ -1744,7 +1744,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                         className="w-full px-3 py-1.5 border border-[#D3DCE6] rounded-lg text-xs bg-white"
                       >
                         <option value="calculators">Calculators</option>
-                        <option value="insights">Goal Planner & Insights</option>
+                        <option value="insights">Goal SIP Calculator & Insights</option>
                         <option value="about">About Us</option>
                         <option value="testimonials">Client Reviews</option>
                         <option value="booking">Book Advisory</option>
@@ -1899,7 +1899,7 @@ export const AdminPortalScreen: React.FC<AdminPortalScreenProps> = ({ onNavigate
                   >
                     <option value="insights">Holdings & Insights</option>
                     <option value="invest">Mutual Funds Explorer</option>
-                    <option value="booking">Book Advisory Session</option>
+                    <option value="booking">Book an Intro Call</option>
                     <option value="calculators">Calculators</option>
                   </select>
                 </div>

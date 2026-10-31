@@ -80,8 +80,8 @@ interface AppContextType {
 
 const DEFAULT_BANNER: SiteBanner = {
   enabled: true,
-  badgeText: 'ARN-337289',
-  text: 'Chirag Sharma · AMFI-registered Mutual Fund Distributor · Jhalana, Jaipur',
+  badgeText: 'AMFI Registered',
+  text: 'Chirag Sharma · AMFI-registered Mutual Fund Distributor · ARN-337289',
   linkText: 'Book an intro call',
   linkTarget: 'booking',
   isExternalLink: false,

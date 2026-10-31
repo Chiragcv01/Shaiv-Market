@@ -50,7 +50,7 @@ const WEALTH_TOOLS: ToolMeta[] = [
   },
   {
     id: 'goal',
-    label: 'Goal Planner',
+    label: 'Goal SIP Calculator',
     shortLabel: 'Life Goals',
     icon: Sparkles,
     tagline: 'Education, Home & Retirement Roadmaps'

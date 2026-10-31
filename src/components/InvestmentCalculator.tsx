@@ -263,7 +263,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
               <div className="p-3.5 bg-[#E3ECF5]/60 border border-[#C9DAEA] rounded-xl flex items-start gap-2.5">
                 <Target className="w-5 h-5 text-[#0F2740] shrink-0 mt-0.5" />
                 <div className="text-xs text-[#0F2740] leading-relaxed">
-                  <span className="font-bold">Reverse Goal Planner:</span> Set your dream wealth target (e.g. ₹1 Crore, ₹50 Lakhs) and time frame. We compute the exact monthly SIP amount needed to hit your milestone!
+                  <span className="font-bold">Target SIP:</span> Set your dream wealth target (e.g. ₹1 Crore, ₹50 Lakhs) and time frame. We compute the exact monthly SIP amount needed to hit your milestone!
                 </div>
               </div>
 

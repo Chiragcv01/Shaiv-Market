@@ -166,10 +166,10 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
       <div className="p-6 bg-[#F6F8FB] border-b border-[#D3DCE6]">
         <div className="inline-flex items-center gap-1.5 bg-[#E3ECF5] text-[#0F2740] px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-1">
           <Target className="w-3.5 h-3.5" />
-          Goal-Based Financial Architecture
+          Goal-Based SIPs
         </div>
         <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F2740]">
-          Inflation-Adjusted Life Goal Planner
+          Goal SIP Calculator (Inflation-Adjusted)
         </h3>
         <p className="text-xs text-[#43566B] mt-0.5 max-w-3xl">
           Account for education, healthcare, and lifestyle inflation. Get the monthly SIP each goal needs, in future rupees.
