@@ -275,10 +275,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
           <div className="max-w-xl space-y-3 z-10">
             <span className="bg-[#E3ECF5] text-[#0A1D30] text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
-              {siteSettings.consultationBadge || 'Free Strategy Session'}
+              {siteSettings.consultationBadge || 'SIP setup in one call'}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
-              {siteSettings.consultationHeading || 'Unsure which portfolio matches your risk profile?'}
+              {siteSettings.consultationHeading || 'Your SIP, set up in one call, by someone in Jaipur you can actually meet.'}
             </h2>
             <p className="text-sm sm:text-base text-[#E3ECF5] leading-relaxed">
               {siteSettings.consultationSubheading || 'Book a 20-minute intro call with our AMFI registered distributor. Your goal, a risk-profile check and paperless KYC.'}
@@ -291,7 +291,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
-              <span>{siteSettings.consultationCtaText || 'Book Expert Session'}</span>
+              <span>{siteSettings.consultationCtaText || 'Book an intro call'}</span>
             </button>
             {siteSettings.enableCalendlyBooking && siteSettings.calendlyUrl && (
               <a

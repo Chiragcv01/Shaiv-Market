@@ -61,7 +61,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
   const [clientName, setClientName] = useState<string>(currentUser?.name || '');
   const [clientEmail, setClientEmail] = useState<string>(currentUser?.email || '');
   const [clientPhone, setClientPhone] = useState<string>(currentUser?.phone || '');
-  const [topic, setTopic] = useState<string>('Portfolio Growth & Risk Mitigation');
+  const [topic, setTopic] = useState<string>('Start my first SIP');
   const [notes, setNotes] = useState<string>('');
 
   const currentMonth = months[currentMonthIndex];
@@ -152,7 +152,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
           <span>AMFI Registered Mutual Fund Distributor ({siteSettings.sebiRegNumber || 'ARN-337289'})</span>
         </div>
         <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-[#0F2740] leading-[1.05] mb-3">
-          Book a free mutual fund consultation
+          Book an intro call
         </h1>
         <p className="font-display text-2xl text-[#3F6E96] mb-2">Pick a time. Chirag calls you.</p>
         <p className="text-base sm:text-lg text-[#43566B] max-w-2xl mx-auto leading-relaxed">
@@ -200,7 +200,7 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
 
             <div className="space-y-3 text-xs text-[#43566B]">
               <p className="font-semibold text-[#13263B]">
-                What is covered in your personalized session:
+                What happens in the 20-minute intro call:
               </p>
               
               <div className="space-y-2.5">
@@ -209,8 +209,8 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <Check className="w-3 h-3 text-[#8A6420]" />
                   </span>
                   <div>
-                    <strong className="text-[#13263B] block">Portfolio Health & Overlap Check</strong>
-                    <span>Identify duplicate stock holdings and trim redundant expense ratios.</span>
+                    <strong className="text-[#13263B] block">Disclosure & Your Goal</strong>
+                    <span>How I am paid as a distributor, then your goal, timeline, monthly amount and emergency reserve.</span>
                   </div>
                 </div>
 
@@ -219,8 +219,8 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <Check className="w-3 h-3 text-[#8A6420]" />
                   </span>
                   <div>
-                    <strong className="text-[#13263B] block">Goal-Based SIP Roadmapping</strong>
-                    <span>Tailored compounding models for retirement, wealth creation, or children&apos;s education.</span>
+                    <strong className="text-[#13263B] block">Risk Profile</strong>
+                    <span>The fund house / platform risk questionnaire, so the category suits you.</span>
                   </div>
                 </div>
 
@@ -229,8 +229,8 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <Check className="w-3 h-3 text-[#8A6420]" />
                   </span>
                   <div>
-                    <strong className="text-[#13263B] block">Risk Profile & Asset Allocation</strong>
-                    <span>Balance large cap, mid cap, small cap, and debt exposure.</span>
+                    <strong className="text-[#13263B] block">Category Options</strong>
+                    <span>2–3 categories that fit, explained at assumed rates. No guaranteed returns.</span>
                   </div>
                 </div>
 
@@ -239,8 +239,8 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     <Check className="w-3 h-3 text-[#8A6420]" />
                   </span>
                   <div>
-                    <strong className="text-[#13263B] block">100% Free & Confidential</strong>
-                    <span>No consultation charges. Pure client-first guidance.</span>
+                    <strong className="text-[#13263B] block">Paperless KYC & SIP Date</strong>
+                    <span>Aadhaar + PAN KYC link, SIP date set to your salary day. 10-minute screen-share help if needed.</span>
                   </div>
                 </div>
               </div>
@@ -527,19 +527,20 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
 
                   <div>
                     <label className="block text-xs font-bold text-[#43566B] mb-1">
-                      Consultation Focus / Topic
+                      What would you like to do?
                     </label>
                     <select
                       value={topic}
                       onChange={(e) => setTopic(e.target.value)}
                       className="w-full px-3 py-2 bg-[#F6F8FB] border border-[#D3DCE6] rounded-xl text-xs focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#0F2740]"
                     >
-                      <option value="Portfolio Growth & Risk Mitigation">Portfolio Growth & Risk Mitigation</option>
-                      <option value="Portfolio Overlap & Duplicate Check">Portfolio Overlap & Duplicate Check</option>
-                      <option value="New SIP Allocation & Goal Planning">New SIP Allocation & Goal Planning</option>
-                      <option value="Retirement Wealth Roadmapping">Retirement Wealth Roadmapping</option>
-                      <option value="Tax Saving & ELSS Optimization">Tax Saving & ELSS Optimization</option>
-                      <option value="Lump Sum Deployment Strategy">Lump Sum Deployment Strategy</option>
+                      <option value="Start my first SIP">Start my first SIP</option>
+                      <option value="Step up an existing SIP">Step up an existing SIP</option>
+                      <option value="SIP for a goal (child, home, car)">SIP for a goal (child, home, car)</option>
+                      <option value="Retirement income (SWP)">Retirement income (SWP)</option>
+                      <option value="Tax saving (ELSS)">Tax saving (ELSS)</option>
+                      <option value="Surplus cash / lumpsum">Surplus cash / lumpsum</option>
+                      <option value="Family member's investments">Family member's investments</option>
                     </select>
                   </div>
                 </div>
@@ -564,10 +565,10 @@ export const BookingScreen: React.FC<BookingScreenProps> = ({ onNavigate }) => {
                     className="w-full bg-[#8A6420] hover:bg-[#6F501A] text-white font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow-md cursor-pointer"
                   >
                     <CheckCircle2 className="w-5 h-5" />
-                    <span>Confirm 1-on-1 Consultation for {currentMonth.name.split(' ')[0]} {selectedDate} at {selectedTime}</span>
+                    <span>Confirm intro call for {currentMonth.name.split(' ')[0]} {selectedDate} at {selectedTime}</span>
                   </button>
                   <p className="text-center text-[11px] text-[#6B7C8F] mt-2">
-                    No consultation charges. You will receive an instant confirmation on WhatsApp and Email.
+                    You will get a confirmation on WhatsApp. Mutual fund investments are subject to market risks.
                   </p>
                 </div>
 

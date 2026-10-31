@@ -43,7 +43,7 @@ export const CommandPalette: React.FC<{
     { id: 'planner', label: 'Goal planner', hint: 'Plan a life goal', group: 'Pages', icon: Target, keywords: 'insights articles', run: go('insights') },
     { id: 'about', label: 'About Chirag Sharma', hint: 'Founder, ARN and certificates', group: 'Pages', icon: User, keywords: 'founder arn nism amfi certificate', run: go('about') },
     { id: 'book', label: 'Book an intro call', hint: 'Pick a date and time', group: 'Pages', icon: CalendarCheck, keywords: 'appointment meeting consultation', run: go('booking') },
-    { id: 'quote', label: 'Get a free investment quote', hint: 'Share your goal, get a plan', group: 'Pages', icon: FileText, keywords: 'open account start sip invest', run: go('open-account') },
+    { id: 'quote', label: 'Start a SIP', hint: 'Share your goal and budget', group: 'Pages', icon: FileText, keywords: 'open account start sip invest', run: go('open-account') },
     { id: 'contact', label: 'Contact', hint: 'Form, phone, email, office', group: 'Pages', icon: Mail, run: go('contact') },
     { id: 'blog', label: 'Blog: all guides', hint: 'SIP, tax, retirement, KYC', group: 'Pages', icon: BookOpen, keywords: 'articles read learn', run: () => navigateTo('/blog') },
     ...POSTS.map((p) => ({ id: `post-${p.slug}`, label: p.title, hint: p.category, group: 'Guides' as const, icon: BookOpen, keywords: p.keywords.join(' '), run: () => navigateTo(`/blog/${p.slug}`) })),

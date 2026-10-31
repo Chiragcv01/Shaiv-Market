@@ -125,7 +125,7 @@ export const OpenAccountScreen: React.FC<OpenAccountScreenProps> = ({
           </div>
 
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0F2740] leading-[1.05]">
-            Start a SIP with a free investment plan
+            Start a SIP, set up in one call
           </h1>
           <p className="text-xs sm:text-sm text-[#43566B] max-w-xl mx-auto mt-2">
             No complicated paperwork or immediate bank mandate required. Provide your basic contact details, and Chirag will prepare a plan and guide you personally.

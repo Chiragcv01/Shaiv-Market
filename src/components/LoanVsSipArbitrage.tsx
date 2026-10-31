@@ -837,7 +837,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
           <div className="bg-[#F6F8FB] border border-[#D3DCE6] rounded-2xl p-6 space-y-3">
             <div className="flex items-center gap-2 text-[#0F2740] font-bold text-sm">
               <Zap className="w-4 h-4 text-amber-600" />
-              <span>The Financial Planner&apos;s Secret: The 50:50 Golden Hybrid</span>
+              <span>A Common Middle Path: The 50:50 Hybrid</span>
             </div>
             <p className="text-xs text-[#43566B] leading-relaxed">
               If you are torn between emotional debt freedom and mathematical wealth: <strong>Split your surplus 50:50!</strong>

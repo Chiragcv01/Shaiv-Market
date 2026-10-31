@@ -32,7 +32,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
   const [name, setName] = useState(currentUser?.name || '');
   const [email, setEmail] = useState(currentUser?.email || '');
   const [phone, setPhone] = useState(currentUser?.phone || '');
-  const [subject, setSubject] = useState('Portfolio Consultation & Risk Review');
+  const [subject, setSubject] = useState('SIP setup & intro call');
   const [message, setMessage] = useState('');
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,7 +76,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
   const handleResetForm = () => {
     setSubmittedTicketId(null);
     setMessage('');
-    setSubject('Portfolio Consultation & Risk Review');
+    setSubject('SIP setup & intro call');
   };
 
   const offices = [
@@ -220,7 +220,7 @@ export const ContactUsScreen: React.FC<ContactUsScreenProps> = ({ onNavigate }) 
                     onChange={(e) => setSubject(e.target.value)}
                     className="w-full px-3 py-2.5 border border-[#D3DCE6] rounded-xl text-xs sm:text-sm bg-[#F6F8FB] focus:ring-2 focus:ring-[#0F2740] outline-hidden text-[#13263B]"
                   >
-                    <option value="Portfolio Consultation & Risk Review">Portfolio Consultation & Risk Review</option>
+                    <option value="SIP setup & intro call">SIP setup & intro call</option>
                     <option value="Direct Mutual Fund Selection">Direct Mutual Fund Selection</option>
                     <option value="NRI Portfolio & NRE/NRO Setup">NRI Portfolio & NRE/NRO Setup</option>
                     <option value="Corporate Treasury & Liquid Parking">Corporate Treasury & Liquid Parking</option>

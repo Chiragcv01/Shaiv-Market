@@ -165,8 +165,8 @@ export const ROUTES: RouteMeta[] = [
   },
   {
     path: '/start-sip', screen: 'open-account', name: 'Start a SIP', index: true, priority: 0.8, changefreq: 'monthly',
-    title: 'Start a SIP: Get a Free Investment Plan | Shaiv Market',
-    description: 'Share your goal and budget and get a free mutual fund plan from an AMFI registered distributor. Paperless KYC, first SIP usually within a day.'
+    title: 'Start a SIP with an AMFI Registered Distributor in Jaipur | Shaiv Market',
+    description: 'Share your goal and budget and Chirag Sharma (ARN-337289) will call you to set up your SIP. Paperless KYC, first SIP usually within a day.'
   },
   {
     path: '/blog', screen: 'blog', name: 'Blog', index: true, priority: 0.8, changefreq: 'weekly',
