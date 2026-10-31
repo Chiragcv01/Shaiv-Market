@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import {
   calculateFIRE,
   formatIndianCurrency,
@@ -347,6 +349,7 @@ export const FireCalculator: React.FC<FireCalculatorProps> = ({ onNavigate }) =>
 
           {/* Action CTA */}
           <div className="pt-2">
+            <WhatsAppResultButton calc="FIRE calculator" result={`FIRE corpus ${inr(fire.fireCorpusRequired)} by age ${targetFireAge}, saving ${inr(fire.monthlySavingsRequired)}/month at an assumed ${expectedReturn}% (illustrative, not guaranteed)`} className="w-full mb-2" />
             <button
               type="button"
               onClick={() => onNavigate?.('open-account')}

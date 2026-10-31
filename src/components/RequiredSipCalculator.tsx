@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import { ActiveScreen } from '../types';
 import { SmartNumberInput } from './SmartNumberInput';
 import {
@@ -432,6 +434,7 @@ export const RequiredSipCalculator: React.FC<RequiredSipCalculatorProps> = ({
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3 pt-2">
+                <WhatsAppResultButton calc="required SIP calculator" result={`target ${inr(targetCorpus)} in ${targetYears} years at an assumed ${expectedReturnRate}%: SIP ${inr(result.requiredMonthlySip)}/month${activeStepUpPercent ? ` with a ${activeStepUpPercent}% yearly step-up` : ''} (illustrative, not guaranteed)`} className="flex-1 min-w-[200px]" />
                 <button
                   type="button"
                   onClick={() => {

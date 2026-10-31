@@ -1,5 +1,6 @@
 // Sends a lead to the server (/api/lead), which stores it and alerts the advisor.
 // Without this, leads only lived in the visitor's own browser storage.
+import { track } from './track';
 
 export type LeadPayload = {
   type: 'quote' | 'booking' | 'contact';
@@ -11,6 +12,7 @@ export type LeadPayload = {
 };
 
 export async function submitLead(lead: LeadPayload): Promise<boolean> {
+  track('generate_lead', { lead_type: lead.type });
   try {
     const res = await fetch('/api/lead', {
       method: 'POST',

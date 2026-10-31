@@ -43,7 +43,7 @@ export const PpfCalculator: React.FC = () => {
       below={<div className="space-y-5">
         <YearTable caption="PPF schedule" columns={['Year', 'Deposit', 'Interest that year', 'Balance']}
           rows={res.rows.map((r) => [r.year, formatINRFull(r.deposit), formatINRFull(r.interest), formatINRFull(r.balance)])} />
-        <CalcCta text="PPF is a great safe anchor. Pairing it with an equity SIP for long goals can do more than either alone." whatsappText="Hi Chirag, I used the PPF calculator. Can you show me how PPF and an equity SIP would work together for my goal?" />
+        <CalcCta text="PPF is a great safe anchor. Pairing it with an equity SIP for long goals can do more than either alone." calc="PPF calculator" result={`${formatINRShort(dep)} a year for ${years} years at ${rate}% ≈ ${formatINRShort(res.maturity)}`} />
       </div>}
     />
   );

@@ -35,7 +35,7 @@ export const CagrCalculator: React.FC = () => {
         <GrowthChart title="The smooth path CAGR assumes" data={data} series={[{ key: 'value', name: 'Value at CAGR', color: '#E3B65C' }]} />
         <Note>CAGR is right for a single investment with one start and one end value. For SIPs, or money added and withdrawn at different times, XIRR is the correct measure.</Note>
       </>}
-      below={<CalcCta text="Comparing your fund's CAGR with its benchmark tells you more than comparing it with a friend's fund." whatsappText="Hi Chirag, I calculated the CAGR of my investment and want a second opinion on my portfolio." />}
+      below={<CalcCta text="Comparing your fund's CAGR with its benchmark tells you more than comparing it with a friend's fund." calc="CAGR calculator" result={`${formatINRShort(start)} to ${formatINRShort(end)} in ${years} years = ${res.cagr.toFixed(2)}% a year`} />}
     />
   );
 };

@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import { CalculatorType, ActiveScreen } from '../types';
 import { SmartNumberInput } from './SmartNumberInput';
 import {
@@ -712,6 +714,7 @@ export const InvestmentCalculator: React.FC<InvestmentCalculatorProps> = ({
           </div>
 
           {/* CTA Action */}
+          <WhatsAppResultButton calc="SIP calculator" result={activeTab === 'target-sip' ? `target ${inr(targetCorpus)} in ${targetYears} years at an assumed ${targetReturnRate}%: SIP ${inr(targetCalc.requiredMonthlySip)}/month (illustrative, not guaranteed)` : `${activeTab === 'lumpsum' ? `${inr(lumpsumAmount)} once` : `${inr(monthlyInvestment)}/month${activeTab === 'step-up' ? ` with a ${stepUpPercent}% yearly step-up` : ''}${activeTab === 'sip-lumpsum' ? ` + ${inr(lumpsumAmount)} lumpsum` : ''}`} for ${timePeriodYears} years at an assumed ${expectedReturnRate}% ≈ ${inr(standardCalc.totalValue)} (illustrative, not guaranteed)`} className="w-full" />
           <button
             id="calc-invest-now-btn"
             onClick={handleAction}

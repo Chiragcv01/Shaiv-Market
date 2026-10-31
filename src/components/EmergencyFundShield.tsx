@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import {
   calculateEmergencyFund,
   formatIndianCurrency,
@@ -293,6 +295,7 @@ export const EmergencyFundShield: React.FC<EmergencyFundShieldProps> = ({ onNavi
 
           {/* Action CTA */}
           <div className="pt-2">
+            <WhatsAppResultButton calc="emergency fund calculator" result={`monthly essentials ${inr(shield.totalMonthlyMandatoryExpense)}, 6-month fund ${inr(shield.tier6MonthsRecommended)}, shortfall ${inr(shield.savingsShortfall)}`} className="w-full mb-2" />
             <button
               type="button"
               onClick={() => onNavigate?.('open-account')}

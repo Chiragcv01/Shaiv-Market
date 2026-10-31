@@ -44,7 +44,7 @@ export const InflationCalculator: React.FC = () => {
       below={<div className="space-y-5">
         <YearTable caption="Year by year" columns={['Year', 'Future cost', 'Buying power of today’s amount']}
           rows={res.rows.slice(1).map((r) => [r.year, formatINRFull(r.cost), formatINRFull(r.power)])} />
-        <CalcCta text="A goal that grows with inflation needs a plan that grows faster. Let's map yours." whatsappText="Hi Chirag, I used the inflation calculator and want to plan a goal around it." />
+        <CalcCta text="A goal that grows with inflation needs a plan that grows faster. Let's map yours." calc="inflation calculator" result={`${formatINRShort(amount)} at ${rate}% inflation for ${years} years: costs ${formatINRShort(res.future)} then, buys only ${formatINRShort(res.power)} of today's goods`} />
       </div>}
     />
   );

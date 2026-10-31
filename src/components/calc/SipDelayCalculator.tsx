@@ -44,7 +44,7 @@ export const SipDelayCalculator: React.FC = () => {
             const x = [0, 1, 2, 3, 5, 7, 10, 15].filter((y) => y < horizon)[i];
             return [x === 0 ? 'Start today' : `${x} ${x === 1 ? 'year' : 'years'}`, formatINRFull(t.later), formatINRFull(t.cost), Number.isFinite(t.catchUp) ? `${formatINRFull(t.catchUp)}/mo` : 'n/a'];
           })} initial={8} />
-        <CalcCta text="The cheapest year to start is this one. Paperless KYC takes about ten minutes." whatsappText="Hi Chirag, I saw the cost-of-delay calculator. I want to start my SIP this month." />
+        <CalcCta text="The cheapest year to start is this one. Paperless KYC takes about ten minutes." calc="cost-of-delay calculator" result={`${formatINRShort(monthly)}/month at an assumed ${ret}%: waiting ${d} years costs ${formatINRShort(res.cost)} (illustrative, not guaranteed)`} />
       </div>}
     />
   );

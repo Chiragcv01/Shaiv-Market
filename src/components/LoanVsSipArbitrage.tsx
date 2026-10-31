@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import {
   calculateLoanVsSip,
   formatIndianCurrency,
@@ -453,6 +455,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
 
                   {/* Actions */}
                   <div className="flex flex-wrap gap-3 pt-2">
+                    <WhatsAppResultButton calc="home loan prepayment vs SIP calculator" result={`${inr(loanAmount)} loan at ${interestRate}%, extra ${inr(extraMonthlySavings)}/month: "${result.verdict}" comes out ahead by ${inr(result.netWealthAdvantage)} at an assumed ${expectedMfReturn}% SIP return (illustrative, not guaranteed)`} className="flex-1 min-w-[200px]" />
                     <button
                       type="button"
                       onClick={() => onNavigate?.('open-account')}
@@ -467,7 +470,7 @@ export const LoanVsSipArbitrage: React.FC<LoanVsSipProps> = ({ onNavigate }) => 
                       className="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                     >
                       <Clock className="w-3.5 h-3.5 text-[#F3D58E]" />
-                      <span>Book Strategy Call</span>
+                      <span>Book an intro call</span>
                     </button>
                   </div>
 

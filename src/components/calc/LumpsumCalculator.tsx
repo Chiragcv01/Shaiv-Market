@@ -39,7 +39,7 @@ export const LumpsumCalculator: React.FC = () => {
       below={<div className="space-y-5">
         <YearTable caption="Value at the end of each year" columns={['Year', 'Value', 'Gain so far', 'In today’s money']}
           rows={res.rows.map((r) => [r.year, formatINRFull(r.value), formatINRFull(r.value - amount), formatINRFull(r.value / Math.pow(1 + infl / 100, r.year))])} />
-        <CalcCta text="Got a bonus or a maturity amount to invest? A lumpsum is often better spread through an STP over a few months." whatsappText={`Hi Chirag, I have about ₹${amount} to invest as a lumpsum. Can we talk about lumpsum vs STP?`} />
+        <CalcCta text="Got a bonus or a maturity amount to invest? A lumpsum is often better spread through an STP over a few months." calc="lumpsum calculator" result={`${formatINRShort(amount)} once for ${years} years at an assumed ${ret}% ≈ ${formatINRShort(res.value)} (illustrative, not guaranteed)`} />
       </div>}
     />
   );

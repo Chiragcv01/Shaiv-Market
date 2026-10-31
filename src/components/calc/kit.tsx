@@ -4,6 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Ca
 import { ArrowRight, MessageCircle, ChevronDown } from 'lucide-react';
 import { formatINRFull, formatINRShort } from '../../utils/money';
 import { navigateTo } from '../../utils/navigate';
+import { track, resultWhatsAppLink } from '../../utils/track';
 
 /** Two-column calculator frame: inputs on the left, results on the right. */
 export const CalcFrame: React.FC<{ id: string; inputs: React.ReactNode; results: React.ReactNode; below?: React.ReactNode }> = ({ id, inputs, results, below }) => (
@@ -164,21 +165,31 @@ export const Note: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <p className="text-xs text-[#6B7C8F] leading-relaxed">{children}</p>
 );
 
-/** Next step after a result. */
-export const CalcCta: React.FC<{ text: string; whatsappText: string }> = ({ text, whatsappText }) => (
+/** Next step after a result: send the result to Chirag on WhatsApp, or book an intro call. */
+export const CalcCta: React.FC<{ text: string; calc: string; result: string }> = ({ text, calc, result }) => (
   <div className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl bg-[#FBF6EA] ring-1 ring-[#F3D58E] p-4">
     <p className="flex-1 text-sm text-[#43566B]">{text}</p>
-    <div className="flex gap-2 shrink-0">
-      <a href="/book-intro-call" onClick={(e) => { e.preventDefault(); navigateTo('/book-intro-call'); }}
+    <div className="flex flex-wrap gap-2 shrink-0">
+      <a href={resultWhatsAppLink(calc, result)} target="_blank" rel="noreferrer"
+        onClick={() => track('whatsapp_result', { calculator: calc })}
+        className="inline-flex items-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-semibold px-4 py-2.5">
+        <MessageCircle className="w-4 h-4" /> Send my result on WhatsApp
+      </a>
+      <a href="/book-intro-call" onClick={(e) => { e.preventDefault(); track('intro_call_click', { calculator: calc }); navigateTo('/book-intro-call'); }}
         className="inline-flex items-center gap-1.5 rounded-xl bg-[#0F2740] hover:bg-[#1D4268] text-white text-sm font-semibold px-4 py-2.5">
         Book an intro call <ArrowRight className="w-4 h-4" />
       </a>
-      <a href={`https://wa.me/919950653247?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noreferrer"
-        className="inline-flex items-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-semibold px-4 py-2.5">
-        <MessageCircle className="w-4 h-4" /> WhatsApp
-      </a>
     </div>
   </div>
+);
+
+/** Full-width "Send my result on WhatsApp" button for the larger calculators. */
+export const WhatsAppResultButton: React.FC<{ calc: string; result: string; className?: string }> = ({ calc, result, className = '' }) => (
+  <a href={resultWhatsAppLink(calc, result)} target="_blank" rel="noreferrer"
+    onClick={() => track('whatsapp_result', { calculator: calc })}
+    className={`bg-[#25D366] hover:bg-[#1EBE5D] text-white font-extrabold text-sm py-3.5 px-5 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 ${className}`}>
+    <MessageCircle className="w-4 h-4" /> Send my result on WhatsApp
+  </a>
 );
 
 export const pct = (v: number, d = 1) => `${v.toFixed(d)}%`;

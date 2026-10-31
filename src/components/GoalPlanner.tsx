@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import { SmartNumberInput } from './SmartNumberInput';
 import {
   calculateGoalPlan,
@@ -498,6 +500,7 @@ export const GoalPlanner: React.FC<GoalPlannerProps> = ({ onNavigate, onPlanGoal
 
           {/* Action CTA */}
           <div className="pt-2">
+            <WhatsAppResultButton calc="goal SIP calculator" result={`goal costing ${inr(targetCostToday)} today, in ${yearsToGoal} years (≈ ${inr(plan.targetFutureValue)} at ${inflationRate}% inflation): SIP ${inr(plan.requiredMonthlySIP)}/month at an assumed ${expectedReturn}% (illustrative, not guaranteed)`} className="w-full mb-2" />
             <button
               type="button"
               onClick={handleStartGoalSIP}

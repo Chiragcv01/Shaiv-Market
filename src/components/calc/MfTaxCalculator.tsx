@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { SmartNumberInput } from '../SmartNumberInput';
 import { CalcFrame, Hero, CalcCta, Note, Segmented } from './kit';
 import { mfTax, FundKind } from '../../utils/calcMath';
-import { formatINRFull } from '../../utils/money';
+import { formatINRFull, formatINRShort } from '../../utils/money';
 
 export const MfTaxCalculator: React.FC = () => {
   const [kind, setKind] = useState<FundKind>('equity');
@@ -65,7 +65,7 @@ export const MfTaxCalculator: React.FC = () => {
         </div>
         <Note>For resident individuals, FY 2026-27. Surcharge, the old grandfathering for units bought before February 2018, hybrid, gold and international funds are not covered. Each SIP instalment has its own holding period (first in, first out). This is an estimate, not tax advice; confirm with your CA before you redeem.</Note>
       </>}
-      below={<CalcCta text="Timing redemptions across financial years can use the ₹1.25 lakh exemption twice. Ask before you sell." whatsappText="Hi Chirag, I want to redeem some mutual funds and plan it tax-efficiently." />}
+      below={<CalcCta text="Timing redemptions across financial years can use the ₹1.25 lakh exemption twice. Ask before you sell." calc="mutual fund tax calculator" result={`${formatINRShort(buy)} bought, ${formatINRShort(sell)} on sale after ${months} months: estimated tax ${formatINRShort(res.total)}`} />}
     />
   );
 };

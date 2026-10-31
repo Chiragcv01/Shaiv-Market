@@ -60,7 +60,7 @@ export const RetirementCalculator: React.FC = () => {
       below={<div className="space-y-5">
         <YearTable caption="Corpus by age" columns={['Age', 'Phase', 'Corpus at year end']}
           rows={res.rows.filter((r, i) => i === 0 || r.age % 5 === 0 || r.age === ra || i === res.rows.length - 1).map((r) => [r.age, r.phase === 'build' ? 'Saving' : 'Retired', formatINRFull(r.value)])} initial={8} />
-        <CalcCta text="Retirement plans need EPF, NPS and insurance in the picture too. Get one plan that ties them together." whatsappText={`Hi Chirag, the retirement calculator says I need about ₹${Math.round(res.sip)} a month to retire at ${ra}. Can we plan this properly?`} />
+        <CalcCta text="Retirement plans need EPF, NPS and insurance in the picture too. Get one plan that ties them together." calc="retirement calculator" result={`retire at ${ra}: corpus ${formatINRShort(res.corpus)}, SIP needed ${formatINRShort(res.sip)}/month at an assumed ${preRet}% (illustrative, not guaranteed)`} />
       </div>}
     />
   );

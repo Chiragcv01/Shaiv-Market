@@ -40,7 +40,7 @@ export const StepUpSipCalculator: React.FC = () => {
       below={<div className="space-y-5">
         <YearTable caption="Year-by-year schedule" columns={['Year', 'Monthly SIP', 'Invested so far', 'Value at year end']}
           rows={res.rows.map((r) => [r.year, formatINRFull(r.monthly!), formatINRFull(r.invested), formatINRFull(r.value)])} />
-        <CalcCta text="Want the step-up set to auto-increase every year, so you never have to remember?" whatsappText={`Hi Chirag, I tried the step-up SIP calculator: ₹${monthly} a month with a ${step}% yearly step-up. Can you help me set it up?`} />
+        <CalcCta text="Want the step-up set to auto-increase every year, so you never have to remember?" calc="step-up SIP calculator" result={`${formatINRShort(monthly)}/month with a ${step}% yearly step-up for ${years} years at an assumed ${ret}% ≈ ${formatINRShort(res.value)} (illustrative, not guaranteed)`} />
       </div>}
     />
   );

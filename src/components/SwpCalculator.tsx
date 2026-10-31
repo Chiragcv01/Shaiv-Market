@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { WhatsAppResultButton } from './calc/kit';
+import { formatINRShort as inr } from '../utils/money';
 import { SmartNumberInput } from './SmartNumberInput';
 import {
   calculateSWP,
@@ -375,6 +377,7 @@ export const SwpCalculator: React.FC<SwpCalculatorProps> = ({ onNavigate }) => {
 
           {/* Action CTA */}
           <div className="pt-2">
+            <WhatsAppResultButton calc="SWP calculator" result={`${inr(initialCorpus)} corpus, ${inr(monthlyWithdrawal)}/month for ${tenureYears} years at an assumed ${expectedReturn}%: ${inr(swp.finalCorpus)} left at the end (illustrative, not guaranteed)`} className="w-full mb-2" />
             <button
               type="button"
               onClick={() => onNavigate?.('open-account')}
