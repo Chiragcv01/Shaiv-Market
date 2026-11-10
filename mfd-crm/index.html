@@ -211,6 +211,74 @@ label.l small{font-weight:400;color:var(--mute)}
 #print table{width:100%;border-collapse:collapse}#print th,#print td{border-bottom:1px solid #E2E8F0;padding:4px 5px;text-align:left}#print th{background:#F0F9FF;font-size:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #print img{max-width:100%}
 .pr-disc{font-size:9px;color:#64748B;margin-top:14px;border-top:1px solid #E2E8F0;padding-top:8px}
+/* review brief */
+.rb{display:grid;gap:14px}
+.rb-hero{display:grid;grid-template-columns:1fr 230px;gap:16px;align-items:center;background:linear-gradient(120deg,var(--sky-700),var(--sky-500) 60%,var(--sky-400));color:#fff;border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(2,132,199,.25);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-hero::after{content:'';position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.1)}
+.rb-hero h1{margin:6px 0 2px;font-size:26px;letter-spacing:-.6px}
+.rb-tag{display:inline-flex;gap:6px;align-items:center;font-size:11px;font-weight:700;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:99px}
+.rb-tag svg.i{width:13px;height:13px}
+.rb-sub{opacity:.92;font-size:13px}.rb-meet{margin-top:8px;font-size:13px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.rb-kp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px;position:relative;z-index:1}
+.rb-kp div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:11px;padding:8px 10px}
+.rb-kp span{display:block;font-size:10px;opacity:.85;text-transform:uppercase;letter-spacing:.4px}.rb-kp b{font-size:17px}.rb-kp i{font-style:normal;font-size:11px;margin-left:4px;opacity:.9}
+.rb-hr{position:relative;z-index:1;text-align:center}
+.rb-lab{display:inline-block;margin-top:4px;font-weight:800;font-size:12px;padding:3px 12px;border-radius:99px}
+.rb-alert{display:flex;gap:8px;align-items:flex-start;background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:10px 12px;font-size:13px}
+.rb-sec{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px;break-inside:avoid-page}
+.rb-sec>h2{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:15px;letter-spacing:-.2px;color:var(--sky-900);flex-wrap:wrap}
+.rb-sec>h2 small{margin-left:auto;font-size:11px;font-weight:600;color:var(--mute);background:var(--sky-50);border:1px solid var(--sky-100);padding:2px 8px;border-radius:99px}
+.rb-n{width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,var(--sky-400),var(--sky-600));color:#fff;font-size:12px;display:grid;place-items:center;flex:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-say{background:var(--sky-50);border:1px solid var(--sky-100);border-left:4px solid var(--sky-500);border-radius:12px;padding:10px 14px;margin:10px 0;font-size:13.5px;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-q{display:inline-flex;gap:5px;align-items:center;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--sky-700);margin-bottom:4px}
+.rb-q svg.i{width:13px;height:13px}
+.rb-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rb-pt{border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:10px 12px}
+.rb-pt span{display:flex;gap:6px;align-items:center;font-weight:800;font-size:12px;color:var(--c)}.rb-pt p{margin:6px 0 0;font-size:13px}
+.rb-agenda{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;font-size:12px}
+.rb-agenda span{background:var(--sky-50);border:1px solid var(--sky-100);color:var(--sky-800);padding:3px 9px;border-radius:99px;font-weight:600}
+.rb-g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.rb-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;min-width:0}
+.rb-card h4{margin:0 0 8px;font-size:12px;color:var(--sky-800);text-transform:uppercase;letter-spacing:.4px}
+.rb-since{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:8px;margin:4px 0 12px}
+.rb-since div{background:var(--sky-50);border-radius:10px;padding:8px 10px;font-size:12px}.rb-since span{display:block;color:var(--mute);font-size:11px}.rb-since b{font-size:15px}
+.rb-since div:first-child{background:var(--sky-600);color:#fff;display:flex;align-items:center;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact}.rb-since div:first-child span{color:#fff;font-size:12px}
+.rb-vc{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.rb-chip{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;color:var(--c);border:1px solid var(--c);background:#fff}
+.rb-funds{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.rb-f{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:10px 12px;break-inside:avoid}
+.rb-fh{display:flex;gap:8px;align-items:flex-start}.rb-fh b{flex:1;font-size:13.5px}
+.rb-v{font-size:11px;font-weight:800;color:#fff;background:var(--c);padding:2px 9px;border-radius:99px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-fm{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12px;color:var(--ink2);margin:4px 0 6px}
+.rb-rk{height:6px;border-radius:99px;background:#F1F5F9;overflow:hidden;margin-bottom:3px}.rb-rk i{display:block;height:100%;background:var(--c);border-radius:99px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-fs{font-size:12.5px;margin-top:6px;color:var(--ink);font-style:italic}
+.rb-det{margin-top:10px}.rb-det summary{cursor:pointer;color:var(--sky-700);font-weight:700;font-size:12px}
+.rb-det ol,.rb-det ul{margin:6px 0;padding-left:20px;font-size:13px}.rb-det li{margin:3px 0}
+.rb-goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.rb-goal{display:flex;gap:12px;align-items:center}
+.ring{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-p{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;break-inside:avoid}.rb-p+.rb-p{margin-top:10px}
+.rb-ph{display:flex;gap:10px;align-items:center}
+.rb-ph .ic{width:34px;height:34px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-ag{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:700;color:var(--sky-800);background:var(--sky-50);border:1px solid var(--sky-200);padding:6px 10px;border-radius:10px;cursor:pointer;white-space:nowrap}
+.rb-ag input{width:16px;height:16px;accent-color:var(--sky-600)}
+.rb-box{font-size:12px;font-weight:700;border:1px solid var(--line);padding:4px 8px;border-radius:8px;white-space:nowrap}
+.rb-qa{display:grid;gap:2px;font-size:12.5px;background:#FAFDFF;border:1px dashed var(--sky-200);border-radius:10px;padding:8px 10px;margin-top:8px}
+.rb-qs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.rb-qi{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;cursor:pointer}
+.rb-qi input{margin-top:2px;accent-color:var(--sky-600)}.rb-qi span{flex:1}.rb-qi em{font-style:normal;font-size:10px;font-weight:700;color:var(--sky-700);background:var(--sky-50);padding:1px 6px;border-radius:99px;white-space:nowrap}
+.rb-close{display:flex;flex-wrap:wrap;gap:6px}.rb-close span{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--sky-200);color:var(--sky-800);padding:5px 10px;border-radius:99px}
+.rb-props{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:10px;align-items:start}.rb-props .rb-p+.rb-p{margin-top:0}
+.rb-card svg{max-height:230px}
+.rb-sc{margin-top:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.rb-sb{height:8px;border-radius:99px;background:#F1F5F9;overflow:hidden;margin:6px 0 3px}.rb-sb i{display:block;height:100%;border-radius:99px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rb-done{border:2px solid var(--sky-300)}
+.rb-lines{height:120px;background:repeating-linear-gradient(#fff 0 27px,#E2E8F0 27px 28px)}
+.rb-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-6px 0 14px;padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.rb-cks{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}.rb-ck{display:flex;gap:8px;align-items:center;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:10px;cursor:pointer}.rb-ck input{width:16px;height:16px;accent-color:var(--sky-600)}
+.mtg{display:inline-flex;gap:4px;align-items:center;font-size:11px;font-weight:700;color:var(--sky-800);background:var(--sky-100);padding:1px 7px;border-radius:99px}
+@media (max-width:860px){.rb-hero{grid-template-columns:1fr}.rb-kp{grid-template-columns:repeat(3,1fr)}.rb-3{grid-template-columns:1fr}.rb-since{grid-template-columns:repeat(2,1fr)}.rb-since div:first-child{grid-column:1/-1}.rb-hero h1{font-size:22px}.rb-ph{flex-wrap:wrap}}
+@media print{#print .rb{gap:8px;font-size:11px}#print .rb-sec{box-shadow:none;padding:10px 12px}#print .rb-hero{box-shadow:none;padding:14px 16px}#print .rb-say{font-size:11.5px}#print .rb-det summary{display:none}#print .rb-g2{grid-template-columns:1fr 1fr}#print .rb-funds,#print .rb-props,#print .rb-goals,#print .rb-qs,#print .rb-sc{grid-template-columns:1fr 1fr}#print .t{font-size:10px}#print .t th{position:static}#print .rb-done{display:none}#print .rb-sec{break-inside:auto}#print .rb-p,#print .rb-f,#print .rb-card,#print .rb-pt,#print .rb-say{break-inside:avoid}#print .rb-hero{grid-template-columns:1fr 180px}#print .rb-kp{grid-template-columns:repeat(5,1fr)}#print .rb-3{grid-template-columns:repeat(3,1fr)}#print .rb-since{grid-template-columns:1.3fr repeat(4,1fr)}#print .rb-since div:first-child{grid-column:auto}#print .rb-hero h1{font-size:22px}#print .rb-kp b{font-size:13px}#print .rb-kp div{padding:6px 8px}#print .rb-card svg{max-height:190px}}
 </style>
 </head>
 <body>
@@ -959,7 +1027,7 @@ const R = {
           'Same category me switch → client ka risk level same rehta hai, sirf fund quality improve hoti hai.'
         ].filter(Boolean);
         add({
-          key: `switch:${x.hd.id}`, type: 'switch', pri: x.value > 100000 && st.score < .25 ? 3 : 2,
+          key: `switch:${x.hd.id}`, type: 'switch', d: { f: R.short(x.name), to: R.short(tgt.name), gap: med3 - m.r3, rank: st.rank, of: st.of, sip: x.sipNow, sw: switchable, tax: ltTax }, pri: x.value > 100000 && st.score < .25 ? 3 : 2,
           title: `${R.short(x.name)} → ${R.short(tgt.name)}`,
           why: `Category me bottom ${Math.round((1 - st.score) * 100)}% — 3Y me ${U.pct(med3 - m.r3)} p.a. median se peeche.`,
           steps, reasons, impact, impactLabel: 'Illustrative 5Y extra (aadha past gap maan kar)',
@@ -968,7 +1036,7 @@ const R = {
         });
       } else if (st.score < 0.5 && m.r1 != null && med1 != null && m.r1 < med1 - 0.03) {
         add({
-          key: `watch:${x.hd.id}`, type: 'watch', pri: 1, title: `${R.short(x.name)} — watch karo`,
+          key: `watch:${x.hd.id}`, type: 'watch', d: { f: R.short(x.name), r1: m.r1, med1 }, pri: 1, title: `${R.short(x.name)} — watch karo`,
           why: `1Y return ${U.pct(m.r1)} median ${U.pct(med1)} se kam, lekin long-term record theek hai.`,
           steps: ['Abhi switch mat karo — 1 saal ka underperformance akela kaafi reason nahi.', 'Agle quarter review me rolling returns dobara check karo.', x.sipNow ? 'Agar client nayi SIP add kare to category leader me karo.' : 'Fresh money category leader me lagao.'],
           reasons: [`3Y CAGR ${U.pct(m.r3)} vs median ${U.pct(med3)}.`, `Peer rank ${st.rank}/${st.of}.`], impact: 0
@@ -982,7 +1050,7 @@ const R = {
       const fl = FL.get(x.hd.code), mo = Math.max(0, Math.round(FL.months(x.hd.code)));
       const alt = R.best(x.catKey, x.hd.code);
       add({
-        key: `mgr:${x.hd.id}:${fl.mgr}`, type: 'manager', pri: x.value > 100000 ? 2 : 1,
+        key: `mgr:${x.hd.id}:${fl.mgr}`, type: 'manager', d: { f: R.short(x.name), mo }, pri: x.value > 100000 ? 2 : 1,
         title: `${R.short(x.name)}: fund manager badla (${mo} mahine pehle)`,
         why: 'Pichhla track record purane manager ka hai — naye manager ko parakhna padega.',
         steps: ['Ghabra kar turant switch mat karo — exit load/tax ka kharcha aur naya manager achha bhi ho sakta hai.', `Naya lumpsum is fund me abhi mat daalo${alt ? `; naya paisa ${R.short(alt.name)} (same category) me` : ''}.`, x.sipNow ? `SIP ${U.inr(x.sipNow)} chalu rakh sakte ho, par ${U.fmtDate(U.parseISO(fl.mgr) + 270 * DAY)} tak review karo.` : 'Agle 2–3 quarter ka performance category median se compare karo.', 'Agar 2–3 quarter lagatar median se neeche ya style badla (jaise large cap me mid cap bharna) → switch (LTCG units pehle).'],
@@ -1010,7 +1078,7 @@ const R = {
       const tot = picks.reduce((a, p) => a + p.g, 0);
       if (tot > 5000) {
         add({
-          key: `harvest:${U.fyLabel()}`, type: 'harvest', pri: fyQ4 ? 3 : 2,
+          key: `harvest:${U.fyLabel()}`, type: 'harvest', d: { tot, room, by: fyEnd }, pri: fyQ4 ? 3 : 2,
           title: `Tax-gain harvesting: ${U.inr(tot)} LTCG tax-free book karo`,
           why: `${U.fyLabel()} ki ₹1.25L LTCG chhoot me ${U.inr(room)} bacha hai — use nahi kiya to lapse.`,
           steps: [...picks.map(p => `${R.short(p.x.name)}: ≈ ${U.inr(p.v)} redeem karo (oldest units, gain ≈ ${U.inr(p.g)}).`),
@@ -1027,7 +1095,7 @@ const R = {
     const losers = A.hs.filter(x => x.h && x.gain < -5000);
     const stGains = A.hs.reduce((a, x) => a + Math.max(0, x.tx.stGain), 0);
     losers.forEach(x => add({
-      key: `loss:${x.hd.id}:${U.fyLabel()}`, type: 'loss', pri: stGains > 20000 ? 2 : 1,
+      key: `loss:${x.hd.id}:${U.fyLabel()}`, type: 'loss', d: { f: R.short(x.name), loss: -x.gain }, pri: stGains > 20000 ? 2 : 1,
       title: `${R.short(x.name)}: ${U.inr(-x.gain)} loss book karke set-off`,
       why: 'Notional loss ko book karke capital gains tax kam ho sakta hai.',
       steps: [`Units redeem karo (loss ≈ ${U.inr(-x.gain)}), aur paisa same category ke dusre fund me lagao.`, 'Short-term loss STCG aur LTCG dono se set-off hota hai; long-term loss sirf LTCG se.', 'Exit load (12 mahine se kam) check karo.'],
@@ -1043,7 +1111,7 @@ const R = {
         const debtTgt = R.best(prof.key === 'C' || prof.key === 'MC' ? 'shortdur' : 'baf');
         const eqTgt = R.best(prof.key === 'A' || prof.key === 'MA' ? 'flexi' : 'aggr');
         add({
-          key: `rebal:${U.todayKey().slice(0, 7)}`, type: 'rebalance', pri: Math.abs(drift) >= .15 ? 3 : 2,
+          key: `rebal:${U.todayKey().slice(0, 7)}`, type: 'rebalance', d: { over, eq: A.exp.eq, tgt: prof.eq, amt }, pri: Math.abs(drift) >= .15 ? 3 : 2,
           title: over ? `Equity ${U.pct(A.exp.eq, 0)} → ${U.pct(prof.eq, 0)}: ${U.inrS(amt)} profit book karo` : `Equity kam hai (${U.pct(A.exp.eq, 0)} vs ${U.pct(prof.eq, 0)}): ${U.inrS(amt)} add karo`,
           why: `${prof.name} profile ka target equity ${U.pct(prof.eq, 0)} hai; drift ${U.pctS(drift)}.`,
           steps: over ? [
@@ -1061,7 +1129,7 @@ const R = {
       }
       if (A.exp.gold < prof.gold - .03 && A.value > 200000) {
         const g = R.best('gold');
-        add({ key: 'gold', type: 'rebalance', pri: 1, title: `Gold allocation ${U.pct(A.exp.gold, 0)} → ${U.pct(prof.gold, 0)}`, why: 'Gold equity crash me hedge ka kaam karta hai.', steps: [`${U.inr((prof.gold - A.exp.gold) * A.value)} gold FoF me — SIP ya 3–6 mahine ka STP.${g ? ' Option: ' + R.short(g.name) + '.' : ''}`], reasons: ['Gold ka equity se correlation kam hota hai — portfolio ki volatility ghatti hai.', 'Gold FoF: 24 mahine se zyada hold karne par 12.5% LTCG.'], impact: (prof.gold - A.exp.gold) * A.value, impactLabel: 'Amount to add' });
+        add({ key: 'gold', type: 'rebalance', d: { gold: A.exp.gold, tgt: prof.gold, amt: (prof.gold - A.exp.gold) * A.value }, pri: 1, title: `Gold allocation ${U.pct(A.exp.gold, 0)} → ${U.pct(prof.gold, 0)}`, why: 'Gold equity crash me hedge ka kaam karta hai.', steps: [`${U.inr((prof.gold - A.exp.gold) * A.value)} gold FoF me — SIP ya 3–6 mahine ka STP.${g ? ' Option: ' + R.short(g.name) + '.' : ''}`], reasons: ['Gold ka equity se correlation kam hota hai — portfolio ki volatility ghatti hai.', 'Gold FoF: 24 mahine se zyada hold karne par 12.5% LTCG.'], impact: (prof.gold - A.exp.gold) * A.value, impactLabel: 'Amount to add' });
       }
     }
 
@@ -1070,7 +1138,7 @@ const R = {
       const heavy = A.hs.filter(x => ['small', 'mid', 'idxsmall', 'idxmid'].includes(x.catKey)).sort((a, b) => b.value - a.value);
       const alt = R.best(prof.key === 'A' ? 'flexi' : 'largemid') || R.best('flexi');
       add({
-        key: 'risk:smid', type: 'risk', pri: A.smid > prof.smid + .15 ? 3 : 2,
+        key: 'risk:smid', type: 'risk', d: { v: A.smid, lim: prof.smid, amt: (A.smid - prof.smid) * A.value }, pri: A.smid > prof.smid + .15 ? 3 : 2,
         title: `Small+Mid cap ${U.pct(A.smid, 0)} — limit ${U.pct(prof.smid, 0)}`,
         why: `${prof.name} client ke liye small/mid exposure zyada hai.`,
         steps: [heavy[0] && heavy[0].sipNow ? `${R.short(heavy[0].name)} ki SIP ${alt ? R.short(alt.name) : 'Flexi/Large & Mid cap'} me redirect karo.` : `Nayi investment ${alt ? R.short(alt.name) : 'Flexi Cap'} me karo.`, `${U.inr((A.smid - prof.smid) * A.value)} small/mid se (LTCG units) diversified fund me switch karo.`],
@@ -1078,7 +1146,7 @@ const R = {
         impact: (A.smid - prof.smid) * A.value, impactLabel: 'Excess exposure'
       });
     }
-    if (A.exp.them > .12 && A.value > 50000) add({ key: 'risk:them', type: 'risk', pri: 2, title: `Sectoral/Thematic ${U.pct(A.exp.them, 0)} — 10% se zyada`, why: 'Ek sector par zyada daav concentration risk hai.', steps: ['Thematic funds ko total portfolio ke 10% tak limit karo.', 'Excess ko Flexi Cap me switch (LTCG units pehle).'], reasons: ['Sector cycles 3–5 saal underperform kar sakte hain.'], impact: (A.exp.them - .1) * A.value, impactLabel: 'Excess exposure' });
+    if (A.exp.them > .12 && A.value > 50000) add({ key: 'risk:them', type: 'risk', d: { them: A.exp.them }, pri: 2, title: `Sectoral/Thematic ${U.pct(A.exp.them, 0)} — 10% se zyada`, why: 'Ek sector par zyada daav concentration risk hai.', steps: ['Thematic funds ko total portfolio ke 10% tak limit karo.', 'Excess ko Flexi Cap me switch (LTCG units pehle).'], reasons: ['Sector cycles 3–5 saal underperform kar sakte hain.'], impact: (A.exp.them - .1) * A.value, impactLabel: 'Excess exposure' });
 
     /* 6. CONSOLIDATION */
     const byCat = {}; A.hs.forEach(x => { if (x.h && !['liquid', 'arbitrage', 'shortdur', 'corpbond', 'debt'].includes(x.catKey)) (byCat[x.catKey] = byCat[x.catKey] || []).push(x); });
@@ -1086,18 +1154,18 @@ const R = {
       if (arr.length < 2) return;
       arr.sort((a, b) => (b.st ? b.st.score : 0) - (a.st ? a.st.score : 0));
       const keep = arr[0];
-      add({ key: `cons:${k}`, type: 'consolidate', pri: arr.length >= 3 ? 2 : 1, title: `${arr.length} ${M.cat(k).label} funds — ek me consolidate`, why: 'Same category ke funds me 50–70% stocks common hote hain.', steps: [`Keep: ${R.short(keep.name)}${keep.st ? ` (peer rank ${keep.st.rank})` : ''}.`, ...arr.slice(1).map(x => `${R.short(x.name)}: SIP ${keep ? 'redirect' : 'band'} karo; units LTCG hone par switch.`)], reasons: ['Kam funds = clear tracking, kam overlap, better review.'], impact: 0 });
+      add({ key: `cons:${k}`, type: 'consolidate', d: { n: arr.length, cat: M.cat(k).label, keep: R.short(keep.name) }, pri: arr.length >= 3 ? 2 : 1, title: `${arr.length} ${M.cat(k).label} funds — ek me consolidate`, why: 'Same category ke funds me 50–70% stocks common hote hain.', steps: [`Keep: ${R.short(keep.name)}${keep.st ? ` (peer rank ${keep.st.rank})` : ''}.`, ...arr.slice(1).map(x => `${R.short(x.name)}: SIP ${keep ? 'redirect' : 'band'} karo; units LTCG hone par switch.`)], reasons: ['Kam funds = clear tracking, kam overlap, better review.'], impact: 0 });
     });
-    if (A.hs.length > 9) add({ key: 'cons:many', type: 'consolidate', pri: 1, title: `${A.hs.length} funds — over-diversified`, why: '7–8 funds kaafi hain.', steps: ['Har category me best 1 fund rakho.'], reasons: ['Zyada funds index jaisa return dete hain, par active fund ka kharcha.'], impact: 0 });
+    if (A.hs.length > 9) add({ key: 'cons:many', type: 'consolidate', d: { many: A.hs.length }, pri: 1, title: `${A.hs.length} funds — over-diversified`, why: '7–8 funds kaafi hain.', steps: ['Har category me best 1 fund rakho.'], reasons: ['Zyada funds index jaisa return dete hain, par active fund ka kharcha.'], impact: 0 });
     const amcTop = Object.entries(A.byAmc).sort((a, b) => b[1] - a[1])[0];
-    if (amcTop && A.value > 500000 && amcTop[1] / A.value > .5) add({ key: 'cons:amc', type: 'consolidate', pri: 1, title: `${amcTop[0]}: ${U.pct(amcTop[1] / A.value, 0)} portfolio`, why: 'Ek AMC par zyada concentration.', steps: ['Nayi investments dusre AMCs ke top funds me.'], reasons: ['Fund house level risk (manager exit, investment style) diversify hota hai.'], impact: 0 });
+    if (amcTop && A.value > 500000 && amcTop[1] / A.value > .5) add({ key: 'cons:amc', type: 'consolidate', d: { amc: amcTop[0], pct: amcTop[1] / A.value }, pri: 1, title: `${amcTop[0]}: ${U.pct(amcTop[1] / A.value, 0)} portfolio`, why: 'Ek AMC par zyada concentration.', steps: ['Nayi investments dusre AMCs ke top funds me.'], reasons: ['Fund house level risk (manager exit, investment style) diversify hota hai.'], impact: 0 });
 
     /* 7. GOALS */
     (c.goals || []).forEach(g => {
       const gp = P.goalPlan(g, A);
       if (gp.gap > 1000) {
         add({
-          key: `goal:${g.id}`, type: 'goal', pri: gp.done < .6 && gp.yrs < 7 ? 3 : 2,
+          key: `goal:${g.id}`, type: 'goal', d: { g: g.name, year: g.year, future: gp.future, proj: gp.proj, gap: gp.gap, extra: gp.extraSip, step: gp.stepNeed }, pri: gp.done < .6 && gp.yrs < 7 ? 3 : 2,
           title: `${g.name}: ${U.inrS(gp.gap)} ki kami`,
           why: `${Math.round(gp.done * 100)}% on track — ${gp.yrs.toFixed(1)} saal baaki.`,
           steps: [`Option A: SIP ${U.inr(gp.extraSip, 0)}/mahina aur badhao.`, gp.stepNeed != null ? `Option B: current SIP pe ${Math.ceil(gp.stepNeed * 100)}% annual step-up.` : 'Option B: lumpsum add + step-up mila kar.', 'SIP badhane ke liye: existing mandate limit check karo (zaroorat ho to naya mandate).'],
@@ -1116,7 +1184,7 @@ const R = {
         const a0 = P.fvSip(s, r, 180, 0), a1 = P.fvSip(s, r, 180, .10);
         const anniv = noStep.filter(x => new Date(U.parseISO(x.hd.sip.start)).getUTCMonth() === mon);
         add({
-          key: `step:${new Date(today).getUTCFullYear()}`, type: 'stepup', pri: anniv.length ? 3 : 2,
+          key: `step:${new Date(today).getUTCFullYear()}`, type: 'stepup', d: { s, a0, a1 }, pri: anniv.length ? 3 : 2,
           title: `10% annual step-up: 15Y corpus ${U.inrS(a0)} → ${U.inrS(a1)}`,
           why: `${noStep.length} SIP (${U.inr(s)}/mahina) bina step-up ke chal rahi hai.`,
           steps: [`Is saal SIP ${U.inr(s)} → ${U.inr(s * 1.1)} (+${U.inr(s * .1)}/mahina).`, ...PL.topUp(A, Math.max(500, s * .1)).lines.map(l => `  ${U.inr(l.amt)} → ${l.name ? R.short(l.name) : M.cat(l.cat).label} (${l.existing ? 'existing' : 'nayi SIP'}).`), 'Har saal salary hike ke saath auto top-up (SIP top-up facility) on karo.', anniv.length ? `Is mahine SIP anniversary: ${anniv.map(x => R.short(x.name)).join(', ')}.` : 'Client ke appraisal month me yaad dilao.'],
@@ -1134,7 +1202,7 @@ const R = {
         const add_ = Math.round(Math.min(surplus * .5, ideal - A.sip) / 500) * 500;
         const upKey = A.value > 0 && A.exp.eq > prof.eq + .05 ? (prof.eq >= .5 ? 'baf' : 'shortdur') : (prof.eq >= .7 ? 'flexi' : 'aggr');
         if (add_ >= 500) add({
-          key: `upsell:${U.todayKey().slice(0, 7)}`, type: 'upsell', pri: 2, title: `SIP ${U.inr(add_)}/mahina badhane ki capacity`,
+          key: `upsell:${U.todayKey().slice(0, 7)}`, type: 'upsell', d: { add: add_, pct: A.sip / inc }, pri: 2, title: `SIP ${U.inr(add_)}/mahina badhane ki capacity`,
           why: `SIP income ka ${U.pct(A.sip / inc, 0)} hai — 20% healthy benchmark.`,
           steps: [...PL.topUp(A, add_).lines.map(l => `${U.inr(l.amt)}/mo → ${l.name ? R.short(l.name) : M.cat(l.cat).label + ' fund'} (${l.existing ? 'existing fund me top-up' : 'nayi SIP, ' + M.cat(l.cat).label}).`), 'Detail aur reasoning: client ka "Plan / SIP" tab.', 'Goal se link karo taaki client motivated rahe.'],
           reasons: [`Monthly surplus ≈ ${U.inr(surplus)} (income ${U.inr(inc)} − kharcha ${U.inr(expn)} − EMI ${U.inr(U.num(c.emi))} − SIP ${U.inr(A.sip)}).`, 'Sirf aadha surplus suggest kiya — buffer bacha rahe.'],
@@ -1150,7 +1218,7 @@ const R = {
         const fe = new Date(fyEnd), monthsLeft = Math.max(1, (fe.getUTCFullYear() - new Date(today).getUTCFullYear()) * 12 + fe.getUTCMonth() - mon + 1);
         const e = R.best('elss'); const saved = gap * slab * 1.04;
         add({
-          key: `elss:${U.fyLabel()}`, type: 'elss', pri: fyQ4 ? 3 : 2, title: `80C gap ${U.inr(gap)} — ELSS se ${U.inr(saved)} tax bachao`,
+          key: `elss:${U.fyLabel()}`, type: 'elss', d: { gap, saved }, pri: fyQ4 ? 3 : 2, title: `80C gap ${U.inr(gap)} — ELSS se ${U.inr(saved)} tax bachao`,
           why: `Old regime, ${c.slab}% slab; ${U.fyLabel()} me ${U.inr(U.num(c.c80))} hi 80C use hua.`,
           steps: [`Lumpsum ${U.inr(gap)} ya SIP ${U.inr(Math.ceil(gap / monthsLeft / 100) * 100)}/mahina × ${monthsLeft} mahine (31 March tak).`, e ? `Fund: ${R.short(e.name)} (ELSS rank #${e.rank}).` : 'ELSS category leaderboard load karke fund choose karo.', '3 saal lock-in — client ko pehle batao.'],
           reasons: ['ELSS ka lock-in 80C options me sabse chhota (3 saal) hai aur equity growth milti hai.', `Tax saved = ${U.inr(gap)} × ${c.slab}% × 1.04 cess.`],
@@ -1166,7 +1234,7 @@ const R = {
       const need = expn * 6, have = U.num(c.efund) + liquidHeld;
       if (have < need * .9) {
         const lq = R.best('liquid');
-        add({ key: 'ef', type: 'emergency', pri: have < need * .4 ? 3 : 2, title: `Emergency fund ${U.inrS(have)} / ${U.inrS(need)}`, why: '6 mahine ke kharche ka cushion hona chahiye.', steps: [`${U.inr(need - have)} liquid fund me${lq ? ' (' + R.short(lq.name) + ')' : ''} — lumpsum ya 3–6 mahine me.`, 'Isse equity SIPs emergency me todni nahi padengi.'], reasons: [`Monthly kharcha ${U.inr(expn)} × 6 = ${U.inr(need)}.`, 'Liquid fund: T+1 redemption, FD se zyada flexible.'], impact: need - have, impactLabel: 'Amount to build' });
+        add({ key: 'ef', type: 'emergency', d: { have, need }, pri: have < need * .4 ? 3 : 2, title: `Emergency fund ${U.inrS(have)} / ${U.inrS(need)}`, why: '6 mahine ke kharche ka cushion hona chahiye.', steps: [`${U.inr(need - have)} liquid fund me${lq ? ' (' + R.short(lq.name) + ')' : ''} — lumpsum ya 3–6 mahine me.`, 'Isse equity SIPs emergency me todni nahi padengi.'], reasons: [`Monthly kharcha ${U.inr(expn)} × 6 = ${U.inr(need)}.`, 'Liquid fund: T+1 redemption, FD se zyada flexible.'], impact: need - have, impactLabel: 'Amount to build' });
       }
     }
 
@@ -1179,7 +1247,7 @@ const R = {
       const src = slab >= .3 ? 'arbitrage' : 'liquid';
       const t = R.best(tgtKey), s = R.best(src);
       add({
-        key: `stp:${U.todayKey().slice(0, 7)}`, type: 'stp', pri: idle >= 200000 ? 3 : 2, title: `${U.inrS(idle)} idle — ${months} mahine ka STP`,
+        key: `stp:${U.todayKey().slice(0, 7)}`, type: 'stp', d: { idle, months, src }, pri: idle >= 200000 ? 3 : 2, title: `${U.inrS(idle)} idle — ${months} mahine ka STP`,
         why: 'Bank me pada paisa inflation se kam kama raha hai.',
         steps: [`Step 1: ${U.inr(idle)} ${s ? R.short(s.name) : (src === 'arbitrage' ? 'Arbitrage fund' : 'Liquid fund')} me lumpsum.`, `Step 2: STP ${U.inr(idle / months)}/mahina → ${t ? R.short(t.name) : M.cat(tgtKey).label + ' fund'} for ${months} mahine.`, months === 3 ? 'Market correction me hai — fast deployment.' : months === 6 ? 'Market thoda neeche — medium pace.' : 'Market high ke paas — dheere deploy karo.'],
         reasons: [mk ? `Nifty 50 (index fund proxy) 52-week high se ${U.pct(mk.hi)}.` : 'Market data load nahi hua — default 12 mahine.', src === 'arbitrage' ? `${c.slab}% slab: arbitrage fund equity-taxed (STCG 20%) — liquid (slab rate) se better.` : 'Liquid fund: low risk, T+1 liquidity.', overEq ? `Portfolio me equity pehle se ${U.pct(A.exp.eq, 0)} (target ${U.pct(prof.eq, 0)}) — isliye naya paisa ${M.cat(tgtKey).label} me, taaki allocation balance ho.` : `Target ${M.cat(tgtKey).label} — ${prof.name} profile ke hisaab se.`],
@@ -1196,7 +1264,7 @@ const R = {
       const b1 = needM * 24, b2 = needM * 36;
       const lq = R.best('shortdur') || R.best('liquid'), bf = R.best('baf');
       add({
-        key: 'swp', type: 'swp', pri: rate > .07 ? 3 : 2, title: `SWP ${U.inr(needM)}/mahina — withdrawal rate ${U.pct(rate)}`,
+        key: 'swp', type: 'swp', d: { needM, rate, taxSwp, fdTax }, pri: rate > .07 ? 3 : 2, title: `SWP ${U.inr(needM)}/mahina — withdrawal rate ${U.pct(rate)}`,
         why: rate > .07 ? 'Withdrawal rate 7% se zyada — corpus jaldi khatam ho sakta hai.' : 'Sustainable range (≤6–7%) me hai.',
         steps: [`Bucket 1 (2 saal): ${U.inr(b1)} ${lq ? R.short(lq.name) : 'Short Duration / Liquid'} — SWP isi se.`, `Bucket 2 (3 saal): ${U.inr(Math.min(b2, Math.max(0, A.value - b1)))} ${bf ? R.short(bf.name) : 'Balanced Advantage'}.`, `Bucket 3: baaki ${U.inr(Math.max(0, A.value - b1 - b2))} equity me growth ke liye; saal me ek baar Bucket 1 refill.`, rate > .07 ? `Sustainable SWP ≈ ${U.inr(A.value * .06 / 12)}/mahina — client se expectation align karo.` : 'SWP date pension/rent cycle se match karo.'],
         reasons: [`SWP me sirf gain wala hissa taxable — est. tax ≈ ${U.inr(taxSwp)}/saal vs FD interest pe ≈ ${U.inr(fdTax)}/saal (${c.slab}% slab).`, 'Bucket strategy se market girne par equity bechni nahi padti.'],
@@ -1207,7 +1275,7 @@ const R = {
     /* 13. MARKET MOVE */
     if (mk && mk.hi <= -.10 && A.value > 0) {
       add({
-        key: `mkt:${U.todayKey().slice(0, 7)}`, type: 'market', pri: A.exp.eq > .5 ? 3 : 2, title: `Market ${U.pct(mk.hi)} neeche — reassurance + top-up`,
+        key: `mkt:${U.todayKey().slice(0, 7)}`, type: 'market', d: { hi: mk.hi }, pri: A.exp.eq > .5 ? 3 : 2, title: `Market ${U.pct(mk.hi)} neeche — reassurance + top-up`,
         why: 'Correction me client ka SIP band karna sabse badi galti hoti hai.',
         steps: ['Client ko call/WhatsApp: SIP continue rakhein — sasti NAV pe zyada units.', idle > 0 ? `Idle ${U.inrS(idle)} ka STP fast karo.` : 'Agar surplus ho to 1–2 extra SIP installment (top-up) suggest karo.', 'Drift check: equity profile target se kam hua ho to rebalance into equity.'],
         reasons: [`Nifty 50 proxy 52-week high se ${U.pct(mk.hi)}; 1 mahine me ${U.pctS(mk.r1m)}.`, 'SIP investors ko correction me average cost ka fayda milta hai.'],
@@ -1218,7 +1286,7 @@ const R = {
 
     /* 14. REVIEW & RELATIONSHIP */
     const lr = U.parseISO(c.lastReview);
-    if (!lr || today - lr > 180 * DAY) add({ key: `review:${U.todayKey().slice(0, 7)}`, type: 'review', pri: lr ? 2 : 1, title: lr ? `Review ${Math.round((today - lr) / DAY)} din pehle hua tha` : 'Pehla portfolio review baaki', why: 'Har 6 mahine review = retention + naye business ka mauka.', steps: ['Meeting schedule karo; is app se client report PDF le jao.', 'Risk profile aur goals update karo.'], reasons: ['Regular review se client trust aur SIP continuity badhti hai.'], impact: 0, wa: `Namaste ${fname} ji,\n\nAapke portfolio ka half-yearly review due hai. Is hafte 20 minute ka time mil sakta hai?` + R.sig() });
+    if (!lr || today - lr > 180 * DAY) add({ key: `review:${U.todayKey().slice(0, 7)}`, type: 'review', pri: lr ? 2 : 1, title: lr ? `Review ${Math.round((today - lr) / DAY)} din pehle hua tha` : 'Pehla portfolio review baaki', why: 'Har 6 mahine review = retention + naye business ka mauka.', steps: ['Meeting schedule karo — Review Brief (kya bolna hai) apne aap ban jayega; client ke liye Client PDF le jao.', 'Risk profile aur goals update karo.'], reasons: ['Regular review se client trust aur SIP continuity badhti hai.'], impact: 0, wa: `Namaste ${fname} ji,\n\nAapke portfolio ka half-yearly review due hai. Is hafte 20 minute ka time mil sakta hai?` + R.sig() });
     const dob = U.parseISO(c.dob);
     if (dob) {
       const d = new Date(dob), y = new Date(today).getUTCFullYear();
@@ -1600,6 +1668,7 @@ const App = {
     const h = String(hash || '').replace('#', '') || 'dashboard';
     if (h.startsWith('c-')) { App.route = 'client'; App.param = h.slice(2); }
     else if (h.startsWith('f-')) { App.route = 'fund'; App.param = h.slice(2); }
+    else if (h.startsWith('r-')) { App.route = 'brief'; App.param = h.slice(2); }
     else { App.route = ['dashboard', 'clients', 'opps', 'funds', 'tools', 'settings', 'plan'].includes(h) ? h : 'dashboard'; App.param = null; }
     App.render(); window.scrollTo(0, 0);
   },
@@ -1608,7 +1677,7 @@ const App = {
   render() {
     Object.values(App.charts).forEach(c => { try { c.destroy(); } catch (e) { } }); App.charts = {};
     const open = App.allRecs().filter(r => r.status === 'open' && r.pri === 3).length;
-    U.$$('[data-nav]').forEach(a => { a.classList.toggle('on', a.dataset.nav === App.route || (App.route === 'client' && a.dataset.nav === 'clients') || (App.route === 'fund' && a.dataset.nav === 'funds')); const c = a.querySelector('.cnt'); if (c) { c.textContent = open; c.classList.toggle('hide', !open || a.dataset.nav !== 'opps'); } });
+    U.$$('[data-nav]').forEach(a => { a.classList.toggle('on', a.dataset.nav === App.route || (['client', 'brief'].includes(App.route) && a.dataset.nav === 'clients') || (App.route === 'fund' && a.dataset.nav === 'funds')); const c = a.querySelector('.cnt'); if (c) { c.textContent = open; c.classList.toggle('hide', !open || a.dataset.nav !== 'opps'); } });
     const main = U.$('#main');
     try { main.innerHTML = V[App.route] ? V[App.route]() : V.dashboard(); } catch (e) { console.error(e); main.innerHTML = `<div class="card"><b>Render error:</b> ${U.esc(e.message)}</div>`; }
     requestAnimationFrame(() => { try { V.after && V.after(); } catch (e) { console.error(e); } });
@@ -1726,7 +1795,7 @@ const ACT = {
   addGoal: d => F.goal(App.client(d.cid)),
   editGoal: d => { const c = App.client(d.cid); F.goal(c, (c.goals || []).find(g => g.id === d.gid)); },
   addNote: d => { const c = App.client(d.cid), t = U.$('#noteIn'); if (!t || !t.value.trim()) return; App.log(c, t.value.trim()); App.save(); App.render(); },
-  markReview: d => { const c = App.client(d.cid); c.lastReview = U.todayKey(); App.log(c, '📋 Portfolio review done'); App.save(); App.recompute(); App.render(); U.toast('Review date updated'); },
+  markReview: d => { const c = App.client(d.cid), x = App.analysis.get(c.id); if (x) RB.snap(c, x.A, RB.score(c, x.A, x.recs)); c.lastReview = U.todayKey(); App.log(c, '📋 Portfolio review done'); App.save(); App.recompute(); App.render(); U.toast('Review date updated'); },
   report: d => V.report(App.client(d.cid)),
   closeModal: () => V.close(),
   oppF: (d, el) => { App.oppFilter[d.f] = d.v; App.render(); },
@@ -1820,6 +1889,7 @@ const V = {
         ${r.reasons && r.reasons.length ? `<div class="box"><h4>Kyun — reasoning</h4><ul>${r.reasons.map(s => `<li>${U.esc(s)}</li>`).join('')}</ul></div>` : ''}
         ${r.from && r.to ? `<div class="acts"><button class="btn sm" data-act="rankWhy" data-code="${r.from}" data-cat="${(r.client.holdings.find(h => String(h.code) === String(r.from)) && App.A(r.client.id) ? (App.A(r.client.id).hs.find(x => String(x.hd.code) === String(r.from)) || {}).catKey : '')}">ⓘ Current fund ka rank kyun</button><button class="btn sm" data-act="rankWhy" data-code="${r.to}" data-cat="${(App.A(r.client.id).hs.find(x => String(x.hd.code) === String(r.from)) || {}).catKey}">ⓘ Suggested fund ka rank kyun</button><a class="btn sm" href="#f-${r.to}">${I('chart')} Chart</a></div>` : ''}
         <div class="acts">
+          ${r.type === 'review' ? `<button class="btn sm pri" data-act="meet" data-cid="${c.id}">${I('cal')} Meeting schedule</button><a class="btn sm" href="#r-${c.id}">${I('file')} Review brief</a>` : ''}
           ${r.wa ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, r.wa)}">${I('wa')} WhatsApp</a>` : ''}
           <button class="btn sm" data-act="copyRec" data-cid="${c.id}" data-key="${U.esc(r.key)}">${I('copy')} Copy</button>
           ${r.status === 'open' ? `<button class="btn sm" data-act="rec" data-op="done" data-cid="${c.id}" data-key="${U.esc(r.key)}">${I('check')} Done</button>
@@ -1871,7 +1941,7 @@ const V = {
       ['n50', 'mid', 'small'].forEach(k => { const x = mk[k]; if (!x) return; const h = x.h, i0 = M.iAfter(h, h.lastT - 365 * DAY); App.chart('mk_' + k, { type: 'line', data: { labels: h.t.slice(i0), datasets: [{ data: h.v.slice(i0), borderColor: x.m.r1 >= 0 ? '#0284C7' : '#DC2626', borderWidth: 1.6, pointRadius: 0, fill: true, backgroundColor: 'rgba(14,165,233,.08)', tension: .2 }] }, options: { scales: { x: { display: false }, y: { display: false } }, plugins: { tooltip: { enabled: false } }, animation: false } }); });
     });
     const mkSignal = !App.market ? 'Market data load ho raha hai…' : App.market.hi <= -0.10 ? `🔻 Correction (${U.pct(App.market.hi)} from 52W high) — clients ko SIP continue ka message bhejo; idle cash ka STP fast karo.` : App.market.hi <= -0.05 ? `↘ Market high se ${U.pct(App.market.hi)} — staggered lumpsum / STP 6 mahine.` : `📈 Market 52W high ke paas (${U.pct(App.market.hi)}) — over-equity clients me rebalance / profit booking check karo.`;
-    return V.top('Dashboard', status) + V.envWarn() + `<div id="peerbar"></div>${V.peerBanner()}
+    return V.top('Dashboard', status) + V.envWarn() + `<div id="peerbar"></div>${V.peerBanner()}${RB.banner()}
       <div class="hero"><div class="hi">${greet}, ${U.esc((s.advisor || '').split(' ')[0])} 👋 · ${U.fmtDate(U.today())}</div>
         <div class="big">${U.inrS(B.aum)} <span style="font-size:15px;font-weight:600;opacity:.9">AUM</span></div>
         <div style="opacity:.92">${App.state.clients.length} clients · ${hiN} high-priority actions · gain ${U.inrS(B.aum - B.inv)} (${U.pct(B.inv ? (B.aum - B.inv) / B.inv : 0)})</div>
@@ -1902,6 +1972,7 @@ const V = {
     const today = U.today(), items = [];
     App.state.clients.forEach(c => {
       c.holdings.forEach(h => { if (h.sip && h.sip.amount > 0 && h.sip.active !== false && h.sip.day) { const d = new Date(today); let t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), Math.min(+h.sip.day, U.dim(d.getUTCFullYear(), d.getUTCMonth()))); if (t < today) { const nm = d.getUTCMonth() + 1; t = Date.UTC(d.getUTCFullYear() + (nm > 11 ? 1 : 0), nm % 12, Math.min(+h.sip.day, U.dim(d.getUTCFullYear() + (nm > 11 ? 1 : 0), nm % 12))); } if (t - today <= 7 * DAY) items.push([t, `${I('flow')} <a href="#c-${c.id}">${U.esc(c.name)}</a> SIP ${U.inr(h.sip.amount)} <span class="mute">· ${R.short(h.name)}</span>`]); } });
+      RB.meetings(c).forEach(m => { const t = U.parseISO(m.date); if (m.status === 'scheduled' && t >= today && t - today <= 7 * DAY) items.push([t, `${I('cal')} <a href="#r-${c.id}">${U.esc(c.name)}</a> review${m.time ? ' ' + RB.t12(m.time) : ''} · <a href="#r-${c.id}">brief ›</a>`]); });
       const dob = U.parseISO(c.dob); if (dob) { const d = new Date(dob), y = new Date(today).getUTCFullYear(); let b = Date.UTC(y, d.getUTCMonth(), d.getUTCDate()); if (b < today) b = Date.UTC(y + 1, d.getUTCMonth(), d.getUTCDate()); if (b - today <= 7 * DAY) items.push([b, `${I('gift')} <a href="#c-${c.id}">${U.esc(c.name)}</a> birthday`]); }
     });
     items.sort((a, b) => a[0] - b[0]);
@@ -1921,7 +1992,7 @@ const V = {
         const o = recs.filter(r => r.status === 'open'), h = o.filter(r => r.pri === 3).length;
         return `<div class="card ccard" data-act="go" data-to="c-${c.id}"><div class="row"><div class="av">${U.esc((c.name || '?').split(' ').map(x => x[0]).join('').slice(0, 2).toUpperCase())}</div><div style="min-width:0"><div class="b">${U.esc(c.name)}</div><div class="small mute">${U.esc([U.age(c.dob) ? U.age(c.dob) + ' yrs' : '', c.occupation, c.city].filter(Boolean).join(' · '))}</div></div><span class="sp"></span>${A ? V.profPill(A.profile) : ''}</div>
           <div class="mini"><div><span>Value</span><b>${A ? U.inrS(A.value) : '—'}</b></div><div><span>SIP/mo</span><b>${A ? U.inrS(A.sip) : '—'}</b></div><div><span>XIRR</span><b class="${U.cls(A && A.xirr)}">${A ? U.pct(A.xirr) : '—'}</b></div></div>
-          <div class="row small"><span class="pill ${h ? 'p3' : 'p1'}">${I('bolt')} ${o.length} actions${h ? ` · ${h} high` : ''}</span><span class="sp"></span><span class="mute">${c.lastReview ? 'Review ' + U.fmtDate(U.parseISO(c.lastReview)) : 'Review pending'}</span></div></div>`;
+          <div class="row small"><span class="pill ${h ? 'p3' : 'p1'}">${I('bolt')} ${o.length} actions${h ? ` · ${h} high` : ''}</span><span class="sp"></span>${(m => m ? `<span class="mtg">${I('cal')} ${RB.when(m)}</span>` : `<span class="mute">${c.lastReview ? 'Review ' + U.fmtDate(U.parseISO(c.lastReview)) : 'Review pending'}</span>`)(RB.next(c))}</div></div>`;
       }).join('')}</div>` : `<div class="card">${V.empty('users', q ? 'Koi match nahi' : 'Koi client nahi', 'Naya client add karo ya demo data load karo.', `<button class="btn pri" data-act="addClient">${I('plus')} Add client</button> <button class="btn" data-act="demo">Demo data</button>`)}</div>`) + IMP.inputs();
   },
 
@@ -1935,7 +2006,7 @@ const V = {
     const t = App.ctab;
     const head = `<div class="topbar"><a class="btn sm" href="#clients">${I('back')}</a><div class="av">${U.esc(c.name.split(' ').map(x => x[0]).join('').slice(0, 2).toUpperCase())}</div><div><h1>${U.esc(c.name)}</h1><div class="small mute">${U.esc([A.age ? A.age + ' yrs' : '', c.occupation, c.city, c.phone].filter(Boolean).join(' · '))}</div></div><span class="sp"></span>${V.profPill(A.profile)}
       ${c.phone ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, `Namaste ${c.name.split(' ')[0]} ji, `)}">${I('wa')}<span class="hidem">WhatsApp</span></a><a class="btn sm hidem" href="tel:${U.phone10(c.phone)}">${I('phone')} ${U.esc(c.phone)}</a>` : ''}
-      <button class="btn sm" data-act="markReview" data-cid="${c.id}">${I('check')}<span class="hidem">Review done</span></button><button class="btn sm pri" data-act="report" data-cid="${c.id}">${I('print')}<span class="hidem">Report PDF</span></button></div>
+      ${(m => `<button class="btn sm" data-act="meet" data-cid="${c.id}" ${m ? `data-mid="${m.id}" title="Meeting badlo"` : 'title="Review meeting schedule karo"'}>${I('cal')}<span class="hidem">${m ? RB.when(m) : 'Meeting'}</span></button>`)(RB.next(c))}<a class="btn sm pri" href="#r-${c.id}" title="Advisor ke liye review brief — kya bolna hai">${I('file')}<span class="hidem">Review brief</span></a><button class="btn sm" data-act="markReview" data-cid="${c.id}">${I('check')}<span class="hidem">Review done</span></button><button class="btn sm" data-act="report" data-cid="${c.id}" title="Client ko dene wali report">${I('print')}<span class="hidem">Client PDF</span></button></div>
       <div class="grid g5">
         <div class="tile"><div class="l">${I('wallet')} Current value</div><div class="v">${U.inrS(A.value)}</div><div class="s">${A.hs.length} funds${A.missing ? ` · <span class="neg">${A.missing} NAV pending</span>` : ''}</div></div>
         <div class="tile"><div class="l">${I('coins')} Invested</div><div class="v">${U.inrS(A.invested)}</div><div class="s">SIP ${U.inr(A.sip)}/mo</div></div>
@@ -2599,6 +2670,699 @@ V.report = function (c) {
   App.log(c, '🖨 Review report generated'); App.save();
   setTimeout(() => { try { window.print(); } catch (e) { U.toast('Print blocked — browser menu se Print → Save as PDF'); } }, 300);
 };
+
+/* ===== Review Brief — language packs (hn = Hinglish, en = English, hi = हिंदी) ===== */
+const RBT = {
+  hn: {
+    name: 'Hinglish',
+    tag: 'Advisor brief · internal — client ko forward mat karna', yrs: 'yrs', inv: p => `${p} investor`,
+    noMeet: 'Meeting schedule nahi hai', prev: d => `pichhla review ${d}`, first: 'pehla review',
+    kp: ['Value', 'Invested', 'Gain', 'XIRR', 'SIP / mo'], health: 'Portfolio health / 100',
+    lab: ['Excellent', 'Good', 'Needs attention', 'Action needed'],
+    told: 'Client ne pehle bataya tha:', navWait: n => n ? `${n} fund ki NAV abhi load nahi hui — numbers update ho jayenge.` : 'Live NAV load ho rahi hai — numbers update ho jayenge.',
+    say: 'Bolna hai',
+    s1: ['30-second saar', 'meeting se pehle ye padh lo'], good: 'Achhi khabar', concern: 'Dhyan dena', ask: 'Aaj ka ask',
+    goodTxt: (g, a, best) => `Portfolio ${g} profit me hai (${a})${best ? `; sabse achha: ${best}` : ''}.`,
+    lossTxt: (l, young) => `Abhi ${l} notional loss — ${young ? 'portfolio naya hai, equity ko time chahiye' : 'market cycle ka hissa, SIP se average ho raha hai'}.`,
+    noConcern: 'Koi badi chinta nahi — portfolio on track.',
+    flow: 'Meeting flow (20 min):', flowSteps: ['Haal-chaal + life update', 'Portfolio ka haal', 'Fund report card', 'Goals', 'Proposals', 'Next steps'],
+    scoreHow: (n, l) => `Health score ${n}/100 kaise bana`,
+    sp: { fq: 'Fund quality', af: 'Risk-fit allocation', gl: 'Goals on track', rt: 'Returns', dv: 'Diversification', sf: 'Safety net' },
+    spn: {
+      fq: (q, sw) => q == null ? 'Peer ranking load nahi — neutral liya' : `Avg peer score ${q}/100${sw ? ` · ${sw} switch case` : ''}`,
+      af: (eq, tg, sm, lim) => `Equity ${eq} vs target ${tg}${sm ? ` · small+mid ${sm} (max ${lim})` : ''}`,
+      gl: (n, d) => n ? `${n} goal · avg ${d}% on track` : 'Goals set nahi — meeting me puchho',
+      rt: (x, e) => x == null ? 'Portfolio 1 saal se naya — neutral' : `XIRR ${x} vs expected ${e}`,
+      dv: (n, ov) => `${n} funds${ov ? ' · overlap / concentration' : ''}`,
+      sf: (t, ok) => t || (ok ? 'Emergency fund theek' : 'Emergency fund data nahi')
+    },
+    s2: ['Portfolio ka haal', 'opening script'],
+    open: (fn, inv, val, gain, pos, xirr) => `Namaste ${fn} ji! Aaj hum dekhenge portfolio kaisa chal raha hai, har fund ka report card, goals aur aage kya karna hai.<br><br>Ab tak aapne <b>${inv}</b> lagaya hai, jo aaj <b>${val}</b> ho gaya — yaani <b>${gain}</b> ${pos ? 'ka fayda' : 'ka notional loss'}${xirr ? `, saalana return (XIRR) <b>${xirr}</b>` : ''}. `,
+    fdUp: (fd, d) => `Yahi paisa FD me hota to aaj ≈ ${fd} hota — MF ne <b>${d}</b> zyada kamaya.`,
+    fdDn: (fd, d, young, yrs) => `Abhi ye FD (≈ ${fd}) se ${d} peeche hai — ${young ? `portfolio sirf ${yrs} saal ka hai; equity ko kam se kam 5 saal dena chahiye, short-term utaar-chadhaav normal hai.` : 'market ka kamzor daur hai; SIP chalu rakhne se average price neeche aa raha hai — recovery me sabse zyada fayda yahi deta hai.'}`,
+    sinceTxt: (d, dv, up, di, mg, mpos) => `<br><br>Pichhli baar (${d}) se portfolio ${dv} ${up ? 'badha' : 'ghata'} — isme ${di} aapka naya paisa aur ${mg} market ${mpos ? 'ka fayda' : 'ka asar'}.`,
+    since: d => `Pichhle review se (${d} din)`, sinceK: ['Value change', 'Naya invest', 'Market se kamaya', 'Health score'],
+    fdLab: ['Lagaya', 'FD @7%', 'MF aaj'], fdH: 'MF vs FD — client ko ye chart dikhao', growH: 'Portfolio growth', histH: 'Review-wise value', today: 'Aaj', valueL: 'Value', invL: 'Invested',
+    s3: ['Fund report card', n => `${n} funds`], xirrH: 'Fund-wise XIRR (rang = verdict)', table: 'Pura numbers table',
+    th: ['Fund', 'Verdict', 'Invested', 'Value', 'Gain', 'XIRR', '1Y / 3Y', 'Peer'], rankL: (r, o, a, b) => `Peer rank #${r}/${o} · 3Y ${a} vs median ${b}`,
+    V: { Continue: 'Continue', Hold: 'Hold', Watch: 'Watch', Review: 'Review', Switch: 'Switch', 'Rank pending': 'Rank pending', 'NAV pending': 'NAV pending' },
+    fs: {
+      Continue: (n, rk, r3, m3, g) => `${n} badhiya chal raha hai — ${rk}${r3 ? `, 3 saal me ${r3} saalana vs category ${m3}` : ''}. Ab tak ${g}. SIP chalu rakhein.`,
+      Switch: (n, rk, to) => `${n} apni category me peeche chal raha hai (${rk}). Isse ${to || 'behtar fund'} me shift karne ka plan hai — tax bacha kar, step-by-step.`,
+      Watch: n => `${n} abhi thoda slow hai — ghabrane ki baat nahi, agle quarter tak dekhenge.`,
+      Review: n => `${n} ka fund manager badla hai — naye manager ko 2–3 quarter denge, tab tak naya paisa isme nahi.`,
+      Stable: (n, g) => `${n} portfolio me stability / hedge ke liye hai — iska return equity se compare mat karein. Ab tak ${g}.`,
+      Hold: (n, g) => `${n} theek-thaak (average) chal raha hai — switch ka kharcha zyada hai, isliye hold. Ab tak ${g}.`,
+      Other: (n, g, x) => `${n}: ab tak ${g}${x ? `, XIRR ${x}` : ''}.`,
+      rk: (r, o) => `category me #${r}/${o}`, gain: (v, pos) => `${v} ${pos ? 'ka fayda' : 'ka notional loss'}`
+    },
+    s4: ['Allocation vs risk profile'], mixH: 'Category mix', avtH: 'Actual vs target', avtNote: 'Bar = actual, kaali line = target', allocRows: ['Equity', 'Debt', 'Gold', 'Small+Mid'], max: 'max',
+    aOk: (fn, p, eq, tg) => `${fn} ji, aapka portfolio aapke risk profile (${p}) ke hisaab se balanced hai — equity ${eq}, target ${tg}. Is balance ko hum har review me maintain karte hain.`,
+    aOver: (fn, eq, tg) => `${fn} ji, market achha chalne se equity ka hissa ${eq} ho gaya hai, jabki aapke profile ke hisaab se ${tg} hona chahiye. Isliye thoda balance karne ka suggestion hai — taaki market girne par jhatka kam lage.`,
+    aUnder: (fn, eq, tg) => `${fn} ji, aapke goals aur profile ke hisaab se equity ${tg} tak ho sakti hai, abhi ${eq} hai — lambi avadhi me growth ke liye equity thodi badhani chahiye.`,
+    s5: ['Goals', n => n ? `${n} goal` : 'set nahi'],
+    gMeta: (y, yrs, f) => `${y} · ${yrs} saal · target ${f} (mehngai ke saath)`, gGap: (gap, sip, st) => `<span class="neg">Kami ${gap}</span> → +${sip}/mo SIP${st ? ` ya ${st}% step-up` : ''}`, gOk: p => `<span class="pos">On track ✓</span> — projected ${p}`,
+    gSayGap: (n, y, f, t, p, gap, sip, st) => `"${n}" ke liye ${y} tak ${f} chahiye (aaj ke ${t} mehngai ke saath). Abhi ki raftaar se ${p} banega — ${gap} ki kami. Isko poora karne ke liye SIP ${sip}/mahina badhani hogi${st ? `, ya har saal ${st}% step-up` : ''}.`,
+    gSayOk: (n, y, p, f) => `"${n}" bilkul track par hai — ${y} tak ≈ ${p} banne ka anuman, target ${f}.`,
+    noGoals: 'Is client ke goals set nahi hain. Meeting me puchho — retirement, bachchon ki padhai, ghar, gaadi: kitna paisa, kis saal tak. Goals se SIP badhane ka sabse strong reason milta hai.',
+    s6: ['Aaj ke proposals', n => `${n} suggestion`], prio: p => `${['', 'Low', 'Medium', 'High'][p]} priority`, agreed: 'Client agreed', agreedBox: '☐ Agreed',
+    steps: 'Steps & numbers (kaise karna hai)', why: 'Kyun:', qa: ['Client puchhe:', 'Aap bolo:'], more: n => `Aur ${n} suggestion (kam priority)`,
+    noProps: 'Koi badlaav zaroori nahi — client ko bolo: "Portfolio bilkul sahi raste par hai, SIP chalu rakhiye."', crmLang: '',
+    s7: ['Market ki baat', r => `Nifty 1Y ${r}`], niftyH: 'Nifty 50 — pichhla 1 saal',
+    mNone: 'Market data load nahi hua — general baat: SIP lambe samay ka khel hai, utaar-chadhaav me bane rehna hi asli kamai hai.',
+    mDeep: (fn, d) => `Market (Nifty 50) apne 1-saal ke high se ${d} neeche hai. ${fn} ji, SIP walon ke liye ye "sale" jaisa time hai — har SIP ko sasti units mil rahi hain. SIP bilkul band mat kijiye; extra paisa ho to STP se thoda-thoda daal sakte hain.`,
+    mMid: d => `Market high se ${d} neeche hai — ye normal correction hai. Ghabrane ki zarurat nahi; SIP continue rakhein.`,
+    mHigh: r => `Market apne high ke paas hai (pichhle 1 saal me Nifty ${r}). Is time naya lumpsum ek saath na daal kar 6 mahine STP se daalein; SIP normal chalti rahe.`,
+    s8: ['Client se puchhna hai', 'profile update'],
+    Q: {
+      income: 'Pichhle 6 mahine me income / job / business me koi badlaav?', big: 'Agle 1–3 saal me koi bada kharcha — shaadi, ghar, gaadi, padhai?', comfort: 'Market upar-neeche hone par kaisa laga — comfort level wahi hai?', kyc: 'Nominee, mobile, email, bank sab folios me updated hain?',
+      risk: 'Risk profile ke 8 sawaal abhi poore karo (Profile → Edit).', goals: 'Goals puchho: retirement, bachchon ki padhai, ghar — kitna paisa, kis saal tak?', inc: 'Monthly income aur kharcha kitna hai? (SIP capacity nikalne ke liye)', ef: 'Bank / FD me emergency ke liye kitna rakha hai?',
+      c80: fy => `80C me ${fy} me ab tak kitna invest hua (PPF, LIC, EPF, ELSS)?`, ltcg: 'Is FY me kahin aur shares / MF bech kar profit book kiya? (LTCG chhoot ke liye)', idle: v => `Bank me ${v} idle tha — abhi bhi hai? Kab tak invest kar sakte hain?`, swp: 'Retirement ke baad har mahine kitna chahiye hoga? (SWP plan)', pan: 'PAN / KYC details CRM me update karo.', family: 'Family me kisi aur ko (spouse, parents, bachche) investment shuru karni hai?'
+    },
+    QT: { sip: 'SIP capacity', liq: 'liquidity plan', risk: 'risk profile', svc: 'service', miss: 'data missing', safe: 'safety', tax: 'tax', opp: 'opportunity', inc: 'income', biz: 'naya business' },
+    s9: ['Closing — asks & next steps'], stH: (y, r) => `SIP badhane ki taakat (${y} saal, ${r})`, stLab: a => ['Abhi jaisa', `+${a}/mo`, '10% step-up'],
+    closeSip: (fn, sip, y, up, flat, d) => `${fn} ji, aapki SIP ${sip}/mahina hai. Agar isse har saal sirf 10% badhayein to ${y} saal me ≈ <b>${up}</b> banega, warna ≈ ${flat} — yaani <b>${d}</b> ka farak, bina zyada bojh ke.`,
+    closeNo: (fn, b, y, flat, r) => `${fn} ji, ${b}/mahina ki SIP bhi ${y} saal me ≈ <b>${flat}</b> bana sakti hai (${r} anumanit return).`,
+    ref: 'Aapke jaan-pehchaan me kisi ko bhi investment ya tax-saving me madad chahiye ho to mera number zaroor share kijiye.', nextRev: d => `Agla review ${d} ke aas-paas rakhte hain.`,
+    chips: d => ['Referral maango', `Agla review: ${d}`, 'Jo agree hua, WhatsApp pe summary bhejo'],
+    askStep: a => `SIP ${a}/mahina badhao (10% step-up)`, askNew: 'Nayi SIP shuru karwao',
+    notesH: 'Meeting notes', afterH: 'Meeting ke baad', notesPh: 'Kya baat hui? e.g. SIP 2K badhane pe agree, switch next month, bonus Jan me aayega…',
+    doneNote: '"Review complete" dabane par: review date + snapshot save (agle review me comparison), agreed proposals ✅ Done, notes Activity me, meeting complete.', doneBtn: 'Review complete',
+    disc: (a, arn, f, t) => `Internal advisor brief — prepared for ${a} (${arn}), ${f}. Not for distribution to clients. Returns, peer ranks and projections are computed from AMFI NAV data and assumed returns; tax notes use FY 2026-27 rules and are indicative. Mutual Fund investments are subject to market risks, read all scheme related documents carefully. Generated ${t}.`,
+    rec: null,
+    OBJ: null
+  },
+
+  en: {
+    name: 'English', dayW: ['Today', 'Tomorrow'], modes: { office: 'In-office meeting', visit: "At client's home / office", phone: 'Phone call', video: 'Video call (Meet / Zoom)' },
+    impL: { 'Illustrative 5Y extra (aadha past gap maan kar)': 'Illustrative 5Y extra (assuming half the past gap)' },
+    tag: 'Advisor brief · internal — do not forward to client', yrs: 'yrs', inv: p => `${p} investor`,
+    noMeet: 'No meeting scheduled', prev: d => `last review ${d}`, first: 'first review',
+    kp: ['Value', 'Invested', 'Gain', 'XIRR', 'SIP / mo'], health: 'Portfolio health / 100',
+    lab: ['Excellent', 'Good', 'Needs attention', 'Action needed'],
+    told: 'Client mentioned earlier:', navWait: n => n ? `NAV for ${n} fund(s) hasn't loaded yet — numbers will update.` : 'Live NAVs are loading — numbers will update.',
+    say: 'Say this',
+    s1: ['30-second summary', 'read before the meeting'], good: 'Good news', concern: 'Watch out', ask: "Today's ask",
+    goodTxt: (g, a, best) => `Portfolio is up ${g} (${a})${best ? `; best performer: ${best}` : ''}.`,
+    lossTxt: (l, young) => `Currently a notional loss of ${l} — ${young ? 'the portfolio is new; equity needs time' : 'part of the market cycle; SIPs are averaging the cost'}.`,
+    noConcern: 'No major concern — portfolio is on track.',
+    flow: 'Meeting flow (20 min):', flowSteps: ['Catch-up + life update', 'Portfolio status', 'Fund report card', 'Goals', 'Proposals', 'Next steps'],
+    scoreHow: n => `How the health score of ${n}/100 is built`,
+    sp: { fq: 'Fund quality', af: 'Risk-fit allocation', gl: 'Goals on track', rt: 'Returns', dv: 'Diversification', sf: 'Safety net' },
+    spn: {
+      fq: (q, sw) => q == null ? 'Peer ranking not loaded — taken as neutral' : `Avg peer score ${q}/100${sw ? ` · ${sw} switch case(s)` : ''}`,
+      af: (eq, tg, sm, lim) => `Equity ${eq} vs target ${tg}${sm ? ` · small+mid ${sm} (max ${lim})` : ''}`,
+      gl: (n, d) => n ? `${n} goal(s) · avg ${d}% on track` : 'No goals set — ask in the meeting',
+      rt: (x, e) => x == null ? 'Portfolio younger than 1 year — neutral' : `XIRR ${x} vs expected ${e}`,
+      dv: (n, ov) => `${n} funds${ov ? ' · overlap / concentration' : ''}`,
+      sf: (t, ok) => t || (ok ? 'Emergency fund is fine' : 'No emergency-fund data')
+    },
+    s2: ['Portfolio status', 'opening script'],
+    open: (fn, inv, val, gain, pos, xirr) => `Hello ${fn}! Today we'll look at how your portfolio is doing, a report card for each fund, your goals, and what to do next.<br><br>So far you have invested <b>${inv}</b>, which is worth <b>${val}</b> today — a ${pos ? 'gain' : 'notional loss'} of <b>${gain}</b>${xirr ? `, an annualised return (XIRR) of <b>${xirr}</b>` : ''}. `,
+    fdUp: (fd, d) => `Had the same money gone into an FD, it would be about ${fd} today — mutual funds earned you <b>${d}</b> more.`,
+    fdDn: (fd, d, young, yrs) => `Right now it is ${d} behind an FD (≈ ${fd}) — ${young ? `the portfolio is only ${yrs} years old; equity needs at least 5 years, and short-term ups and downs are normal.` : 'the market is in a weak phase; continuing SIPs is lowering your average cost, which pays off most in the recovery.'}`,
+    sinceTxt: (d, dv, up, di, mg, mpos) => `<br><br>Since the last review (${d}) the portfolio has ${up ? 'grown' : 'fallen'} by ${dv} — ${di} of that is your new money and ${mg} is ${mpos ? 'market gain' : 'market impact'}.`,
+    since: d => `Since last review (${d} days)`, sinceK: ['Value change', 'New investment', 'Market gain', 'Health score'],
+    fdLab: ['Invested', 'FD @7%', 'MF today'], fdH: 'MF vs FD — show this chart to the client', growH: 'Portfolio growth', histH: 'Value at each review', today: 'Today', valueL: 'Value', invL: 'Invested',
+    s3: ['Fund report card', n => `${n} funds`], xirrH: 'Fund-wise XIRR (colour = verdict)', table: 'Full numbers table',
+    th: ['Fund', 'Verdict', 'Invested', 'Value', 'Gain', 'XIRR', '1Y / 3Y', 'Peer'], rankL: (r, o, a, b) => `Peer rank #${r}/${o} · 3Y ${a} vs median ${b}`,
+    V: { Continue: 'Continue', Hold: 'Hold', Watch: 'Watch', Review: 'Review', Switch: 'Switch', 'Rank pending': 'Rank pending', 'NAV pending': 'NAV pending' },
+    fs: {
+      Continue: (n, rk, r3, m3, g) => `${n} is doing well — ${rk}${r3 ? `, ${r3} a year over 3 years vs category ${m3}` : ''}. ${g} so far. Keep the SIP going.`,
+      Switch: (n, rk, to) => `${n} is lagging its category (${rk}). The plan is to shift to ${to || 'a better fund'} — step by step, saving tax.`,
+      Watch: n => `${n} is a little slow right now — nothing to worry about; we'll review it next quarter.`,
+      Review: n => `${n} has a new fund manager — we'll give them 2–3 quarters; no fresh money into it until then.`,
+      Stable: (n, g) => `${n} is in the portfolio for stability / hedging — don't compare its return with equity. ${g} so far.`,
+      Hold: (n, g) => `${n} is average — switching would cost more than it gains, so we hold. ${g} so far.`,
+      Other: (n, g, x) => `${n}: ${g} so far${x ? `, XIRR ${x}` : ''}.`,
+      rk: (r, o) => `#${r}/${o} in its category`, gain: (v, pos) => `${v} ${pos ? 'gain' : 'notional loss'}`
+    },
+    s4: ['Allocation vs risk profile'], mixH: 'Category mix', avtH: 'Actual vs target', avtNote: 'Bar = actual, black line = target', allocRows: ['Equity', 'Debt', 'Gold', 'Small+Mid'], max: 'max',
+    aOk: (fn, p, eq, tg) => `${fn}, your portfolio is well balanced for your risk profile (${p}) — equity ${eq} against a target of ${tg}. We maintain this balance at every review.`,
+    aOver: (fn, eq, tg) => `${fn}, with markets doing well, equity has grown to ${eq} of the portfolio, while your profile calls for ${tg}. So I suggest rebalancing a little — it softens the blow if markets fall.`,
+    aUnder: (fn, eq, tg) => `${fn}, for your goals and profile equity can go up to ${tg}; it's ${eq} now — we should raise it a little for long-term growth.`,
+    s5: ['Goals', n => n ? `${n} goal(s)` : 'not set'],
+    gMeta: (y, yrs, f) => `${y} · ${yrs} yrs · target ${f} (inflation-adjusted)`, gGap: (gap, sip, st) => `<span class="neg">Short by ${gap}</span> → +${sip}/mo SIP${st ? ` or ${st}% step-up` : ''}`, gOk: p => `<span class="pos">On track ✓</span> — projected ${p}`,
+    gSayGap: (n, y, f, t, p, gap, sip, st) => `For "${n}" you need ${f} by ${y} (today's ${t} adjusted for inflation). At the current pace you'll have ${p} — a shortfall of ${gap}. To close it, the SIP needs to go up by ${sip}/month${st ? `, or step up ${st}% every year` : ''}.`,
+    gSayOk: (n, y, p, f) => `"${n}" is right on track — about ${p} expected by ${y} against a target of ${f}.`,
+    noGoals: "This client has no goals set. Ask in the meeting — retirement, children's education, house, car: how much and by when. Goals are the strongest reason to increase SIPs.",
+    s6: ["Today's proposals", n => `${n} suggestion(s)`], prio: p => `${['', 'Low', 'Medium', 'High'][p]} priority`, agreed: 'Client agreed', agreedBox: '☐ Agreed',
+    steps: 'Steps & numbers (how to do it)', why: 'Why:', qa: ['If the client asks:', 'You say:'], more: n => `${n} more suggestion(s) (lower priority)`,
+    noProps: 'No changes needed — tell the client: "Your portfolio is on the right track, keep the SIPs going."', crmLang: ' — detailed steps are from the CRM (Hinglish)',
+    s7: ['Market talk', r => `Nifty 1Y ${r}`], niftyH: 'Nifty 50 — last 1 year',
+    mNone: "Market data didn't load — general point: SIPs are a long-term game; staying invested through ups and downs is where the real returns come from.",
+    mDeep: (fn, d) => `The market (Nifty 50) is ${d} below its 1-year high. ${fn}, for SIP investors this is like a sale — every SIP is buying cheaper units. Please don't stop the SIPs; if you have extra money, we can add it gradually through an STP.`,
+    mMid: d => `The market is ${d} below its high — a normal correction. No need to worry; keep the SIPs going.`,
+    mHigh: r => `The market is near its high (Nifty ${r} over the last year). Rather than investing a new lumpsum at once, spread it over 6 months via STP; SIPs continue as normal.`,
+    s8: ['Questions for the client', 'profile update'],
+    Q: {
+      income: 'Any change in income / job / business in the last 6 months?', big: 'Any big expense in the next 1–3 years — wedding, house, car, education?', comfort: 'How did the market ups and downs feel — is the comfort level the same?', kyc: 'Are nominee, mobile, email and bank details updated in all folios?',
+      risk: 'Complete the 8 risk-profile questions now (Profile → Edit).', goals: "Ask about goals: retirement, children's education, house — how much, by which year?", inc: 'What are the monthly income and expenses? (to work out SIP capacity)', ef: 'How much is kept in bank / FD for emergencies?',
+      c80: fy => `How much has been invested under 80C so far in ${fy} (PPF, LIC, EPF, ELSS)?`, ltcg: 'Has any profit been booked elsewhere this FY from shares / MFs? (for the LTCG exemption)', idle: v => `${v} was lying idle in the bank — is it still there? When can it be invested?`, swp: 'How much will be needed every month after retirement? (SWP plan)', pan: 'Update PAN / KYC details in the CRM.', family: 'Does anyone else in the family (spouse, parents, children) want to start investing?'
+    },
+    QT: { sip: 'SIP capacity', liq: 'liquidity plan', risk: 'risk profile', svc: 'service', miss: 'data missing', safe: 'safety', tax: 'tax', opp: 'opportunity', inc: 'income', biz: 'new business' },
+    s9: ['Closing — asks & next steps'], stH: (y, r) => `Power of increasing SIP (${y} yrs, ${r})`, stLab: a => ['As is', `+${a}/mo`, '10% step-up'],
+    closeSip: (fn, sip, y, up, flat, d) => `${fn}, your SIP is ${sip}/month. If you raise it by just 10% every year, in ${y} years it could grow to about <b>${up}</b>, versus about ${flat} otherwise — a difference of <b>${d}</b>, without much strain.`,
+    closeNo: (fn, b, y, flat, r) => `${fn}, even a ${b}/month SIP can grow to about <b>${flat}</b> in ${y} years (${r} assumed return).`,
+    ref: 'If anyone you know needs help with investing or tax saving, please do share my number.', nextRev: d => `Let's keep the next review around ${d}.`,
+    chips: d => ['Ask for a referral', `Next review: ${d}`, 'Send a WhatsApp summary of what was agreed'],
+    askStep: a => `Increase SIP by ${a}/month (10% step-up)`, askNew: 'Start a new SIP',
+    notesH: 'Meeting notes', afterH: 'After the meeting', notesPh: 'What was discussed? e.g. agreed to raise SIP by 2K, switch next month, bonus due in Jan…',
+    doneNote: '"Review complete" saves the review date + a snapshot (for comparison next time), marks agreed proposals ✅ Done, adds notes to Activity and completes the meeting.', doneBtn: 'Review complete',
+    disc: null, rec: null, OBJ: null
+  },
+
+  hi: {
+    name: 'हिंदी', dayW: ['आज', 'कल'], modes: { office: 'ऑफ़िस में मुलाक़ात', visit: 'क्लाइंट के घर / ऑफ़िस', phone: 'फ़ोन कॉल', video: 'वीडियो कॉल (Meet / Zoom)' },
+    impL: { 'Illustrative 5Y extra (aadha past gap maan kar)': 'अनुमानित 5 साल का अतिरिक्त फ़ायदा', 'Future tax saved': 'आगे बचने वाला टैक्स', 'Amount to move': 'शिफ़्ट करने की राशि', 'Amount to deploy': 'निवेश करने की राशि', 'Amount to add': 'जोड़ने की राशि', 'Excess exposure': 'अतिरिक्त हिस्सा', 'Goal shortfall': 'लक्ष्य में कमी', '15Y extra corpus': '15 साल में अतिरिक्त कॉर्पस', '10Y value of extra SIP': 'अतिरिक्त SIP की 10 साल की वैल्यू', 'Tax saved this FY': 'इस साल बचने वाला टैक्स', 'Max tax set-off': 'अधिकतम टैक्स सेट-ऑफ़', 'Yearly tax vs FD': 'FD के मुक़ाबले सालाना टैक्स बचत' },
+    tag: 'एडवाइज़र ब्रीफ़ · इंटरनल — क्लाइंट को फ़ॉरवर्ड न करें', yrs: 'वर्ष', inv: p => `${p} निवेशक`,
+    noMeet: 'मीटिंग तय नहीं है', prev: d => `पिछला रिव्यू ${d}`, first: 'पहला रिव्यू',
+    kp: ['वैल्यू', 'निवेश', 'फ़ायदा', 'XIRR', 'SIP / माह'], health: 'पोर्टफोलियो हेल्थ / 100',
+    lab: ['बेहतरीन', 'अच्छा', 'ध्यान चाहिए', 'एक्शन ज़रूरी'],
+    told: 'क्लाइंट ने पहले बताया था:', navWait: n => n ? `${n} फ़ंड की NAV अभी लोड नहीं हुई — आंकड़े अपडेट हो जाएंगे।` : 'लाइव NAV लोड हो रही है — आंकड़े अपडेट हो जाएंगे।',
+    say: 'यह बोलें',
+    s1: ['30 सेकंड का सार', 'मीटिंग से पहले पढ़ लें'], good: 'अच्छी ख़बर', concern: 'ध्यान दें', ask: 'आज की माँग',
+    goodTxt: (g, a, best) => `पोर्टफोलियो ${g} के फ़ायदे में है (${a})${best ? `; सबसे अच्छा: ${best}` : ''}।`,
+    lossTxt: (l, young) => `अभी ${l} का काग़ज़ी नुक़सान — ${young ? 'पोर्टफोलियो नया है, इक्विटी को समय चाहिए' : 'यह मार्केट साइकिल का हिस्सा है, SIP से औसत लागत घट रही है'}।`,
+    noConcern: 'कोई बड़ी चिंता नहीं — पोर्टफोलियो सही रास्ते पर है।',
+    flow: 'मीटिंग का क्रम (20 मिनट):', flowSteps: ['हाल-चाल + जीवन में बदलाव', 'पोर्टफोलियो का हाल', 'फ़ंड रिपोर्ट कार्ड', 'लक्ष्य', 'सुझाव', 'अगले कदम'],
+    scoreHow: n => `हेल्थ स्कोर ${n}/100 कैसे बना`,
+    sp: { fq: 'फ़ंड क्वालिटी', af: 'रिस्क के हिसाब से एलोकेशन', gl: 'लक्ष्य ट्रैक पर', rt: 'रिटर्न', dv: 'डाइवर्सिफ़िकेशन', sf: 'सुरक्षा कवच' },
+    spn: {
+      fq: (q, sw) => q == null ? 'पीयर रैंकिंग लोड नहीं — न्यूट्रल माना' : `औसत पीयर स्कोर ${q}/100${sw ? ` · ${sw} स्विच केस` : ''}`,
+      af: (eq, tg, sm, lim) => `इक्विटी ${eq} बनाम लक्ष्य ${tg}${sm ? ` · स्मॉल+मिड ${sm} (अधिकतम ${lim})` : ''}`,
+      gl: (n, d) => n ? `${n} लक्ष्य · औसत ${d}% ट्रैक पर` : 'लक्ष्य तय नहीं — मीटिंग में पूछें',
+      rt: (x, e) => x == null ? 'पोर्टफोलियो 1 साल से नया — न्यूट्रल' : `XIRR ${x} बनाम अपेक्षित ${e}`,
+      dv: (n, ov) => `${n} फ़ंड${ov ? ' · ओवरलैप / एक जगह ज़्यादा पैसा' : ''}`,
+      sf: (t, ok) => t || (ok ? 'इमरजेंसी फ़ंड ठीक है' : 'इमरजेंसी फ़ंड की जानकारी नहीं')
+    },
+    s2: ['पोर्टफोलियो का हाल', 'शुरुआती स्क्रिप्ट'],
+    open: (fn, inv, val, gain, pos, xirr) => `नमस्ते ${fn} जी! आज हम देखेंगे कि पोर्टफोलियो कैसा चल रहा है, हर फ़ंड का रिपोर्ट कार्ड, आपके लक्ष्य और आगे क्या करना है।<br><br>अब तक आपने <b>${inv}</b> लगाए हैं, जो आज <b>${val}</b> हो गए हैं — यानी <b>${gain}</b> ${pos ? 'का फ़ायदा' : 'का काग़ज़ी नुक़सान'}${xirr ? `, सालाना रिटर्न (XIRR) <b>${xirr}</b>` : ''}। `,
+    fdUp: (fd, d) => `यही पैसा FD में होता तो आज लगभग ${fd} होता — म्यूचुअल फ़ंड ने <b>${d}</b> ज़्यादा कमाए।`,
+    fdDn: (fd, d, young, yrs) => `अभी यह FD (लगभग ${fd}) से ${d} पीछे है — ${young ? `पोर्टफोलियो सिर्फ़ ${yrs} साल का है; इक्विटी को कम से कम 5 साल देने चाहिए, थोड़े समय का उतार-चढ़ाव सामान्य है।` : 'बाज़ार का कमज़ोर दौर है; SIP जारी रखने से औसत लागत घट रही है — रिकवरी में सबसे ज़्यादा फ़ायदा इसी से मिलता है।'}`,
+    sinceTxt: (d, dv, up, di, mg, mpos) => `<br><br>पिछली बार (${d}) से पोर्टफोलियो ${dv} ${up ? 'बढ़ा' : 'घटा'} है — इसमें ${di} आपका नया पैसा है और ${mg} ${mpos ? 'बाज़ार से कमाई' : 'बाज़ार का असर'}।`,
+    since: d => `पिछले रिव्यू से (${d} दिन)`, sinceK: ['वैल्यू में बदलाव', 'नया निवेश', 'बाज़ार से कमाई', 'हेल्थ स्कोर'],
+    fdLab: ['लगाया', 'FD @7%', 'MF आज'], fdH: 'MF बनाम FD — यह चार्ट क्लाइंट को दिखाएँ', growH: 'पोर्टफोलियो ग्रोथ', histH: 'हर रिव्यू पर वैल्यू', today: 'आज', valueL: 'वैल्यू', invL: 'निवेश',
+    s3: ['फ़ंड रिपोर्ट कार्ड', n => `${n} फ़ंड`], xirrH: 'फ़ंड-वार XIRR (रंग = फ़ैसला)', table: 'पूरी आंकड़ा तालिका',
+    th: ['फ़ंड', 'फ़ैसला', 'निवेश', 'वैल्यू', 'फ़ायदा', 'XIRR', '1Y / 3Y', 'पीयर'], rankL: (r, o, a, b) => `पीयर रैंक #${r}/${o} · 3 साल ${a} बनाम औसत ${b}`,
+    V: { Continue: 'जारी रखें', Hold: 'होल्ड', Watch: 'नज़र रखें', Review: 'रिव्यू', Switch: 'स्विच', 'Rank pending': 'रैंक बाकी', 'NAV pending': 'NAV बाकी' },
+    fs: {
+      Continue: (n, rk, r3, m3, g) => `${n} बढ़िया चल रहा है — ${rk}${r3 ? `, 3 साल में ${r3} सालाना बनाम कैटेगरी ${m3}` : ''}। अब तक ${g}। SIP जारी रखें।`,
+      Switch: (n, rk, to) => `${n} अपनी कैटेगरी में पीछे चल रहा है (${rk})। इसे ${to || 'बेहतर फ़ंड'} में शिफ़्ट करने की योजना है — टैक्स बचाते हुए, धीरे-धीरे।`,
+      Watch: n => `${n} अभी थोड़ा धीमा है — घबराने की बात नहीं, अगले क्वार्टर तक देखेंगे।`,
+      Review: n => `${n} का फ़ंड मैनेजर बदला है — नए मैनेजर को 2–3 क्वार्टर देंगे, तब तक इसमें नया पैसा नहीं।`,
+      Stable: (n, g) => `${n} पोर्टफोलियो में स्थिरता / सुरक्षा के लिए है — इसके रिटर्न की तुलना इक्विटी से न करें। अब तक ${g}।`,
+      Hold: (n, g) => `${n} औसत चल रहा है — स्विच का ख़र्च ज़्यादा है, इसलिए होल्ड। अब तक ${g}।`,
+      Other: (n, g, x) => `${n}: अब तक ${g}${x ? `, XIRR ${x}` : ''}।`,
+      rk: (r, o) => `कैटेगरी में #${r}/${o}`, gain: (v, pos) => `${v} ${pos ? 'का फ़ायदा' : 'का काग़ज़ी नुक़सान'}`
+    },
+    s4: ['एलोकेशन बनाम रिस्क प्रोफ़ाइल'], mixH: 'कैटेगरी मिक्स', avtH: 'असल बनाम लक्ष्य', avtNote: 'बार = असल, काली लाइन = लक्ष्य', allocRows: ['इक्विटी', 'डेट', 'गोल्ड', 'स्मॉल+मिड'], max: 'अधिकतम',
+    aOk: (fn, p, eq, tg) => `${fn} जी, आपका पोर्टफोलियो आपकी रिस्क प्रोफ़ाइल (${p}) के हिसाब से संतुलित है — इक्विटी ${eq}, लक्ष्य ${tg}। यह संतुलन हम हर रिव्यू में बनाए रखते हैं।`,
+    aOver: (fn, eq, tg) => `${fn} जी, बाज़ार अच्छा चलने से इक्विटी का हिस्सा ${eq} हो गया है, जबकि आपकी प्रोफ़ाइल के हिसाब से ${tg} होना चाहिए। इसलिए थोड़ा संतुलन करने का सुझाव है — ताकि बाज़ार गिरने पर झटका कम लगे।`,
+    aUnder: (fn, eq, tg) => `${fn} जी, आपके लक्ष्य और प्रोफ़ाइल के हिसाब से इक्विटी ${tg} तक हो सकती है, अभी ${eq} है — लंबी अवधि की ग्रोथ के लिए इक्विटी थोड़ी बढ़ानी चाहिए।`,
+    s5: ['लक्ष्य', n => n ? `${n} लक्ष्य` : 'तय नहीं'],
+    gMeta: (y, yrs, f) => `${y} · ${yrs} साल · लक्ष्य ${f} (महंगाई के साथ)`, gGap: (gap, sip, st) => `<span class="neg">कमी ${gap}</span> → +${sip}/माह SIP${st ? ` या ${st}% स्टेप-अप` : ''}`, gOk: p => `<span class="pos">ट्रैक पर ✓</span> — अनुमान ${p}`,
+    gSayGap: (n, y, f, t, p, gap, sip, st) => `"${n}" के लिए ${y} तक ${f} चाहिए (आज के ${t} महंगाई के साथ)। अभी की रफ़्तार से ${p} बनेगा — ${gap} की कमी। इसे पूरा करने के लिए SIP ${sip}/माह बढ़ानी होगी${st ? `, या हर साल ${st}% स्टेप-अप` : ''}।`,
+    gSayOk: (n, y, p, f) => `"${n}" बिल्कुल ट्रैक पर है — ${y} तक लगभग ${p} बनने का अनुमान, लक्ष्य ${f}।`,
+    noGoals: 'इस क्लाइंट के लक्ष्य तय नहीं हैं। मीटिंग में पूछें — रिटायरमेंट, बच्चों की पढ़ाई, घर, गाड़ी: कितना पैसा, किस साल तक। लक्ष्य से SIP बढ़ाने का सबसे मज़बूत कारण मिलता है।',
+    s6: ['आज के सुझाव', n => `${n} सुझाव`], prio: p => `${['', 'कम', 'मध्यम', 'ज़्यादा'][p]} प्राथमिकता`, agreed: 'क्लाइंट सहमत', agreedBox: '☐ सहमत',
+    steps: 'स्टेप्स और आंकड़े (कैसे करना है)', why: 'क्यों:', qa: ['क्लाइंट पूछें:', 'आप बोलें:'], more: n => `${n} और सुझाव (कम प्राथमिकता)`,
+    noProps: 'कोई बदलाव ज़रूरी नहीं — क्लाइंट से कहें: "पोर्टफोलियो बिल्कुल सही रास्ते पर है, SIP जारी रखिए।"', crmLang: ' — विस्तृत स्टेप्स CRM से हैं (Hinglish में)',
+    s7: ['बाज़ार की बात', r => `Nifty 1 साल ${r}`], niftyH: 'Nifty 50 — पिछला 1 साल',
+    mNone: 'बाज़ार का डेटा लोड नहीं हुआ — सामान्य बात: SIP लंबे समय का खेल है, उतार-चढ़ाव में टिके रहना ही असली कमाई है।',
+    mDeep: (fn, d) => `बाज़ार (Nifty 50) अपने 1 साल के ऊँचे स्तर से ${d} नीचे है। ${fn} जी, SIP वालों के लिए यह "सेल" जैसा समय है — हर SIP को सस्ती यूनिट्स मिल रही हैं। SIP बिल्कुल बंद न करें; अतिरिक्त पैसा हो तो STP से थोड़ा-थोड़ा डाल सकते हैं।`,
+    mMid: d => `बाज़ार ऊँचे स्तर से ${d} नीचे है — यह सामान्य करेक्शन है। घबराने की ज़रूरत नहीं; SIP जारी रखें।`,
+    mHigh: r => `बाज़ार अपने ऊँचे स्तर के पास है (पिछले 1 साल में Nifty ${r})। इस समय नया लमसम एक साथ न डालकर 6 महीने में STP से डालें; SIP सामान्य रूप से चलती रहे।`,
+    s8: ['क्लाइंट से पूछना है', 'प्रोफ़ाइल अपडेट'],
+    Q: {
+      income: 'पिछले 6 महीनों में आय / नौकरी / व्यापार में कोई बदलाव?', big: 'अगले 1–3 साल में कोई बड़ा ख़र्च — शादी, घर, गाड़ी, पढ़ाई?', comfort: 'बाज़ार के उतार-चढ़ाव में कैसा लगा — क्या सहजता वैसी ही है?', kyc: 'क्या नॉमिनी, मोबाइल, ईमेल और बैंक सभी फ़ोलियो में अपडेट हैं?',
+      risk: 'रिस्क प्रोफ़ाइल के 8 सवाल अभी पूरे करें (Profile → Edit)।', goals: 'लक्ष्य पूछें: रिटायरमेंट, बच्चों की पढ़ाई, घर — कितना पैसा, किस साल तक?', inc: 'महीने की आय और ख़र्च कितना है? (SIP क्षमता निकालने के लिए)', ef: 'इमरजेंसी के लिए बैंक / FD में कितना रखा है?',
+      c80: fy => `${fy} में 80C के तहत अब तक कितना निवेश हुआ (PPF, LIC, EPF, ELSS)?`, ltcg: 'क्या इस वित्त वर्ष में कहीं और शेयर / MF बेचकर मुनाफ़ा लिया? (LTCG छूट के लिए)', idle: v => `बैंक में ${v} खाली पड़े थे — क्या अभी भी हैं? कब तक निवेश कर सकते हैं?`, swp: 'रिटायरमेंट के बाद हर महीने कितना चाहिए होगा? (SWP योजना)', pan: 'PAN / KYC की जानकारी CRM में अपडेट करें।', family: 'क्या परिवार में किसी और (पति/पत्नी, माता-पिता, बच्चे) को निवेश शुरू करना है?'
+    },
+    QT: { sip: 'SIP क्षमता', liq: 'नकदी योजना', risk: 'रिस्क प्रोफ़ाइल', svc: 'सर्विस', miss: 'डेटा बाकी', safe: 'सुरक्षा', tax: 'टैक्स', opp: 'मौका', inc: 'आय', biz: 'नया बिज़नेस' },
+    s9: ['समापन — माँग और अगले कदम'], stH: (y, r) => `SIP बढ़ाने की ताक़त (${y} साल, ${r})`, stLab: a => ['जैसा अभी', `+${a}/माह`, '10% स्टेप-अप'],
+    closeSip: (fn, sip, y, up, flat, d) => `${fn} जी, आपकी SIP ${sip}/माह है। अगर इसे हर साल सिर्फ़ 10% बढ़ाएँ तो ${y} साल में लगभग <b>${up}</b> बनेगा, वरना लगभग ${flat} — यानी <b>${d}</b> का फ़र्क़, बिना ज़्यादा बोझ के।`,
+    closeNo: (fn, b, y, flat, r) => `${fn} जी, ${b}/माह की SIP भी ${y} साल में लगभग <b>${flat}</b> बना सकती है (${r} अनुमानित रिटर्न)।`,
+    ref: 'आपकी जान-पहचान में किसी को भी निवेश या टैक्स बचत में मदद चाहिए हो तो मेरा नंबर ज़रूर शेयर कीजिए।', nextRev: d => `अगला रिव्यू ${d} के आसपास रखते हैं।`,
+    chips: d => ['रेफ़रल माँगें', `अगला रिव्यू: ${d}`, 'जो तय हुआ, उसका सार WhatsApp पर भेजें'],
+    askStep: a => `SIP ${a}/माह बढ़ाएँ (10% स्टेप-अप)`, askNew: 'नई SIP शुरू करवाएँ',
+    notesH: 'मीटिंग नोट्स', afterH: 'मीटिंग के बाद', notesPh: 'क्या बात हुई? जैसे SIP 2K बढ़ाने पर सहमति, अगले महीने स्विच, बोनस जनवरी में…',
+    doneNote: '"Review complete" दबाने पर: रिव्यू की तारीख़ + स्नैपशॉट सेव (अगले रिव्यू में तुलना), सहमत सुझाव ✅ Done, नोट्स Activity में, मीटिंग पूरी।', doneBtn: 'Review complete',
+    disc: null, rec: null, OBJ: null
+  }
+};
+RBT.en.disc = RBT.hi.disc = RBT.hn.disc;
+
+/* proposal title + script per rec type (uses rec.d numbers). hn falls back to the engine's own Hinglish text. */
+RBT.en.rec = {
+  switch: d => [`${d.f} → ${d.to}`, fn => `${fn}, ${d.f} has trailed its category median by ${U.pct(d.gap)} a year over the last 3 years (rank #${d.rank}/${d.of}). I suggest ${d.sip ? `moving the ${U.inr(d.sip)} SIP to ${d.to} right away and ` : ''}switching the older units to ${d.to} in a tax-efficient way — long-term units first. Your risk level stays the same; only the fund quality improves.`],
+  watch: d => [`${d.f} — keep watching`, () => `${d.f}'s 1-year return (${U.pct(d.r1)}) is below the category median (${U.pct(d.med1)}), but its long-term record is fine. No need to switch yet — we'll check again next quarter.`],
+  manager: d => [`${d.f}: fund manager changed (${d.mo} months ago)`, () => `The fund manager of ${d.f} has changed. No need to worry — I'll track the new manager closely for the next 2–3 quarters and suggest a switch at the right time if needed. Meanwhile, any new money goes to another fund.`],
+  harvest: d => [`Tax-gain harvesting: book ${U.inr(d.tot)} LTCG tax-free`, () => `This financial year you can book up to ${U.inr(d.tot)} of long-term gains tax-free (₹1.25 lakh exemption). We redeem and reinvest immediately — your investment stays the same, but about ${U.inr(d.tot * .125)} of future tax is saved. This needs to be done before ${U.fmtDate(d.by)}.`],
+  loss: d => [`${d.f}: book ${U.inr(d.loss)} loss for set-off`, () => `${d.f} is showing a notional loss of ${U.inr(d.loss)}. Booking it reduces the tax on your other gains — the money goes back into a similar fund the same day, so you stay invested.`],
+  rebalance: d => d.gold != null ? [`Gold allocation ${U.pct(d.gold, 0)} → ${U.pct(d.tgt, 0)}`, () => `Gold acts as a cushion when equity falls. Adding about ${U.inr(d.amt)} to a gold fund (via SIP or STP) will balance the portfolio.`]
+    : d.over ? [`Equity ${U.pct(d.eq, 0)} → ${U.pct(d.tgt, 0)}: book ${U.inrS(d.amt)} profit`, () => `Equity is now ${U.pct(d.eq, 0)} of your portfolio, while your risk profile calls for about ${U.pct(d.tgt, 0)}. Booking some profit and moving it to stable funds keeps the risk within your comfort zone.`]
+      : [`Equity is low (${U.pct(d.eq, 0)} vs ${U.pct(d.tgt, 0)}): add ${U.inrS(d.amt)}`, () => `For your goals and profile, equity can go up to ${U.pct(d.tgt, 0)}; it is ${U.pct(d.eq, 0)} now. We can raise it gradually through an STP.`],
+  risk: d => d.them != null ? [`Sectoral/Thematic ${U.pct(d.them, 0)} — above 10%`, () => `Too much money in one sector is concentration risk. Let's keep thematic funds within 10% of the portfolio and move the excess to a flexi cap fund.`]
+    : [`Small+Mid cap ${U.pct(d.v, 0)} — limit ${U.pct(d.lim, 0)}`, () => `Small and mid caps are ${U.pct(d.v, 0)} of your portfolio against a ${U.pct(d.lim, 0)} limit for your profile. They can fall 40–60% in corrections, so we'll gradually move about ${U.inr(d.amt)} into a diversified fund.`],
+  consolidate: d => d.many ? [`${d.many} funds — over-diversified`, () => `7–8 good funds are enough. More funds simply behave like an index while costing like active funds.`]
+    : d.amc ? [`${d.amc}: ${U.pct(d.pct, 0)} of portfolio`, () => `More than half of the portfolio is with one fund house. New investments should go to top funds of other AMCs to spread the risk.`]
+      : [`${d.n} ${d.cat} funds — consolidate into one`, () => `Funds in the same category hold 50–70% of the same stocks, so ${d.n} of them don't add diversification. Let's keep ${d.keep} and merge the rest gradually.`],
+  goal: d => [`${d.g}: shortfall of ${U.inrS(d.gap)}`, () => `For "${d.g}" you need ${U.inrS(d.future)} by ${d.year} (with inflation). The current plan gets you about ${U.inrS(d.proj)}. To close the gap, increase the SIP by ${U.inr(d.extra)}/month${d.step != null ? ` or step it up ${Math.ceil(d.step * 100)}% every year` : ''}.`],
+  stepup: d => [`10% annual step-up: 15Y corpus ${U.inrS(d.a0)} → ${U.inrS(d.a1)}`, () => `If your SIP of ${U.inr(d.s)} rises by just 10% every year, in 15 years the corpus could be about ${U.inrS(d.a1)} instead of ${U.inrS(d.a0)}. Shall we add ${U.inr(d.s * .1)}/month this year?`],
+  upsell: d => [`Capacity to increase SIP by ${U.inr(d.add)}/month`, () => `Your SIP is ${U.pct(d.pct, 0)} of your income; around 20% is a healthy level. Based on your monthly surplus, adding ${U.inr(d.add)}/month is comfortable.`],
+  elss: d => [`80C gap ${U.inr(d.gap)} — save ${U.inr(d.saved)} tax via ELSS`, () => `You still have ${U.inr(d.gap)} of the 80C limit left this year. Investing it in ELSS can save about ${U.inr(d.saved)} in tax (3-year lock-in). Let's plan it before 31 March.`],
+  emergency: d => [`Emergency fund ${U.inrS(d.have)} / ${U.inrS(d.need)}`, () => `Ideally 6 months of expenses (${U.inrS(d.need)}) should be kept aside; right now it's about ${U.inrS(d.have)}. Let's build the remaining ${U.inrS(d.need - d.have)} in a liquid fund, so SIPs never have to stop in an emergency.`],
+  stp: d => [`${U.inrS(d.idle)} idle — ${d.months}-month STP`, () => `The ${U.inrS(d.idle)} lying in the bank is earning less than inflation. Instead of investing it all at once, let's park it in ${d.src === 'arbitrage' ? 'an arbitrage' : 'a liquid'} fund and move ${U.inr(d.idle / d.months)} into equity every month for ${d.months} months.`],
+  swp: d => [`SWP ${U.inr(d.needM)}/month — withdrawal rate ${U.pct(d.rate)}`, () => d.rate > .07 ? `Withdrawing ${U.inr(d.needM)} a month is ${U.pct(d.rate)} of the portfolio a year — above the safe 6–7%, so the corpus could run out early. Let's reduce it a little and keep 2 years of withdrawals in safe funds.` : `A monthly SWP of ${U.inr(d.needM)} works out to ${U.pct(d.rate)} a year — within the sustainable range. Tax applies only to the gain portion: about ${U.inr(d.taxSwp)}/year vs ${U.inr(d.fdTax)} on FD interest.`],
+  market: d => [`Market ${U.pct(d.hi)} down — reassurance + top-up`, () => `The market is ${U.pct(-d.hi, 0)} below its high — a normal correction. Your SIPs are buying more units at lower NAVs, which pays off in the long run. Please don't stop the SIPs; if you have extra money, this is a good time to top up.`]
+};
+RBT.hi.rec = {
+  switch: d => [`${d.f} → ${d.to}`, fn => `${fn} जी, ${d.f} पिछले 3 साल में अपनी कैटेगरी के औसत से ${U.pct(d.gap)} सालाना पीछे रहा है (रैंक #${d.rank}/${d.of})। मेरा सुझाव है कि ${d.sip ? `${U.inr(d.sip)} की SIP तुरंत ${d.to} में शुरू करें और ` : ''}पुराने यूनिट्स टैक्स बचाते हुए ${d.to} में स्विच करें — पहले लॉन्ग-टर्म वाले यूनिट्स। आपका रिस्क वही रहेगा, सिर्फ़ फ़ंड की क्वालिटी बेहतर होगी।`],
+  watch: d => [`${d.f} — नज़र रखें`, () => `${d.f} का 1 साल का रिटर्न (${U.pct(d.r1)}) कैटेगरी के औसत (${U.pct(d.med1)}) से कम है, लेकिन लंबी अवधि का रिकॉर्ड ठीक है। अभी स्विच की ज़रूरत नहीं — अगले क्वार्टर में फिर देखेंगे।`],
+  manager: d => [`${d.f}: फ़ंड मैनेजर बदला (${d.mo} महीने पहले)`, () => `${d.f} का फ़ंड मैनेजर बदला है। घबराने की बात नहीं — मैं अगले 2–3 क्वार्टर नए मैनेजर का प्रदर्शन ध्यान से देखूँगा और ज़रूरत हुई तो सही समय पर स्विच का सुझाव दूँगा। तब तक नया पैसा दूसरे फ़ंड में लगाएँगे।`],
+  harvest: d => [`टैक्स-गेन हार्वेस्टिंग: ${U.inr(d.tot)} LTCG टैक्स-फ़्री बुक करें`, () => `इस वित्त वर्ष में आपके ${U.inr(d.tot)} तक के लॉन्ग-टर्म गेन टैक्स-फ़्री बुक हो सकते हैं (₹1.25 लाख की छूट)। हम यूनिट्स बेचकर तुरंत दोबारा निवेश करेंगे — निवेश वही रहेगा, लेकिन आगे का लगभग ${U.inr(d.tot * .125)} टैक्स बचेगा। यह ${U.fmtDate(d.by)} से पहले करना है।`],
+  loss: d => [`${d.f}: ${U.inr(d.loss)} का नुक़सान बुक करके सेट-ऑफ़`, () => `${d.f} में ${U.inr(d.loss)} का काग़ज़ी नुक़सान है। इसे बुक करने से आपके दूसरे मुनाफ़े पर टैक्स कम होता है — पैसा उसी दिन मिलते-जुलते फ़ंड में वापस लगेगा, यानी आप बाज़ार में बने रहेंगे।`],
+  rebalance: d => d.gold != null ? [`गोल्ड एलोकेशन ${U.pct(d.gold, 0)} → ${U.pct(d.tgt, 0)}`, () => `इक्विटी गिरने पर गोल्ड सुरक्षा कवच का काम करता है। लगभग ${U.inr(d.amt)} गोल्ड फ़ंड में (SIP या STP से) जोड़ने से पोर्टफोलियो संतुलित होगा।`]
+    : d.over ? [`इक्विटी ${U.pct(d.eq, 0)} → ${U.pct(d.tgt, 0)}: ${U.inrS(d.amt)} मुनाफ़ा बुक करें`, () => `आपके पोर्टफोलियो में इक्विटी का हिस्सा ${U.pct(d.eq, 0)} हो गया है, जबकि रिस्क प्रोफ़ाइल के हिसाब से लगभग ${U.pct(d.tgt, 0)} होना चाहिए। थोड़ा मुनाफ़ा बुक करके स्थिर फ़ंड में डालने से रिस्क आपकी सहजता के दायरे में रहेगा।`]
+      : [`इक्विटी कम है (${U.pct(d.eq, 0)} बनाम ${U.pct(d.tgt, 0)}): ${U.inrS(d.amt)} जोड़ें`, () => `आपके लक्ष्य और प्रोफ़ाइल के हिसाब से इक्विटी ${U.pct(d.tgt, 0)} तक हो सकती है; अभी ${U.pct(d.eq, 0)} है। इसे STP से धीरे-धीरे बढ़ा सकते हैं।`],
+  risk: d => d.them != null ? [`सेक्टोरल/थीमैटिक ${U.pct(d.them, 0)} — 10% से ज़्यादा`, () => `एक ही सेक्टर में ज़्यादा पैसा लगाना जोखिम भरा है। थीमैटिक फ़ंड को पोर्टफोलियो के 10% तक रखें और बाकी फ़्लेक्सी कैप फ़ंड में डालें।`]
+    : [`स्मॉल+मिड कैप ${U.pct(d.v, 0)} — सीमा ${U.pct(d.lim, 0)}`, () => `आपके पोर्टफोलियो में स्मॉल और मिड कैप ${U.pct(d.v, 0)} हैं, जबकि आपकी प्रोफ़ाइल के लिए सीमा ${U.pct(d.lim, 0)} है। गिरावट में ये 40–60% तक गिर सकते हैं, इसलिए लगभग ${U.inr(d.amt)} धीरे-धीरे डाइवर्सिफ़ाइड फ़ंड में डालेंगे।`],
+  consolidate: d => d.many ? [`${d.many} फ़ंड — ज़रूरत से ज़्यादा`, () => `7–8 अच्छे फ़ंड काफ़ी हैं। ज़्यादा फ़ंड इंडेक्स जैसा रिटर्न देते हैं, पर ख़र्च एक्टिव फ़ंड वाला।`]
+    : d.amc ? [`${d.amc}: पोर्टफोलियो का ${U.pct(d.pct, 0)}`, () => `आधे से ज़्यादा पोर्टफोलियो एक ही फ़ंड हाउस में है। जोखिम बाँटने के लिए नया निवेश दूसरी AMC के अच्छे फ़ंड में करें।`]
+      : [`${d.n} ${d.cat} फ़ंड — एक में मिलाएँ`, () => `एक ही कैटेगरी के फ़ंड में 50–70% शेयर एक जैसे होते हैं, इसलिए ${d.n} फ़ंड रखने से डाइवर्सिफ़िकेशन नहीं बढ़ता। ${d.keep} रखें और बाकी को धीरे-धीरे इसमें मिलाएँ।`],
+  goal: d => [`${d.g}: ${U.inrS(d.gap)} की कमी`, () => `"${d.g}" के लिए ${d.year} तक ${U.inrS(d.future)} चाहिए (महंगाई के साथ)। अभी की योजना से लगभग ${U.inrS(d.proj)} बनेगा। कमी पूरी करने के लिए SIP ${U.inr(d.extra)}/माह बढ़ाएँ${d.step != null ? ` या हर साल ${Math.ceil(d.step * 100)}% स्टेप-अप करें` : ''}।`],
+  stepup: d => [`10% सालाना स्टेप-अप: 15 साल का कॉर्पस ${U.inrS(d.a0)} → ${U.inrS(d.a1)}`, () => `अगर आपकी ${U.inr(d.s)} की SIP हर साल सिर्फ़ 10% बढ़े, तो 15 साल में कॉर्पस ${U.inrS(d.a0)} की जगह लगभग ${U.inrS(d.a1)} बन सकता है। क्या इस साल ${U.inr(d.s * .1)}/माह बढ़ा दें?`],
+  upsell: d => [`SIP ${U.inr(d.add)}/माह बढ़ाने की क्षमता`, () => `आपकी SIP आय का ${U.pct(d.pct, 0)} है; लगभग 20% अच्छा स्तर माना जाता है। आपकी महीने की बचत के हिसाब से ${U.inr(d.add)}/माह आराम से बढ़ाई जा सकती है।`],
+  elss: d => [`80C में ${U.inr(d.gap)} बाकी — ELSS से ${U.inr(d.saved)} टैक्स बचाएँ`, () => `इस साल 80C की ${U.inr(d.gap)} की सीमा अभी बाकी है। इसे ELSS में लगाकर लगभग ${U.inr(d.saved)} टैक्स बचा सकते हैं (3 साल का लॉक-इन)। 31 मार्च से पहले योजना बना लें।`],
+  emergency: d => [`इमरजेंसी फ़ंड ${U.inrS(d.have)} / ${U.inrS(d.need)}`, () => `आदर्श रूप से 6 महीने का ख़र्च (${U.inrS(d.need)}) अलग रखना चाहिए; अभी लगभग ${U.inrS(d.have)} है। बाकी ${U.inrS(d.need - d.have)} लिक्विड फ़ंड में जोड़ें, ताकि मुश्किल समय में SIP न रोकनी पड़े।`],
+  stp: d => [`${U.inrS(d.idle)} खाली — ${d.months} महीने का STP`, () => `बैंक में पड़े ${U.inrS(d.idle)} महंगाई से कम कमा रहे हैं। एक साथ लगाने की बजाय इन्हें ${d.src === 'arbitrage' ? 'आर्बिट्राज' : 'लिक्विड'} फ़ंड में रखें और ${d.months} महीने तक हर महीने ${U.inr(d.idle / d.months)} इक्विटी में डालें।`],
+  swp: d => [`SWP ${U.inr(d.needM)}/माह — निकासी दर ${U.pct(d.rate)}`, () => d.rate > .07 ? `हर महीने ${U.inr(d.needM)} निकालना पोर्टफोलियो का ${U.pct(d.rate)} सालाना है — सुरक्षित 6–7% से ज़्यादा, इसलिए कॉर्पस जल्दी ख़त्म हो सकता है। इसे थोड़ा कम करें और 2 साल की निकासी सुरक्षित फ़ंड में रखें।` : `${U.inr(d.needM)} की मासिक SWP सालाना ${U.pct(d.rate)} बैठती है — सुरक्षित दायरे में। टैक्स सिर्फ़ मुनाफ़े वाले हिस्से पर: लगभग ${U.inr(d.taxSwp)}/साल, जबकि FD ब्याज पर ${U.inr(d.fdTax)}।`],
+  market: d => [`बाज़ार ${U.pct(d.hi)} नीचे — भरोसा + टॉप-अप`, () => `बाज़ार अपने ऊँचे स्तर से ${U.pct(-d.hi, 0)} नीचे है — यह सामान्य करेक्शन है। आपकी SIP अभी कम NAV पर ज़्यादा यूनिट्स ख़रीद रही है, जिसका फ़ायदा लंबे समय में मिलता है। SIP बंद न करें; अतिरिक्त पैसा हो तो टॉप-अप का अच्छा मौका है।`]
+};
+RBT.en.OBJ = {
+  switch: [['This fund was good earlier — why change now?', "It was — but for the last 3 years most funds in its own category have done better. We're moving within the same category, so your risk stays the same; you just get a better fund."], ['Will there be tax / exit load?', "We switch only the older (12+ months) units now — up to ₹1.25L of LTCG on them is tax-free. Newer units move after they turn long-term. The new SIP goes to the new fund straight away at zero cost."]],
+  watch: [['Is this fund bad?', "No, it's just a little slow right now. We'll watch it for another quarter or two — switching in a hurry costs tax and exit load."]],
+  manager: [['What difference does a manager change make?', "The fund's past record belongs to the old manager. We'll give the new manager 2–3 quarters; if it falls below the median, we shift. Until then new money goes elsewhere."]],
+  harvest: [["If we reinvest anyway, what's the benefit?", "Up to ₹1.25L of equity LTCG is tax-free every year — if unused, it lapses. Selling and reinvesting the same day raises your purchase price, so you pay less tax later."]],
+  loss: [['Why sell at a loss?', "It's only booking a paper loss — it reduces tax on other gains. The money goes back into a similar fund the same day, so you stay in the market."]],
+  rebalance: [["It's doing well — why touch it?", "With markets up, equity has grown beyond your comfort level. Booking some profit to rebalance is discipline, not market timing. This balance is what helps when markets fall."]],
+  risk: [['Small caps / sector funds give higher returns?', "They do, but they can also fall 30–40%. We'll keep them within a limit that suits your risk profile, so a market fall doesn't cost you sleep."]],
+  consolidate: [["Don't more funds mean more safety?", "Funds in the same category share 50–70% of their stocks — diversification doesn't increase, only tracking gets harder. Fewer, better funds work best."]],
+  goal: [['Why do I need so much?', "Inflation grows at about 6% — ₹1 lakh today will be worth about ₹2 lakh in 12 years. Raising the SIP a little now avoids a big burden later."]],
+  stepup: [['Why increase the SIP every year?', "Income grows every year — if the SIP also grows 10%, the long-term corpus nearly doubles, and you hardly feel the monthly difference."]],
+  upsell: [['The budget is tight right now', "No problem — we can start with ₹1,000–2,000, or set a step-up at your next increment. Starting small still makes a big difference."]],
+  elss: [['Why not PPF / LIC for 80C?', "ELSS has the shortest lock-in (3 years) and gives equity growth. PPF is safe but locked for 15 years. A mix of both also works."]],
+  emergency: [["Why an emergency fund when I have MFs?", "In a tough time the market may be down — you'd have to sell MFs or stop SIPs. Keeping 6 months of expenses separately in a liquid fund / FD is essential."]],
+  stp: [['Why not invest it all at once?', "Nobody knows when the market will fall. Investing gradually over 6–12 months (STP) gives a better average price and reduces the fear of a fall."]],
+  swp: [['How is this better than FD interest?', "In an SWP only the gain portion is taxed; in an FD the entire interest is taxed at your slab rate. And the remaining money keeps growing."]],
+  market: [['The market is falling — should I stop the SIP?', "Not at all — in a fall your SIP buys cheaper units. People who continued their SIPs through the 2020 fall gained the most."]]
+};
+RBT.hi.OBJ = {
+  switch: [['यह फ़ंड पहले तो अच्छा था, अब क्यों बदलें?', 'जी, पहले अच्छा था — पर पिछले 3 साल से इसकी अपनी कैटेगरी के ज़्यादातर फ़ंड इससे आगे हैं। हम उसी कैटेगरी में बदल रहे हैं, तो रिस्क वही रहेगा, बस बेहतर फ़ंड मिलेगा।'], ['टैक्स / एग्ज़िट लोड लगेगा?', 'अभी सिर्फ़ पुराने (12+ महीने) यूनिट्स स्विच करेंगे — उन पर ₹1.25 लाख तक LTCG टैक्स-फ़्री है। नए यूनिट्स लॉन्ग-टर्म होने के बाद बदलेंगे। नई SIP तुरंत नए फ़ंड में — उसमें कोई ख़र्च नहीं।']],
+  watch: [['क्या यह फ़ंड ख़राब है?', 'नहीं, अभी बस थोड़ा धीमा है। एक-दो क्वार्टर और देखेंगे — जल्दबाज़ी में स्विच करने से टैक्स और एग्ज़िट लोड का ख़र्च होता है।']],
+  manager: [['मैनेजर बदलने से क्या फ़र्क़ पड़ता है?', 'फ़ंड का पिछला रिकॉर्ड पुराने मैनेजर का था। नए मैनेजर को 2–3 क्वार्टर देंगे; औसत से नीचे गया तो बदलेंगे। तब तक नया पैसा दूसरे फ़ंड में।']],
+  harvest: [['बेचकर वापस ही लगाना है तो फ़ायदा क्या?', 'हर साल ₹1.25 लाख तक का इक्विटी LTCG टैक्स-फ़्री है — इस्तेमाल न किया तो ख़त्म हो जाता है। बेचकर उसी दिन दोबारा लगाने से आपकी ख़रीद क़ीमत बढ़ जाती है, आगे टैक्स कम लगेगा।']],
+  loss: [['नुक़सान में क्यों बेचें?', 'यह सिर्फ़ काग़ज़ पर नुक़सान बुक करना है — इससे दूसरे मुनाफ़े का टैक्स घटता है। पैसा उसी दिन मिलते-जुलते फ़ंड में वापस लगेगा, तो आप बाज़ार में बने रहेंगे।']],
+  rebalance: [['अच्छा चल रहा है तो क्यों छेड़ें?', 'बाज़ार ऊपर जाने से इक्विटी का हिस्सा आपकी सहजता से ज़्यादा हो गया है। थोड़ा मुनाफ़ा बुक करके संतुलन करना अनुशासन है — मार्केट टाइमिंग नहीं। गिरावट में यही संतुलन काम आता है।']],
+  risk: [['स्मॉल कैप / सेक्टर फ़ंड में तो रिटर्न ज़्यादा है?', 'रिटर्न ज़्यादा है, पर गिरावट भी 30–40% तक होती है। आपकी रिस्क प्रोफ़ाइल के हिसाब से एक सीमा में रखेंगे, ताकि बाज़ार गिरने पर नींद ख़राब न हो।']],
+  consolidate: [['ज़्यादा फ़ंड = ज़्यादा सुरक्षा नहीं?', 'एक ही कैटेगरी के फ़ंड में 50–70% शेयर एक जैसे होते हैं — डाइवर्सिफ़िकेशन नहीं बढ़ता, बस ट्रैक करना मुश्किल होता है। कम और अच्छे फ़ंड बेहतर हैं।']],
+  goal: [['इतना ज़्यादा क्यों चाहिए?', 'महंगाई लगभग 6% से बढ़ती है — आज का ₹1 लाख 12 साल बाद लगभग ₹2 लाख के बराबर होगा। अभी थोड़ी SIP बढ़ाएँगे तो बाद में बड़ा बोझ नहीं पड़ेगा।']],
+  stepup: [['हर साल SIP क्यों बढ़ाएँ?', 'आय हर साल बढ़ती है — SIP भी 10% बढ़े तो लंबे समय में कॉर्पस लगभग दोगुना हो जाता है, और हर महीने का बोझ महसूस नहीं होता।']],
+  upsell: [['अभी बजट तंग है', 'कोई बात नहीं — ₹1,000–2,000 से शुरू करते हैं, या अगली सैलरी बढ़ोतरी पर SIP स्टेप-अप लगा देते हैं। छोटी शुरुआत भी बड़ा फ़र्क़ लाती है।']],
+  elss: [['80C के लिए PPF / LIC क्यों नहीं?', 'ELSS का लॉक-इन सबसे कम (3 साल) है और इक्विटी ग्रोथ का फ़ायदा मिलता है। PPF सुरक्षित है पर 15 साल लॉक। दोनों का मिश्रण भी कर सकते हैं।']],
+  emergency: [['MF है तो इमरजेंसी फ़ंड की क्या ज़रूरत?', 'मुश्किल समय में बाज़ार नीचे हो सकता है — तब MF बेचना पड़ेगा या SIP रोकनी पड़ेगी। 6 महीने का ख़र्च लिक्विड फ़ंड / FD में अलग रखना ज़रूरी है।']],
+  stp: [['एक साथ क्यों न लगाएँ?', 'बाज़ार कब गिरेगा कोई नहीं जानता। 6–12 महीने में थोड़ा-थोड़ा (STP) लगाने से औसत क़ीमत अच्छी मिलती है और गिरावट का डर कम होता है।']],
+  swp: [['FD ब्याज से बेहतर कैसे?', 'SWP में सिर्फ़ मुनाफ़े वाले हिस्से पर टैक्स लगता है, FD में पूरे ब्याज पर स्लैब रेट से। और बचा हुआ पैसा बढ़ता रहता है।']],
+  market: [['बाज़ार गिर रहा है, SIP बंद कर दें?', 'बिल्कुल नहीं — गिरावट में SIP को सस्ती यूनिट्स मिलती हैं। जिन्होंने 2020 की गिरावट में SIP जारी रखी, उन्हें सबसे ज़्यादा फ़ायदा हुआ।']]
+};
+RBT.hn.OBJ = null; /* filled from RB.OBJ (Hinglish) */
+
+/* ===== Review Brief: advisor-facing meeting prep — auto-generated when a review is started or a review meeting is scheduled ===== */
+const RB = {
+  MODES: { office: 'Office me milna', visit: 'Client ke ghar / office', phone: 'Phone call', video: 'Video call (Meet / Zoom)' },
+  OBJ: {
+    switch: [['Ye fund pehle to achha tha, ab kyun badlein?', 'Ji, pehle achha tha — par pichhle 3 saal se apni hi category ke zyada-tar funds isse aage hain. Hum same category me shift kar rahe hain, to risk wahi rahega, sirf behtar fund milega.'], ['Tax / exit load lagega?', 'Purane (12+ mahine) units hi abhi switch karenge — unpar ₹1.25L tak LTCG tax-free hai. Naye units LTCG hone ke baad switch karenge. Nayi SIP turant naye fund me — usme zero kharcha.']],
+    watch: [['Kya ye fund kharab hai?', 'Nahi, abhi sirf thoda slow hai. Ek-do quarter aur dekhenge — jaldbaazi me switch karne se tax aur exit load ka kharcha hota hai.']],
+    manager: [['Manager badalne se kya farak padta hai?', 'Fund ka pichhla record purane manager ka tha. Naye manager ko 2–3 quarter denge; median se neeche gaya to shift karenge. Tab tak naya lumpsum dusre fund me.']],
+    harvest: [['Bechke wapas hi lagana hai to fayda kya?', 'Har saal ₹1.25L tak ka equity LTCG tax-free hai — use nahi kiya to lapse ho jaata hai. Bech kar usi din wapas invest karne se aapki purchase price upar ho jaati hai, aage chal kar tax kam lagega.']],
+    loss: [['Loss me kyun bechein?', 'Ye sirf kagaz par loss book karna hai — usse doosre gains ka tax kam hota hai. Paisa usi din same jaise fund me wapas lagega, to market me bane rahenge.']],
+    rebalance: [['Achha chal raha hai to kyun chhedein?', 'Market upar gaya to equity ka hissa aapke comfort se zyada ho gaya hai. Thoda profit book karke balance karna discipline hai — market timing nahi. Girawat me yahi balance kaam aata hai.']],
+    risk: [['Small cap / sector fund me to returns zyada hain?', 'Returns zyada hain par girawat bhi 30–40% tak hoti hai. Aapke risk profile ke hisaab se ek limit me rakhenge, taaki market girne par neend kharab na ho.']],
+    consolidate: [['Zyada funds = zyada safety nahi?', 'Same category ke funds me 50–70% stocks common hote hain — diversification nahi badhta, sirf tracking mushkil hoti hai. Kam, achhe funds behtar hain.']],
+    goal: [['Itna zyada kyun chahiye?', 'Mehngai ~6% se badhti hai — aaj ka ₹1 lakh 12 saal baad ~₹2 lakh ke barabar hoga. Abhi thoda SIP badhayenge to baad me bada bojh nahi padega.']],
+    stepup: [['Har saal SIP kyun badhayein?', 'Income har saal badhti hai — SIP bhi 10% badhe to lambe samay me corpus lagbhag dugna ho jaata hai, aur har mahine ka bojh mehsoos nahi hota.']],
+    upsell: [['Abhi budget tight hai', 'Koi baat nahi — ₹1,000–2,000 se shuru karte hain, ya next increment pe SIP step-up laga dete hain. Chhota shuru karna bhi bada farak laata hai.']],
+    elss: [['80C ke liye PPF / LIC kyun nahi?', 'ELSS ka lock-in sabse kam (3 saal) hai aur equity growth ka fayda milta hai. PPF safe hai par 15 saal lock. Dono ka mix bhi kar sakte hain.']],
+    emergency: [['Emergency fund ki kya zarurat, MF hai na?', 'Mushkil waqt me market neeche ho sakta hai — tab MF bechna padega ya SIP todni padegi. 6 mahine ka kharcha liquid fund / FD me alag rakhna zaroori hai.']],
+    stp: [['Ek saath kyun nahi lagayein?', 'Market kab girega koi nahi jaanta. 6–12 mahine me thoda-thoda (STP) lagane se average price achha milta hai aur girawat ka darr kam.']],
+    swp: [['FD interest se behtar kaise?', 'SWP me sirf gain wale hisse par tax lagta hai, FD me poore interest par slab rate. Aur bacha hua paisa grow karta rehta hai.']],
+    market: [['Market gir raha hai, SIP band kar dein?', 'Bilkul nahi — girawat me SIP ko sasti units milti hain. Jo log 2020 ki girawat me SIP chalu rakhe, unhe sabse zyada fayda hua.']]
+  },
+
+  /* ---------- meetings ---------- */
+  meetings: c => (c.meetings || []),
+  next(c) { const t = U.today(); return RB.meetings(c).filter(m => m.status === 'scheduled' && U.parseISO(m.date) >= t).sort((a, b) => (a.date + (a.time || '')).localeCompare(b.date + (b.time || '')))[0] || null; },
+  soon(days = 7) {
+    const t = U.today(), out = [];
+    App.state.clients.forEach(c => RB.meetings(c).forEach(m => { const d = U.parseISO(m.date); if (m.status === 'scheduled' && d >= t && d - t <= days * DAY) out.push({ c, m, d }); }));
+    return out.sort((a, b) => (a.m.date + (a.m.time || '')).localeCompare(b.m.date + (b.m.time || '')));
+  },
+  t12(t) { if (!t) return ''; const [h, mi] = t.split(':').map(Number); return `${((h + 11) % 12) + 1}:${String(mi || 0).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`; },
+  when(m, t) { const d = U.parseISO(m.date), diff = Math.round((d - U.today()) / DAY), w = (t && t.dayW) || ['Aaj', 'Kal']; return `${diff === 0 ? w[0] : diff === 1 ? w[1] : U.fmtDate(d)}${m.time ? ', ' + RB.t12(m.time) : ''}`; },
+  mode(m, t) { return ((t && t.modes) || RB.MODES)[m.mode] || RB.MODES[m.mode] || m.mode; },
+  utc(m, addMin = 0) { const [y, mo, d] = m.date.split('-').map(Number), [h, mi] = (m.time || '11:00').split(':').map(Number); return Date.UTC(y, mo - 1, d, h, mi) - 330 * 60000 + addMin * 60000; },
+  stamp: ms => new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''),
+  invite(c, m) {
+    const s = App.state.settings, fn = (c.name || '').split(' ')[0];
+    return `Namaste ${fn} ji,\n\nAapke portfolio ka review ${RB.when(m)} ko fix kiya hai (${RB.MODES[m.mode] || m.mode}${m.place ? ' — ' + m.place : ''}). Lagbhag 20–25 minute lagenge.\n\nAgar income, kisi bade kharche (shaadi / ghar / padhai) ya naye goal me kuch badla hai to saath me batayein — usi hisaab se plan update karenge.` + R.sig();
+  },
+  gcal(c, m) {
+    const s = App.state.settings;
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(`Portfolio review — ${c.name}`) + '&dates=' + RB.stamp(RB.utc(m)) + '/' + RB.stamp(RB.utc(m, 45)) + '&details=' + encodeURIComponent(`Review brief: ${location.origin}${location.pathname}#r-${c.id}\nPhone: ${c.phone || '—'}${m.agenda ? '\nNote: ' + m.agenda : ''}`) + (m.place ? '&location=' + encodeURIComponent(m.place) : '');
+  },
+  ics(c, m) {
+    const e = s => String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+    const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Shaiv Market//MFD CRM//EN', 'BEGIN:VEVENT', `UID:${m.id}@smcrm`, `DTSTAMP:${RB.stamp(Date.now())}`, `DTSTART:${RB.stamp(RB.utc(m))}`, `DTEND:${RB.stamp(RB.utc(m, 45))}`,
+      `SUMMARY:${e('Portfolio review — ' + c.name)}`, `DESCRIPTION:${e(`${RB.MODES[m.mode] || ''}${c.phone ? ' · ' + c.phone : ''}${m.agenda ? '\n' + m.agenda : ''}\nBrief: ${location.origin}${location.pathname}#r-${c.id}`)}`, m.place ? `LOCATION:${e(m.place)}` : '',
+      'BEGIN:VALARM', 'TRIGGER:-PT60M', 'ACTION:DISPLAY', `DESCRIPTION:${e('Review meeting — brief padh lo: ' + c.name)}`, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+    U.download(`review-${(c.name || 'client').replace(/\W+/g, '-')}-${m.date}.ics`, txt, 'text/calendar');
+  },
+  form(c, m0) {
+    const isNew = !m0, m = m0 ? { ...m0 } : { id: U.uid(), date: U.iso(U.today() + DAY), time: '11:00', mode: 'office', place: '', agenda: '', status: 'scheduled' };
+    const body = `<div class="f c2">
+      <label class="l">Date<input class="in" id="mDate" type="date" value="${m.date}"></label>
+      <label class="l">Time<input class="in" id="mTime" type="time" value="${m.time || ''}"></label>
+      <label class="l">Kaise milenge<select class="in" id="mMode">${Object.entries(RB.MODES).map(([k, l]) => `<option value="${k}" ${m.mode === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <label class="l">Jagah / link <small>(optional)</small><input class="in" id="mPlace" value="${U.esc(m.place || '')}" placeholder="Address ya Meet link"></label>
+      <label class="l" style="grid-column:1/-1">Client ne pehle kuch bataya? <small>(optional — brief me sabse upar dikhega)</small><textarea class="in" id="mAgenda" rows="2" placeholder="e.g. Bonus aaya hai, beti ki shaadi 2028 me">${U.esc(m.agenda || '')}</textarea></label></div>
+      <div class="note" style="margin-top:12px">${I('info')} Save karte hi <b>${U.esc(c.name)}</b> ka <b>Review Brief</b> apne aap ban jayega — portfolio health score, har fund ka verdict, goals, proposals aur "client ko kya bolna hai" script ke saath.</div>`;
+    V.modal(isNew ? `${I('cal')} Review meeting schedule` : 'Meeting badlo', body, `${!isNew ? `<button class="btn danger" id="mDel">${I('x')} Meeting cancel</button><span style="flex:1"></span>` : ''}<button class="btn" data-act="closeModal">Wapas</button><button class="btn pri" id="mSave">${I('check')} Save &amp; brief banao</button>`, el => {
+      if (!isNew) U.$('#mDel', el).onclick = () => { const x = RB.meetings(c).find(z => z.id === m.id); if (x) x.status = 'cancelled'; App.log(c, `✖ Review meeting cancel (${RB.when(m)})`); App.upsertClient(c); V.close(); App.render(); };
+      U.$('#mSave', el).onclick = () => {
+        m.date = F.val(el, '#mDate'); m.time = F.val(el, '#mTime'); m.mode = F.val(el, '#mMode'); m.place = F.val(el, '#mPlace'); m.agenda = F.val(el, '#mAgenda');
+        if (!U.parseISO(m.date)) return U.toast('Date daalo');
+        c.meetings = c.meetings || []; const i = c.meetings.findIndex(z => z.id === m.id);
+        if (i >= 0) c.meetings[i] = m; else { m.createdAt = Date.now(); c.meetings.push(m); }
+        App.log(c, `📅 Review meeting ${isNew ? 'schedule' : 'update'}: ${RB.when(m)} · ${RB.MODES[m.mode] || m.mode}`);
+        App.upsertClient(c); V.close(); App.nav('r-' + c.id); U.toast('📋 Review brief ready ✓');
+      };
+    });
+  },
+
+  /* ---------- analysis for the brief ---------- */
+  pf: A => { const hs = A.hs.filter(x => x.h && x.lots.length); return hs.length ? Math.min(...hs.map(x => x.lots[0].t)) : null; },
+  fd(A, r = .07) { let v = 0; A.hs.forEach(x => { if (x.h) x.lots.forEach(l => { v += l.amt * Math.pow(1 + r, Math.max(0, U.today() - l.t) / YEAR); }); }); return v; },
+  last: c => { const r = c.reviews || []; return r.length ? r[r.length - 1] : null; },
+  score(c, A, recs, t = RBT.hn) {
+    const open = recs.filter(r => r.status === 'open'), prof = A.profile, P_ = [], cl = (v, a, b) => Math.max(a, Math.min(b, v));
+    const ranked = A.hs.filter(x => x.h && x.st), rv = ranked.reduce((a, x) => a + x.value, 0);
+    const q = rv > 0 ? ranked.reduce((a, x) => a + x.st.score * x.value, 0) / rv : null, sw = open.filter(r => r.type === 'switch').length;
+    P_.push({ k: 'fq', ic: 'chart', s: cl((q == null ? 15 : Math.round(25 * Math.min(1, .25 + q))) - sw * 3, 0, 25), of: 25, n: t.spn.fq(q == null ? null : Math.round(q * 100), sw) });
+    const dev = Math.abs(A.exp.eq - prof.eq), smOver = A.smid > prof.smid + .05; let af = Math.round(20 * cl(1 - Math.max(0, dev - .05) / .25, 0, 1)); if (smOver) af = Math.max(0, af - 4);
+    P_.push({ k: 'af', ic: 'scale', s: af, of: 20, n: t.spn.af(U.pct(A.exp.eq, 0), U.pct(prof.eq, 0), smOver ? U.pct(A.smid, 0) : null, U.pct(prof.smid, 0)) });
+    const gs = c.goals || []; const gd = gs.length ? gs.reduce((a, g) => a + P.goalPlan(g, A).done, 0) / gs.length : null;
+    P_.push({ k: 'gl', ic: 'target', s: gd == null ? 10 : Math.round(20 * gd), of: 20, n: t.spn.gl(gs.length, gd == null ? 0 : Math.round(gd * 100)) });
+    const t0 = RB.pf(A), yrs = t0 ? (U.today() - t0) / YEAR : 0, rtN = A.xirr == null || yrs < 1;
+    P_.push({ k: 'rt', ic: 'trend', s: rtN ? 10 : Math.round(15 * cl((A.xirr - .04) / (prof.ret - .04), 0, 1)), of: 15, n: t.spn.rt(rtN ? null : U.pct(A.xirr), U.pct(prof.ret)) });
+    let dv = 10; const n = A.hs.length; if (n > 9) dv -= 4; if (n === 1 && A.value > 100000) dv -= 3; dv -= 2 * open.filter(r => r.type === 'consolidate').length;
+    P_.push({ k: 'dv', ic: 'layers', s: cl(dv, 0, 10), of: 10, n: t.spn.dv(n, open.some(r => r.type === 'consolidate')) });
+    const ef = open.find(r => r.type === 'emergency'); let sf = 10 - (ef ? (ef.pri === 3 ? 6 : 3) : 0) - 2 * open.filter(r => r.type === 'risk').length;
+    P_.push({ k: 'sf', ic: 'life', s: cl(sf, 0, 10), of: 10, n: t.spn.sf(ef ? RB.title(ef, t) : '', !!c.efund) });
+    const tot = P_.reduce((a, p) => a + p.s, 0), li = tot >= 80 ? 0 : tot >= 65 ? 1 : tot >= 50 ? 2 : 3;
+    return { tot, parts: P_, label: t.lab[li], col: ['#16A34A', '#0284C7', '#D97706', '#E11D48'][li] };
+  },
+  /* proposal title / script in the chosen language (Hinglish = engine text) */
+  tr(r, t) { const f = t.rec && t.rec[r.type]; if (!f || !r.d) return null; try { return f(r.d); } catch (e) { return null; } },
+  title(r, t) { const x = RB.tr(r, t); return x ? x[0] : r.title; },
+  say(r, fn, t = RBT.hn) {
+    const x = RB.tr(r, t); if (x) return x[1](fn);
+    if (r.wa) {
+      let s = String(r.wa).split('\n\n– ')[0].replace(/^Namaste[^\n]*\n+/, '').replace(/\s*(Kab (baat kar sakte hain|discuss karein)\?|Is hafte[^\n]*\?|Ek short call karein\?|Process shuru karein\?)\s*$/i, '').trim();
+      if (s) return s;
+    }
+    return `${fn} ji, ${r.why} Isliye mera suggestion: ${r.title}.`;
+  },
+  fundSay(x, v, t = RBT.hn) {
+    const F = t.fs, n = R.short(x.name), rk = x.st ? F.rk(x.st.rank, x.st.of) : '', g = F.gain(U.inrS(x.gain), x.gain >= 0);
+    if (v.v === 'Continue') return F.Continue(n, rk, x.m && x.lb ? U.pct(x.m.r3) : null, x.lb ? U.pct(x.lb.med.r3) : '', g);
+    if (v.v === 'Switch') return F.Switch(n, rk, v.toName);
+    if (v.v === 'Watch') return F.Watch(n);
+    if (v.v === 'Review') return F.Review(n);
+    if ((x.cat.exp.eq || 0) < .3 && x.catKey !== 'intl') return F.Stable(n, g);
+    if (v.v === 'Hold') return F.Hold(n, g);
+    return F.Other(n, g, x.xirr != null ? U.pct(x.xirr) : null);
+  },
+  questions(c, A, t = RBT.hn) {
+    const Q = t.Q, T = t.QT, q = [[Q.income, T.sip], [Q.big, T.liq], [Q.comfort, T.risk], [Q.kyc, T.svc]];
+    if (P.riskScore(c) == null && !c.riskOverride) q.unshift([Q.risk, T.miss]);
+    if (!(c.goals || []).length) q.unshift([Q.goals, T.miss]);
+    if (!U.num(c.income)) q.push([Q.inc, T.miss]);
+    if (!U.num(c.efund)) q.push([Q.ef, T.safe]);
+    if (c.regime === 'old' && U.num(c.c80) < 150000) q.push([Q.c80(U.fyLabel()), T.tax]);
+    if (new Date(U.today()).getUTCMonth() <= 2 || U.num(c.ltcgBooked)) q.push([Q.ltcg, T.tax]);
+    if (U.num(c.idle) > 0) q.push([Q.idle(U.inrS(U.num(c.idle))), T.opp]);
+    if (A.age >= 55 && !U.num(c.swpNeed)) q.push([Q.swp, T.inc]);
+    if (!c.pan) q.push([Q.pan, T.miss]);
+    q.push([Q.family, T.biz]);
+    return q;
+  },
+
+  /* ---------- customise: language + sections ---------- */
+  SECS: [['summary', '30-second saar'], ['status', 'Portfolio ka haal'], ['funds', 'Fund report card'], ['alloc', 'Allocation vs risk profile'], ['goals', 'Goals'], ['props', 'Aaj ke proposals'], ['market', 'Market ki baat'], ['questions', 'Client se puchhna hai'], ['closing', 'Closing — asks & next steps'], ['notes', 'Meeting notes / Review complete']],
+  ELEMS: [['scripts', '"Bolna hai" scripts'], ['qa', '"Client puchhe" Q&A'], ['charts', 'Charts'], ['score', 'Health score breakdown'], ['table', 'Full numbers table']],
+  prefs(c) {
+    const all = {}; [...RB.SECS, ...RB.ELEMS].forEach(([k]) => all[k] = true);
+    const g = App.state.settings.rbPrefs || {}, o = (c && c.rbPrefs) || {};
+    return { lang: o.lang || g.lang || 'hn', sec: { ...all, ...(g.sec || {}), ...(o.sec || {}) }, own: !!(c && c.rbPrefs && c.rbPrefs.sec) };
+  },
+  custom(c) {
+    const p = RB.prefs(c), ck = ([k, l]) => `<label class="rb-ck"><input type="checkbox" data-rbsec="${k}" ${p.sec[k] ? 'checked' : ''}> ${U.esc(l)}</label>`;
+    const body = `<div class="sec" style="margin-top:0">Report ki bhasha</div><div class="seg" id="rbLangSeg">${Object.entries(RBT).map(([k, v]) => `<button type="button" data-l="${k}" class="${p.lang === k ? 'on' : ''}">${v.name}</button>`).join('')}</div>
+      <div class="sec">Sections — kya include karna hai</div><div class="rb-cks">${RB.SECS.map(ck).join('')}</div>
+      <div class="sec">Section ke andar</div><div class="rb-cks">${RB.ELEMS.map(ck).join('')}</div>
+      <div class="row small" style="margin-top:8px;gap:6px"><button type="button" class="btn sm" id="rbAll">Sab on</button><button type="button" class="btn sm" id="rbMin">Sirf zaroori (saar + funds + proposals)</button></div>
+      <div class="note" style="margin-top:12px">${I('info')} "Sirf is client" → ye setting sirf ${U.esc(c.name)} ke brief par. "Sab clients ka default" → har client ke brief par (jinki apni setting nahi hai). PDF bhi isi hisaab se banega.${p.own ? ' <b>Is client ki apni setting abhi lagi hai.</b>' : ''}</div>`;
+    V.modal(`${I('gear')} Brief customise karo`, body, `${p.own ? '<button class="btn" id="rbReset">Default pe wapas</button><span style="flex:1"></span>' : ''}<button class="btn" id="rbSaveAll">Sab clients ka default</button><button class="btn pri" id="rbSaveOne">${I('check')} Sirf is client</button>`, el => {
+      let lang = p.lang;
+      U.$$('#rbLangSeg button', el).forEach(b => b.onclick = () => { lang = b.dataset.l; U.$$('#rbLangSeg button', el).forEach(x => x.classList.toggle('on', x === b)); });
+      const read = () => { const sec = {}; U.$$('[data-rbsec]', el).forEach(i => sec[i.dataset.rbsec] = i.checked); return { lang, sec }; };
+      U.$('#rbAll', el).onclick = () => U.$$('[data-rbsec]', el).forEach(i => i.checked = true);
+      U.$('#rbMin', el).onclick = () => U.$$('[data-rbsec]', el).forEach(i => i.checked = ['summary', 'funds', 'props', 'notes', 'scripts'].includes(i.dataset.rbsec));
+      const done = () => { App.save(); V.close(); App.render(); U.toast('Brief updated ✓'); };
+      U.$('#rbSaveOne', el).onclick = () => { c.rbPrefs = read(); done(); };
+      U.$('#rbSaveAll', el).onclick = () => { App.state.settings.rbPrefs = read(); delete c.rbPrefs; done(); };
+      const rs = U.$('#rbReset', el); if (rs) rs.onclick = () => { delete c.rbPrefs; done(); };
+    });
+  },
+  setLang(c, l) { c.rbPrefs = { ...(c.rbPrefs || {}), lang: l }; App.save(); App.render(); },
+  snap(c, A, sc) {
+    const s = { d: U.todayKey(), value: Math.round(A.value), invested: Math.round(A.invested), gain: Math.round(A.gain), xirr: A.xirr, sip: A.sip, eq: A.exp.eq, score: sc ? sc.tot : null, n: A.hs.length };
+    c.reviews = (c.reviews || []).filter(r => r.d !== s.d); c.reviews.push(s); if (c.reviews.length > 16) c.reviews = c.reviews.slice(-16);
+  },
+  svg(cfg, w, h) { try { return SC.svg(cfg, w, h).replace(/width="\d+(\.\d+)?" height="\d+(\.\d+)?"/, 'width="100%"'); } catch (e) { console.error(e); return ''; } },
+  gauge(v, lab = 'Portfolio health / 100') {
+    const cx = 110, cy = 112, r = 88, a = Math.PI * (1 - Math.max(.5, v) / 100), p = t => `${(cx + r * Math.cos(t)).toFixed(1)},${(cy - r * Math.sin(t)).toFixed(1)}`;
+    return `<svg viewBox="0 0 220 128" width="100%" style="max-width:210px;display:block;margin:0 auto"><path d="M${p(Math.PI)} A${r},${r} 0 0 1 ${p(0)}" stroke="rgba(255,255,255,.28)" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M${p(Math.PI)} A${r},${r} 0 0 1 ${p(a)}" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/><text x="110" y="98" text-anchor="middle" font-size="44" font-weight="800" fill="#fff" font-family="Inter,sans-serif">${v}</text><text x="110" y="121" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif">${lab}</text></svg>`;
+  },
+
+  /* ---------- the brief ---------- */
+  html(c, opt = {}) {
+    const { A, recs = [] } = App.analysis.get(c.id) || {}; if (!A) return '';
+    const P0 = RB.prefs(c), S = P0.sec, t = RBT[P0.lang] || RBT.hn, L = P0.lang;
+    const OBJ = L === 'hn' ? RB.OBJ : t.OBJ;
+    const s = App.state.settings, pr = !!opt.print, fn = (c.name || '').split(' ')[0], fnH = U.esc(fn), prof = A.profile;
+    const m = RB.next(c), sc = RB.score(c, A, recs, t), last = RB.last(c), dr = c.rbDraft || {};
+    const open = recs.filter(r => r.status === 'open' && !['birthday', 'review'].includes(r.type));
+    const CONC = ['switch', 'emergency', 'risk', 'rebalance', 'goal', 'manager', 'market', 'swp', 'harvest', 'loss', 'stp', 'elss', 'consolidate', 'watch', 'stepup', 'upsell'], ci = r => { const i = CONC.indexOf(r.type); return i < 0 ? 99 : i; };
+    open.sort((a, b) => b.pri - a.pri || ci(a) - ci(b) || (b.impact || 0) - (a.impact || 0));
+    const hs = A.hs.filter(x => x.h).sort((a, b) => b.value - a.value);
+    const ver = hs.map(x => ({ x, v: PL.verdict(x, recs) }));
+    const fd = RB.fd(A), t0 = RB.pf(A), yrs = t0 ? (U.today() - t0) / YEAR : 0;
+    const best = ver.filter(o => o.x.st).sort((a, b) => b.x.st.score - a.x.st.score)[0] || ver.slice().sort((a, b) => (b.x.xirr || -9) - (a.x.xirr || -9))[0];
+    const top = open.filter(r => !['stepup', 'upsell'].includes(r.type))[0], step = open.find(r => r.type === 'upsell' || r.type === 'stepup');
+    const askAmt = A.sip ? Math.max(500, Math.round(A.sip * .1 / 500) * 500) : 0;
+    const ask = step ? RB.title(step, t) : A.sip ? t.askStep(U.inr(askAmt)) : t.askNew;
+    const det = (sum, inner) => `<details class="rb-det" ${pr ? 'open' : ''}><summary>${sum}</summary>${inner}</details>`;
+    let num = 0;
+    const sec = (ic, tt, sub, body) => `<section class="rb-sec"><h2><span class="rb-n">${++num}</span>${I(ic)} ${tt}${sub ? `<small>${sub}</small>` : ''}</h2>${body}</section>`;
+    const bub = x => S.scripts ? `<div class="rb-say"><span class="rb-q">${I('users')} ${t.say}</span><div>${x}</div></div>` : '';
+    const ch = x => S.charts ? x : '';
+    const MK = App.market, n50 = App.mkt.n50;
+    const VN = v => t.V[v] || v;
+
+    /* hero */
+    const hero = `<div class="rb-hero">
+      <div class="rb-hl"><div class="rb-tag">${I('lock')} ${t.tag}</div>
+        <h1>${U.esc(c.name)}</h1><div class="rb-sub">${U.esc([A.age ? A.age + ' ' + t.yrs : '', c.occupation, c.city].filter(Boolean).join(' · '))} · ${t.inv(prof.name)}</div>
+        <div class="rb-meet">${m ? `${I('cal')} <b>${RB.when(m, t)}</b> · ${U.esc(RB.mode(m, t))}${m.place ? ' · ' + U.esc(m.place) : ''}` : `${I('cal')} ${t.noMeet}`}${last ? ` · ${t.prev(U.fmtDate(U.parseISO(last.d)))}` : c.lastReview ? ` · ${t.prev(U.fmtDate(U.parseISO(c.lastReview)))}` : ' · ' + t.first}</div>
+        <div class="rb-kp"><div><span>${t.kp[0]}</span><b>${U.inrS(A.value)}</b></div><div><span>${t.kp[1]}</span><b>${U.inrS(A.invested)}</b></div><div><span>${t.kp[2]}</span><b>${U.inrS(A.gain)}</b><i>${U.pctS(A.abs)}</i></div><div><span>${t.kp[3]}</span><b>${U.pct(A.xirr)}</b></div><div><span>${t.kp[4]}</span><b>${U.inrS(A.sip)}</b></div></div></div>
+      <div class="rb-hr">${RB.gauge(sc.tot, t.health)}<div class="rb-lab" style="background:#fff;color:${sc.col}">${sc.label}</div></div></div>`;
+    const agendaNote = m && m.agenda ? `<div class="rb-alert">${I('info')} <b>${t.told}</b> ${U.esc(m.agenda)}</div>` : '';
+    const warn = (A.missing || App.loading) ? `<div class="rb-alert">${I('refresh')} ${t.navWait(A.missing)}</div>` : '';
+
+    const out = [hero, agendaNote, warn];
+    const scBars = `<div class="rb-sc">${sc.parts.map(p => `<div class="rb-si"><div class="row small"><span>${I(p.ic)} <b>${t.sp[p.k]}</b></span><span class="sp"></span><b>${p.s}/${p.of}</b></div><div class="rb-sb"><i style="width:${Math.round(p.s / p.of * 100)}%;background:${p.s / p.of >= .75 ? '#16A34A' : p.s / p.of >= .5 ? '#0EA5E9' : p.s / p.of >= .3 ? '#F59E0B' : '#E11D48'}"></i></div><div class="tiny mute">${U.esc(p.n)}</div></div>`).join('')}</div>`;
+
+    /* 30-second summary */
+    if (S.summary) {
+      const bestN = best ? U.esc(R.short(best.x.name)) + (best.x.st ? ` (#${best.x.st.rank}/${best.x.st.of})` : '') : '';
+      const goodNews = A.gain >= 0 ? t.goodTxt(U.inrS(A.gain), U.pctS(A.abs), bestN) : t.lossTxt(U.inrS(-A.gain), yrs < 2);
+      out.push(sec('spark', t.s1[0], t.s1[1], `<div class="rb-3">
+        <div class="rb-pt" style="--c:#16A34A"><span>${I('check')} ${t.good}</span><p>${goodNews}</p></div>
+        <div class="rb-pt" style="--c:#E11D48"><span>${I('info')} ${t.concern}</span><p>${top ? U.esc(RB.title(top, t)) + (L === 'hn' ? ' — ' + U.esc(top.why) : '') : t.noConcern}</p></div>
+        <div class="rb-pt" style="--c:#0284C7"><span>${I('target')} ${t.ask}</span><p>${U.esc(ask)}</p></div></div>
+        <div class="rb-agenda"><b>${t.flow}</b> ${t.flowSteps.map((x, i) => `<span>${'①②③④⑤⑥'[i]} ${x}</span>`).join('')}</div>` + (S.score ? det(`${I('shield')} ${t.scoreHow(sc.tot)}`, scBars) : '')));
+    } else if (S.score) out.push(sec('shield', t.scoreHow(sc.tot), sc.label, scBars));
+
+    /* portfolio status */
+    if (S.status) {
+      const fdBar = RB.svg({ type: 'bar', data: { labels: t.fdLab, datasets: [{ data: [Math.round(A.invested), Math.round(fd), Math.round(A.value)], backgroundColor: ['#94A3B8', '#BAE6FD', '#0284C7'] }] }, options: { scales: { y: { ticks: { callback: v => U.inrS(v) } } }, plugins: { tooltip: { callbacks: { label: x => `${x.label}: ${U.inr(x.raw)}` } } } } }, 380, 210);
+      const g = V.growth(A);
+      const grow = g && g.t.length > 2 ? RB.svg({ type: 'line', data: { labels: g.t.map(U.fmtMon), datasets: [{ label: t.valueL, data: g.val, borderColor: '#0284C7', backgroundColor: 'rgba(14,165,233,.14)', fill: true, borderWidth: 2 }, { label: t.invL, data: g.inv, borderColor: '#94A3B8', borderDash: [5, 4], borderWidth: 1.6 }] }, options: { plugins: { legend: { display: true } }, scales: { y: { ticks: { callback: v => U.inrS(v) } } } } }, 520, 210) : '';
+      const vsFd = A.value - fd;
+      let o1 = t.open(fnH, U.inr(A.invested), U.inr(A.value), U.inr(A.gain), A.gain >= 0, A.xirr != null ? U.pct(A.xirr) : null);
+      o1 += vsFd >= 0 ? t.fdUp(U.inr(fd), U.inr(vsFd)) : t.fdDn(U.inr(fd), U.inr(-vsFd), yrs < 3, yrs.toFixed(1));
+      let since = '';
+      if (last) {
+        const dv = A.value - last.value, di = A.invested - last.invested, mg = dv - di;
+        since = `<div class="rb-since"><div><span>${t.since(Math.round((U.today() - U.parseISO(last.d)) / DAY))}</span></div><div><span>${t.sinceK[0]}</span><b class="${U.cls(dv)}">${U.inrS(dv)}</b></div><div><span>${t.sinceK[1]}</span><b>${U.inrS(di)}</b></div><div><span>${t.sinceK[2]}</span><b class="${U.cls(mg)}">${U.inrS(mg)}</b></div><div><span>${t.sinceK[3]}</span><b>${last.score ?? '—'} → ${sc.tot}</b></div></div>`;
+        o1 += t.sinceTxt(U.fmtDate(U.parseISO(last.d)), U.inrS(Math.abs(dv)), dv >= 0, U.inrS(di), U.inrS(mg), mg >= 0);
+      }
+      const hist = (c.reviews || []).length >= 1 ? RB.svg({ type: 'bar', data: { labels: [...c.reviews.map(r => U.fmtMon(U.parseISO(r.d))), t.today], datasets: [{ label: t.valueL, data: [...c.reviews.map(r => r.value), Math.round(A.value)], backgroundColor: '#38BDF8' }] }, options: { scales: { y: { ticks: { callback: v => U.inrS(v) } } } } }, 380, 170) : '';
+      out.push(sec('trend', t.s2[0], t.s2[1], bub(o1) + since + ch(`<div class="rb-g2"><div class="rb-card"><h4>${t.fdH}</h4>${fdBar}</div>${grow ? `<div class="rb-card"><h4>${t.growH}</h4>${grow}</div>` : ''}${hist ? `<div class="rb-card"><h4>${t.histH}</h4>${hist}</div>` : ''}</div>`)));
+    }
+
+    /* fund report card */
+    if (S.funds) {
+      const VC = { Continue: '#16A34A', Hold: '#0284C7', Watch: '#D97706', Review: '#EA580C', Switch: '#E11D48' };
+      const fx = ver.filter(o => o.x.xirr != null);
+      const fBar = fx.length ? RB.svg({ type: 'bar', data: { labels: fx.map(o => R.short(o.x.name)), datasets: [{ data: fx.map(o => +(o.x.xirr * 100).toFixed(1)), backgroundColor: fx.map(o => VC[o.v.v] || '#94A3B8') }] }, options: { indexAxis: 'y', scales: { x: { ticks: { callback: v => v + '%' } } }, plugins: { tooltip: { callbacks: { label: x => `${x.label}: XIRR ${x.raw}%` } } } } }, 900, Math.max(110, fx.length * 30 + 24)) : '';
+      const cnt = {}; ver.forEach(o => cnt[o.v.v] = (cnt[o.v.v] || 0) + 1);
+      out.push(sec('layers', t.s3[0], t.s3[1](hs.length), `<div class="rb-vc">${Object.entries(cnt).map(([k, n]) => `<span class="rb-chip" style="--c:${VC[k] || '#64748B'}">${n} × ${VN(k)}</span>`).join('')}</div>
+        <div class="rb-funds">${ver.map(({ x, v }) => `<div class="rb-f" style="--c:${VC[v.v] || '#94A3B8'}"><div class="rb-fh"><b>${U.esc(R.short(x.name))}</b><span class="rb-v">${VN(v.v)}</span></div>
+          <div class="rb-fm"><span>${U.esc(x.cat.label)}</span><span>${U.inrS(x.value)}</span><span class="${U.cls(x.gain)}">${U.pctS(x.abs)}</span><span>XIRR ${U.pct(x.xirr)}</span>${x.sipNow ? `<span>SIP ${U.inrS(x.sipNow)}</span>` : ''}</div>
+          ${x.st ? `<div class="rb-rk"><i style="width:${Math.round(x.st.score * 100)}%"></i></div><div class="tiny mute">${t.rankL(x.st.rank, x.st.of, U.pct(x.m && x.m.r3), U.pct(x.lb && x.lb.med.r3))}</div>` : ''}
+          ${S.scripts ? `<div class="rb-fs">"${U.esc(RB.fundSay(x, v, t))}"</div>` : ''}</div>`).join('')}</div>
+        ${fBar ? ch(`<div class="rb-card" style="margin-top:10px"><h4>${t.xirrH}</h4>${fBar}</div>`) : ''}
+        ${S.table ? det(t.table, `<div class="tw"><table class="t"><thead><tr>${t.th.map((h, i) => `<th${i >= 2 && i <= 6 ? ' class="num"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${ver.map(({ x, v }) => `<tr><td class="fn">${U.esc(R.short(x.name))}<small>${U.esc(x.cat.label)}</small></td><td><span class="pill ${v.cls}">${VN(v.v)}</span></td><td class="num">${U.inr(x.invested)}</td><td class="num">${U.inr(x.value)}</td><td class="num ${U.cls(x.gain)}">${U.inr(x.gain)}</td><td class="num">${U.pct(x.xirr)}</td><td class="num">${x.m ? U.pct(x.m.r1) + ' / ' + U.pct(x.m.r3) : '—'}</td><td>${x.st ? '#' + x.st.rank + '/' + x.st.of : '—'}</td></tr>${L === 'hn' ? `<tr><td colspan="8" class="small mute" style="padding-top:0">${U.esc(v.why)}</td></tr>` : ''}`).join('')}</tbody></table></div>`) : ''}`));
+    }
+
+    /* allocation */
+    if (S.alloc) {
+      const cats = Object.entries(A.byCat).sort((a, b) => b[1] - a[1]);
+      const pie = cats.length ? RB.svg({ type: 'doughnut', data: { labels: cats.map(x => `${x[0]} ${U.pct(x[1] / A.value, 0)}`), datasets: [{ data: cats.map(x => x[1]), backgroundColor: PALETTE }] }, options: { cutout: '58%', plugins: { legend: { display: true, position: 'right' } } } }, 420, 200) : '';
+      const rows = [[t.allocRows[0], A.exp.eq, prof.eq, '#0284C7'], [t.allocRows[1], A.exp.debt, 1 - prof.eq - prof.gold, '#14B8A6'], [t.allocRows[2], A.exp.gold, prof.gold, '#F59E0B'], [t.allocRows[3], A.smid, prof.smid, '#EC4899', 1]];
+      const d = A.exp.eq - prof.eq, eqS = U.pct(A.exp.eq, 0), tgS = U.pct(prof.eq, 0);
+      const aSay = Math.abs(d) <= .07 ? t.aOk(fnH, prof.name, eqS, tgS) : d > 0 ? t.aOver(fnH, eqS, tgS) : t.aUnder(fnH, eqS, tgS);
+      const bars = `<div class="rb-card"><h4>${t.avtH}</h4>${rows.map(([l, a, tg, col, mx]) => `<div class="alloc"><span>${l}</span><div class="tr"><i style="width:${Math.min(100, a * 100)}%;background:${col}"></i>${tg != null ? `<b style="left:${Math.min(99, tg * 100)}%"></b>` : ''}</div><b class="right">${U.pct(a, 0)}</b><span class="right mute">${mx ? t.max + ' ' : ''}${U.pct(tg, 0)}</span></div>`).join('')}<div class="tiny mute">${t.avtNote}</div></div>`;
+      out.push(sec('scale', t.s4[0], prof.name, `<div class="rb-g2">${ch(`<div class="rb-card"><h4>${t.mixH}</h4>${pie}</div>`)}${bars}</div>` + bub(aSay)));
+    }
+
+    /* goals */
+    if (S.goals) {
+      const gs = c.goals || [];
+      out.push(sec('target', t.s5[0], t.s5[1](gs.length), gs.length ? `<div class="rb-goals">${gs.map(gg => { const p = P.goalPlan(gg, A), pc = Math.round(p.done * 100); return `<div class="rb-card rb-goal"><div class="ring" style="--p:${pc}"><span>${pc}%</span></div><div style="min-width:0"><b>${U.esc(gg.name)}</b><div class="small mute">${t.gMeta(gg.year, p.yrs.toFixed(1), U.inrS(p.future))}</div><div class="small">${p.gap > 0 ? t.gGap(U.inrS(p.gap), U.inr(p.extraSip), p.stepNeed != null ? Math.ceil(p.stepNeed * 100) : null) : t.gOk(U.inrS(p.proj))}</div></div></div>`; }).join('')}</div>` + bub(gs.map(gg => { const p = P.goalPlan(gg, A), nm = U.esc(gg.name); return p.gap > 0 ? t.gSayGap(nm, gg.year, U.inrS(p.future), U.inrS(U.num(gg.target)), U.inrS(p.proj), U.inrS(p.gap), U.inr(p.extraSip), p.stepNeed != null ? Math.ceil(p.stepNeed * 100) : null) : t.gSayOk(nm, gg.year, U.inrS(p.proj), U.inrS(p.future)); }).join('<br>')) : `<div class="rb-alert">${I('target')} ${t.noGoals}</div>`));
+    }
+
+    /* proposals */
+    if (S.props) {
+      const prop = r => { const ob = (OBJ && OBJ[r.type]) || [], on = (dr.agree || []).includes(r.key), qa = ([q, a]) => `<div class="rb-qa"><div><b>${t.qa[0]}</b> "${q}"</div><div><b>${t.qa[1]}</b> ${a}</div></div>`;
+        return `<div class="rb-p" style="--c:${r.t.color}"><div class="rb-ph"><span class="ic">${I(r.t.icon)}</span><div style="flex:1;min-width:0"><b>${U.esc(RB.title(r, t))}</b><div class="tiny mute">${r.t.label} · ${t.prio(r.pri)}${r.impact ? ` · ≈ ${U.inrS(r.impact)} ${U.esc((t.impL && t.impL[r.impactLabel]) || r.impactLabel || '')}` : ''}</div></div>${pr ? `<span class="rb-box">${t.agreedBox}</span>` : `<label class="rb-ag"><input type="checkbox" data-rbagree="${U.esc(r.key)}" ${on ? 'checked' : ''}> ${t.agreed}</label>`}</div>
+        ${bub(U.esc(RB.say(r, fn, t)).replace(/\n/g, '<br>'))}
+        ${pr ? '' : det(t.steps + (L === 'hn' ? '' : t.crmLang), `<ol>${r.steps.map(x => `<li>${U.esc(x)}</li>`).join('')}</ol>${r.reasons && r.reasons.length ? `<div class="small"><b>${t.why}</b><ul>${r.reasons.map(x => `<li>${U.esc(x)}</li>`).join('')}</ul></div>` : ''}${S.qa ? ob.slice(1).map(qa).join('') : ''}`)}
+        ${S.qa ? ob.slice(0, 1).map(qa).join('') : ''}</div>`; };
+      const main = open.slice(0, 5), rest = open.slice(5);
+      out.push(sec('bolt', t.s6[0], t.s6[1](open.length), open.length ? `<div class="rb-props">${main.map(prop).join('')}</div>` + (rest.length ? (pr ? `<div class="rb-card" style="margin-top:8px"><h4>${t.more(rest.length)}</h4><ul style="margin:0;padding-left:18px">${rest.map(r => `<li>${U.esc(RB.title(r, t))} <span class="mute">· ${r.t.label}</span></li>`).join('')}</ul></div>` : det(t.more(rest.length), `<div class="rb-props">${rest.map(prop).join('')}</div>`)) : '') : `<div class="rb-alert" style="border-color:#BBF7D0;background:#F0FDF4">${I('check')} ${t.noProps}</div>`));
+    }
+
+    /* market */
+    if (S.market) {
+      const mSay = !MK ? t.mNone : MK.hi <= -.10 ? t.mDeep(fnH, U.pct(-MK.hi)) : MK.hi <= -.05 ? t.mMid(U.pct(-MK.hi)) : t.mHigh(U.pctS(MK.r1));
+      const n50c = n50 && n50.h ? (() => { const h = n50.h, i0 = M.iAfter(h, h.lastT - 365 * DAY); return RB.svg({ type: 'line', data: { labels: h.t.slice(i0).map(U.fmtMon), datasets: [{ data: h.v.slice(i0), borderColor: MK && MK.r1 >= 0 ? '#0284C7' : '#DC2626', backgroundColor: 'rgba(14,165,233,.1)', fill: true, borderWidth: 1.6 }] }, options: { scales: { y: { display: false } }, plugins: { tooltip: { enabled: false } } } }, 520, 120); })() : '';
+      out.push(sec('pulse', t.s7[0], MK ? t.s7[1](U.pctS(MK.r1)) : '', bub(mSay) + (n50c ? ch(`<div class="rb-card"><h4>${t.niftyH}</h4>${n50c}</div>`) : '') + (!S.scripts ? `<div class="small">${mSay}</div>` : '')));
+    }
+
+    /* questions */
+    if (S.questions) out.push(sec('users', t.s8[0], t.s8[1], `<div class="rb-qs">${RB.questions(c, A, t).map(([q, tg]) => `<label class="rb-qi">${pr ? '☐' : '<input type="checkbox">'}<span>${U.esc(q)}</span><em>${tg}</em></label>`).join('')}</div>`));
+
+    /* closing */
+    if (S.closing) {
+      const yS = 15, r_ = prof.ret, base = A.sip || askAmt || 5000;
+      const flat = P.fvSip(base, r_, yS * 12, 0), up = P.fvSip(base, r_, yS * 12, .10), plus = P.fvSip(base + (askAmt || 1000), r_, yS * 12, 0);
+      const stBar = RB.svg({ type: 'bar', data: { labels: t.stLab(U.inrS(askAmt || 1000)), datasets: [{ data: [Math.round(flat), Math.round(plus), Math.round(up)], backgroundColor: ['#BAE6FD', '#38BDF8', '#0284C7'] }] }, options: { scales: { y: { ticks: { callback: v => U.inrS(v) } } }, plugins: { tooltip: { callbacks: { label: x => `${x.label}: ${U.inr(x.raw)}` } } } } }, 420, 200);
+      const nextRev = U.fmtDate((m ? U.parseISO(m.date) : U.today()) + 182 * DAY);
+      const close = (A.sip ? t.closeSip(fnH, U.inr(A.sip), yS, U.inrS(up), U.inrS(flat), U.inrS(up - flat)) : t.closeNo(fnH, U.inr(base), yS, U.inrS(flat), U.pct(r_))) + `<br><br>${t.ref}<br><br>${t.nextRev(nextRev)}`;
+      const chips = t.chips(nextRev);
+      out.push(sec('check', t.s9[0], '', `<div class="rb-g2"><div>${bub(close)}<div class="rb-close"><span>${I('plus')} ${U.esc(ask)}</span><span>${I('users')} ${chips[0]}</span><span>${I('cal')} ${chips[1]}</span><span>${I('file')} ${chips[2]}</span></div></div>${ch(`<div class="rb-card"><h4>${t.stH(yS, U.pct(r_))}</h4>${stBar}</div>`)}</div>`));
+    }
+
+    /* notes */
+    if (S.notes) out.push(pr ? `<section class="rb-sec"><h2>${I('edit')} ${t.notesH}</h2><div class="rb-lines"></div></section>` : `<section class="rb-sec rb-done"><h2>${I('edit')} ${t.afterH}</h2>
+      <textarea class="in" id="rbNotes" rows="4" placeholder="${U.esc(t.notesPh)}">${U.esc(dr.notes || '')}</textarea>
+      <div class="row" style="flex-wrap:wrap;margin-top:10px"><span class="small mute">${t.doneNote}</span><span class="sp"></span>
+      <button class="btn pri" data-act="rbDone" data-cid="${c.id}">${I('check')} ${t.doneBtn}</button></div></section>`);
+    out.push(`<div class="pr-disc">${t.disc(U.esc(s.advisor), U.esc(s.arn), U.esc(s.firm), new Date().toLocaleString('en-IN'))}</div>`);
+    return `<div class="rb" lang="${L === 'hi' ? 'hi' : 'en'}">${out.join('')}</div>`;
+  },
+
+  view() {
+    const c = App.client(App.param); if (!c) return V.empty('user', 'Client nahi mila', '', `<a class="btn" href="#clients">Back</a>`);
+    if (!App.analysis.get(c.id)) return V.top('Review brief') + '<div class="card">Analysing…</div>';
+    const m = RB.next(c), p = RB.prefs(c), off = [...RB.SECS, ...RB.ELEMS].filter(([k]) => !p.sec[k]).length;
+    V.post(() => {
+      const save = () => { const dr = c.rbDraft = c.rbDraft || {}; dr.agree = U.$$('[data-rbagree]').filter(i => i.checked).map(i => i.dataset.rbagree); const n = U.$('#rbNotes'); if (n) dr.notes = n.value; App.save(); };
+      U.$$('[data-rbagree]').forEach(i => i.onchange = save); const n = U.$('#rbNotes'); if (n) n.oninput = U.debounce(save, 400);
+    });
+    return `<div id="peerbar"></div><div class="topbar rb-top"><a class="btn sm" href="#c-${c.id}">${I('back')}</a><div><h1>Review brief</h1><div class="small mute">${U.esc(c.name)} · auto-generated · live NAV</div></div><span class="sp"></span>
+      ${m ? `<a class="btn sm" target="_blank" rel="noopener" href="${RB.gcal(c, m)}">${I('cal')}<span class="hidem">Google Calendar</span></a><button class="btn sm" data-act="meetIcs" data-cid="${c.id}">${I('download')}<span class="hidem">.ics</span></button>${c.phone ? `<a class="btn sm wa" target="_blank" rel="noopener" href="${U.wa(c.phone, RB.invite(c, m))}">${I('wa')}<span class="hidem">Invite</span></a>` : ''}<button class="btn sm" data-act="meet" data-cid="${c.id}" data-mid="${m.id}">${I('edit')}<span class="hidem">Reschedule</span></button>` : `<button class="btn sm" data-act="meet" data-cid="${c.id}">${I('cal')}<span class="hidem">Meeting schedule</span></button>`}
+      <button class="btn sm pri" data-act="rbPrint" data-cid="${c.id}">${I('print')}<span class="hidem">PDF</span></button></div>
+      <div class="rb-bar"><span class="small b">${I('file')} Bhasha</span><div class="seg">${Object.entries(RBT).map(([k, v]) => `<button class="${p.lang === k ? 'on' : ''}" data-act="rbLang" data-cid="${c.id}" data-l="${k}">${v.name}</button>`).join('')}</div><span class="sp"></span><button class="btn sm" data-act="rbCustom" data-cid="${c.id}">${I('gear')} Sections${off ? ` <span class="pill p2">${off} off</span>` : ''}</button></div>` + V.peerBanner() + RB.html(c);
+  },
+  print(c) {
+    const h = RB.html(c, { print: true }); if (!h) return;
+    U.$('#print').innerHTML = h; App.log(c, '🖨 Review brief PDF'); App.save();
+    setTimeout(() => { try { window.print(); } catch (e) { U.toast('Print blocked — browser menu se Print → Save as PDF'); } }, 300);
+  },
+  summary(c, A, agreed, L) {
+    const fn = (c.name || '').split(' ')[0], nx = U.fmtDate(U.today() + 182 * DAY), t = RBT[L] || RBT.hn, tl = agreed.map(r => '• ' + RB.title(r, t)).join('\n');
+    const s = App.state.settings, sig = L === 'hn' ? R.sig() : `\n\n– ${s.advisor || ''}${s.arn ? ', ' + s.arn : ''}${s.firm ? ' (' + s.firm + ')' : ''}\n${L === 'hi' ? 'म्यूचुअल फ़ंड निवेश बाज़ार जोखिमों के अधीन हैं, योजना संबंधी सभी दस्तावेज़ ध्यान से पढ़ें।' : 'Mutual fund investments are subject to market risks, read all scheme related documents carefully.'}`;
+    if (L === 'en') return `Hello ${fn},\n\nThank you for today's portfolio review 🙏\n\n• Current value: ${U.inr(A.value)} (invested ${U.inr(A.invested)}, gain ${U.inr(A.gain)})\n• Annualised return (XIRR): ${U.pct(A.xirr)}` + (agreed.length ? `\n\nWhat we agreed:\n${tl}` : '') + `\n\nNext review: around ${nx}.` + sig;
+    if (L === 'hi') return `नमस्ते ${fn} जी,\n\nआज के पोर्टफोलियो रिव्यू के लिए धन्यवाद 🙏\n\n• मौजूदा वैल्यू: ${U.inr(A.value)} (निवेश ${U.inr(A.invested)}, फ़ायदा ${U.inr(A.gain)})\n• सालाना रिटर्न (XIRR): ${U.pct(A.xirr)}` + (agreed.length ? `\n\nजो तय हुआ:\n${tl}` : '') + `\n\nअगला रिव्यू: लगभग ${nx}।` + sig;
+    return `Namaste ${fn} ji,\n\nAaj ke portfolio review ke liye dhanyavaad 🙏\n\n• Current value: ${U.inr(A.value)} (invested ${U.inr(A.invested)}, gain ${U.inr(A.gain)})\n• Saalana return (XIRR): ${U.pct(A.xirr)}` + (agreed.length ? `\n\nJo tay hua:\n${tl}` : '') + `\n\nAgla review ~${nx}.` + sig;
+  },
+  done(c) {
+    const { A, recs = [] } = App.analysis.get(c.id) || {}; if (!A) return;
+    const dr = c.rbDraft || {}, n = U.$('#rbNotes'), notes = (n ? n.value : dr.notes || '').trim(), agreed = (dr.agree || []).map(k => recs.find(r => r.key === k)).filter(Boolean);
+    const sc = RB.score(c, A, recs), L = RB.prefs(c).lang;
+    RB.snap(c, A, sc); c.lastReview = U.todayKey();
+    const m = RB.meetings(c).filter(x => x.status === 'scheduled' && U.parseISO(x.date) <= U.today() + DAY).sort((a, b) => a.date.localeCompare(b.date))[0] || RB.next(c); if (m) m.status = 'done';
+    c.recs = c.recs || {}; agreed.forEach(r => { c.recs[r.key] = { s: 'done', at: U.todayKey(), until: null }; });
+    App.log(c, `📋 Portfolio review done · health ${sc.tot}/100${agreed.length ? ' · agreed: ' + agreed.map(r => r.title).join('; ') : ''}${notes ? '\n' + notes : ''}`);
+    delete c.rbDraft; App.save(); App.recompute();
+    const msg = RB.summary(c, A, agreed, L);
+    V.modal('✅ Review complete', `<div class="small mute" style="margin-bottom:8px">Snapshot save ho gaya — agle review me "pichhle review se kya badla" apne aap dikhega. Client ko summary bhejo (${RBT[L].name}):</div><textarea class="in" id="rbMsg" rows="11">${U.esc(msg)}</textarea>`,
+      `<button class="btn" data-act="closeModal">Close</button><button class="btn" id="rbNext">${I('cal')} Agla review schedule</button>${c.phone ? `<a class="btn wa" target="_blank" rel="noopener" id="rbWa" href="${U.wa(c.phone, msg)}">${I('wa')} WhatsApp</a>` : ''}`, el => {
+        const tx = U.$('#rbMsg', el), w = U.$('#rbWa', el); if (tx && w) tx.oninput = () => { w.href = U.wa(c.phone, tx.value); };
+        U.$('#rbNext', el).onclick = () => { V.close(); RB.form(c, null); const d = U.$('#mDate'); if (d) d.value = U.iso(U.today() + 182 * DAY); };
+      });
+    App.render();
+  },
+  banner() {
+    const L = RB.soon(1); if (!L.length) return '';
+    return L.map(({ c, m }) => `<div class="banner" style="border-style:solid;background:linear-gradient(90deg,var(--sky-50),#fff)">${I('cal')}<div style="flex:1"><b>${RB.when(m)} — ${U.esc(c.name)}</b> ke saath review meeting <span class="small mute">(${U.esc(RB.MODES[m.mode] || m.mode)})</span><div class="small mute">Review brief ready hai — kya bolna hai, sab likha hai.</div></div><a class="btn pri sm" href="#r-${c.id}">${I('file')} Brief kholo</a></div>`).join('');
+  }
+};
+
+V.brief = () => RB.view();
+Object.assign(ACT, {
+  meet: d => { const c = App.client(d.cid); RB.form(c, d.mid ? RB.meetings(c).find(m => m.id === d.mid) : null); },
+  meetIcs: d => { const c = App.client(d.cid), m = RB.next(c); if (m) RB.ics(c, m); },
+  rbPrint: d => RB.print(App.client(d.cid)),
+  rbDone: d => RB.done(App.client(d.cid)),
+  rbLang: d => RB.setLang(App.client(d.cid), d.l),
+  rbCustom: d => RB.custom(App.client(d.cid))
+});
 </script>
 <script>
 (function(){
