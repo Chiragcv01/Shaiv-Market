@@ -41,6 +41,16 @@
   ],
   "redirects": [
     {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/book-free-consultation",
       "destination": "/book-intro-call",
       "permanent": true
