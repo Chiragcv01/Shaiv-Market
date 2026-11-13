@@ -96,9 +96,9 @@ export const CALC_ROUTES: CalcRoute[] = [
   },
   {
     tab: 'cagr', slug: 'cagr-calculator', name: 'CAGR calculator', short: 'CAGR', group: 'Grow your money',
-    blurb: 'The true yearly growth rate between two values.',
-    title: 'CAGR Calculator: Compound Annual Growth Rate of an Investment | Shaiv Market',
-    description: 'Calculate the CAGR of a mutual fund, stock, property or business from start value, end value and years. Also shows absolute return and doubling time.'
+    blurb: 'CAGR, reverse CAGR and your SIP\'s true return (XIRR).',
+    title: 'CAGR Calculator Online: Lumpsum, SIP (XIRR) & Reverse CAGR | Shaiv Market',
+    description: 'Free CAGR calculator for India: find CAGR from start and end value, future value or amount needed at an assumed CAGR, and your SIP\'s true return (XIRR). Formula, monthly CAGR and year-wise table.'
   },
   {
     tab: 'ppf', slug: 'ppf-calculator', name: 'PPF calculator', short: 'PPF', group: 'Tax, loans and safe savings',

@@ -129,6 +129,32 @@ export function cagr(start: number, end: number, years: number) {
   return { cagr: c * 100, absolute: ((end - start) / start) * 100, doubling: c > 0 ? Math.log(2) / Math.log(1 + c) : Infinity };
 }
 
+/** Future value of a lumpsum at a yearly CAGR. */
+export function cagrEndValue(start: number, ratePct: number, years: number) {
+  return start * Math.pow(1 + ratePct / 100, years);
+}
+
+/** Present value: what to invest today to reach `target` at a yearly CAGR. */
+export function cagrStartValue(target: number, ratePct: number, years: number) {
+  return target / Math.pow(1 + ratePct / 100, years);
+}
+
+/**
+ * Annualised return (XIRR) of a SIP: equal instalments at the start of each month for
+ * `months`, worth `value` one month after the last instalment. Solved by bisection.
+ */
+export function sipXirr(monthly: number, months: number, value: number) {
+  if (monthly <= 0 || months <= 0 || value <= 0) return 0;
+  const fv = (r: number) => (r === 0 ? monthly * months : monthly * ((Math.pow(1 + r, months) - 1) / r) * (1 + r));
+  let lo = -0.99, hi = 1;
+  for (let i = 0; i < 200; i++) {
+    const mid = (lo + hi) / 2;
+    if (fv(mid) > value) hi = mid; else lo = mid;
+  }
+  const r = (lo + hi) / 2;
+  return (Math.pow(1 + r, 12) - 1) * 100;
+}
+
 /** PPF: yearly deposit at the start of each year, interest compounded yearly. */
 export function ppf(yearly: number, ratePct: number, years: number) {
   const r = ratePct / 100;
