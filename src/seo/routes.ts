@@ -90,9 +90,9 @@ export const CALC_ROUTES: CalcRoute[] = [
   },
   {
     tab: 'inflation', slug: 'inflation-calculator', name: 'Inflation calculator', short: 'Inflation', group: 'Plan a goal',
-    blurb: 'What will it cost later? What will my money be worth?',
-    title: 'Inflation Calculator India: Future Cost and Value of Money | Shaiv Market',
-    description: 'Calculate the future cost of anything at your chosen inflation rate, or what a sum of money will really be worth in 10, 20 or 30 years. Free inflation calculator.'
+    blurb: 'Future cost, value of money, old rupees today, SIP after inflation.',
+    title: 'Inflation Calculator India: Future Value, Past Value & SIP with Inflation | Shaiv Market',
+    description: 'Free inflation calculator for India: future cost of anything, what money will be worth in 10-30 years, what old rupees (e.g. ₹10 lakh in 2014) are worth today, and a SIP calculator with inflation.'
   },
   {
     tab: 'cagr', slug: 'cagr-calculator', name: 'CAGR calculator', short: 'CAGR', group: 'Grow your money',

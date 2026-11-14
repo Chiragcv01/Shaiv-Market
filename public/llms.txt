@@ -28,6 +28,7 @@ Key facts:
 - [Goal SIP calculator](https://shaivmarket.com/calculators/goal-planner): inflation-adjusted goals
 - [SWP calculator](https://shaivmarket.com/calculators/swp-calculator): monthly pension from mutual funds
 - [CAGR calculator](https://shaivmarket.com/calculators/cagr-calculator): CAGR from start/end value, reverse CAGR (future value, amount needed today) and a SIP's true return (XIRR)
+- [Inflation calculator](https://shaivmarket.com/calculators/inflation-calculator): future cost, future value of money, old rupees in today's money, and SIP value after inflation
 - [Home loan prepayment vs SIP](https://shaivmarket.com/calculators/home-loan-prepayment-vs-sip)
 - [FIRE calculator](https://shaivmarket.com/calculators/fire-calculator): early retirement corpus
 - [Emergency fund calculator](https://shaivmarket.com/calculators/emergency-fund-calculator)
