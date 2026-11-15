@@ -29,6 +29,10 @@ export const organization = {
     postalCode: '302004',
     addressCountry: 'IN'
   },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '10:00', closes: '14:00' }
+  ],
   areaServed: [{ '@type': 'City', name: 'Jaipur' }, { '@type': 'State', name: 'Rajasthan' }, { '@type': 'Country', name: 'India' }],
   founder: { '@id': PERSON_ID },
   identifier: { '@type': 'PropertyValue', propertyID: 'AMFI Registration Number (ARN)', value: 'ARN-337289' },

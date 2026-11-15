@@ -105,6 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {[
                 ['/book-intro-call', 'Book an intro call'],
                 ['/about', 'About Chirag Sharma'],
+                ['/blog/mutual-fund-distributor-in-jaipur', 'Mutual fund distributor in Jaipur'],
                 ['/blog', 'Blog: SIP, tax and goal guides'],
                 ['/sip-returns-table', 'SIP returns table'],
                 ['/mutual-fund-glossary', 'Mutual fund glossary'],
