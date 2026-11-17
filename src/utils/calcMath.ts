@@ -4,9 +4,15 @@
 export interface YearRow { year: number; invested: number; value: number; monthly?: number }
 
 /** Step-up SIP: monthly amount rises by stepUp% once a year. */
-export function stepUpSip(monthly: number, stepUpPct: number, annualRetPct: number, years: number) {
+/**
+ * Step-up SIP: the monthly amount rises every 12 instalments, either by `stepUpPct` %
+ * or, when `opts.fixedStep` is given, by a fixed rupee amount. An optional lumpsum is
+ * invested on day one (in both the step-up and the flat comparison).
+ */
+export function stepUpSip(monthly: number, stepUpPct: number, annualRetPct: number, years: number, opts: { fixedStep?: number; lumpsum?: number } = {}) {
   const r = annualRetPct / 1200;
-  let value = 0, invested = 0, flat = 0, sip = monthly;
+  const lump = opts.lumpsum ?? 0;
+  let value = lump, invested = lump, flat = lump, sip = monthly;
   const rows: (YearRow & { flat: number })[] = [];
   for (let y = 1; y <= years; y++) {
     for (let m = 0; m < 12; m++) {
@@ -15,10 +21,10 @@ export function stepUpSip(monthly: number, stepUpPct: number, annualRetPct: numb
       invested += sip;
     }
     rows.push({ year: y, invested, value, monthly: sip, flat });
-    sip = sip * (1 + stepUpPct / 100);
+    sip = opts.fixedStep !== undefined ? sip + opts.fixedStep : sip * (1 + stepUpPct / 100);
   }
   const lastMonthly = rows.length ? rows[rows.length - 1].monthly! : monthly;
-  return { value, invested, gains: value - invested, flatValue: flat, flatInvested: monthly * 12 * years, lastMonthly, rows };
+  return { value, invested, gains: value - invested, flatValue: flat, flatInvested: lump + monthly * 12 * years, lastMonthly, rows };
 }
 
 /** One-time investment compounding yearly. */

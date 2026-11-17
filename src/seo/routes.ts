@@ -49,8 +49,8 @@ export const CALC_ROUTES: CalcRoute[] = [
   {
     tab: 'step-up-sip', slug: 'step-up-sip-calculator', name: 'Step-up SIP calculator', short: 'Step-up SIP', group: 'Grow your money',
     blurb: 'Raise your SIP every year. See how much more you end up with.',
-    title: 'Step-Up SIP Calculator: Returns with a Yearly SIP Increase | Shaiv Market',
-    description: 'See what a SIP that rises 5%, 10% or 15% every year grows to, compared with a flat SIP. Year-by-year SIP amount and value. Free top-up SIP calculator.'
+    title: 'Step-Up SIP Calculator with Inflation, Lumpsum & Fixed Amount | Shaiv Market',
+    description: 'Free step-up (top-up) SIP calculator for India: raise your SIP by a % or a fixed ₹ amount every year, add a lumpsum, and see the value in today\'s money after inflation. Formula and year-wise table.'
   },
   {
     tab: 'lumpsum', slug: 'lumpsum-calculator', name: 'Lumpsum calculator', short: 'Lumpsum', group: 'Grow your money',
