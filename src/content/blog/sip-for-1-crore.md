@@ -3,6 +3,7 @@ slug: sip-for-1-crore
 title: "How Much SIP Do You Need for ₹1 Crore? (10, 15, 20 and 25 Years)"
 description: The exact monthly SIP needed to reach ₹1 crore in 10, 15, 20 or 25 years at 10% and 12%, how a yearly step-up cuts the starting amount, and what ₹1 crore will really be worth.
 date: 2026-10-21
+updated: 2026-11-19
 order: 4
 image: photo-1565371767810-ef913a6c8315
 imageAlt: "Close-up of Indian rupee banknotes"
@@ -21,10 +22,14 @@ Here is exactly what it takes, with the maths done for you.
 
 | Time | At 10% a year | At 12% a year |
 |---|---|---|
+| 5 years | ₹1,28,100 | ₹1,21,200 |
+| 7 years | ₹82,000 | ₹75,800 |
 | 10 years | ₹48,400 | ₹43,000 |
 | 15 years | ₹23,900 | ₹19,800 |
 | 20 years | ₹13,100 | ₹10,000 |
 | 25 years | ₹7,500 | ₹5,300 |
+
+These are assumed rates, not guaranteed returns. The [SIP returns table](/sip-returns-table) has every year from 3 to 25, with and without a step-up.
 
 Look down the 12% column. Going from 10 years to 20 years doesn't halve the monthly amount, it cuts it by more than **four times**. That is compounding: the money you invest early has longer to grow, and the growth itself starts growing.
 
@@ -67,6 +72,9 @@ Put in your own target and years in the [required SIP calculator](/calculators/r
 Two more tools help here: the [step-up SIP calculator](/calculators/step-up-sip-calculator) shows how far a yearly increase takes you, and the [cost of delay calculator](/calculators/sip-delay-cost-calculator) shows what waiting even one year costs.
 
 ## Questions people ask
+
+### How much SIP is needed for 1 crore in 5 years?
+About ₹1.21 lakh a month at an assumed 12%, or ₹1.28 lakh at 10%. Over five years most of the ₹1 crore is your own money, so a longer horizon makes the goal far easier.
 
 ### How much SIP is needed for 1 crore in 10 years?
 About ₹43,000 a month at an assumed 12% return, or about ₹48,400 at 10%. Ten years is short for equity, so plan for a range of outcomes.
