@@ -109,6 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 ['/blog', 'Blog: SIP, tax and goal guides'],
                 ['/sip-returns-table', 'SIP returns table'],
                 ['/mutual-fund-glossary', 'Mutual fund glossary'],
+                ['/mutual-fund-capital-gains-tax', 'Capital gains tax on mutual funds'],
                 ['/goal-planner', 'Goal SIP calculator and guides'],
                 ['/start-sip', 'Start a SIP'],
                 ['/contact', 'Contact us']

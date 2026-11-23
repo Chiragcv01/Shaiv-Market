@@ -11,7 +11,11 @@ export const MfTaxCalculator: React.FC = () => {
   const [months, setMonths] = useState(30);
   const [slab, setSlab] = useState(30);
   const [used, setUsed] = useState(0);
-  const res = useMemo(() => mfTax({ kind, buy, sell, months, slabPct: slab, exemptionUsed: used }), [kind, buy, sell, months, slab, used]);
+  const [etf, setEtf] = useState(false);
+  const res = useMemo(() => mfTax({ kind, buy, sell, months, slabPct: slab, exemptionUsed: used, listedEtf: etf }), [kind, buy, sell, months, slab, used, etf]);
+  const ltcgAfter = kind === 'equity' ? 12 : kind === 'other' && etf ? 12 : 24;
+  const showMonths = kind !== 'debt';
+  const showSlab = kind !== 'equity';
 
   const rows: [string, string][] = [
     ['Capital gain', formatINRFull(res.gain)],
@@ -29,15 +33,24 @@ export const MfTaxCalculator: React.FC = () => {
       id="mutual-fund-tax-calculator"
       inputs={<>
         <Segmented<FundKind> label="Fund type" value={kind} onChange={setKind}
-          options={[{ id: 'equity', label: 'Equity fund (incl. ELSS, index)' }, { id: 'debt', label: 'Debt fund (bought after Mar 2023)' }]} />
+          options={[
+            { id: 'equity', label: 'Equity-oriented (65%+ equity, incl. ELSS, arbitrage, index)' },
+            { id: 'debt', label: 'Debt (bought on/after 1 Apr 2023)' },
+            { id: 'debtOld', label: 'Debt (bought before 1 Apr 2023)' },
+            { id: 'other', label: 'Other (35-65% equity hybrid, gold, overseas)' }
+          ]} />
+        {kind === 'other' && (
+          <Segmented<'no' | 'yes'> label="Is it a listed ETF?" value={etf ? 'yes' : 'no'} onChange={(v) => setEtf(v === 'yes')}
+            options={[{ id: 'no', label: 'No (fund / fund of funds)' }, { id: 'yes', label: 'Yes (gold, silver or overseas ETF)' }]} />
+        )}
         <SmartNumberInput id="tx-buy" label="Amount invested (cost)" value={buy} onChange={setBuy} min={1000} max={100000000} step={1000} isCurrency />
         <SmartNumberInput id="tx-sell" label="Redemption value" value={sell} onChange={setSell} min={1000} max={200000000} step={1000} isCurrency />
-        {kind === 'equity' && (
+        {showMonths && (
           <SmartNumberInput id="tx-months" label="Held for" value={months} onChange={setMonths} min={1} max={240} step={1} suffix=" months"
-            presets={[{ label: '6 mo', value: 6 }, { label: '12 mo', value: 12 }, { label: '13 mo', value: 13 }, { label: '3 yrs', value: 36 }]}
-            helperText="More than 12 months counts as long term for equity funds." />
+            presets={[{ label: '6 mo', value: 6 }, { label: '12 mo', value: 12 }, { label: '13 mo', value: 13 }, { label: '25 mo', value: 25 }, { label: '3 yrs', value: 36 }]}
+            helperText={`More than ${ltcgAfter} months counts as long term for this fund type.`} />
         )}
-        {(kind === 'debt') && (
+        {showSlab && (
           <Segmented<string> label="Your income tax slab" value={String(slab)} onChange={(v) => setSlab(Number(v))}
             options={['5', '10', '15', '20', '25', '30'].map((s) => ({ id: s, label: `${s}%` }))} />
         )}
@@ -63,9 +76,9 @@ export const MfTaxCalculator: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <Note>For resident individuals, FY 2026-27. Surcharge, the old grandfathering for units bought before February 2018, hybrid, gold and international funds are not covered. Each SIP instalment has its own holding period (first in, first out). This is an estimate, not tax advice; confirm with your CA before you redeem.</Note>
+        <Note>For resident individuals, FY 2026-27. Surcharge and the old grandfathering for equity units bought before February 2018 are not covered. See the <a className="underline" href="/mutual-fund-capital-gains-tax">tax table for every fund category</a>. Each SIP instalment has its own holding period (first in, first out). This is an estimate, not tax advice; confirm with your CA before you redeem.</Note>
       </>}
-      below={<CalcCta text="Timing redemptions across financial years can use the ₹1.25 lakh exemption twice. Ask before you sell." calc="mutual fund tax calculator" result={`${formatINRShort(buy)} bought, ${formatINRShort(sell)} on sale after ${months} months: estimated tax ${formatINRShort(res.total)}`} />}
+      below={<CalcCta text="Timing redemptions across financial years can use the ₹1.25 lakh exemption twice. Ask before you sell." calc="mutual fund tax calculator" result={`${formatINRShort(buy)} bought, ${formatINRShort(sell)} on sale${showMonths ? ` after ${months} months` : ''}: estimated tax ${formatINRShort(res.total)} (${res.kind})`} />}
     />
   );
 };

@@ -36,6 +36,7 @@ Key facts:
 
 ## Reference
 - [SIP returns table](https://shaivmarket.com/sip-returns-table): what ₹1,000 to ₹50,000 a month becomes over 5 to 30 years at assumed 10% and 12%, ₹50,000 SIP year by year (1 to 30 years), and the SIP needed for ₹1 crore in 3 to 25 years with and without a 10% step-up
+- [Capital gains tax on mutual funds (FY 2026-27)](https://shaivmarket.com/mutual-fund-capital-gains-tax): STCG/LTCG rates and holding periods for equity-oriented, debt-oriented and other funds, every AMFI scheme category, ETFs, fund of funds and SIFs, ₹1.25 lakh exemption, set-off and SIP holding period rules
 - [Mutual fund glossary](https://shaivmarket.com/mutual-fund-glossary): plain-English meanings of 36 mutual fund terms, from AMFI and ARN to XIRR
 
 ## Pages

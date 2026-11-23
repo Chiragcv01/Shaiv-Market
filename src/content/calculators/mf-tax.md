@@ -2,11 +2,13 @@
 tab: mf-tax
 answer: "For FY 2026-27, gains on equity mutual funds held over 12 months are taxed at 12.5% on the part above ₹1.25 lakh a year; held 12 months or less, at 20%. Gains on debt funds bought on or after 1 April 2023 are taxed at your income tax slab. 4% cess applies on top. A ₹3 lakh long-term equity gain costs about ₹22,750 in tax. Enter your own redemption above."
 related: elss-tax-saving-guide, swp-for-monthly-pension, direct-vs-regular-mutual-fund
-updated: 2026-10-23
+updated: 2026-11-23
 ---
+Not sure which tax group your fund is in? See the [capital gains tax table for every AMFI scheme category](/mutual-fund-capital-gains-tax), including hybrids, gold and overseas funds, ETFs and SIFs.
+
 ## How to use the mutual fund tax calculator
 
-1. Choose the **fund type**: an equity-oriented fund (including ELSS and equity index funds), or a debt fund bought on or after 1 April 2023.
+1. Choose the **fund type**: equity-oriented (65% or more in Indian equity, including ELSS, arbitrage and equity index funds), debt bought on or after 1 April 2023, debt bought before 1 April 2023, or other funds (35-65% equity hybrids, gold, silver and overseas funds; say whether it is a listed ETF).
 2. Enter what you **invested** in the units you are selling and what you will **get on redemption**.
 3. For equity, enter **how long you held** them, and any **equity long-term gains already booked** this financial year, since the ₹1.25 lakh exemption is shared across all your equity funds and shares.
 4. For debt, pick your **income tax slab**.
@@ -21,6 +23,11 @@ You get the type of gain, the exempt amount, the taxable gain, tax, cess, and wh
 | Equity-oriented | 12 months or less | 20% |
 | Debt fund, bought on or after 1 April 2023 | Any period | Your slab rate |
 | Debt fund, bought before 1 April 2023 | More than 24 months | 12.5%, no indexation |
+| Other funds (35-65% equity hybrids, gold, silver, overseas fund of funds) | More than 24 months | 12.5%, no indexation, no ₹1.25 lakh exemption |
+| Other funds, listed ETFs (gold, silver, international) | More than 12 months | 12.5%, no exemption |
+| Other funds, any type | Within the period above | Your slab rate |
+
+Where every AMFI category falls is in the [capital gains tax table](/mutual-fund-capital-gains-tax).
 
 Health and education cess of 4% is added to the tax. Budget 2026 left these rates unchanged.
 
@@ -45,7 +52,7 @@ Health and education cess of 4% is added to the tax. Budget 2026 left these rate
 
 If you hold equity funds for the long term, you can sell units with up to ₹1.25 lakh of long-term gains in a financial year and reinvest straight away. You pay no tax on that gain, and your purchase cost resets higher, which cuts future tax. Done every year, this "gain harvesting" can save up to about ₹16,250 a year. Watch the exit load and time it before 31 March.
 
-This calculator gives an estimate for resident individuals. It does not include surcharge or hybrid, gold and international funds, which have their own rules. Please confirm your final figures with your CA.
+This calculator gives an estimate for resident individuals. It does not include surcharge. Please confirm your final figures with your CA.
 
 ## Questions people ask
 

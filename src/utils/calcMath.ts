@@ -176,10 +176,16 @@ export function ppf(yearly: number, ratePct: number, years: number) {
   return { maturity: bal, invested, interest: bal - invested, rows };
 }
 
-export type FundKind = 'equity' | 'debt';
+/**
+ * equity: equity-oriented (65%+ listed Indian equity, incl. arbitrage, aggressive hybrid, equity index funds/ETFs, ELSS)
+ * debt: debt-oriented, bought on or after 1 April 2023 (always slab rate, Sec 50AA)
+ * debtOld: debt fund units bought before 1 April 2023
+ * other: neither group (35-65% equity hybrids, gold/silver/overseas fund of funds and ETFs)
+ */
+export type FundKind = 'equity' | 'debt' | 'debtOld' | 'other';
 
 /** Capital gains tax on a mutual fund redemption (resident individual, FY 2026-27 rules). */
-export function mfTax(p: { kind: FundKind; buy: number; sell: number; months: number; slabPct: number; exemptionUsed: number }) {
+export function mfTax(p: { kind: FundKind; buy: number; sell: number; months: number; slabPct: number; exemptionUsed: number; listedEtf?: boolean }) {
   const gain = p.sell - p.buy;
   const cess = 0.04;
   if (gain <= 0) return { gain, kind: gain < 0 ? 'Capital loss' : 'No gain', rate: 0, exemption: 0, taxable: 0, tax: 0, cess: 0, total: 0, net: gain, effective: 0 };
@@ -193,9 +199,19 @@ export function mfTax(p: { kind: FundKind; buy: number; sell: number; months: nu
       kind = 'Short-term capital gain (STCG)';
       rate = 20;
     }
-  } else {
+  } else if (p.kind === 'debt') {
     kind = 'Taxed at your slab (debt fund bought on or after 1 April 2023)';
     rate = p.slabPct;
+  } else {
+    // debt units bought before April 2023, and 'other' funds: 12.5% without indexation once long term, no exemption
+    const ltcgAfter = p.kind === 'other' && p.listedEtf ? 12 : 24;
+    if (p.months > ltcgAfter) {
+      kind = `Long-term capital gain (held over ${ltcgAfter} months, no indexation)`;
+      rate = 12.5;
+    } else {
+      kind = `Short-term capital gain (held ${ltcgAfter} months or less), taxed at your slab`;
+      rate = p.slabPct;
+    }
   }
   const taxable = Math.max(0, gain - exemption);
   const tax = taxable * rate / 100;
