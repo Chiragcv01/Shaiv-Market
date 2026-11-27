@@ -10,3 +10,15 @@
 | 2026-11-17 | step up sip calculator (33 impr, pos 81), sip calculator step up (17, pos 79), step up sip calculator with inflation (8, pos 86), step up sip calculator formula (7, pos 81), step up sip calculator with amount, sip calculator with step up and lumpsum, sip top up / progressive / growing sip calculator, स्टेप अप सिप कैलकुलेटर | Step-up SIP calculator: step up by % or fixed ₹ amount, optional lumpsum, inflation-adjusted value; guide: synonyms, fixed-amount table, lumpsum and inflation examples, explicit formula, Hindi summary, 4 new FAQs (9 total); new title/meta; llms.txt entry | https://shaivmarket.com/calculators/step-up-sip-calculator |
 | 2026-11-18 | mf kyc status (5 impr, pos 46), cams kra kyc validation (4, pos 54.5), cams kyc validation, camskra kyc status check, ndml kyc validation process, how to do kyc for mutual fund online, update mutual fund kyc online, ekyc for mutual fund, llp kyc documents for mutual fund | KYC post: new title/meta, KRA list and status-check steps, what KRA validation means and how to move Registered→Validated, online KYC and updates (incl. MF Central), LLP/company/HUF documents, 5 new FAQs (8 total); llms.txt entry | https://shaivmarket.com/blog/mutual-fund-kyc-documents |
 | 2026-11-19 | 1 crore in 5 years sip (4 impr, pos 81), how much sip for 1 crore (3, pos 75), how much sip for 1 crore in 5/10 years, 50000 sip for 10 years (4, pos 86), 50000 sip for 1/5/15/20/25/30 years, 15000 sip for 25 years, 20000 sip for 20 years | SIP returns table: new title/meta, ₹50,000 SIP year-by-year table (1-30 yrs, 10%/12%), ₹1 crore SIP table for 3-25 yrs (flat and 10% step-up), 6 new FAQs (11 total); 1-crore post: 5- and 7-year rows, 5-year FAQ, link to table; llms.txt entries | https://shaivmarket.com/sip-returns-table |
+
+## Review: GSC export 2026-11-27 vs 2026-11-13
+
+| Window | Impr/day | Clicks | Avg pos |
+|---|---|---|---|
+| Before (30 Oct–12 Nov) | 177 | 5 | 42.1 |
+| After (13–24 Nov) | 242 | 6 | 35.3 |
+
+New-period impressions by cluster (est. position, old export position in brackets): Inflation +736 (35.7, was 52.8), CAGR +630 (30.6, was 45.1), Retirement/FIRE +519 (47.1, was 59.5, 2 clicks), Step-up +141 (62.6, was 81.0), 1 crore/50k SIP +140 (41.9, was 72.6), ARN/EUIN +109 (61.0, was 59.5, flat), Jaipur +62 (25.7, was 18.5, slipped), Tax +61 (64.2).
+Wins: positions improved on every optimised calculator page; "inflation rate in india for next 5 years" at pos 8.1; SWP blog 46.5 → 20.1; SIP returns table 22.4 → 11.4.
+Problems: CAGR and inflation pages have 1,675 new impressions and 0 clicks (desktop CTR 0.15%); Jaipur distributor and ARN posts slipped.
+Next 3 priorities: (1) CTR rewrite of CAGR and inflation titles/meta plus an "inflation rate in India next 5 years" answer block; (2) optimise the retirement calculator (retirement / pension / corpus / retirement SIP queries); (3) Jaipur local signals (Google Business Profile, citations) and refresh of the Jaipur distributor post.
